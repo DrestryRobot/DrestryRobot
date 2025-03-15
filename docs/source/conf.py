@@ -1,5 +1,10 @@
 # Configuration file for the Sphinx documentation builder.
 
+
+import os
+import sys
+sys.path.insert(0, os.path.abspath('../..'))  # 调整为项目根目录的绝对路径
+
 # -- Project information
 
 project = 'Lumache'
