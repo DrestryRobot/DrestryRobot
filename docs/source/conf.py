@@ -1,8 +1,7 @@
 # Configuration file for the Sphinx documentation builder.
 
-import os
-import sys
-sys.path.insert(0, os.path.abspath('../..'))  # 调整为项目根目录的绝对路径
+
+import jieba
 
 # -- Project information
 
@@ -22,6 +21,9 @@ extensions = [
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
 ]
+
+def split_search_terms(terms):
+    return jieba.lcut(terms)
 
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),

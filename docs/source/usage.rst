@@ -1,54 +1,7 @@
-.. Usage
-.. =====
+2015年8月13日
+=============
 
-.. .. _installation:
+DrestryRobot，梦想奋斗青春机器人
 
-.. Installation
-.. ------------
-
-.. 中钱钱钱To use Lumache, first install it using pip:
-
-.. .. code-block:: console
-
-..    (.venv) $ pip install lumache
-
-.. Creating recipes
-.. ----------------
-
-.. To retrieve a list of random ingredients,
-.. you can use the ``lumache.get_random_ingredients()`` function:
-
-.. .. autofunction:: lumache.get_random_ingredients
-
-.. The ``kind`` parameter should be either ``"meat"``, ``"fish"``,
-.. or ``"veggies"``. Otherwise, :py:func:`lumache.get_random_ingredients`
-.. will raise an exception.
-
-.. .. autoexception:: lumache.InvalidKindError
-
-.. For example:
-
-.. >>> import lumache
-.. >>> lumache.get_random_ingredients()
-.. ['shells', 'gorgonzola', 'parsley']
-
-安装
-===
-
-要使用 Lumache，请首先通过 pip 安装它：
-
-.. code-block:: console
-
-   (.venv) $ pip install lumache
-
-例如：
-
-.. >>> import lumache
-.. >>> lumache.get_random_ingredients()
-.. ['shells', 'gorgonzola', 'parsley']
-
-.. autosummary::
-   :toctree: generated
-
-   lumache
+今天是2015年8月13日星期四，这是我第一次写日记，然而今天也是一个重要的日子。早上，我从梦中惊醒。走出房间，只见父母打点着行装，准备外出了。我有点儿难过，陪伴父母来到楼下，父母在对我说完一番安慰的话后，就走上了路途，我望着他们渐渐模糊的身影，心里很不是滋味。我飞快的跑上楼，走进阳台，只见妹妹已经醒来，原来她一直都在这里看着，这时，我已看不见他们了，我又一次体会到了亲人离别的痛苦。一天下来，我和妹妹都强忍着这种痛苦。但到了晚上，我睡上了沙发，正要睡时，隐约听见妹妹的哭声，我内心感到不安，妹妹她还小，对这种痛苦她是无法忍受的，毕竟是生活所迫。我怀着深深的思念入睡了。
 
