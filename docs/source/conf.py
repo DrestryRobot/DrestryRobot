@@ -1,8 +1,5 @@
 # Configuration file for the Sphinx documentation builder.
 
-
-import jieba
-
 # -- Project information
 
 project = 'DrestryRobot'
@@ -21,9 +18,6 @@ extensions = [
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
 ]
-
-def split_search_terms(terms):
-    return jieba.lcut(terms)
 
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
