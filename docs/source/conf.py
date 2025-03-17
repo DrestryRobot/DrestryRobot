@@ -6,8 +6,8 @@ project = 'DrestryRobot'
 copyright = '2025, DrestryRobot'
 author = 'DrestryRobot'
 
-release = '2025.03.16'
-version = '2025.03.16'
+release = '2025.03.18'
+version = '2025.03.18'
 
 # -- General configuration
 
@@ -26,6 +26,7 @@ intersphinx_mapping = {
 intersphinx_disabled_domains = ['std']
 
 templates_path = ['_templates']
+html_static_path = ['_static', 'zip']
 
 # -- Options for HTML output
 
