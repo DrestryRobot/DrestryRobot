@@ -9,8 +9,7 @@ DrestryRobot利用Unity搭建的第一个控制机械臂的仿真软件AuboUnity
 
 2. 下载
 ---------
-AuboUnity程序压缩包下载链接：
-`点击此处下载压缩包 <zip/AuboUnity.zip>`_
+AuboUnity程序压缩包下载链接：https://pan.baidu.com/s/1GufxrnOOPfBAOGMI2hTWkw?pwd=0000
 
 3. 内容
 --------
