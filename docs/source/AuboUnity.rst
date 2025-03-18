@@ -7,11 +7,15 @@ AuboUnity
 --------
 DrestryRobot利用Unity搭建的第一个控制机械臂的仿真软件AuboUnity，欢迎下载体验。
 
-2. 下载
+2. 版本
+--------
+2025.03.18
+
+3. 下载
 ---------
 AuboUnity程序压缩包下载链接：https://pan.baidu.com/s/1GufxrnOOPfBAOGMI2hTWkw?pwd=0000
 
-3. 内容
+4. 内容
 --------
 - 文件1：My project.exe
 - 文件2：UnityCrashHandler64.exe
@@ -19,6 +23,6 @@ AuboUnity程序压缩包下载链接：https://pan.baidu.com/s/1GufxrnOOPfBAOGMI
 - 文件4：MonoBleedingEdge
 - 文件5：My project_Data
 
-4. 方法
+5. 方法
 ---------
 AuboUnity程序压缩包下载解压后，打开文件夹，双击``My project.exe``运行即可。
