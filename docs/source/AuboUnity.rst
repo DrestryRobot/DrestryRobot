@@ -48,6 +48,7 @@ AuboUnity程序压缩包下载链接：https://pan.baidu.com/s/1gGPt4EnfnrD811BA
 - 后续有机会还会进一步优化。
 - 相关后续请关注抖音@DrestryRobot。
 - 存在一些问题，请谅解。
+- 开发源于兴趣，仅作分享用途。
 
 8. BUG解答
 -----------
