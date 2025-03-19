@@ -1,28 +1,44 @@
 AuboUnity
 ==========
 
-这是基于Unity平台搭建的Aubo机器人仿真软件。
+这是一个基于Unity平台搭建的Aubo机械臂仿真控制软件。
 
-1. 简介
---------
-DrestryRobot利用Unity搭建的第一个控制机械臂的仿真软件AuboUnity，欢迎下载体验。
+1. 项目简介
+------------
+由DrestryRobot利用Unity搭建的按键控制机械臂的仿真软件AuboUnity，欢迎下载体验。
 
-2. 版本
---------
-2025.03.18
+2. 软件版本
+------------
+2025.03.20
 
-3. 下载
----------
-AuboUnity程序压缩包下载链接：https://pan.baidu.com/s/1GufxrnOOPfBAOGMI2hTWkw?pwd=0000
+3. 软件下载
+------------
+AuboUnity程序压缩包下载链接：https://pan.baidu.com/s/1gGPt4EnfnrD811BA6aqKTQ?pwd=0000
 
-4. 内容
---------
-- 文件1：My project.exe
+4. 文件内容
+------------
+- 文件1：AuboUnity.exe
 - 文件2：UnityCrashHandler64.exe
 - 文件3：UnityPlayer.dll
 - 文件4：MonoBleedingEdge
-- 文件5：My project_Data
+- 文件5：AuboUnity_Data
 
-5. 方法
----------
-AuboUnity程序压缩包下载解压后，打开文件夹，双击``My project.exe``运行即可。
+5. 使用方法
+------------
+- AuboUnity程序压缩包下载并解压后，打开文件夹，双击``AuboUnity.exe``运行。
+- 程序运行后，等待加载完成，按照右侧按键提示对仿真的机械臂关节进行控制。
+
+6. 按键操作
+------------
+Joint1: Q键/A键
+Joint2: W键/S键
+Joint3: E键/D键
+Joint4: R键/F键
+Joint5: T键/G键
+Joint6: Y键/H键
+
+7. 特别说明
+------------
+- 仅在windows上运行。
+- 第一版，比较简陋。
+- 后续有机会还会进一步优化。
