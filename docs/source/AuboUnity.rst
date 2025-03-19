@@ -3,7 +3,8 @@ AuboUnity
 
 这是一个基于Unity平台搭建的Aubo机械臂仿真控制软件。
 
-.. image:: image/AuboUnity.png
+.. figure:: images/AuboUnity.png
+   :alt: 软件界面
 
 1. 项目简介
 ------------
@@ -29,6 +30,7 @@ AuboUnity程序压缩包下载链接：https://pan.baidu.com/s/1gGPt4EnfnrD811BA
 ------------
 - AuboUnity程序压缩包下载并解压后，打开文件夹，双击``AuboUnity.exe``运行。
 - 程序运行后，等待加载完成，按照右侧按键提示对仿真的机械臂关节进行控制。
+- 推荐使用Alt+F4退出程序。
 
 6. 按键操作
 ------------
