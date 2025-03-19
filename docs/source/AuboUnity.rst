@@ -3,6 +3,8 @@ AuboUnity
 
 这是一个基于Unity平台搭建的Aubo机械臂仿真控制软件。
 
+.. image:: image/AuboUnity.png
+
 1. 项目简介
 ------------
 由DrestryRobot利用Unity搭建的按键控制机械臂的仿真软件AuboUnity，欢迎下载体验。
@@ -30,12 +32,12 @@ AuboUnity程序压缩包下载链接：https://pan.baidu.com/s/1gGPt4EnfnrD811BA
 
 6. 按键操作
 ------------
-Joint1: Q键/A键
-Joint2: W键/S键
-Joint3: E键/D键
-Joint4: R键/F键
-Joint5: T键/G键
-Joint6: Y键/H键
+- Joint1: Q键/A键
+- Joint2: W键/S键
+- Joint3: E键/D键
+- Joint4: R键/F键
+- Joint5: T键/G键
+- Joint6: Y键/H键
 
 7. 特别说明
 ------------
