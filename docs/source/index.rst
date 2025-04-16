@@ -11,7 +11,7 @@ DrestryRobot，梦想奋斗青春机器人
    :maxdepth: 2
    :caption: 内容目录
 
-   技术总结
-   资源分享
-   成果产出
+   技术
+   资源
+   成果
 
