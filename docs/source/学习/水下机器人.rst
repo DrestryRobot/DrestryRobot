@@ -1,0 +1,6 @@
+水下机器人
+==========
+版本：2025.04.16
+
+.. figure:: images/8719325d87e44af9abb2a9b452bedf15~tplv-p14lwwcsbr-7.jpg
+   :alt: DrestryRobot的资源库
