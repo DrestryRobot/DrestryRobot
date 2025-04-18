@@ -14,7 +14,7 @@
 
 1.3 图示
 ~~~~~~~~~
-.. figure:: images/1253164.png
+.. figure:: images/bbb.png
    :alt: 机械结构图
    :width: 500px
    :align: center
@@ -29,7 +29,7 @@
 ~~~~~~~~~
 硬件部分实物搭建采用的是树莓派3B+、PixHawk4飞控，具体参考下图即可
 
-.. figure:: images/8719325d87e44af9abb2a9b452bedf15~tplv-p14lwwcsbr-7.jpg
+.. figure:: images/aaa.jpg
    :alt: 硬件连线图
 
 2.3 软件
