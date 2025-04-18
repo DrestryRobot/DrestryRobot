@@ -3,17 +3,19 @@
 
 DrestryRobot，梦想奋斗青春机器人
 
-.. raw:: html
+.. figure:: images/微信图片_20250418223917.png
+   :alt: DrestyRobot Logo (黑色)
+   :width: 360px
+   :align: center
 
-   <div style="display: flex; flex-direction: column; align-items: center;">
-       <div style="display: flex; justify-content: center; gap: 20px;">
-           <img src="images/微信图片_20250418223917.png" alt="DrestyRobot Logo(Black)" width="360px">
-           <img src="images/微信图片_20250418223923.png" alt="DrestyRobot Logo(White)" width="360px">
-       </div>
-       <p style="text-align: center; font-size: 14px; margin-top: 10px;">
-           DrestryRobot Logo（黑色 & 白色）
-       </p>
-   </div>
+   DrestyRobot Logo（黑色）
+
+.. figure:: images/微信图片_20250418223923.png
+   :alt: DrestyRobot Logo (白色)
+   :width: 360px
+   :align: center
+
+   DrestyRobot Logo（白色）
 
 .. note::
 
