@@ -1,5 +1,6 @@
 欢迎来到DrestryRobot！
-===================================
+===========================
+© CopyRight 2025 DrestryRobot
 
 DrestryRobot，梦想奋斗青春机器人
 
