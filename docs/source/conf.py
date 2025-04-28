@@ -6,8 +6,8 @@ project = 'DrestryRobot'
 copyright = '2025, DrestryRobot'
 author = 'DrestryRobot'
 
-release = '2025.04.21'
-version = '2025.04.21'
+release = '2025.04.29'
+version = '2025.04.29'
 
 # -- General configuration
 

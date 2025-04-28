@@ -1,22 +1,8 @@
 欢迎来到DrestryRobot！
 ===========================
-© CopyRight 2025 DrestryRobot
+版本：2025.04.29
 
 DrestryRobot，梦想奋斗青春机器人
-
-.. figure:: images/微信图片_20250418223917.png
-   :alt: DrestyRobot Logo (黑色)
-   :width: 360px
-   :align: center
-
-   DrestyRobot Logo（黑色）
-
-.. figure:: images/微信图片_20250418223923.png
-   :alt: DrestyRobot Logo (白色)
-   :width: 360px
-   :align: center
-
-   DrestyRobot Logo（白色）
 
 .. note::
 
@@ -26,9 +12,11 @@ DrestryRobot，梦想奋斗青春机器人
    :maxdepth: 2
    :caption: 内容目录
 
+   抖音
    资源
    技术
    产品
    学习
+
 
 
