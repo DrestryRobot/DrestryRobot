@@ -17,7 +17,12 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
+    'sphinxcontrib.googleanalytics',
 ]
+
+
+googleanalytics_id = 'G-X0VQVVBVYP'  # 替换为您的Google Analytics跟踪ID
+
 
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),

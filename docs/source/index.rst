@@ -12,7 +12,6 @@ DrestryRobot，梦想奋斗青春机器人
    :maxdepth: 2
    :caption: 内容目录
 
-   抖音
    资源
    技术
    产品
