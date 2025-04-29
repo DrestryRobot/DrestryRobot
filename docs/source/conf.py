@@ -26,6 +26,8 @@ intersphinx_mapping = {
 intersphinx_disabled_domains = ['std']
 
 templates_path = ['_templates']
+html_static_path = ['_static']
+
 
 # -- Options for HTML output
 
@@ -37,5 +39,6 @@ epub_show_urls = 'footnote'
 # 添加 Google Analytics 跟踪代码
 html_js_files = [
     'https://www.googletagmanager.com/gtag/js?id=G-X0VQVVBVYP',
-    # 'analytics.js',  # 您将自定义的 JS 文件添加到此
+    'analytics.js',
 ]
+
