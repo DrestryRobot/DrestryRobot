@@ -1,6 +1,6 @@
 YRobot
 ======
-版本：2025.04.16
+版本：2025.04.29
 
 1 概述
 -------
@@ -39,39 +39,39 @@ YRobot（青春机器人），功能为家务机器人（简称“家务机”�
      - 链接
    * - 1
      - 全向轮
-     - OMNIA™全向轮
-     - Rotacaster
-     - [OMNIA™全向轮](https://www.hi-robot.com.cn/Product-Omniwheel/OMNIA_Wheel_CN.html)
+     - 
+     - 
+     - 
    * - 2
      - 线性导轨
-     - HGW15CC, MSA15A, BRH15A
-     - HIWIN, PMI, ABBA
-     - [直线导轨型号大全](http://forrun.net/article-zhixiandaoguixinghaodaqu.html)
+     - 
+     - 
+     - 
    * - 3
      - 轮组电机
-     - MXUS鑫峰48V500W
-     - Chamrider
-     - [电机轮组](https://m.1688.com/brand/-b5e7bbfac2d6d7e9.html)
+     - 
+     - 
+     - 
    * - 4
      - 关节电机
-     - GO-M8010-6
-     - Unitree Robotics
-     - [GO Motor](https://www.unitree.com/cn/go1/motor/)
+     - 
+     - 
+     - 
    * - 5
      - 直线电机
-     - Yaskawa, Tecnotion, Hiwin
-     - 安川, 泰科诺, 上银
-     - [直线电机品牌排行榜](https://www.chinabgao.com/top/brand/99823.html)
+     - 
+     - 
+     - 
    * - 6
      - 梯形丝杆
-     - THK 梯形丝杠
-     - THK
-     - [THK 梯形丝杠](https://www.mechtool.cn/catalog/catalog_thkscrewnut.html)
+     - 
+     - 
+     - 
    * - 7
      - 关节电机
-     - SETZ120系列
-     - SEMOTOR
-     - [SETZ120系列关节电机](https://semotoren.com/cnproducts/20-SETZ120%20series%20joint%20motor.html)
+     - 
+     - 
+     - 
 
 .. note::
    1. 选型均为demo版本，实际选型根据具体需求进行调整。

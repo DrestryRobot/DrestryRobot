@@ -17,12 +17,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
-    'sphinxcontrib.googleanalytics',
 ]
-
-
-googleanalytics_id = 'G-X0VQVVBVYP'  # 替换为您的Google Analytics跟踪ID
-
 
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
@@ -38,3 +33,9 @@ html_theme = 'sphinx_rtd_theme'
 
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
+
+# 添加 Google Analytics 跟踪代码
+html_js_files = [
+    'https://www.googletagmanager.com/gtag/js?id=G-X0VQVVBVYP',
+    # 'analytics.js',  # 您将自定义的 JS 文件添加到此
+]
