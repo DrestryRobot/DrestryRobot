@@ -1,9 +1,19 @@
 老资源库
 ====================
-版本：2025.04.16
+版本：2025.04.30
 
-往期视频对应的资料资源都会放在这里，有需要扫描即可下载
+本页面整合了@DrestryRobot往期视频的资料资源，有需要点击即可下载。
 
-.. figure:: images/328b378bda882de162ac7b834756507.jpg
-   :alt: 老资源库
+.. figure:: images/屏幕截图2025-04-30222719.png
+   :alt: DrestryRobot的资源库
+   :align: center
+
+   DrestryRobot的资源库
+
+下载(更新)链接：https://pan.baidu.com/s/1KWzk9N09bhziJOdgUKLdOg?pwd=0000
+
+.. note::
+
+   1. 所有资源 © DrestryRobot 收集整理，仅作学习交流用途。
+   2. 本资源库不再更新，所有内容将迁移至 `DrestryRobot <https://drestryrobot.readthedocs.io>`_ ，敬请关注。
 
