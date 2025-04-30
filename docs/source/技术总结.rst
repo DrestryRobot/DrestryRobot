@@ -6,9 +6,7 @@
    :maxdepth: 2
    :caption: 内容目录
 
-   技术总结/AuboUnity
    技术总结/水下机器人
-   技术总结/YRobot
    技术总结/轴孔装配
    技术总结/IsaacSim
    技术总结/IsaacLab
