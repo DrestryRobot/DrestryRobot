@@ -8,6 +8,8 @@
    :alt: 机械模型
    :align: center
 
+
+
 下载(更新)链接：https://pan.baidu.com/s/1o8tQmRhZnPhCBRCtwGwsEg?pwd=0000
 
 .. note::
