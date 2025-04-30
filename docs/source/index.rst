@@ -4,7 +4,7 @@
 
 “DrestryRobot，梦想奋斗青春机器人” 
 
-“做自己感兴趣的事并以此谋生，和喜欢的人在一起并让她快乐”
+.. “做自己感兴趣的事并以此谋生，和喜欢的人在一起并让她快乐”
 
 这是一个在线网页，旨在于资源分享、技术总结、项目开发和产品展示，目前包含资源分享、技术总结、项目开发和产品展示四大板块。
 
@@ -35,8 +35,8 @@
 .. raw:: html
 
    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeOQ_dJKIHI6DJ_XVEEK15KwpzVEowTGx7E04k2epyZzOpjpw/viewform?embedded=true"
-           width="640"
-           height="382"
+           width="100%"
+           height="500"
            frameborder="0"
            marginheight="0"
            marginwidth="0">
