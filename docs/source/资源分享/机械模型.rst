@@ -4,11 +4,11 @@
 
 本页面整合了一些常用的机械设计模型，有需要点击链接即可下载。
 
-下载(更新)链接：https://pan.baidu.com/s/1o8tQmRhZnPhCBRCtwGwsEg?pwd=0000
-
 .. figure:: images/屏幕截图2025-04-30212553.png
    :alt: 机械模型
    :align: center
+
+下载(更新)链接：https://pan.baidu.com/s/1o8tQmRhZnPhCBRCtwGwsEg?pwd=0000
 
 .. note::
 
