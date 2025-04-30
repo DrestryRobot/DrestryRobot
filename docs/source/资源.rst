@@ -1,11 +1,11 @@
-资源
-=====
-版本：2025.04.29
+资源分享
+========
+版本：2025.04.30
 
 .. toctree::
    :maxdepth: 2
    :caption: 内容目录
 
-   资源/DrestryRobot的资源库
-   资源/DrestryRobot的Model
-   资源/DrestryRobot的链接
+   资源分享/老资源库
+   资源分享/机械模型
+   资源分享/网页链接
