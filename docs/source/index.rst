@@ -11,13 +11,6 @@
 - 机械模型
 - 网页链接
 - 老资源库
-- YRobot
-- AuboUnity
-
-上次更新 2025.04.18
-~~~~~~~~~~~~~~~~~~~~
-- 水下机器人
-- AuboUnity
   
 .. toctree::
    :maxdepth: 2
