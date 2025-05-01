@@ -6,19 +6,21 @@
 -----------
 导纳控制，其实就是对力和位置的控制。传感器读取到外力作用，代入导纳控制计算公式进行运算，得到对应力方向的位置应该变化的量。举个例子，现在你用手握住另一个人的手，向前推对方的手，这时候对方的手会顺着你的手推的方向移动，这就是导纳控制。
 
-导纳控制理论公式 `[2] <https://blog.csdn.net/a735148617/article/details/108564836>`_ 如下：
+导纳控制理论公式如下：`[2] <https://blog.csdn.net/a735148617/article/details/108564836>`_ 
 
 .. math::
 
-    $\mathrm{M}_{\mathrm{d}}\left(\ddot{\mathrm{X}}-\ddot{\mathrm{X}}_{\mathrm{d}}\right)+\mathrm{B}_{\mathrm{d}}\left(\dot{\mathrm{X}}-\dot{\mathrm{X}}_{\mathrm{d}}\right)+\mathrm{K}_{\mathrm{d}}\left(\mathrm{X}-\mathrm{X}_{\mathrm{d}}\right)=-\mathrm{F}_{\mathrm{e}}$
+    \mathrm{M}_{\mathrm{d}}\left(\ddot{\mathrm{X}}-\ddot{\mathrm{X}}_{\mathrm{d}}\right)+\mathrm{B}_{\mathrm{d}}\left(\dot{\mathrm{X}}-\dot{\mathrm{X}}_{\mathrm{d}}\right)+\mathrm{K}_{\mathrm{d}}\left(\mathrm{X}-\mathrm{X}_{\mathrm{d}}\right)=-\mathrm{F}_{\mathrm{e}}
 
 2 技术总结
 -----------
 2.1 技术路线
 ~~~~~~~~~~~~~~
 
+
 2.2 技术难点
 ~~~~~~~~~~~~~~
+
 
 2.3 核心代码
 ~~~~~~~~~~~~~~
@@ -55,6 +57,6 @@ https://v.douyin.com/65tWplKgZcY/
 
 4 参考资料
 -----------
-[1] `基于多方向导纳力控制的机器人柔顺装配系统 <https://oss.wanfangdata.com.cn/Catalog/List?fileId=perio_zzjsyjc202402010&transaction=%7B%22id%22%3Anull%2C%22transferOutAccountsStatus%22%3Anull%2C%22transaction%22%3A%7B%22id%22%3A%221917860114166046720%22%2C%22status%22%3A1%2C%22createDateTime%22%3Anull%2C%22payDateTime%22%3A1746088457992%2C%22authToken%22%3A%22TGT-4726386-YAVfR5ERcghvhnNE1PgNcyXjuVhTe0Urdnv3gOpJ3WiqLSS9Wd-auth-iploginservice-c554b544c-gn7fg%22%2C%22user%22%3A%7B%22accountType%22%3A%22Group%22%2C%22key%22%3A%22xbgydx%22%7D%2C%22transferIn%22%3A%7B%22accountType%22%3A%22Income%22%2C%22key%22%3A%22PeriodicalFulltext%22%7D%2C%22transferOut%22%3A%7B%22GTimeLimit.xbgydx%22%3A3.0%7D%2C%22turnover%22%3A3.0%2C%22orderTurnover%22%3A3.0%2C%22productDetail%22%3A%22perio_zzjsyjc202402010%22%2C%22productTitle%22%3Anull%2C%22userIP%22%3A%22202.117.81.73%22%2C%22organName%22%3Anull%2C%22memo%22%3Anull%2C%22orderUser%22%3A%22xbgydx%22%2C%22orderChannel%22%3A%22pc%22%2C%22payTag%22%3A%22%22%2C%22webTransactionRequest%22%3Anull%2C%22signature%22%3A%22dOQJmtWkSL8i%2B8bv922GX0RHPA8qi%2FM5C6u2dZF8jKPQLqDLjM0Nshw7nUZrPf1pAjBpdIra8yxk%5CnkwuIBHU9FrdMpeYE3UJW%2BboN6sk90pwlWs6YTrKTgSd68gHwhxR9e6%2BfNGC2HhJAcf4ARGbq%2ByhU%5CnLs33A1ubBYJOmxDngm0%3D%22%7D%2C%22isCache%22%3Afalse%7D>`_ [CSDN]
+[1] `基于多方向导纳力控制的机器人柔顺装配系统 <https://oss.wanfangdata.com.cn/Catalog/List?fileId=perio_zzjsyjc202402010&transaction=%7B%22id%22%3Anull%2C%22transferOutAccountsStatus%22%3Anull%2C%22transaction%22%3A%7B%22id%22%3A%221917860114166046720%22%2C%22status%22%3A1%2C%22createDateTime%22%3Anull%2C%22payDateTime%22%3A1746088457992%2C%22authToken%22%3A%22TGT-4726386-YAVfR5ERcghvhnNE1PgNcyXjuVhTe0Urdnv3gOpJ3WiqLSS9Wd-auth-iploginservice-c554b544c-gn7fg%22%2C%22user%22%3A%7B%22accountType%22%3A%22Group%22%2C%22key%22%3A%22xbgydx%22%7D%2C%22transferIn%22%3A%7B%22accountType%22%3A%22Income%22%2C%22key%22%3A%22PeriodicalFulltext%22%7D%2C%22transferOut%22%3A%7B%22GTimeLimit.xbgydx%22%3A3.0%7D%2C%22turnover%22%3A3.0%2C%22orderTurnover%22%3A3.0%2C%22productDetail%22%3A%22perio_zzjsyjc202402010%22%2C%22productTitle%22%3Anull%2C%22userIP%22%3A%22202.117.81.73%22%2C%22organName%22%3Anull%2C%22memo%22%3Anull%2C%22orderUser%22%3A%22xbgydx%22%2C%22orderChannel%22%3A%22pc%22%2C%22payTag%22%3A%22%22%2C%22webTransactionRequest%22%3Anull%2C%22signature%22%3A%22dOQJmtWkSL8i%2B8bv922GX0RHPA8qi%2FM5C6u2dZF8jKPQLqDLjM0Nshw7nUZrPf1pAjBpdIra8yxk%5CnkwuIBHU9FrdMpeYE3UJW%2BboN6sk90pwlWs6YTrKTgSd68gHwhxR9e6%2BfNGC2HhJAcf4ARGbq%2ByhU%5CnLs33A1ubBYJOmxDngm0%3D%22%7D%2C%22isCache%22%3Afalse%7D>`_ [万方数据]
 
-[2] `彻底搞懂阻抗控制、导纳控制、力位混合控制 <https://blog.csdn.net/a735148617/article/details/108564836>`_ [万方数据]
+[2] `彻底搞懂阻抗控制、导纳控制、力位混合控制 <https://blog.csdn.net/a735148617/article/details/108564836>`_ [CSDN]
