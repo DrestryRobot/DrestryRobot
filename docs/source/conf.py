@@ -18,7 +18,7 @@ extensions = [
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
     'sphinx.ext.autosectionlabel',
-    # 'sphinx_comments',
+    'sphinx.ext.mathjax',
 ]
 
 intersphinx_mapping = {
@@ -55,5 +55,5 @@ html_js_files = [
 #     },
 # }
 
-
-
+math_number_all = True
+math_eqref_format = "Eq.{number}"  # 可选，设置编号格式，例如 Eq.1、Eq.2 等
