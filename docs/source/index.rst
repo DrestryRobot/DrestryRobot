@@ -28,8 +28,14 @@
    技术总结
    项目开发
    产品展示
+   
+.. raw:: html
 
-
-
+   <div style="max-width: 100%; height: auto;">
+       <video style="width: 100%; height: auto;" controls autoplay loop muted>
+           <source src="https://g.us.sinaimg.cn/o0/bdEwC0lflx08nTwZ3088010412001hm50E010.mp4?label=gif_mp4&template=600x1068.28.0&ssig=dwvZAtkT3o&Expires=1746103940&KID=unistore,video" type="video/mp4">
+           Your browser does not support the video tag.
+       </video>
+   </div>
 
 
