@@ -17,6 +17,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
+    'sphinx.ext.autosectionlabel',
     # 'sphinx_comments',
 ]
 
@@ -53,3 +54,6 @@ html_js_files = [
 #         "shortname": "http://disqus.com/by/disqus_pInaIyoktw"  # 如果使用 Disqus，请填写你的短名称
 #     },
 # }
+
+
+
