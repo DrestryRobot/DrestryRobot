@@ -49,10 +49,16 @@
    产品展示
 
 
+
+
+
+
+
+
 .. raw:: html
 
    <script>
-      fetch("https://ipapi.co/json/")
+      fetch("https://ipwhois.app/json/")
          .then(response => response.json())
          .then(data => {
             document.getElementById("weather").innerText = "📍 你的位置：" + data.city + "，国家：" + data.country;
@@ -61,4 +67,6 @@
    </script>
 
    <p id="weather">获取位置信息...</p>
+
+
 
