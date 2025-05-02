@@ -1,17 +1,11 @@
+欢迎来到DrestryRobot！
+========================
 .. raw:: html
 
-   <h1 style="font-size: 32px; text-align: left; font-weight: bold;
-              font-family: 'Poppins', sans-serif;
-              background: linear-gradient(90deg, lightblue, white);
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;">
-       欢迎来到DrestryRobot！
-   </h1>
-
-.. raw:: html
-
-   <img src="https://img.shields.io/badge/版本-2025.05.02-blue.svg" alt="版本" style="width:150px; text-align:left; display:block;">
-
+   <div style="margin-bottom: 20px;">
+       <img src="https://img.shields.io/badge/版本-2025.05.02-blue.svg" alt="版本" 
+            style="width:130px; text-align:left; display:block;">
+   </div>
 
 .. figure:: images/蓝白橙色手写体自然景观旅行分享微信公众号封面.gif
    :alt: Version
