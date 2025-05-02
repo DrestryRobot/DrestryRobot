@@ -9,7 +9,7 @@
        text-align:left; 
        display:block;">
    </div>
-   
+
 .. raw:: html
 
    <div style="margin-bottom: 20px;">
@@ -17,7 +17,6 @@
        alt="Version" 
        style="width:100%;">
    </div>
-
 
 "DrestryRobot，梦想奋斗青春机器人"
 
