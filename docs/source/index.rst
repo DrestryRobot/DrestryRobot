@@ -53,23 +53,23 @@
    <style>
       /* 让天气卡片居底部中央 */
       .weather-card {
-          background: rgba(255, 255, 255, 0.9);
+          background: #F3F3F3; /* 适配浅色模式 */
           border-radius: 16px;
-          padding: 5px;
+          padding: 10px;
           width: 250px;
           position: fixed;
           bottom: 20px;
           left: 50%;
           transform: translateX(-50%);
           box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-          transition: background 0.3s;
+          transition: background 0.3s, color 0.3s;
       }
 
       /* 让文字居左 */
       .info {
           font-size: 16px;
           font-weight: bold;
-          color: #333;
+          color: #333; /* 默认字体颜色 */
           margin: 10px 5px;
           text-align: left;
       }
@@ -77,11 +77,11 @@
       /* 适配夜间模式 */
       @media (prefers-color-scheme: dark) {
           .weather-card {
-              background: rgba(255, 255, 255, 0.2);
-              color: white;
+              background: #333; /* 适配深色模式 */
+              color: #F3F3F3;
           }
           .info {
-              color: white;
+              color: #F3F3F3;
           }
       }
    </style>
@@ -93,12 +93,19 @@
           document.getElementById("time").innerText = `⏰ 时间: ${timeString}`;
       }
 
-      // 获取位置
+      // 中文国家映射表
+      const countryMap = {
+          "China": "中国", "United States": "美国", "Japan": "日本",
+          "Germany": "德国", "France": "法国", "United Kingdom": "英国",
+          "Philippines": "菲律宾", "India": "印度"
+      };
+
+      // 获取位置（中文）
       fetch("https://ipapi.co/json/")
          .then(response => response.json())
          .then(data => {
             let city = data.city;
-            let country = data.country;
+            let country = countryMap[data.country] || data.country;
             document.getElementById("location").innerText = `📍 位置: ${city}, ${country}`;
 
             // 获取天气信息
@@ -116,17 +123,9 @@
 
                   // 天气代码映射
                   let weatherMap = {
-                     0: "☀ 晴朗",
-                     1: "🌤 多云",
-                     2: "☁ 阴天",
-                     3: "🌧 小雨",
-                     45: "🌫 雾霾",
-                     48: "🌫 大雾",
-                     51: "🌦 局部小雨",
-                     61: "🌧 中雨",
-                     63: "⛈ 雷雨",
-                     71: "❄ 小雪",
-                     75: "❄ 暴雪"
+                     0: "☀ 晴朗", 1: "🌤 多云", 2: "☁ 阴天", 3: "🌧 小雨",
+                     45: "🌫 雾霾", 48: "🌫 大雾", 51: "🌦 局部小雨",
+                     61: "🌧 中雨", 63: "⛈ 雷雨", 71: "❄ 小雪", 75: "❄ 暴雪"
                   };
 
                   let weatherDescription = weatherMap[weatherCode] || "🌍 天气数据未知";
