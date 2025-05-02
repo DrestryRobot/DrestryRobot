@@ -53,15 +53,15 @@
    <style>
       /* 让天气卡片居底部中央 */
       .weather-card {
-          background: #F3F3F3; /* 适配浅色模式 */
+          background: rgba(255, 255, 255, 0.85); /* 增加透明度 */
           border-radius: 16px;
           padding: 10px;
-          width: 250px;
+          width: 220px;
           position: fixed;
           bottom: 20px;
           left: 50%;
           transform: translateX(-50%);
-          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
           transition: background 0.3s, color 0.3s;
       }
 
@@ -69,15 +69,15 @@
       .info {
           font-size: 16px;
           font-weight: bold;
-          color: #333; /* 默认字体颜色 */
-          margin: 10px 5px;
+          color: #222; /* 稍深的默认字体颜色 */
+          margin: 8px 5px;
           text-align: left;
       }
 
       /* 适配夜间模式 */
       @media (prefers-color-scheme: dark) {
           .weather-card {
-              background: #333; /* 适配深色模式 */
+              background: rgba(30, 30, 30, 0.85); /* 调整暗色背景的透明度 */
               color: #F3F3F3;
           }
           .info {
@@ -93,51 +93,32 @@
           document.getElementById("time").innerText = `⏰ 时间: ${timeString}`;
       }
 
-      // 中文国家映射表
-      const countryMap = {
-          "China": "中国", "United States": "美国", "Japan": "日本",
-          "Germany": "德国", "France": "法国", "United Kingdom": "英国",
-          "Philippines": "菲律宾", "India": "印度"
-      };
-
-      // 获取位置（中文）
-      fetch("https://ipapi.co/json/")
+      // 获取天气信息（不获取位置）
+      fetch("https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&current_weather=true")
          .then(response => response.json())
-         .then(data => {
-            let city = data.city;
-            let country = countryMap[data.country] || data.country;
-            document.getElementById("location").innerText = `📍 位置: ${city}, ${country}`;
+         .then(weatherData => {
+            let temperature = weatherData.current_weather.temperature;
+            let weatherCode = weatherData.current_weather.weathercode;
 
-            // 获取天气信息
-            fetch(`https://api.open-meteo.com/v1/forecast?latitude=${data.latitude}&longitude=${data.longitude}&current_weather=true`)
-               .then(response => response.json())
-               .then(weatherData => {
-                  let temperature = weatherData.current_weather.temperature;
-                  let weatherCode = weatherData.current_weather.weathercode;
+            // 温度表情符号映射
+            let tempEmoji = temperature <= 0 ? "❄" :
+                            temperature <= 15 ? "🥶" :
+                            temperature <= 25 ? "😊" :
+                            temperature <= 35 ? "😅" : "🔥";
 
-                  // 温度表情符号映射
-                  let tempEmoji = temperature <= 0 ? "❄" :
-                                  temperature <= 15 ? "🥶" :
-                                  temperature <= 25 ? "😊" :
-                                  temperature <= 35 ? "😅" : "🔥";
+            // 天气代码映射
+            let weatherMap = {
+               0: "☀ 晴朗", 1: "🌤 多云", 2: "☁ 阴天", 3: "🌧 小雨",
+               45: "🌫 雾霾", 48: "🌫 大雾", 51: "🌦 局部小雨",
+               61: "🌧 中雨", 63: "⛈ 雷雨", 71: "❄ 小雪", 75: "❄ 暴雪"
+            };
 
-                  // 天气代码映射
-                  let weatherMap = {
-                     0: "☀ 晴朗", 1: "🌤 多云", 2: "☁ 阴天", 3: "🌧 小雨",
-                     45: "🌫 雾霾", 48: "🌫 大雾", 51: "🌦 局部小雨",
-                     61: "🌧 中雨", 63: "⛈ 雷雨", 71: "❄ 小雪", 75: "❄ 暴雪"
-                  };
+            let weatherDescription = weatherMap[weatherCode] || "🌍 天气数据未知";
 
-                  let weatherDescription = weatherMap[weatherCode] || "🌍 天气数据未知";
-
-                  document.getElementById("weather").innerText = `${tempEmoji} 温度: ${temperature}°C | ${weatherDescription}`;
-               })
-               .catch(error => {
-                  document.getElementById("weather").innerText = `❌ 无法获取天气信息: ${error}`;
-               });
+            document.getElementById("weather").innerText = `${tempEmoji} 温度: ${temperature}°C | ${weatherDescription}`;
          })
          .catch(error => {
-            document.getElementById("location").innerText = `❌ 无法获取位置信息: ${error}`;
+            document.getElementById("weather").innerText = `❌ 无法获取天气信息: ${error}`;
          });
 
       // 定时更新时间
@@ -146,11 +127,6 @@
 
    <!-- 天气信息卡片 -->
    <div class="weather-card">
-       <p id="location" class="info">获取位置信息...</p>
        <p id="time" class="info">⏰ 时间加载中...</p>
        <p id="weather" class="info">🌤 天气数据加载中...</p>
    </div>
-
-
-
-
