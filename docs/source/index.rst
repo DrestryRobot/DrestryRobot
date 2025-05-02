@@ -56,7 +56,7 @@
           background: rgba(255, 255, 255, 0.85); /* 增加透明度 */
           border-radius: 16px;
           padding: 10px;
-          width: 220px;
+          width: 250px;
           position: fixed;
           bottom: 20px;
           left: 50%;
@@ -77,7 +77,7 @@
       /* 适配夜间模式 */
       @media (prefers-color-scheme: dark) {
           .weather-card {
-              background: rgba(30, 30, 30, 0.85); /* 调整暗色背景的透明度 */
+              background: rgba(60, 60, 60, 0.85); /* 调整暗色背景的透明度 */
               color: #F3F3F3;
           }
           .info {
