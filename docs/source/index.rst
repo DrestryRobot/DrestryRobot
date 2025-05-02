@@ -48,7 +48,6 @@
    项目开发
    产品展示
 
-
 .. raw:: html
 
    <style>
@@ -56,22 +55,34 @@
       .weather-card {
           background: rgba(255, 255, 255, 0.9);
           border-radius: 16px;
-          padding: 20px;
-          width: 300px;
+          padding: 5px;
+          width: 250px;
           position: fixed;
           bottom: 20px;
           left: 50%;
           transform: translateX(-50%);
           box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+          transition: background 0.3s;
       }
 
       /* 让文字居左 */
       .info {
-          font-size: 18px;
+          font-size: 16px;
           font-weight: bold;
           color: #333;
-          margin: 10px 0;
+          margin: 10px 5px;
           text-align: left;
+      }
+
+      /* 适配夜间模式 */
+      @media (prefers-color-scheme: dark) {
+          .weather-card {
+              background: rgba(255, 255, 255, 0.2);
+              color: white;
+          }
+          .info {
+              color: white;
+          }
       }
    </style>
 
@@ -90,13 +101,37 @@
             let country = data.country;
             document.getElementById("location").innerText = `📍 位置: ${city}, ${country}`;
 
-            // 使用 Open-Meteo 获取天气
+            // 获取天气信息
             fetch(`https://api.open-meteo.com/v1/forecast?latitude=${data.latitude}&longitude=${data.longitude}&current_weather=true`)
                .then(response => response.json())
                .then(weatherData => {
                   let temperature = weatherData.current_weather.temperature;
-                  let windspeed = weatherData.current_weather.windspeed;
-                  document.getElementById("weather").innerText = `🌡 温度: ${temperature}°C | 💨 风速: ${windspeed}km/h`;
+                  let weatherCode = weatherData.current_weather.weathercode;
+
+                  // 温度表情符号映射
+                  let tempEmoji = temperature <= 0 ? "❄" :
+                                  temperature <= 15 ? "🥶" :
+                                  temperature <= 25 ? "😊" :
+                                  temperature <= 35 ? "😅" : "🔥";
+
+                  // 天气代码映射
+                  let weatherMap = {
+                     0: "☀ 晴朗",
+                     1: "🌤 多云",
+                     2: "☁ 阴天",
+                     3: "🌧 小雨",
+                     45: "🌫 雾霾",
+                     48: "🌫 大雾",
+                     51: "🌦 局部小雨",
+                     61: "🌧 中雨",
+                     63: "⛈ 雷雨",
+                     71: "❄ 小雪",
+                     75: "❄ 暴雪"
+                  };
+
+                  let weatherDescription = weatherMap[weatherCode] || "🌍 天气数据未知";
+
+                  document.getElementById("weather").innerText = `${tempEmoji} 温度: ${temperature}°C | ${weatherDescription}`;
                })
                .catch(error => {
                   document.getElementById("weather").innerText = `❌ 无法获取天气信息: ${error}`;
@@ -116,6 +151,7 @@
        <p id="time" class="info">⏰ 时间加载中...</p>
        <p id="weather" class="info">🌤 天气数据加载中...</p>
    </div>
+
 
 
 
