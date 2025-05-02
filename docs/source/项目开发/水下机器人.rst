@@ -10,7 +10,7 @@
 
 1.2 模型
 ~~~~~~~~
-水下机器人模型下载链接：https://pan.baidu.com/s/1ZIeMYyqml1nNkztljZFXuA?pwd=0000
+水下机器人模型下载链接🔗：https://pan.baidu.com/s/1ZIeMYyqml1nNkztljZFXuA?pwd=0000
 
 1.3 图示
 ~~~~~~~~~
@@ -36,7 +36,7 @@
 ~~~~~~~~~
 QGroundControl是一个开源的地面控制站软件，支持多种无人机和水下机器人。它提供了一个用户友好的界面，可以实时监控机器人的状态，并进行任务规划和控制。
 
-**技术手册**：https://docs.qgroundcontrol.com/master/en/qgc-user-guide/
+**技术手册🔗**：https://docs.qgroundcontrol.com/master/en/qgc-user-guide/
 
 .. note::
    1. 如果对这套水下机器人搭建路线感兴趣，可以按照给的硬件连线图进行采购和搭建，配合QGroundControl进行软件开发控制。
