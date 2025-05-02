@@ -1,6 +1,9 @@
 欢迎来到DrestryRobot！
 ===========================
-版本：2025.05.02
+.. raw:: html
+
+   <img src="https://img.shields.io/badge/版本-2025.05.02-blue.svg" alt="版本" style="width:150px; text-align:left; display:block;">
+
 
 .. figure:: images/蓝白橙色手写体自然景观旅行分享微信公众号封面.gif
    :alt: Version
@@ -36,6 +39,5 @@
    技术总结
    项目开发
    产品展示
-
 
 
