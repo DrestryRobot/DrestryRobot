@@ -43,17 +43,6 @@ html_js_files = [
     'analytics.js',
 ]
 
-# # 配置评论服务，例如 Disqus 或 Giscus
-# comments_config = {
-#     "hypothesis": False,  # 如果你要使用 Hypothesis 注释功能，可以改为 True
-#     "utterances": {
-#         "repo": "https://github.com/DrestryRobot/DrestryRobot",  # 如果使用 Giscus，请替换为你的仓库名称
-#         "theme": "github-light",  # 主题（可选：github-dark）
-#     },
-#     "disqus": {
-#         "shortname": "http://disqus.com/by/disqus_pInaIyoktw"  # 如果使用 Disqus，请填写你的短名称
-#     },
-# }
-
-# math_number_all = True
-# math_eqref_format = "Eq.{number}"  # 可选，设置编号格式，例如 Eq.1、Eq.2 等
+html_context = {
+    "disable_version_switch": True
+}
