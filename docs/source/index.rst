@@ -3,16 +3,23 @@
 .. raw:: html
 
    <div style="margin-bottom: 20px;">
-       <img src="https://img.shields.io/badge/版本-2025.05.02-blue.svg" alt="版本" 
-            style="width:130px; text-align:left; display:block;">
+       <img src="https://img.shields.io/badge/版本-2025.05.02-blue.svg" 
+       alt="版本" 
+       style="width:130px; 
+       text-align:left; 
+       display:block;">
+   </div>
+   
+.. raw:: html
+
+   <div style="margin-bottom: 20px;">
+       <img src="images/蓝白橙色手写体自然景观旅行分享微信公众号封面.gif" 
+       alt="Version" 
+       style="width:100%;">
    </div>
 
-.. figure:: images/蓝白橙色手写体自然景观旅行分享微信公众号封面.gif
-   :alt: Version
-   :align: center
-   :width: 100%
 
-   "DrestryRobot，梦想奋斗青春机器人"
+"DrestryRobot，梦想奋斗青春机器人"
 
 "发现美，创造美"
 ----------------
