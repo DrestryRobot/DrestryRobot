@@ -10,13 +10,14 @@
        display:block;">
    </div>
 
+.. figure:: images/蓝白橙色手写体自然景观旅行分享微信公众号封面.gif
+   :alt: Version
+   :align: center
+   :width: 100%
+
 .. raw:: html
 
-   <div style="margin-bottom: 20px;">
-       <img src="images/蓝白橙色手写体自然景观旅行分享微信公众号封面.gif" 
-       alt="Version" 
-       style="width:100%;">
-   </div>
+   <br>
 
 "DrestryRobot，梦想奋斗青春机器人"
 
