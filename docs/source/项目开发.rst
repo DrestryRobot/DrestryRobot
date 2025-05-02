@@ -10,6 +10,15 @@
        display:block;">
    </div>
 
+.. figure:: images/蓝白色扁平插画可爱插画微信公众号封面.gif
+   :alt: Version
+   :align: center
+   :width: 100%
+
+.. raw:: html
+
+   <br>
+
 本版块为@DrestryRobot推进的一些个人项目，旨在于学习、交流和分享。
 
 .. toctree::
