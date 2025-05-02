@@ -52,22 +52,13 @@
 .. raw:: html
 
    <script>
-      fetch("https://devapi.qweather.com/v7/weather/now?location=101010100&key=YOUR_API_KEY")
-         .then(response => {
-            if (!response.ok) {
-                throw new Error("HTTP error " + response.status);
-            }
-            return response.json();
-         })
+      fetch("https://ipapi.co/json/")
+         .then(response => response.json())
          .then(data => {
-            console.log("API 数据：", data);
-            document.getElementById("weather").innerText = "🌤 天气：" + data.now.text + "，温度：" + data.now.temp + "°C";
+            document.getElementById("weather").innerText = "📍 你的位置：" + data.city + "，国家：" + data.country;
          })
-         .catch(error => {
-            console.error("错误信息：", error);
-            document.getElementById("weather").innerText = "加载失败：" + error;
-         });
+         .catch(error => document.getElementById("weather").innerText = "❌ 无法获取位置信息：" + error);
    </script>
 
-   <p id="weather">加载中...</p>
+   <p id="weather">获取位置信息...</p>
 
