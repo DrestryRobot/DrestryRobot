@@ -31,19 +31,4 @@
    资源分享/技术标准
    资源分享/表情符号
 
-.. raw:: html
 
-   <script>
-      fetch("https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&current_weather=true")
-         .then(response => response.json())
-         .then(data => {
-            let temperature = data.current_weather.temperature;
-            let windspeed = data.current_weather.windspeed;
-            document.getElementById("weather").innerText = `🌡 温度: ${temperature}°C | 💨 风速: ${windspeed}km/h`;
-         })
-         .catch(error => {
-            document.getElementById("weather").innerText = `❌ 无法获取天气信息: ${error}`;
-         });
-   </script>
-
-   <p id="weather">获取位置信息...</p>
