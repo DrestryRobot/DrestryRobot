@@ -1,6 +1,14 @@
 项目开发
 ========
-版本：2025.04.30
+.. raw:: html
+
+   <div style="margin-bottom: 20px;">
+       <img src="https://img.shields.io/badge/版本-2025.05.02-blue.svg" 
+       alt="版本" 
+       style="width:130px; 
+       text-align:left; 
+       display:block;">
+   </div>
 
 本版块为@DrestryRobot推进的一些个人项目，旨在于学习、交流和分享。
 
@@ -9,4 +17,5 @@
    :caption: 内容目录
 
    项目开发/YRobot
+   项目开发/水下机器人
 

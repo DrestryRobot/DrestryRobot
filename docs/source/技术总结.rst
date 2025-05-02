@@ -1,6 +1,14 @@
 技术总结
 ========
-版本：2025.05.02
+.. raw:: html
+
+   <div style="margin-bottom: 20px;">
+       <img src="https://img.shields.io/badge/版本-2025.05.02-blue.svg" 
+       alt="版本" 
+       style="width:130px; 
+       text-align:left; 
+       display:block;">
+   </div>
 
 本版块总结了机械、控制、算法相关的技术点，旨在于学习、交流和分享。
 
@@ -54,7 +62,6 @@
    :maxdepth: 2
    :caption: 内容目录
 
-   技术总结/水下机器人
    技术总结/导纳控制
    技术总结/负载辨识
    技术总结/PID控制
@@ -62,5 +69,7 @@
    技术总结/IsaacSim
    技术总结/IsaacLab
    技术总结/轴孔装配
+   技术总结/串口调试
+   技术总结/网络调试
    
    

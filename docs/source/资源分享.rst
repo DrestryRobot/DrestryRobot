@@ -1,6 +1,14 @@
 资源分享
 ========
-版本：2025.04.30
+.. raw:: html
+
+   <div style="margin-bottom: 20px;">
+       <img src="https://img.shields.io/badge/版本-2025.05.02-blue.svg" 
+       alt="版本" 
+       style="width:130px; 
+       text-align:left; 
+       display:block;">
+   </div>
 
 本版块收集整理了各类资源，旨在于学习、交流和分享。
 
