@@ -147,33 +147,37 @@
                      (position) => {
                            let lat = position.coords.latitude.toFixed(4);
                            let lon = position.coords.longitude.toFixed(4);
-
-                           // 逆地理编码（获取城市名称）
-                           let geoUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`;
-
-                           fetch(geoUrl)
-                              .then(response => response.json())
-                              .then(locationData => {
-                                 let city = locationData.address.city || locationData.address.town || locationData.address.village || "未知城市";
-                                 let country = locationData.address.country || "未知国家";
-
-                                 document.getElementById("location").innerText = `📍 位置: ${city}, ${country}`;
-
-                                 // 获取天气信息
-                                 fetchWeather(lat, lon, apiKey);
-                              })
-                              .catch(error => {
-                                 document.getElementById("location").innerText = "📍 无法获取城市信息";
-                              });
+                           updateWeatherAndLocation(lat, lon, apiKey);
                      },
                      (error) => {
-                           document.getElementById("location").innerText = "📍 无法获取位置信息";
-                           document.getElementById("weather").innerText = `❌ 位置获取失败: ${error.message}`;
+                           console.warn("Geolocation 失败，尝试 IP 定位:", error);
+                           fetch("https://ipapi.co/json/")
+                              .then(response => response.json())
+                              .then(data => {
+                                 let city = data.city || "未知城市";
+                                 let country = data.country_name || "未知国家";
+                                 let lat = data.latitude;
+                                 let lon = data.longitude;
+
+                                 document.getElementById("location").innerText = `📍 位置: ${city}, ${country}`;
+                                 fetchWeather(lat, lon, apiKey);
+                              })
+                              .catch(() => document.getElementById("location").innerText = "📍 无法获取 IP 位置信息");
                      }
                   );
                } else {
-                  document.getElementById("location").innerText = "📍 位置获取失败";
-                  document.getElementById("weather").innerText = "❌ 此浏览器不支持地理定位";
+                  fetch("https://ipapi.co/json/")
+                     .then(response => response.json())
+                     .then(data => {
+                           let city = data.city || "未知城市";
+                           let country = data.country_name || "未知国家";
+                           let lat = data.latitude;
+                           let lon = data.longitude;
+
+                           document.getElementById("location").innerText = `📍 位置: ${city}, ${country}`;
+                           fetchWeather(lat, lon, apiKey);
+                     })
+                     .catch(() => document.getElementById("location").innerText = "📍 无法获取 IP 位置信息");
                }
          }
 
@@ -185,4 +189,5 @@
 
    </body>
    </html>
+
 
