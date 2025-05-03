@@ -57,7 +57,6 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>实时天气卡片</title>
       <style>
-         /* 让天气卡片居底部中央 */
          .weather-card {
                background: rgba(255, 255, 255, 0.85);
                border-radius: 16px;
@@ -71,7 +70,6 @@
                transition: background 0.3s, color 0.3s;
          }
 
-         /* 让文字居左 */
          .info {
                font-size: 16px;
                font-weight: bold;
@@ -80,7 +78,6 @@
                text-align: left;
          }
 
-         /* 适配夜间模式 */
          @media (prefers-color-scheme: dark) {
                .weather-card {
                   background: rgba(60, 60, 60, 0.85);
@@ -94,7 +91,6 @@
    </head>
    <body>
 
-      <!-- 天气信息卡片 -->
       <div class="weather-card">
          <p id="time" class="info">⏰ 时间加载中...</p>
          <p id="location" class="info">📍 位置加载中...</p>
@@ -108,27 +104,22 @@
                document.getElementById("time").innerText = `⏰ 时间: ${timeString}`;
          }
 
-         async function fetchWeather(lat, lon, apiKey) {
-               let cacheKey = `weather_${lat}_${lon}`;
-               let cachedWeather = localStorage.getItem(cacheKey);
-
-               if (cachedWeather) {
-                  displayWeather(JSON.parse(cachedWeather));
-                  return;
-               }
+         async function fetchWeather(lat, lon) {
+               let apiKey = "fc86d110601a62e0d4d77e3d982c0a4c"; // 你的 OpenWeatherMap API Key
+               let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=zh_cn`;
 
                try {
-                  let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=zh_cn`);
+                  let response = await fetch(weatherUrl);
                   let weatherData = await response.json();
-                  localStorage.setItem(cacheKey, JSON.stringify(weatherData)); // 缓存天气数据
                   displayWeather(weatherData);
                } catch {
-                  document.getElementById("weather").innerText = "❌ 无法获取天气信息";
+                  document.getElementById("weather").innerText = "❌ 无法获取天气信息，使用默认北京天气";
+                  fetchWeather(39.9042, 116.4074); // 北京经纬度
                }
          }
 
          function displayWeather(weatherData) {
-               let temperature = weatherData.main.temp.toFixed(1);
+               let temperature = parseFloat(weatherData.main.temp).toFixed(1);
                let weatherCode = weatherData.weather[0].id;
 
                let tempEmoji = temperature <= 0 ? "❄" :
@@ -148,38 +139,24 @@
                document.getElementById("weather").innerText = `${tempEmoji} 温度: ${temperature}°C | ${weatherDescription}`;
          }
 
-         function getLocationAndFetchWeather(apiKey) {
-               if (navigator.geolocation) {
-                  navigator.geolocation.getCurrentPosition(
-                     async (position) => {
-                           let lat = position.coords.latitude.toFixed(4);
-                           let lon = position.coords.longitude.toFixed(4);
+         async function getLocationAndFetchWeather() {
+               try {
+                  let response = await fetch("https://ipinfo.io/json");
+                  let data = await response.json();
+                  let city = data.city || "北京";
+                  let country = data.country || "中国";
+                  let latlon = data.loc.split(",");
 
-                           let city = "北京", country = "中国"; // 默认值
-                           try {
-                              let geoResponse = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
-                              let locationData = await geoResponse.json();
-                              city = locationData.address.city || locationData.address.town || locationData.address.village || city;
-                              country = locationData.address.country || country;
-                           } catch {}
-
-                           document.getElementById("location").innerText = `📍 位置: ${city}, ${country}`;
-                           fetchWeather(lat, lon, apiKey);
-                     },
-                     () => {
-                           document.getElementById("location").innerText = "📍 位置: 北京，中国";
-                           fetchWeather(39.9042, 116.4074, apiKey);
-                     }
-                  );
-               } else {
+                  document.getElementById("location").innerText = `📍 位置: ${city}, ${country}`;
+                  fetchWeather(latlon[0], latlon[1]);
+               } catch {
                   document.getElementById("location").innerText = "📍 位置: 北京，中国";
-                  fetchWeather(39.9042, 116.4074, apiKey);
+                  fetchWeather(39.9042, 116.4074);
                }
          }
 
          setInterval(updateTime, 1000);
-         let apiKey = "fc86d110601a62e0d4d77e3d982c0a4c"; // 替换为你的 OpenWeatherMap API Key
-         getLocationAndFetchWeather(apiKey);
+         getLocationAndFetchWeather();
       </script>
 
    </body>
