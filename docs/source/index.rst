@@ -61,7 +61,7 @@
                background: rgba(255, 255, 255, 0.85);
                border-radius: 16px;
                padding: 10px;
-               width: 260px;
+               width: 250px;
                position: fixed;
                bottom: 20px;
                left: 50%;
@@ -92,7 +92,7 @@
       /* 灵动岛胶囊状态 */
       .capsule {
          width: var(--capsule-width, 120px);  /* 允许调整宽度 */
-         height: var(--capsule-height, 25px); /* 允许调整高度 */
+         height: var(--capsule-height, 30px); /* 允许调整高度 */
          border-radius: var(--capsule-radius, 20px); /* 允许调整圆角 */
          font-size: var(--capsule-font-size, 16px); /* 允许调整字体大小 */
          background: var(--capsule-bg, rgba(255, 255, 255, 0.85)); /* 允许调整背景颜色 */
