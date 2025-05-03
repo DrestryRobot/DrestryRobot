@@ -3,7 +3,7 @@
 .. raw:: html
 
    <div style="margin-bottom: 20px;">
-       <img src="https://img.shields.io/badge/版本-2025.05.03-blue.svg" 
+       <img src="https://img.shields.io/badge/版本-2025.05.04-blue.svg" 
        alt="版本" 
        style="width:130px; 
        text-align:left; 
