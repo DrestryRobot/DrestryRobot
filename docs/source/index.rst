@@ -50,83 +50,139 @@
 
 .. raw:: html
 
-   <style>
-      /* 让天气卡片居底部中央 */
-      .weather-card {
-          background: rgba(255, 255, 255, 0.85); /* 增加透明度 */
-          border-radius: 16px;
-          padding: 10px;
-          width: 250px;
-          position: fixed;
-          bottom: 20px;
-          left: 50%;
-          transform: translateX(-50%);
-          box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-          transition: background 0.3s, color 0.3s;
-      }
+   <!DOCTYPE html>
+   <html lang="zh">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>实时天气卡片</title>
+      <style>
+         /* 让天气卡片居底部中央 */
+         .weather-card {
+               background: rgba(255, 255, 255, 0.85);
+               border-radius: 16px;
+               padding: 10px;
+               width: 260px;
+               position: fixed;
+               bottom: 20px;
+               left: 50%;
+               transform: translateX(-50%);
+               box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+               transition: background 0.3s, color 0.3s;
+         }
 
-      /* 让文字居左 */
-      .info {
-          font-size: 16px;
-          font-weight: bold;
-          color: #222; /* 稍深的默认字体颜色 */
-          margin: 8px 5px;
-          text-align: left;
-      }
+         /* 让文字居左 */
+         .info {
+               font-size: 16px;
+               font-weight: bold;
+               color: #222;
+               margin: 8px 5px;
+               text-align: left;
+         }
 
-      /* 适配夜间模式 */
-      @media (prefers-color-scheme: dark) {
-          .weather-card {
-              background: rgba(60, 60, 60, 0.85); /* 调整暗色背景的透明度 */
-              color: #F3F3F3;
-          }
-          .info {
-              color: #F3F3F3;
-          }
-      }
-   </style>
+         /* 适配夜间模式 */
+         @media (prefers-color-scheme: dark) {
+               .weather-card {
+                  background: rgba(60, 60, 60, 0.85);
+                  color: #F3F3F3;
+               }
+               .info {
+                  color: #F3F3F3;
+               }
+         }
+      </style>
+   </head>
+   <body>
 
-   <script>
-      function updateTime() {
-          let now = new Date();
-          let timeString = now.toLocaleString();
-          document.getElementById("time").innerText = `⏰ 时间: ${timeString}`;
-      }
+      <!-- 天气信息卡片 -->
+      <div class="weather-card">
+         <p id="time" class="info">⏰ 时间加载中...</p>
+         <p id="location" class="info">📍 位置加载中...</p>
+         <p id="weather" class="info">🌤 天气数据加载中...</p>
+      </div>
 
-      // 获取天气信息（不获取位置）
-      fetch("https://api.open-meteo.com/v1/forecast?latitude=35.6895&longitude=139.6917&current_weather=true")
-         .then(response => response.json())
-         .then(weatherData => {
-            let temperature = weatherData.current_weather.temperature;
-            let weatherCode = weatherData.current_weather.weathercode;
+      <script>
+         function updateTime() {
+               let now = new Date();
+               let timeString = now.toLocaleString();
+               document.getElementById("time").innerText = `⏰ 时间: ${timeString}`;
+         }
 
-            // 温度表情符号映射
-            let tempEmoji = temperature <= 0 ? "❄" :
-                            temperature <= 15 ? "🥶" :
-                            temperature <= 25 ? "😊" :
-                            temperature <= 35 ? "😅" : "🔥";
+         function fetchWeather(lat, lon, apiKey) {
+               let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=zh_cn`;
 
-            // 天气代码映射
-            let weatherMap = {
-               0: "☀ 晴朗", 1: "🌤 多云", 2: "☁ 阴天", 3: "🌧 小雨",
-               45: "🌫 雾霾", 48: "🌫 大雾", 51: "🌦 局部小雨",
-               61: "🌧 中雨", 63: "⛈ 雷雨", 71: "❄ 小雪", 75: "❄ 暴雪"
-            };
+               fetch(weatherUrl)
+                  .then(response => response.json())
+                  .then(weatherData => {
+                     let temperature = weatherData.main.temp;
+                     let weatherCode = weatherData.weather[0].id;
 
-            let weatherDescription = weatherMap[weatherCode] || "🌍 天气数据未知";
+                     // 温度表情符号映射
+                     let tempEmoji = temperature <= 0 ? "❄" :
+                                       temperature <= 15 ? "🥶" :
+                                       temperature <= 25 ? "😊" :
+                                       temperature <= 35 ? "😅" : "🔥";
 
-            document.getElementById("weather").innerText = `${tempEmoji} 温度: ${temperature}°C | ${weatherDescription}`;
-         })
-         .catch(error => {
-            document.getElementById("weather").innerText = `❌ 无法获取天气信息: ${error}`;
-         });
+                     // 天气代码映射（基于 OpenWeatherMap 提供的 ID）
+                     let weatherMap = {
+                           800: "☀ 晴朗", 801: "🌤 少云", 802: "⛅ 局部多云",
+                           803: "☁ 阴天", 804: "☁ 多云",
+                           500: "🌦 小雨", 501: "🌧 中雨", 502: "⛈ 大雨",
+                           511: "❄ 冻雨", 600: "❄ 小雪", 601: "❄ 中雪",
+                           602: "❄ 暴雪", 701: "🌫 雾霾", 781: "🌪 龙卷风"
+                     };
 
-      // 定时更新时间
-      setInterval(updateTime, 1000);
-   </script>
+                     let weatherDescription = weatherMap[weatherCode] || "🌍 天气数据未知";
 
-   <!-- 天气信息卡片 -->
-   <div class="weather-card">
-       <p id="time" class="info">⏰ 时间加载中...</p>
-       <p id="weather" class="info">🌤 天气数据加载中...</p>
-   </div>
+                     document.getElementById("weather").innerText = `${tempEmoji} 温度: ${temperature}°C | ${weatherDescription}`;
+                  })
+                  .catch(error => {
+                     document.getElementById("weather").innerText = `❌ 无法获取天气信息: ${error}`;
+                  });
+         }
+
+         function getLocationAndFetchWeather(apiKey) {
+               if (navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition(
+                     (position) => {
+                           let lat = position.coords.latitude.toFixed(4);
+                           let lon = position.coords.longitude.toFixed(4);
+
+                           // 逆地理编码（获取城市名称）
+                           let geoUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`;
+
+                           fetch(geoUrl)
+                              .then(response => response.json())
+                              .then(locationData => {
+                                 let city = locationData.address.city || locationData.address.town || locationData.address.village || "未知城市";
+                                 let country = locationData.address.country || "未知国家";
+
+                                 document.getElementById("location").innerText = `📍 位置: ${city}, ${country}`;
+
+                                 // 获取天气信息
+                                 fetchWeather(lat, lon, apiKey);
+                              })
+                              .catch(error => {
+                                 document.getElementById("location").innerText = "📍 无法获取城市信息";
+                              });
+                     },
+                     (error) => {
+                           document.getElementById("location").innerText = "📍 无法获取位置信息";
+                           document.getElementById("weather").innerText = `❌ 位置获取失败: ${error.message}`;
+                     }
+                  );
+               } else {
+                  document.getElementById("location").innerText = "📍 位置获取失败";
+                  document.getElementById("weather").innerText = "❌ 此浏览器不支持地理定位";
+               }
+         }
+
+         setInterval(updateTime, 1000);
+
+         let apiKey = "fc86d110601a62e0d4d77e3d982c0a4c"; // 替换为你的 OpenWeatherMap API Key
+         getLocationAndFetchWeather(apiKey);
+      </script>
+
+   </body>
+   </html>
+
