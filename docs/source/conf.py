@@ -6,8 +6,8 @@ project = 'DrestryRobot'
 copyright = '2025, DrestryRobot'
 author = 'DrestryRobot'
 
-release = '2025.05.03'
-version = '2025.05.03'
+release = '2025.05.04'
+version = '2025.05.04'
 
 # -- General configuration
 
@@ -30,6 +30,7 @@ intersphinx_disabled_domains = ['std']
 templates_path = ['_templates']
 html_static_path = ['_static']
 
+
 # -- Options for HTML output
 
 html_theme = 'sphinx_rtd_theme'
@@ -46,3 +47,34 @@ html_js_files = [
 html_context = {
     "disable_version_switch": True
 }
+
+
+
+from docutils import nodes
+from docutils.parsers.rst import Directive
+
+class IncludeHTML(Directive):
+    """
+    自定义指令，用于插入外部的 HTML 文件内容。
+    使用方法：
+    .. includehtml:: path/to/weather.html
+    """
+    required_arguments = 1
+    final_argument_whitespace = True
+
+    def run(self):
+        env = self.state.document.settings.env
+        rel_path, abs_path = env.relfn2path(self.arguments[0])
+        try:
+            with open(abs_path, "r", encoding="utf-8") as f:
+                html_content = f.read()
+        except Exception as err:
+            error = self.state_machine.reporter.error(
+                f"无法包含文件 {abs_path}: {err}",
+                nodes.literal_block(self.block_text, self.block_text),
+                line=self.lineno)
+            return [error]
+        return [nodes.raw("", html_content, format="html")]
+
+def setup(app):
+    app.add_directive("includehtml", IncludeHTML)
