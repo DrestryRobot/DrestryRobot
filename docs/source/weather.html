@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>实时天气卡片</title>
     <style>
-        /* 让天气卡片居底部中央 */
         .weather-card {
             background: rgba(255, 255, 255, 0.85);
             border-radius: 16px;
@@ -16,19 +15,18 @@
             left: 50%;
             transform: translateX(-50%);
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-            transition: background 0.3s, color 0.3s;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            text-align: left;
         }
 
-        /* 让文字居左 */
         .info {
             font-size: 16px;
             font-weight: bold;
             color: #222;
             margin: 8px 5px;
-            text-align: left;
         }
 
-        /* 适配夜间模式 */
         @media (prefers-color-scheme: dark) {
             .weather-card {
                 background: rgba(60, 60, 60, 0.85);
@@ -38,12 +36,41 @@
                 color: #F3F3F3;
             }
         }
+
+    /* 灵动岛胶囊状态 */
+    .capsule {
+        width: var(--capsule-width, 120px);  /* 允许调整宽度 */
+        height: var(--capsule-height, 25px); /* 允许调整高度 */
+        border-radius: var(--capsule-radius, 20px); /* 允许调整圆角 */
+        font-size: var(--capsule-font-size, 16px); /* 允许调整字体大小 */
+        background: var(--capsule-bg, rgba(255, 255, 255, 0.85)); /* 允许调整背景颜色 */
+        color: var(--capsule-text-color, #222); /* 允许调整文字颜色 */
+        
+        display: flex;
+        justify-content: center;  /* 水平居中 */
+        align-items: center;  /* 垂直居中 */
+        text-align: center;  /* 文本居中 */
+        padding: var(--capsule-padding, 5px); /* 允许调整内边距 */
+        cursor: pointer;
+    }
+
+    /* 夜间模式适配 */
+    @media (prefers-color-scheme: dark) {
+        .capsule {
+            background: var(--capsule-bg-dark, rgba(60, 60, 60, 0.85));
+            color: var(--capsule-text-dark, #F3F3F3);
+        }
+    }
+
+
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
 
-    <!-- 天气信息卡片 -->
-    <div class="weather-card">
+    <div class="weather-card" id="weatherCard">
         <p id="time" class="info">⏰ 时间加载中...</p>
         <p id="location" class="info">📍 位置加载中...</p>
         <p id="weather" class="info">🌤 天气数据加载中...</p>
@@ -52,32 +79,31 @@
     <script>
         function updateTime() {
             let now = new Date();
-            let timeString = now.toLocaleString();
-            document.getElementById("time").innerText = `⏰ 时间: ${timeString}`;
+            let fullDate = now.toLocaleString(); // 完整时间 + 日期
+            let shortTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }); // 仅小时、分钟、秒
+
+            // 判断是否处于胶囊状态
+            let isCapsule = document.getElementById("weatherCard").classList.contains("capsule");
+            document.getElementById("time").innerText = isCapsule ? `⏰ ${shortTime}` : `⏰ 时间: ${fullDate}`;
         }
 
-        async function fetchWeather(lat, lon, apiKey) {
-            let cacheKey = `weather_${lat}_${lon}`;
-            let cachedWeather = localStorage.getItem(cacheKey);
-
-            if (cachedWeather) {
-                displayWeather(JSON.parse(cachedWeather));
-                return;
-            }
+        async function fetchWeather(lat, lon) {
+            let apiKey = "b8690305582b46789a892207250305"; // 替换为你的 WeatherAPI Key
+            let weatherUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}&lang=zh`;
 
             try {
-                let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=zh_cn`);
+                let response = await fetch(weatherUrl);
                 let weatherData = await response.json();
-                localStorage.setItem(cacheKey, JSON.stringify(weatherData)); // 缓存天气数据
                 displayWeather(weatherData);
             } catch {
-                document.getElementById("weather").innerText = "❌ 无法获取天气信息";
+                document.getElementById("weather").innerText = "❌ 无法获取天气信息，使用默认北京天气";
+                fetchWeather(39.9042, 116.4074);
             }
         }
 
         function displayWeather(weatherData) {
-            let temperature = weatherData.main.temp.toFixed(1);
-            let weatherCode = weatherData.weather[0].id;
+            let temperature = parseFloat(weatherData.current.temp_c).toFixed(1);
+            let weatherCode = weatherData.current.condition.code;
 
             let tempEmoji = temperature <= 0 ? "❄" :
                             temperature <= 15 ? "🥶" :
@@ -85,49 +111,40 @@
                             temperature <= 35 ? "😅" : "🔥";
 
             let weatherMap = {
-                800: "☀ 晴朗", 801: "🌤 少云", 802: "⛅ 局部多云",
-                803: "☁ 阴天", 804: "☁ 多云",
-                500: "🌦 小雨", 501: "🌧 中雨", 502: "⛈ 大雨",
-                511: "❄ 冻雨", 600: "❄ 小雪", 601: "❄ 中雪",
-                602: "❄ 暴雪", 701: "🌫 雾霾", 781: "🌪 龙卷风"
+                1000: "☀ 晴朗", 1003: "🌤 少云", 1006: "⛅ 局部多云",
+                1009: "☁ 阴天", 1063: "🌦 小雨", 1183: "🌧 中雨", 1273: "⛈ 雷阵雨",
+                1210: "❄ 小雪", 1225: "❄ 暴雪", 1135: "🌫 雾霾", 1087: "🌪 雷暴"
             };
 
-            let weatherDescription = weatherMap[weatherCode] || "🌍 天气数据未知";
+            let weatherDescription = weatherMap[weatherCode] || weatherData.current.condition.text;
             document.getElementById("weather").innerText = `${tempEmoji} 温度: ${temperature}°C | ${weatherDescription}`;
         }
 
-        function getLocationAndFetchWeather(apiKey) {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    async (position) => {
-                        let lat = position.coords.latitude.toFixed(4);
-                        let lon = position.coords.longitude.toFixed(4);
+        async function getLocationAndFetchWeather() {
+            try {
+                let response = await fetch("https://ipinfo.io/json");
+                let data = await response.json();
+                let city = data.city || "北京";
+                let country = data.country || "中国";
+                let latlon = data.loc ? data.loc.split(",") : ["39.9042", "116.4074"]; // 默认北京
 
-                        let city = "北京", country = "中国"; // 默认值
-                        try {
-                            let geoResponse = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
-                            let locationData = await geoResponse.json();
-                            city = locationData.address.city || locationData.address.town || locationData.address.village || city;
-                            country = locationData.address.country || country;
-                        } catch {}
-
-                        document.getElementById("location").innerText = `📍 位置: ${city}, ${country}`;
-                        fetchWeather(lat, lon, apiKey);
-                    },
-                    () => {
-                        document.getElementById("location").innerText = "📍 位置: 北京，中国";
-                        fetchWeather(39.9042, 116.4074, apiKey);
-                    }
-                );
-            } else {
+                document.getElementById("location").innerText = `📍 位置: ${city}, ${country}`;
+                fetchWeather(latlon[0], latlon[1]);
+            } catch {
                 document.getElementById("location").innerText = "📍 位置: 北京，中国";
-                fetchWeather(39.9042, 116.4074, apiKey);
+                fetchWeather(39.9042, 116.4074);
             }
         }
 
+        document.getElementById("weatherCard").addEventListener("click", function () {
+            this.classList.toggle("capsule"); 
+            document.getElementById("location").classList.toggle("hidden");
+            document.getElementById("weather").classList.toggle("hidden");
+            updateTime(); // 立即切换时间格式
+        });
+
         setInterval(updateTime, 1000);
-        let apiKey = "fc86d110601a62e0d4d77e3d982c0a4c"; // 替换为你的 OpenWeatherMap API Key
-        getLocationAndFetchWeather(apiKey);
+        getLocationAndFetchWeather();
     </script>
 
 </body>
