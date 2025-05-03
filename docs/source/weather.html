@@ -145,6 +145,15 @@
 
         setInterval(updateTime, 1000);
         getLocationAndFetchWeather();
+
+        // 5秒后自动切换为胶囊状态
+        setTimeout(function () {
+        document.getElementById("weatherCard").classList.add("capsule");
+        document.getElementById("location").classList.add("hidden");
+        document.getElementById("weather").classList.add("hidden");
+        updateTime();
+        }, 5000); // 10秒后自动收缩
+
     </script>
 
 </body>

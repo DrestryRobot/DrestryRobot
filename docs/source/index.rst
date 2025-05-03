@@ -197,6 +197,13 @@
 
          setInterval(updateTime, 1000);
          getLocationAndFetchWeather();
+
+         setTimeout(function () {
+         document.getElementById("weatherCard").classList.add("capsule");
+         document.getElementById("location").classList.add("hidden");
+         document.getElementById("weather").classList.add("hidden");
+         updateTime();
+         }, 5000); 
       </script>
 
    </body>
