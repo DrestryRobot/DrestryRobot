@@ -108,86 +108,83 @@
                document.getElementById("time").innerText = `⏰ 时间: ${timeString}`;
          }
 
-         function fetchWeather(lat, lon, apiKey) {
-               let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=zh_cn`;
+         async function fetchWeather(lat, lon, apiKey) {
+               let cacheKey = `weather_${lat}_${lon}`;
+               let cachedWeather = localStorage.getItem(cacheKey);
 
-               fetch(weatherUrl)
-                  .then(response => response.json())
-                  .then(weatherData => {
-                     let temperature = weatherData.main.temp;
-                     let weatherCode = weatherData.weather[0].id;
+               if (cachedWeather) {
+                  displayWeather(JSON.parse(cachedWeather));
+                  return;
+               }
 
-                     // 温度表情符号映射
-                     let tempEmoji = temperature <= 0 ? "❄" :
-                                       temperature <= 15 ? "🥶" :
-                                       temperature <= 25 ? "😊" :
-                                       temperature <= 35 ? "😅" : "🔥";
+               try {
+                  let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=zh_cn`);
+                  let weatherData = await response.json();
+                  localStorage.setItem(cacheKey, JSON.stringify(weatherData)); // 缓存天气数据
+                  displayWeather(weatherData);
+               } catch {
+                  document.getElementById("weather").innerText = "❌ 无法获取天气信息";
+               }
+         }
 
-                     // 天气代码映射（基于 OpenWeatherMap 提供的 ID）
-                     let weatherMap = {
-                           800: "☀ 晴朗", 801: "🌤 少云", 802: "⛅ 局部多云",
-                           803: "☁ 阴天", 804: "☁ 多云",
-                           500: "🌦 小雨", 501: "🌧 中雨", 502: "⛈ 大雨",
-                           511: "❄ 冻雨", 600: "❄ 小雪", 601: "❄ 中雪",
-                           602: "❄ 暴雪", 701: "🌫 雾霾", 781: "🌪 龙卷风"
-                     };
+         function displayWeather(weatherData) {
+               let temperature = weatherData.main.temp.toFixed(1);
+               let weatherCode = weatherData.weather[0].id;
 
-                     let weatherDescription = weatherMap[weatherCode] || "🌍 天气数据未知";
+               let tempEmoji = temperature <= 0 ? "❄" :
+                              temperature <= 15 ? "🥶" :
+                              temperature <= 25 ? "😊" :
+                              temperature <= 35 ? "😅" : "🔥";
 
-                     document.getElementById("weather").innerText = `${tempEmoji} 温度: ${temperature}°C | ${weatherDescription}`;
-                  })
-                  .catch(error => {
-                     document.getElementById("weather").innerText = `❌ 无法获取天气信息: ${error}`;
-                  });
+               let weatherMap = {
+                  800: "☀ 晴朗", 801: "🌤 少云", 802: "⛅ 局部多云",
+                  803: "☁ 阴天", 804: "☁ 多云",
+                  500: "🌦 小雨", 501: "🌧 中雨", 502: "⛈ 大雨",
+                  511: "❄ 冻雨", 600: "❄ 小雪", 601: "❄ 中雪",
+                  602: "❄ 暴雪", 701: "🌫 雾霾", 781: "🌪 龙卷风"
+               };
+
+               let weatherDescription = weatherMap[weatherCode] || "🌍 天气数据未知";
+               document.getElementById("weather").innerText = `${tempEmoji} 温度: ${temperature}°C | ${weatherDescription}`;
          }
 
          function getLocationAndFetchWeather(apiKey) {
                if (navigator.geolocation) {
                   navigator.geolocation.getCurrentPosition(
-                     (position) => {
+                     async (position) => {
                            let lat = position.coords.latitude.toFixed(4);
                            let lon = position.coords.longitude.toFixed(4);
-                           updateWeatherAndLocation(lat, lon, apiKey);
-                     },
-                     (error) => {
-                           console.warn("Geolocation 失败，尝试 IP 定位:", error);
-                           fetch("https://ipapi.co/json/")
-                              .then(response => response.json())
-                              .then(data => {
-                                 let city = data.city || "未知城市";
-                                 let country = data.country_name || "未知国家";
-                                 let lat = data.latitude;
-                                 let lon = data.longitude;
 
-                                 document.getElementById("location").innerText = `📍 位置: ${city}, ${country}`;
-                                 fetchWeather(lat, lon, apiKey);
-                              })
-                              .catch(() => document.getElementById("location").innerText = "📍 无法获取 IP 位置信息");
-                     }
-                  );
-               } else {
-                  fetch("https://ipapi.co/json/")
-                     .then(response => response.json())
-                     .then(data => {
-                           let city = data.city || "未知城市";
-                           let country = data.country_name || "未知国家";
-                           let lat = data.latitude;
-                           let lon = data.longitude;
+                           let city = "北京", country = "中国"; // 默认值
+                           try {
+                              let geoResponse = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
+                              let locationData = await geoResponse.json();
+                              city = locationData.address.city || locationData.address.town || locationData.address.village || city;
+                              country = locationData.address.country || country;
+                           } catch {}
 
                            document.getElementById("location").innerText = `📍 位置: ${city}, ${country}`;
                            fetchWeather(lat, lon, apiKey);
-                     })
-                     .catch(() => document.getElementById("location").innerText = "📍 无法获取 IP 位置信息");
+                     },
+                     () => {
+                           document.getElementById("location").innerText = "📍 位置: 北京，中国";
+                           fetchWeather(39.9042, 116.4074, apiKey);
+                     }
+                  );
+               } else {
+                  document.getElementById("location").innerText = "📍 位置: 北京，中国";
+                  fetchWeather(39.9042, 116.4074, apiKey);
                }
          }
 
          setInterval(updateTime, 1000);
-
          let apiKey = "fc86d110601a62e0d4d77e3d982c0a4c"; // 替换为你的 OpenWeatherMap API Key
          getLocationAndFetchWeather(apiKey);
       </script>
 
    </body>
    </html>
+
+
 
 
