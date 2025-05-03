@@ -40,7 +40,7 @@
 .. raw:: html
 
    <details>
-   <summary style="font-size: 24px; font-weight: bold;">历史更新</summary>
+   <summary>点击查看历史更新</summary>
    <pre>
    2025.05.02
       - 技术总结
@@ -60,7 +60,6 @@
 
 .. raw:: html
 
-   <br>
    <br>
 
 .. toctree::
