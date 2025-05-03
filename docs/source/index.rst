@@ -105,8 +105,8 @@
          }
 
          async function fetchWeather(lat, lon) {
-               let apiKey = "fc86d110601a62e0d4d77e3d982c0a4c"; // 你的 OpenWeatherMap API Key
-               let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=zh_cn`;
+               let apiKey = "b8690305582b46789a892207250305"; // 替换为你的 WeatherAPI Key
+               let weatherUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}&lang=zh`;
 
                try {
                   let response = await fetch(weatherUrl);
@@ -114,13 +114,13 @@
                   displayWeather(weatherData);
                } catch {
                   document.getElementById("weather").innerText = "❌ 无法获取天气信息，使用默认北京天气";
-                  fetchWeather(39.9042, 116.4074); // 北京经纬度
+                  fetchWeather(39.9042, 116.4074);
                }
          }
 
          function displayWeather(weatherData) {
-               let temperature = parseFloat(weatherData.main.temp).toFixed(1);
-               let weatherCode = weatherData.weather[0].id;
+               let temperature = parseFloat(weatherData.current.temp_c).toFixed(1);
+               let weatherCode = weatherData.current.condition.code;
 
                let tempEmoji = temperature <= 0 ? "❄" :
                               temperature <= 15 ? "🥶" :
@@ -128,14 +128,12 @@
                               temperature <= 35 ? "😅" : "🔥";
 
                let weatherMap = {
-                  800: "☀ 晴朗", 801: "🌤 少云", 802: "⛅ 局部多云",
-                  803: "☁ 阴天", 804: "☁ 多云",
-                  500: "🌦 小雨", 501: "🌧 中雨", 502: "⛈ 大雨",
-                  511: "❄ 冻雨", 600: "❄ 小雪", 601: "❄ 中雪",
-                  602: "❄ 暴雪", 701: "🌫 雾霾", 781: "🌪 龙卷风"
+                  1000: "☀ 晴朗", 1003: "🌤 少云", 1006: "⛅ 局部多云",
+                  1009: "☁ 阴天", 1063: "🌦 小雨", 1183: "🌧 中雨", 1273: "⛈ 雷阵雨",
+                  1210: "❄ 小雪", 1225: "❄ 暴雪", 1135: "🌫 雾霾", 1087: "🌪 雷暴"
                };
 
-               let weatherDescription = weatherMap[weatherCode] || "🌍 天气数据未知";
+               let weatherDescription = weatherMap[weatherCode] || weatherData.current.condition.text;
                document.getElementById("weather").innerText = `${tempEmoji} 温度: ${temperature}°C | ${weatherDescription}`;
          }
 
@@ -145,7 +143,7 @@
                   let data = await response.json();
                   let city = data.city || "北京";
                   let country = data.country || "中国";
-                  let latlon = data.loc.split(",");
+                  let latlon = data.loc ? data.loc.split(",") : ["39.9042", "116.4074"]; // 默认北京
 
                   document.getElementById("location").innerText = `📍 位置: ${city}, ${country}`;
                   fetchWeather(latlon[0], latlon[1]);
