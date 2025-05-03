@@ -37,30 +37,30 @@
             }
       }
 
-   /* 灵动岛胶囊状态 */
-   .capsule {
-      width: var(--capsule-width, 120px);  /* 允许调整宽度 */
-      height: var(--capsule-height, 30px); /* 允许调整高度 */
-      border-radius: var(--capsule-radius, 20px); /* 允许调整圆角 */
-      font-size: var(--capsule-font-size, 16px); /* 允许调整字体大小 */
-      background: var(--capsule-bg, rgba(255, 255, 255, 0.85)); /* 允许调整背景颜色 */
-      color: var(--capsule-text-color, #222); /* 允许调整文字颜色 */
-      
-      display: flex;
-      justify-content: center;  /* 水平居中 */
-      align-items: center;  /* 垂直居中 */
-      text-align: center;  /* 文本居中 */
-      padding: var(--capsule-padding, 5px); /* 允许调整内边距 */
-      cursor: pointer;
-   }
-
-   /* 夜间模式适配 */
-   @media (prefers-color-scheme: dark) {
+      /* 灵动岛胶囊状态 */
       .capsule {
-            background: var(--capsule-bg-dark, rgba(60, 60, 60, 0.85));
-            color: var(--capsule-text-dark, #F3F3F3);
+         width: var(--capsule-width, 120px);
+         height: var(--capsule-height, 30px);
+         border-radius: var(--capsule-radius, 20px);
+         font-size: var(--capsule-font-size, 16px);
+         background: var(--capsule-bg, rgba(255, 255, 255, 0.85));
+         color: var(--capsule-text-color, #222);
+         
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         text-align: center;
+         padding: var(--capsule-padding, 5px);
+         cursor: pointer;
       }
-   }
+
+      /* 夜间模式适配 */
+      @media (prefers-color-scheme: dark) {
+         .capsule {
+               background: var(--capsule-bg-dark, rgba(60, 60, 60, 0.85));
+               color: var(--capsule-text-dark, #F3F3F3);
+         }
+      }
 
 
       .hidden {

@@ -103,28 +103,29 @@
 
          /* 灵动岛胶囊状态 */
          .capsule {
-               width: var(--capsule-width, 120px);
-               height: var(--capsule-height, 30px);
-               border-radius: var(--capsule-radius, 20px);
-               font-size: var(--capsule-font-size, 16px);
-               background: var(--capsule-bg, rgba(255, 255, 255, 0.85));
-               color: var(--capsule-text-color, #222);
-               
-               display: flex;
-               justify-content: center;
-               align-items: center;
-               text-align: center;
-               padding: var(--capsule-padding, 5px);
-               cursor: pointer;
+            width: var(--capsule-width, 120px);
+            height: var(--capsule-height, 30px);
+            border-radius: var(--capsule-radius, 20px);
+            font-size: var(--capsule-font-size, 16px);
+            background: var(--capsule-bg, rgba(255, 255, 255, 0.85));
+            color: var(--capsule-text-color, #222);
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: var(--capsule-padding, 5px);
+            cursor: pointer;
          }
 
          /* 夜间模式适配 */
          @media (prefers-color-scheme: dark) {
-               .capsule {
+            .capsule {
                   background: var(--capsule-bg-dark, rgba(60, 60, 60, 0.85));
                   color: var(--capsule-text-dark, #F3F3F3);
-               }
+            }
          }
+
 
          .hidden {
                display: none;
@@ -132,9 +133,6 @@
       </style>
    </head>
    <body>
-
-      <!-- 点击音效 -->
-      <audio id="clickSound" src="images\tap-notification-180637.mp3"></audio> <!-- 替换为你的音效文件 -->
 
       <div class="weather-card" id="weatherCard">
          <p id="time" class="info">⏰ 时间加载中...</p>
@@ -145,30 +143,13 @@
       <script>
          function updateTime() {
                let now = new Date();
-               let fullDate = now.toLocaleString();
-               let shortTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+               let fullDate = now.toLocaleString(); // 完整时间 + 日期
+               let shortTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }); // 仅小时、分钟、秒
 
+               // 判断是否处于胶囊状态
                let isCapsule = document.getElementById("weatherCard").classList.contains("capsule");
                document.getElementById("time").innerText = isCapsule ? `⏰ ${shortTime}` : `⏰ 时间: ${fullDate}`;
          }
-
-         document.getElementById("weatherCard").addEventListener("click", function () {
-               document.getElementById("clickSound").play(); // 播放点击音效
-               this.classList.toggle("capsule");
-               document.getElementById("location").classList.toggle("hidden");
-               document.getElementById("weather").classList.toggle("hidden");
-               updateTime();
-         });
-
-         setInterval(updateTime, 1000);
-
-         // 5秒后自动切换为胶囊状态
-         setTimeout(function () {
-               document.getElementById("weatherCard").classList.add("capsule");
-               document.getElementById("location").classList.add("hidden");
-               document.getElementById("weather").classList.add("hidden");
-               updateTime();
-         }, 5000);
 
          async function fetchWeather(lat, lon) {
                let apiKey = "b8690305582b46789a892207250305"; // 替换为你的 WeatherAPI Key
@@ -219,14 +200,26 @@
                }
          }
 
+         document.getElementById("weatherCard").addEventListener("click", function () {
+               this.classList.toggle("capsule"); 
+               document.getElementById("location").classList.toggle("hidden");
+               document.getElementById("weather").classList.toggle("hidden");
+               updateTime(); // 立即切换时间格式
+         });
+
          setInterval(updateTime, 1000);
          getLocationAndFetchWeather();
 
+         setTimeout(function () {
+         document.getElementById("weatherCard").classList.add("capsule");
+         document.getElementById("location").classList.add("hidden");
+         document.getElementById("weather").classList.add("hidden");
+         updateTime();
+         }, 5000); 
       </script>
 
    </body>
    </html>
-
 
 
 
