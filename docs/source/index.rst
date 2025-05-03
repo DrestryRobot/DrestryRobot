@@ -3,7 +3,7 @@
 .. raw:: html
 
    <div style="margin-bottom: 20px;">
-       <img src="https://img.shields.io/badge/版本-2025.05.02-blue.svg" 
+       <img src="https://img.shields.io/badge/版本-2025.05.03-blue.svg" 
        alt="版本" 
        style="width:130px; 
        text-align:left; 
@@ -25,6 +25,18 @@
 
 最近更新
 ---------
+- 2025.05.03
+   - 主页面新增实时天气卡片
+      - 打开页面5s后自动收缩为胶囊状态
+      - 点击可在卡片和胶囊状态之间切换
+      - 显示当前时间、位置和天气
+      - 支持夜间模式
+      - 使用IP定位获取位置
+      - 使用WeatherAPI获取天气数据
+      - 温度emoji表情符号根据温度变化
+      - 天气emoji表情符号根据天气变化
+      - 适配手机和电脑屏幕
+   
 - 2025.05.02
    - 技术总结
    - 表情符号
