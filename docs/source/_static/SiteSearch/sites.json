@@ -34,7 +34,6 @@
     {"name": "京东", "domain": "jd.com", "link": "https://www.jd.com", "category": "购物"},
     {"name": "拼多多", "domain": "pinduoduo.com", "link": "https://www.pinduoduo.com", "category": "购物"},
     {"name": "苏宁易购", "domain": "suning.com", "link": "https://www.suning.com", "category": "购物"},
-    {"name": "当当网", "domain": "dangdang.com", "link": "https://www.dangdang.com", "category": "购物"},
     {"name": "天猫", "domain": "tmall.com", "link": "https://www.tmall.com", "category": "购物"},
     
     {"name": "网易云课堂", "domain": "study.163.com", "link": "https://study.163.com", "category": "学习"},
