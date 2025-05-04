@@ -4,7 +4,7 @@ SiteSearch是一个方便用户快速检索、分类和访问常见的各大官�
 
 界面设计
 ---------
-.. figure:: images/官网导航.png
+.. figure:: images/SiteSearch.png
    :alt: Version
    :align: center
    :width: 100%
