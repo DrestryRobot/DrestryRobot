@@ -1,0 +1,15 @@
+官网导航
+=========
+.. raw:: html
+
+   <div style="margin-bottom: 20px;">
+       <img src="https://img.shields.io/badge/版本-2025.05.04-blue.svg" 
+       alt="版本" 
+       style="width:130px; 
+       text-align:left; 
+       display:block;">
+   </div>
+   
+官网导航是一个网页，用于帮助用户快速访问官网链接。
+
+.. includehtml:: _static/app.html
