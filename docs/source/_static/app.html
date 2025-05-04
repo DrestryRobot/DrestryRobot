@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>官网导航</title>
+    <script src="https://cdn.jsdelivr.net/npm/simple-icons@latest"></script>
+    <style>
+        :root {
+            --grid-size: 150px;
+            --grid-radius: 12px;
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --text-color: #fff;
+            --background-color: #f4f4f4;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* 搜索框样式 */
+        .search-box {
+            margin-bottom: 20px;
+            padding: 10px;
+            width: 320px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* 分类按钮样式 */
+        .category-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .category-btn {
+            padding: 10px 16px;
+            border: none;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s ease-in-out;
+        }
+
+        .category-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* 网格布局 */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(var(--grid-size), 1fr));
+            gap: 20px;
+            width: 90vw;
+            max-width: 1200px;
+        }
+
+        /* 网格项 */
+        .grid-item-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .grid-item {
+            width: var(--grid-size);
+            height: var(--grid-size);
+            border-radius: var(--grid-radius);
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transition: 0.3s ease-in-out;
+        }
+
+        .grid-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .grid-item img {
+            width: 64px;
+            height: 64px;
+            border-radius: 8px;
+        }
+
+        .grid-name {
+            font-size: 16px;
+            color: #fff;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <input type="text" id="searchBox" class="search-box" placeholder="🔍 搜索官网...">
+    
+    <div class="category-buttons">
+        <button class="category-btn" onclick="filterGrid('全部')">全部</button>
+        <button class="category-btn" onclick="filterGrid('搜索')">搜索</button>
+        <button class="category-btn" onclick="filterGrid('视频')">视频</button>
+        <button class="category-btn" onclick="filterGrid('购物')">购物</button>
+        <button class="category-btn" onclick="filterGrid('社交')">社交</button>
+        <button class="category-btn" onclick="filterGrid('新闻')">新闻</button>
+    </div>
+
+    <div class="grid-container" id="gridContainer"></div>
+
+    <script>
+        // 官网数据，使用 SimpleIcons 统一图标
+        const gridData = [
+            {"name": "百度", "icon": "baidu", "link": "https://www.baidu.com", "category": "搜索"},
+            {"name": "Google", "icon": "google", "link": "https://www.google.com", "category": "搜索"},
+            {"name": "Bing", "icon": "bing", "link": "https://www.bing.com", "category": "搜索"},
+            {"name": "爱奇艺", "icon": "iqiyi", "link": "https://www.iqiyi.com", "category": "视频"},
+            {"name": "优酷", "icon": "youku", "link": "https://www.youku.com", "category": "视频"},
+            {"name": "哔哩哔哩", "icon": "bilibili", "link": "https://www.bilibili.com", "category": "视频"},
+            {"name": "淘宝", "icon": "taobao", "link": "https://www.taobao.com", "category": "购物"},
+            {"name": "京东", "icon": "jd", "link": "https://www.jd.com", "category": "购物"},
+            {"name": "微博", "icon": "weibo", "link": "https://weibo.com", "category": "社交"},
+            {"name": "微信网页版", "icon": "wechat", "link": "https://wx.qq.com", "category": "社交"},
+            {"name": "新华网", "icon": "xinhuanet", "link": "https://www.xinhuanet.com", "category": "新闻"},
+            {"name": "BBC", "icon": "bbc", "link": "https://www.bbc.com", "category": "新闻"},
+            {"name": "CNN", "icon": "cnn", "link": "https://www.cnn.com", "category": "新闻"}
+        ];
+
+        const container = document.getElementById("gridContainer");
+
+        function loadGrid(filter = "全部") {
+            container.innerHTML = "";
+            gridData.forEach(item => {
+                if (filter === "全部" || item.category === filter) {
+                    const wrapper = document.createElement("div");
+                    wrapper.className = "grid-item-wrapper";
+
+                    const gridItem = document.createElement("div");
+                    gridItem.className = "grid-item";
+                    gridItem.onclick = () => window.location.href = item.link;
+
+                    const icon = document.createElement("img");
+                    icon.src = `https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${item.icon}.svg`;
+                    icon.alt = item.name;
+
+                    const title = document.createElement("div");
+                    title.className = "grid-name";
+                    title.innerText = item.name;
+
+                    gridItem.appendChild(icon);
+                    wrapper.appendChild(gridItem);
+                    wrapper.appendChild(title);
+                    container.appendChild(wrapper);
+                }
+            });
+        }
+
+        function filterGrid(category) {
+            loadGrid(category);
+        }
+
+        document.getElementById("searchBox").addEventListener("input", function() {
+            loadGrid(); 
+        });
+
+        loadGrid();
+
+    </script>
+
+</body>
+</html>

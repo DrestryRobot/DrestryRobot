@@ -1,0 +1,7 @@
+[
+    {"name": "商品1", "image": "_static/product1.jpg", "link": "https://example.com/item1"},
+    {"name": "商品2", "image": "_static/product2.jpg", "link": "https://example.com/item2"},
+    {"name": "商品3", "image": "_static/product3.jpg", "link": "https://example.com/item3"},
+    {"name": "商品4", "image": "_static/product4.jpg", "link": "https://example.com/item4"},
+    {"name": "商品5", "image": "_static/product5.jpg", "link": "https://example.com/item5"}
+]
