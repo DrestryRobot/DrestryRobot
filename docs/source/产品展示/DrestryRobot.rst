@@ -1,15 +1,5 @@
 DrestryRobot
 ==============
-.. raw:: html
-
-   <div style="margin-bottom: 20px;">
-       <img src="https://img.shields.io/badge/版本-2025.05.04-blue.svg" 
-       alt="版本" 
-       style="width:130px; 
-       text-align:left; 
-       display:block;">
-   </div>
-
 DrestryRobot是一个基于Node.js开发的桌面应用程序，和DrestryRobot网页端保持一致的功能和设计。它是一个开源项目，旨在为用户提供一个简单易用的桌面应用程序，方便用户进行资源分享、技术总结、项目开发和产品展示。
 
 界面设计

@@ -1,15 +1,5 @@
 技术总结📌
 ============
-.. raw:: html
-
-   <div style="margin-bottom: 20px;">
-       <img src="https://img.shields.io/badge/版本-2025.05.02-blue.svg" 
-       alt="版本" 
-       style="width:130px; 
-       text-align:left; 
-       display:block;">
-   </div>
-
 .. figure:: _images/蓝白色扁平插画可爱插画微信公众号封面.gif
    :alt: Version
    :align: center

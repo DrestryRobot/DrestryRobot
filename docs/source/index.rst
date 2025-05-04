@@ -1,15 +1,5 @@
 欢迎来到DrestryRobot😃
 ==========================
-.. raw:: html
-
-   <div style="margin-bottom: 20px;">
-       <img src="https://img.shields.io/badge/版本-2025.05.04-blue.svg" 
-       alt="版本" 
-       style="width:130px; 
-       text-align:left; 
-       display:block;">
-   </div>
-
 .. figure:: _images/蓝黄色创意立体插画青年节宣传微信公众号封面.gif
    :alt: Version
    :align: center

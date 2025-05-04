@@ -1,15 +1,5 @@
 资源分享📌
 ===========
-.. raw:: html
-
-   <div style="margin-bottom: 20px;">
-       <img src="https://img.shields.io/badge/版本-2025.05.02-blue.svg" 
-       alt="版本" 
-       style="width:130px; 
-       text-align:left; 
-       display:block;">
-   </div>
-
 .. figure:: _images/蓝色梦幻正能量金句微信公众号封面.gif
    :alt: Version
    :align: center

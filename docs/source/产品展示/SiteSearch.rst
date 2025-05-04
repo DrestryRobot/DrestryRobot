@@ -1,11 +1,5 @@
 SiteSearch
 ===========
-.. raw:: html
-
-   <div style="margin-bottom: 20px;">
-       <img src="https://img.shields.io/badge/版本-2025.05.04-blue.svg" alt="版本" style="width:130px; text-align:left; display:block;">
-   </div>
-
 SiteSearch是一个方便用户快速检索、分类和访问常见的各大官方网站的导航网站。它提供了一个简洁明了的界面，用户可以通过点击不同的分类标签，快速找到所需的官方网站链接。
 
 界面设计
