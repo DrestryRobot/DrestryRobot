@@ -28,7 +28,7 @@ SiteSearch是一个方便用户快速检索、分类和访问常见的各大官�
 ---------
 - 2025.05.04
 
-    - 点击此处访问：`官网导航 <https://drestryrobot.readthedocs.io/zh-cn/latest/_static/WebSearch.html>`_
+    - 点击此处访问：`官网导航 <https://drestryrobot.readthedocs.io/zh-cn/latest/_static/SiteSearch.html>`_
 
 反馈建议
 ---------
