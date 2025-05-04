@@ -2,9 +2,7 @@
     {"name": "百度", "domain": "baidu.com", "link": "https://www.baidu.com", "category": "搜索"},
     {"name": "Google", "domain": "google.com", "link": "https://www.google.com", "category": "搜索"},
     {"name": "Bing", "domain": "bing.com", "link": "https://www.bing.com", "category": "搜索"},
-    {"name": "搜狗", "domain": "sogou.com", "link": "https://www.sogou.com", "category": "搜索"},
     {"name": "360搜索", "domain": "so.com", "link": "https://www.so.com", "category": "搜索"},
-    {"name": "必应", "domain": "cn.bing.com", "link": "https://cn.bing.com", "category": "搜索"},
     
     {"name": "维基百科", "domain": "wikipedia.org", "link": "https://www.wikipedia.org", "category": "百科"},
     {"name": "百度百科", "domain": "baike.baidu.com", "link": "https://baike.baidu.com", "category": "百科"},
@@ -13,7 +11,6 @@
     {"name": "Google Docs", "domain": "docs.google.com", "link": "https://docs.google.com", "category": "文档"},
     {"name": "Evernote", "domain": "evernote.com", "link": "https://www.evernote.com", "category": "文档"},
     {"name": "Notion", "domain": "notion.so", "link": "https://www.notion.so", "category": "文档"},
-    {"name": "印象笔记", "domain": "yixinge.com", "link": "https://www.yixinge.com", "category": "文档"},
     
     {"name": "豆瓣", "domain": "douban.com", "link": "https://www.douban.com", "category": "社区"},
     {"name": "知乎专栏", "domain": "zhuanlan.zhihu.com", "link": "https://zhuanlan.zhihu.com", "category": "社区"},
@@ -30,7 +27,6 @@
     {"name": "Netflix", "domain": "netflix.com", "link": "https://www.netflix.com", "category": "视频"},
     {"name": "腾讯视频", "domain": "v.qq.com", "link": "https://v.qq.com", "category": "视频"},
     {"name": "芒果TV", "domain": "mgtv.com", "link": "https://www.mgtv.com", "category": "视频"},
-    {"name": "搜狐视频", "domain": "tv.sohu.com", "link": "https://tv.sohu.com", "category": "视频"},
     {"name": "乐视视频", "domain": "le.com", "link": "https://www.le.com", "category": "视频"},
     {"name": "西瓜视频", "domain": "ixigua.com", "link": "https://www.ixigua.com", "category": "视频"},
     
@@ -43,7 +39,6 @@
     
     {"name": "网易云课堂", "domain": "study.163.com", "link": "https://study.163.com", "category": "学习"},
     {"name": "腾讯课堂", "domain": "ke.qq.com", "link": "https://ke.qq.com", "category": "学习"},
-    {"name": "百度传课", "domain": "chuanke.baidu.com", "link": "https://chuanke.baidu.com", "category": "学习"},
     
     {"name": "微博", "domain": "weibo.com", "link": "https://weibo.com", "category": "社交"},
     {"name": "QQ", "domain": "qq.com", "link": "https://www.qq.com", "category": "社交"},
@@ -55,14 +50,12 @@
     {"name": "网易新闻", "domain": "news.163.com", "link": "https://news.163.com", "category": "新闻"},
     {"name": "腾讯新闻", "domain": "news.qq.com", "link": "https://news.qq.com", "category": "新闻"},
     {"name": "新浪新闻", "domain": "news.sina.com.cn", "link": "https://news.sina.com.cn", "category": "新闻"},
-    {"name": "搜狐新闻", "domain": "news.sohu.com", "link": "https://news.sohu.com", "category": "新闻"},
     {"name": "凤凰新闻", "domain": "news.ifeng.com", "link": "https://news.ifeng.com", "category": "新闻"},
     
     {"name": "网易云音乐", "domain": "music.163.com", "link": "https://music.163.com", "category": "音乐"},
     {"name": "QQ音乐", "domain": "y.qq.com", "link": "https://y.qq.com", "category": "音乐"},
     {"name": "酷狗音乐", "domain": "kugou.com", "link": "https://www.kugou.com", "category": "音乐"},
     {"name": "酷我音乐", "domain": "kuwo.cn", "link": "https://www.kuwo.cn", "category": "音乐"},
-    {"name": "虾米音乐", "domain": "xiamimusic.com", "link": "https://www.xiami.com", "category": "音乐"},
     {"name": "Spotify", "domain": "spotify.com", "link": "https://www.spotify.com", "category": "音乐"},
     {"name": "Apple Music", "domain": "music.apple.com", "link": "https://music.apple.com", "category": "音乐"},
     {"name": "Amazon Music", "domain": "music.amazon.com", "link": "https://music.amazon.com", "category": "音乐"},
@@ -72,7 +65,6 @@
     {"name": "网易邮箱", "domain": "163.com", "link": "https://mail.163.com", "category": "邮箱"},
     {"name": "新浪邮箱", "domain": "sina.com.cn", "link": "https://mail.sina.com.cn", "category": "邮箱"},
     {"name": "搜狐邮箱", "domain": "sohu.com", "link": "https://mail.sohu.com", "category": "邮箱"},
-    {"name": "Gmail", "domain": "gmail.com", "link": "https://mail.google.com", "category": "邮箱"},
     {"name": "Outlook", "domain": "outlook.com", "link": "https://outlook.live.com", "category": "邮箱"},
     {"name": "Yahoo邮箱", "domain": "yahoo.com", "link": "https://mail.yahoo.com", "category": "邮箱"},
     
@@ -84,7 +76,6 @@
     {"name": "阿里云盘", "domain": "aliyundrive.com", "link": "https://www.aliyundrive.com", "category": "云盘"},
     
     {"name": "Github", "domain": "github.com", "link": "https://github.com", "category": "开发"},
-    {"name": "GitLab", "domain": "gitlab.com", "link": "https://gitlab.com", "category": "开发"},
-    {"name": "Bitbucket", "domain": "bitbucket.org", "link": "https://bitbucket.org", "category": "开发"}
+    {"name": "GitLab", "domain": "gitlab.com", "link": "https://gitlab.com", "category": "开发"}
     
 ]

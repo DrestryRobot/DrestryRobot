@@ -1,8 +1,8 @@
 :root {
     --grid-size: 150px;
     --grid-radius: 20px;
-    --primary-color: #7a7a7a5b;
-    --secondary-color: #33333380;
+    --primary-color: #8686867e;
+    --secondary-color: #35353581;
     --text-color: #fff;
     --background-color: #ffffff;
   }
@@ -98,3 +98,4 @@
     margin-top: 10px;
   }
   
+
