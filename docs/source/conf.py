@@ -30,28 +30,19 @@ intersphinx_disabled_domains = ['std']
 templates_path = ['_templates']
 html_static_path = ['_static']
 
-html_extra_path = ['_static/app.html']
-
-
 # -- Options for HTML output
-
 html_theme = 'sphinx_rtd_theme'
 
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
 
-# 添加 Google Analytics 跟踪代码
+# -- 添加 Google Analytics 跟踪代码
 html_js_files = [
     'https://www.googletagmanager.com/gtag/js?id=G-X0VQVVBVYP',
     'analytics.js',
 ]
 
-html_context = {
-    "disable_version_switch": True
-}
-
-
-
+# -- 自定义网页包含指令
 from docutils import nodes
 from docutils.parsers.rst import Directive
 
