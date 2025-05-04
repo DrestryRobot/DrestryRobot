@@ -43,7 +43,7 @@ DrestryRobot是一个基于Node.js开发的桌面应用程序，和DrestryRobot�
     - 双击运行DrestryRobot.exe文件即可启动软件
     - 将DrestryRobot.exe固定至开始屏幕或任务栏，方便使用
 
-BUG提醒
+BUG汇总
 ---------
 - 2025.05.03
     - 深色模式下软件界面仍为浅色
