@@ -10,7 +10,7 @@
        display:block;">
    </div>
 
-.. figure:: images/蓝色梦幻正能量金句微信公众号封面.gif
+.. figure:: _images/蓝色梦幻正能量金句微信公众号封面.gif
    :alt: Version
    :align: center
    :width: 100%
@@ -27,5 +27,5 @@
 
    产品展示/AuboUnity
    产品展示/DrestryRobot
-   产品展示/官网导航
+   产品展示/SiteSearch
 
