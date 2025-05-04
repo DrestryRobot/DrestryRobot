@@ -10,7 +10,7 @@
        display:block;">
    </div>
 
-.. figure:: images/蓝白橙色手写体自然景观旅行分享微信公众号封面.gif
+.. figure:: images/蓝黄色创意立体插画青年节宣传微信公众号封面.gif
    :alt: Version
    :align: center
    :width: 100%
