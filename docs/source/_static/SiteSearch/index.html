@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SiteSearch</title>
+  <link rel="stylesheet" href="styles.css"> <!-- 引入 CSS 文件 -->
+</head>
+<body>
+  <input type="text" id="searchBox" class="search-box" placeholder="🔍 搜索官网...">
+  
+  <div class="category-buttons">
+    <button class="category-btn" onclick="filterGrid('全部')">全部</button>
+    <button class="category-btn" onclick="filterGrid('搜索')">搜索</button>
+    <button class="category-btn" onclick="filterGrid('视频')">视频</button>
+    <button class="category-btn" onclick="filterGrid('购物')">购物</button>
+    <button class="category-btn" onclick="filterGrid('社交')">社交</button>
+    <button class="category-btn" onclick="filterGrid('新闻')">新闻</button>
+    <button class="category-btn" onclick="filterGrid('音乐')">音乐</button>
+    <button class="category-btn" onclick="filterGrid('邮箱')">邮箱</button>
+    <button class="category-btn" onclick="filterGrid('云盘')">云盘</button>
+    <button class="category-btn" onclick="filterGrid('开发')">开发</button>
+    <button class="category-btn" onclick="filterGrid('学习')">学习</button>
+    <button class="category-btn" onclick="filterGrid('文档')">文档</button>
+    <button class="category-btn" onclick="filterGrid('社区')">社区</button>
+    <button class="category-btn" onclick="filterGrid('问答')">问答</button>
+    <button class="category-btn" onclick="filterGrid('百科')">百科</button>
+    <button class="category-btn" onclick="filterGrid('其他')">其他</button>
+  </div>
+  
+  <div class="grid-container" id="gridContainer"></div>
+  
+  <script src="script.js"></script> <!-- 引入 JS 文件 -->
+</body>
+</html>

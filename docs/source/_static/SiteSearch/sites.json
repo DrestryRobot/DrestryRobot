@@ -1,0 +1,8 @@
+[
+    {"name": "百度", "domain": "baidu.com", "link": "https://www.baidu.com", "category": "搜索"},
+    {"name": "Google", "domain": "google.com", "link": "https://www.google.com", "category": "搜索"},
+    {"name": "Bing", "domain": "bing.com", "link": "https://www.bing.com", "category": "搜索"},
+    {"name": "搜狗", "domain": "sogou.com", "link": "https://www.sogou.com", "category": "搜索"},
+    {"name": "360搜索", "domain": "so.com", "link": "https://www.so.com", "category": "搜索"},
+    {"name": "DuckDuckGo", "domain": "duckduckgo.com", "link": "https://www.duckduckgo.com", "category": "搜索"}
+]

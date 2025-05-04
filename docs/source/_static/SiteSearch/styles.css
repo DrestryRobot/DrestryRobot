@@ -1,0 +1,100 @@
+:root {
+    --grid-size: 150px;
+    --grid-radius: 20px;
+    --primary-color: #7a7a7a5b;
+    --secondary-color: #33333380;
+    --text-color: #fff;
+    --background-color: #ffffff;
+  }
+  
+  body {
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .search-box {
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 320px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .category-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .category-btn {
+    padding: 10px 16px;
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .category-btn:hover {
+    background-color: var(--secondary-color);
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--grid-size), 1fr));
+    gap: 20px;
+    width: 90vw;
+    max-width: 1400px;
+  }
+  
+  .grid-item-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .grid-item {
+    width: var(--grid-size);
+    height: var(--grid-size);
+    border-radius: var(--grid-radius);
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transition: 0.3s ease-in-out;
+  }
+  
+  .grid-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  }
+  
+  .grid-item img {
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    object-fit: contain;
+    loading: lazy;
+  }
+  
+  .grid-name {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
