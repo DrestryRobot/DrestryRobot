@@ -94,5 +94,3 @@
 .. includehtml:: _static/weather.html
 
 
-
-

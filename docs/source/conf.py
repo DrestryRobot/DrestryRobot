@@ -30,8 +30,8 @@ intersphinx_disabled_domains = ['std']
 templates_path = ['_templates']
 html_static_path = ['_static']
 
-# conf.py
-html_extra_path = ['_static']
+html_extra_path = ['_static/app.html']
+
 
 # -- Options for HTML output
 
