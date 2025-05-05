@@ -16,6 +16,7 @@
 最近更新
 ---------
 - 2025.05.05
+   - ModelView
    - SiteSearch
       - `SiteSearch <https://drestryrobot.readthedocs.io/zh-cn/latest/_static/SiteSearch/index.html>`_ 官网导航
       - 优化界面UI设计
