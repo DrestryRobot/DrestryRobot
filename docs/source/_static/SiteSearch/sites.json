@@ -88,6 +88,57 @@
     {"name": "比亚迪", "domain": "byd.com", "link": "https://byd.com", "category": "产品"},
     {"name": "小鹏汽车", "domain": "xiaopeng.com", "link": "https://xiaopeng.com", "category": "产品"},
     {"name": "NIO蔚来", "domain": "nio.com", "link": "https://nio.com", "category": "产品"},
-    {"name": "理想汽车", "domain": "lixiang.com", "link": "https://lixiang.com", "category": "产品"}
+    {"name": "理想汽车", "domain": "lixiang.com", "link": "https://lixiang.com", "category": "产品"},
+
+
+
+    {"name": "金山文档", "domain": "kdocs.cn", "link": "https://kdocs.cn", "category": "效率"},
+    {"name": "WPS", "domain": "wps.com", "link": "https://wps.cn", "category": "效率"},
+    {"name": "飞书", "domain": "feishu.cn", "link": "https://feishu.cn", "category": "效率"},
+    {"name": "腾讯文档", "domain": "docs.qq.com", "link": "https://docs.qq.com", "category": "效率"},
+    {"name": "腾讯会议", "domain": "meeting.tencent.com", "link": "https://meeting.tencent.com", "category": "效率"},
+
+    {"name": "企业微信", "domain": "work.weixin.qq.com", "link": "https://work.weixin.qq.com", "category": "其他"},
+    {"name": "微信", "domain": "weixin.qq.com", "link": "https://weixin.qq.com", "category": "其他"}, 
+    {"name": "阿里云", "domain": "aliyun.com", "link": "https://aliyun.com", "category": "其他"},
+    {"name": "华为云", "domain": "huaweicloud.com", "link": "https://huaweicloud.com", "category": "其他"},
+    {"name": "DeepSeek", "domain": "deepseek.com", "link": "https://deepseek.com", "category": "其他"},
+    {"name": "Copilot", "domain": "copilot.com", "link": "https://copilot.com", "category": "其他"}, 
+
+    {"name": "Microsoft 微软", "domain": "microsoft.com", "link": "https://microsoft.com", "category": "其他"},
+    {"name": "NVIDIA 英伟达", "domain": "nvidia.cn", "link": "https://nvidia.cn", "category": "其他"},
+    {"name": "OpenAI", "domain": "openai.com", "link": "https://openai.com", "category": "其他"},
+    {"name": "豆包", "domain": "doubao.com", "link": "https://doubao.com", "category": "其他"}, 
+    {"name": "KiMi", "domain": "kimi-zh.com", "link": "https://kimi-zh.com", "category": "其他"},
+    {"name": "扣子", "domain": "coze.cn", "link": "https://coze.cn", "category": "其他"},
+    {"name": "通义", "domain": "tongyi.aliyun.com", "link": "https://tongyi.aliyun.com", "category": "其他"},
+    {"name": "百度文心", "domain": "wenxin.baidu.com", "link": "https://wenxin.baidu.com", "category": "其他"}, 
+    {"name": "文心一言", "domain": "yiyan.baidu.com", "link": "https://yiyan.baidu.com", "category": "其他"},
+    {"name": "iCloud", "domain": "icloud.com.cn", "link": "https://icloud.com.cn", "category": "其他"},
+    {"name": "ToDesk", "domain": "todesk.com", "link": "https://todesk.com", "category": "其他"},
+    {"name": "向日葵", "domain": "sunlogin.oray.com", "link": "https://sunlogin.oray.com", "category": "其他"},
+    
+    {"name": "网易UU远程", "domain": "uuyc.163.com", "link": "https://uuyc.163.com", "category": "其他"},
+    {"name": "TeamViewer", "domain": "teamviewer.cn", "link": "https://teamviewer.cn", "category": "其他"},
+    {"name": "中国知网", "domain": "cnki.cn", "link": "https://cnki.net", "category": "其他"},
+    {"name": "万方数据知识服务平台", "domain": "wanfangdata.com.cn", "link": "https://wanfangdata.com.cn", "category": "其他"}, 
+    {"name": "Logitech", "domain": "logitech.com", "link": "https://logitech.com", "category": "其他"},
+    {"name": "Unity中国官网", "domain": "unity.cn", "link": "https://unity.cn", "category": "其他"},
+    {"name": "Visual Studio Code", "domain": "code.visualstudio.com", "link": "https://code.visualstudio.com", "category": "其他"},
+    {"name": "Visual Studio", "domain": "visualstudio.microsoft.com", "link": "https://visualstudio.microsoft.com", "category": "其他"}, 
+    {"name": "Qt", "domain": "qt.io", "link": "https://qt.io", "category": "其他"},
+    {"name": "Keil", "domain": "keil.com", "link": "https://keil.com", "category": "其他"},
+    {"name": "STMCU中文官网", "domain": "stmcu.com.cn", "link": "https://stmcu.com.cn", "category": "其他"},
+    {"name": "意法半导体", "domain": "st.com.cn", "link": "https://st.com.cn", "category": "其他"},  
+
+    {"name": "嘉立创EDA", "domain": "lceda.cn", "link": "https://lceda.cn", "category": "其他"},
+    {"name": "立创商城", "domain": "szlcsc.com", "link": "https://szlcsc.com", "category": "其他"},
+    {"name": "RoboMaster 机甲大师赛", "domain": "robomaster.com", "link": "https://robomaster.com", "category": "其他"},
+    {"name": "Microsoft 365", "domain": "office.com", "link": "https://office.com", "category": "其他"},
+    {"name": "Microsoft Apps", "domain": "apps.microsoft.com", "link": "https://apps.microsoft.com", "category": "其他"},
+    {"name": "搜狐视频", "domain": "tv.sohu.com", "link": "https://tv.sohu.com", "category": "其他"}, 
+    {"name": "央视频", "domain": "yangshipin.cn", "link": "https://yangshipin.cn", "category": "其他"},
+    {"name": "咪咕音乐", "domain": "music.migu.cn", "link": "https://music.migu.cn", "category": "其他"},
+    {"name": "咪咕视频", "domain": "miguvideo.com", "link": "https://miguvideo.com", "category": "其他"}
     
 ]
