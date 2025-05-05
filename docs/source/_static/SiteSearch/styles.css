@@ -70,10 +70,13 @@ body {
   cursor: pointer;
   font-size: 16px;
   transition: 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 .category-btn:hover {
   background-color: var(--secondary-color);
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
 }
 
 .grid-container {
@@ -95,7 +98,7 @@ body {
   width: var(--grid-size);
   height: var(--grid-size);
   border-radius: var(--grid-radius);
-  background-color: #ffffff;
+  background-color: #ffffff99;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -106,7 +109,7 @@ body {
 }
 
 .grid-item:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
   box-shadow: 0 6px 12px rgba(0,0,0,0.2);
 }
 

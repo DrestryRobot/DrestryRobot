@@ -8,12 +8,10 @@
     {"name": "百度百科", "domain": "baike.baidu.com", "link": "https://baike.baidu.com", "category": "百科"},
     
     {"name": "百度文库", "domain": "wenku.baidu.com", "link": "https://wenku.baidu.com", "category": "文档"},
-    {"name": "Google Docs", "domain": "docs.google.com", "link": "https://docs.google.com", "category": "文档"},
-    {"name": "Evernote", "domain": "evernote.com", "link": "https://www.evernote.com", "category": "文档"},
-    {"name": "Notion", "domain": "notion.so", "link": "https://www.notion.so", "category": "文档"},
+    {"name": "印象笔记", "domain": "evernote.com", "link": "https://www.yinxiang.com", "category": "文档"},
+    {"name": "Notion", "domain": "notion.so", "link": "https://www.notion.com", "category": "文档"},
     
     {"name": "豆瓣", "domain": "douban.com", "link": "https://www.douban.com", "category": "社区"},
-    {"name": "知乎专栏", "domain": "zhuanlan.zhihu.com", "link": "https://zhuanlan.zhihu.com", "category": "社区"},
     {"name": "简书", "domain": "jianshu.com", "link": "https://www.jianshu.com", "category": "社区"},
     {"name": "CSDN", "domain": "csdn.net", "link": "https://www.csdn.net", "category": "社区"},
     
@@ -41,9 +39,6 @@
     
     {"name": "微博", "domain": "weibo.com", "link": "https://weibo.com", "category": "社交"},
     {"name": "QQ", "domain": "qq.com", "link": "https://www.qq.com", "category": "社交"},
-    {"name": "Instagram", "domain": "instagram.com", "link": "https://www.instagram.com", "category": "社交"},
-    {"name": "Facebook", "domain": "facebook.com", "link": "https://www.facebook.com", "category": "社交"},
-    {"name": "Twitter", "domain": "twitter.com", "link": "https://twitter.com", "category": "社交"},
     
     {"name": "今日头条", "domain": "toutiao.com", "link": "https://www.toutiao.com", "category": "新闻"},
     {"name": "网易新闻", "domain": "news.163.com", "link": "https://news.163.com", "category": "新闻"},
@@ -57,18 +52,12 @@
     {"name": "酷我音乐", "domain": "kuwo.cn", "link": "https://www.kuwo.cn", "category": "音乐"},
     {"name": "Spotify", "domain": "spotify.com", "link": "https://www.spotify.com", "category": "音乐"},
     {"name": "Apple Music", "domain": "music.apple.com", "link": "https://music.apple.com", "category": "音乐"},
-    {"name": "Amazon Music", "domain": "music.amazon.com", "link": "https://music.amazon.com", "category": "音乐"},
-    {"name": "YouTube Music", "domain": "music.youtube.com", "link": "https://music.youtube.com", "category": "音乐"},
     
     {"name": "QQ邮箱", "domain": "mail.qq.com", "link": "https://mail.qq.com", "category": "邮箱"},
     {"name": "网易邮箱", "domain": "163.com", "link": "https://mail.163.com", "category": "邮箱"},
-    {"name": "新浪邮箱", "domain": "sina.com.cn", "link": "https://mail.sina.com.cn", "category": "邮箱"},
-    {"name": "搜狐邮箱", "domain": "sohu.com", "link": "https://mail.sohu.com", "category": "邮箱"},
     {"name": "Outlook", "domain": "outlook.com", "link": "https://outlook.live.com", "category": "邮箱"},
     {"name": "Yahoo邮箱", "domain": "yahoo.com", "link": "https://mail.yahoo.com", "category": "邮箱"},
     
-    {"name": "Google Drive", "domain": "drive.google.com", "link": "https://drive.google.com", "category": "云盘"},
-    {"name": "Dropbox", "domain": "dropbox.com", "link": "https://www.dropbox.com", "category": "云盘"},
     {"name": "OneDrive", "domain": "onedrive.live.com", "link": "https://onedrive.live.com", "category": "云盘"},
     {"name": "百度网盘", "domain": "pan.baidu.com", "link": "https://pan.baidu.com", "category": "云盘"},
     {"name": "腾讯微云", "domain": "weiyun.com", "link": "https://www.weiyun.com", "category": "云盘"},

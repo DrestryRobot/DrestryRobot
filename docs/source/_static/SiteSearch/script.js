@@ -104,6 +104,14 @@ document.getElementById("searchBox").addEventListener("input", function() {
     loadGrid(currentCategory, this.value.trim());
 });
 
+// 在用户按下回车后自动清空搜索框
+document.getElementById("searchBox").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        this.value = ""; // 清空输入框
+    }
+});
+
+
 // 初始加载全部项
 loadGrid();
 
