@@ -71,7 +71,7 @@
 
     {"name": "DJI大疆创新", "domain": "dji.com", "link": "https://www.dji.com", "category": "产品"},
     {"name": "影石Insta360", "domain": "insta360.com", "link": "https://www.insta360.com", "category": "产品"},
-    {"name": "Apple", "domain": "apple.com", "link": "https://www.apple.com", "category": "产品"},
+    {"name": "Apple", "domain": "apple.cn", "link": "https://www.apple.cn", "category": "产品"},
     {"name": "小米", "domain": "mi.com", "link": "https://www.mi.com", "category": "产品"},
     {"name": "OPPO", "domain": "oppo.com", "link": "https://www.oppo.com", "category": "产品"},
     {"name": "vivo", "domain": "vivo.com", "link": "https://www.vivo.com", "category": "产品"},
