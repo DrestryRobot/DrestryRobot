@@ -1,101 +1,126 @@
 :root {
-    --grid-size: 150px;
-    --grid-radius: 20px;
-    --primary-color: #8686867e;
-    --secondary-color: #35353581;
-    --text-color: #fff;
-    --background-color: #ffffff;
-  }
-  
-  body {
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-    font-family: 'Arial', sans-serif;
-  }
-  
-  .search-box {
-    margin-bottom: 20px;
-    padding: 10px;
-    width: 320px;
-    font-size: 16px;
-    border: none;
-    border-radius: 8px;
-    outline: none;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  }
-  
-  .category-buttons {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .category-btn {
-    padding: 10px 16px;
-    border: none;
-    background-color: var(--primary-color);
-    color: var(--text-color);
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: 0.3s ease-in-out;
-  }
-  
-  .category-btn:hover {
-    background-color: var(--secondary-color);
-  }
-  
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(var(--grid-size), 1fr));
-    gap: 20px;
-    width: 90vw;
-    max-width: 1400px;
-  }
-  
-  .grid-item-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .grid-item {
-    width: var(--grid-size);
-    height: var(--grid-size);
-    border-radius: var(--grid-radius);
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-    transition: 0.3s ease-in-out;
-  }
-  
-  .grid-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-  }
-  
-  .grid-item img {
-    width: 64px;
-    height: 64px;
-    border-radius: 8px;
-    object-fit: contain;
-    loading: lazy;
-  }
-  
-  .grid-name {
-    font-size: 16px;
-    color: #333;
-    font-weight: bold;
-    margin-top: 10px;
-  }
-  
+  --grid-size: 150px;
+  --grid-radius: 20px;
+  --primary-color: #64c2ea75;
+  --secondary-color: #e863ff7a;
+  --text-color: #fff;
+  --background-color: #ffffff;
+}
 
+body {
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  font-family: 'Arial', sans-serif;
+}
+
+/* 创建顶部导航栏 */
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* SiteSearch Logo 样式 */
+.logo {
+  font-size: 48px;
+  font-weight: bold;
+  position: absolute;
+  top: 20px;  /* 距离顶部 20px */
+  left: 30px; /* 距离左侧 30px */
+
+  background: linear-gradient(to right, #64c1ea, #e863ff); /* 渐变颜色 */
+  -webkit-background-clip: text; /* 仅应用于文本 */
+  color: transparent; /* 让渐变可见 */
+}
+
+
+/* 搜索框 */
+.search-box {
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 320px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.category-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.category-btn {
+  padding: 10px 16px;
+  border: none;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s ease-in-out;
+}
+
+.category-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--grid-size), 1fr));
+  gap: 20px;
+  width: 90vw;
+  max-width: 1400px;
+}
+
+.grid-item-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.grid-item {
+  width: var(--grid-size);
+  height: var(--grid-size);
+  border-radius: var(--grid-radius);
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transition: 0.3s ease-in-out;
+}
+
+.grid-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.grid-item img {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  object-fit: contain;
+  loading: lazy;
+}
+
+.grid-name {
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+  margin-top: 10px;
+}
