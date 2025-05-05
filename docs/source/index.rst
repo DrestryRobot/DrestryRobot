@@ -15,9 +15,14 @@
 
 最近更新
 ---------
+- 2025.05.05
+   - SiteSearch
+      - `SiteSearch <https://drestryrobot.readthedocs.io/zh-cn/latest/_static/SiteSearch/index.html>`_ 官网导航
+      - 优化界面UI设计
+      - 新增和删减部分官网
 - 2025.05.04
    - SiteSearch
-      - SiteSearch官网导航
+      - `SiteSearch <https://drestryrobot.readthedocs.io/zh-cn/latest/_static/SiteSearch/index.html>`_ 官网导航
       - 支持快速搜索各大官网网址
       - 支持快速分类各大官网网址
       - 支持快速访问各大官网网址
