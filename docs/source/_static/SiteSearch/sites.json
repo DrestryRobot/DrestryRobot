@@ -1,8 +1,11 @@
 [
     {"name": "百度", "domain": "baidu.com", "link": "https://www.baidu.com", "category": "搜索"},
-    {"name": "Google", "domain": "google.com", "link": "https://www.google.com", "category": "搜索"},
-    {"name": "Bing", "domain": "bing.com", "link": "https://www.bing.com", "category": "搜索"},
     {"name": "360搜索", "domain": "so.com", "link": "https://www.so.com", "category": "搜索"},
+    {"name": "搜狗搜索", "domain": "sogou.com", "link": "https://www.sogou.com", "category": "搜索"},
+    {"name": "夸克", "domain": "quark.cn", "link": "https://www.quark.cn", "category": "搜索"},
+    {"name": "Bing", "domain": "bing.com", "link": "https://www.bing.com", "category": "搜索"},
+    {"name": "Google", "domain": "google.com", "link": "https://www.google.com", "category": "搜索"},
+    {"name": "Yandex", "domain": "yandex.com", "link": "https://www.yandex.com", "category": "搜索"},
     
     {"name": "维基百科", "domain": "wikipedia.org", "link": "https://www.wikipedia.org", "category": "百科"},
     {"name": "百度百科", "domain": "baike.baidu.com", "link": "https://baike.baidu.com", "category": "百科"},
@@ -18,15 +21,15 @@
     {"name": "知乎", "domain": "zhihu.com", "link": "https://www.zhihu.com", "category": "问答"},
     {"name": "百度知道", "domain": "zhidao.baidu.com", "link": "https://zhidao.baidu.com", "category": "问答"},
     
+    {"name": "抖音", "domain": "douyin.com", "link": "https://douyin.com", "category": "视频"},
+    {"name": "快手", "domain": "kuaishou.com", "link": "https://kuaishou.com", "category": "视频"},
+    {"name": "小红书", "domain": "xiaohongshu.com", "link": "https://xiaohongshu.com", "category": "视频"},
     {"name": "爱奇艺", "domain": "iqiyi.com", "link": "https://www.iqiyi.com", "category": "视频"},
     {"name": "优酷", "domain": "youku.com", "link": "https://www.youku.com", "category": "视频"},
-    {"name": "哔哩哔哩", "domain": "bilibili.com", "link": "https://www.bilibili.com", "category": "视频"},
-    {"name": "YouTube", "domain": "youtube.com", "link": "https://www.youtube.com", "category": "视频"},
-    {"name": "Netflix", "domain": "netflix.com", "link": "https://www.netflix.com", "category": "视频"},
     {"name": "腾讯视频", "domain": "v.qq.com", "link": "https://v.qq.com", "category": "视频"},
     {"name": "芒果TV", "domain": "mgtv.com", "link": "https://www.mgtv.com", "category": "视频"},
+    {"name": "哔哩哔哩", "domain": "bilibili.com", "link": "https://www.bilibili.com", "category": "视频"},
     {"name": "乐视视频", "domain": "le.com", "link": "https://www.le.com", "category": "视频"},
-    {"name": "西瓜视频", "domain": "ixigua.com", "link": "https://www.ixigua.com", "category": "视频"},
     
     {"name": "淘宝", "domain": "taobao.com", "link": "https://www.taobao.com", "category": "购物"},
     {"name": "京东", "domain": "jd.com", "link": "https://www.jd.com", "category": "购物"},

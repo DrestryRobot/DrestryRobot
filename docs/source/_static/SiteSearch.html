@@ -184,35 +184,46 @@
 
     // 导航数据
     const gridData = [
+      
+    {"name": "DJI大疆创新", "domain": "dji.com", "link": "https://www.dji.com", "category": "产品"},
+    {"name": "影石Insta360", "domain": "insta360.com", "link": "https://www.insta360.com", "category": "产品"},
+    {"name": "Apple", "domain": "apple.com", "link": "https://www.apple.com", "category": "产品"},
+    {"name": "小米", "domain": "mi.com", "link": "https://www.mi.com", "category": "产品"},
+    {"name": "OPPO", "domain": "oppo.com", "link": "https://www.oppo.com", "category": "产品"},
+    {"name": "vivo", "domain": "vivo.com", "link": "https://www.vivo.com", "category": "产品"},
+    {"name": "联想", "domain": "lenovo.com", "link": "https://www.lenovo.com", "category": "产品"},
+    {"name": "vivo", "domain": "vivo.com", "link": "https://www.vivo.com", "category": "产品"},
+    {"name": "华硕", "domain": "asus.com", "link": "https://w3.asus.com.cn", "category": "产品"},
+    {"name": "华为", "domain": "huawei.com", "link": "https://www.huawei.com", "category": "产品"},
+    {"name": "荣耀", "domain": "honor.com", "link": "https://www.honor.com", "category": "产品"},
+    {"name": "宇树科技", "domain": "unitree.com", "link": "https://www.unitree.com", "category": "产品"},
+    {"name": "Bambu Lab 拓竹科技", "domain": "bambulab.com", "link": "https://bambulab.cn", "category": "产品"},
+    {"name": "海尔", "domain": "haier.com", "link": "https://www.haier.com", "category": "产品"},
+    {"name": "美的", "domain": "midea.com", "link": "https://www.midea.com", "category": "产品"},
+    {"name": "格力", "domain": "gree.com", "link": "https://gree.com", "category": "产品"},
+    {"name": "比亚迪", "domain": "byd.com", "link": "https://byd.com", "category": "产品"},
+    {"name": "小鹏汽车", "domain": "xiaopeng.com", "link": "https://xiaopeng.com", "category": "产品"},
+    {"name": "NIO蔚来", "domain": "nio.com", "link": "https://nio.com", "category": "产品"},
+    {"name": "理想汽车", "domain": "lixiang.com", "link": "https://lixiang.com", "category": "产品"},
 
-{"name": "百度", "domain": "baidu.com", "link": "https://www.baidu.com", "category": "搜索"},
-{"name": "Google", "domain": "google.com", "link": "https://www.google.com", "category": "搜索"},
-{"name": "Bing", "domain": "bing.com", "link": "https://www.bing.com", "category": "搜索"},
-{"name": "搜狗", "domain": "sogou.com", "link": "https://www.sogou.com", "category": "搜索"},
-{"name": "360搜索", "domain": "so.com", "link": "https://www.so.com", "category": "搜索"},
-{"name": "必应", "domain": "cn.bing.com", "link": "https://cn.bing.com", "category": "搜索"},
-{"name": "DuckDuckGo", "domain": "duckduckgo.com", "link": "https://www.duckduckgo.com", "category": "搜索"},
+    {"name": "抖音", "domain": "douyin.com", "link": "https://douyin.com", "category": "视频"},
+    {"name": "快手", "domain": "kuaishou.com", "link": "https://kuaishou.com", "category": "视频"},
+    {"name": "小红书", "domain": "xiaohongshu.com", "link": "https://xiaohongshu.com", "category": "视频"},
+    {"name": "爱奇艺", "domain": "iqiyi.com", "link": "https://www.iqiyi.com", "category": "视频"},
+    {"name": "优酷", "domain": "youku.com", "link": "https://www.youku.com", "category": "视频"},
+    {"name": "腾讯视频", "domain": "v.qq.com", "link": "https://v.qq.com", "category": "视频"},
+    {"name": "芒果TV", "domain": "mgtv.com", "link": "https://www.mgtv.com", "category": "视频"},
+    {"name": "哔哩哔哩", "domain": "bilibili.com", "link": "https://www.bilibili.com", "category": "视频"},
+    {"name": "乐视视频", "domain": "le.com", "link": "https://www.le.com", "category": "视频"},
 
-{"name": "DJI大疆创新", "domain": "dji.com", "link": "https://www.dji.com", "category": "产品"},
-{"name": "影石Insta360", "domain": "insta360.com", "link": "https://www.insta360.com", "category": "产品"},
-{"name": "Apple", "domain": "apple.com", "link": "https://www.apple.com", "category": "产品"},
-{"name": "小米", "domain": "mi.com", "link": "https://www.mi.com", "category": "产品"},
-{"name": "OPPO", "domain": "oppo.com", "link": "https://www.oppo.com", "category": "产品"},
-{"name": "vivo", "domain": "vivo.com", "link": "https://www.vivo.com", "category": "产品"},
-{"name": "联想", "domain": "lenovo.com", "link": "https://www.lenovo.com", "category": "产品"},
-{"name": "vivo", "domain": "vivo.com", "link": "https://www.vivo.com", "category": "产品"},
-{"name": "华硕", "domain": "asus.com", "link": "https://w3.asus.com.cn", "category": "产品"},
-{"name": "华为", "domain": "huawei.com", "link": "https://www.huawei.com", "category": "产品"},
-{"name": "荣耀", "domain": "honor.com", "link": "https://www.honor.com", "category": "产品"},
-{"name": "宇树科技", "domain": "unitree.com", "link": "https://www.unitree.com", "category": "产品"},
-{"name": "Bambu Lab 拓竹科技", "domain": "bambulab.com", "link": "https://bambulab.cn", "category": "产品"},
-{"name": "海尔", "domain": "haier.com", "link": "https://www.haier.com", "category": "产品"},
-{"name": "美的", "domain": "midea.com", "link": "https://www.midea.com", "category": "产品"},
-{"name": "格力", "domain": "gree.com", "link": "https://gree.com", "category": "产品"},
-{"name": "比亚迪", "domain": "byd.com", "link": "https://byd.com", "category": "产品"},
-{"name": "小鹏汽车", "domain": "xiaopeng.com", "link": "https://xiaopeng.com", "category": "产品"},
-{"name": "NIO蔚来", "domain": "nio.com", "link": "https://nio.com", "category": "产品"},
-{"name": "理想汽车", "domain": "lixiang.com", "link": "https://lixiang.com", "category": "产品"},
+    {"name": "百度", "domain": "baidu.com", "link": "https://www.baidu.com", "category": "搜索"},
+    {"name": "360搜索", "domain": "so.com", "link": "https://www.so.com", "category": "搜索"},
+    {"name": "搜狗搜索", "domain": "sogou.com", "link": "https://www.sogou.com", "category": "搜索"},
+    {"name": "夸克", "domain": "quark.cn", "link": "https://www.quark.cn", "category": "搜索"},
+    {"name": "Bing", "domain": "bing.com", "link": "https://www.bing.com", "category": "搜索"},
+    {"name": "Google", "domain": "google.com", "link": "https://www.google.com", "category": "搜索"},
+    {"name": "Yandex", "domain": "yandex.com", "link": "https://www.yandex.com", "category": "搜索"},
+
 
     ];
 
@@ -268,4 +279,6 @@
     loadGrid();
   </script>
 </body>
-</html>
+</html> -->
+
+
