@@ -88,3 +88,4 @@
 .. includehtml:: _static/weather.html
 
 
+.. includehtml:: _static/quick.html

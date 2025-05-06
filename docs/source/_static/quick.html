@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>底部横条跳转</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* 底部横条样式 */
+        .bottom-bar {
+            position: fixed;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px; /* 宽一点 */
+            height: 6px; /* 扁一点 */
+            background-color: rgba(0, 0, 0, 0.571);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        /* 悬停效果 */
+        .bottom-bar:hover {
+            transform: translateX(-50%) scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 底部横条 -->
+    <a href="https://drestryrobot.readthedocs.io/zh-cn/latest/_static/SiteSearch/index.html" target="_blank">
+        <div class="bottom-bar"></div>
+    </a>
+
+</body>
+</html>
