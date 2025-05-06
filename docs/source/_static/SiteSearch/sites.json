@@ -76,7 +76,6 @@
     {"name": "OPPO", "domain": "oppo.com", "link": "https://www.oppo.com", "category": "产品"},
     {"name": "vivo", "domain": "vivo.com", "link": "https://www.vivo.com", "category": "产品"},
     {"name": "联想", "domain": "lenovo.com", "link": "https://www.lenovo.com", "category": "产品"},
-    {"name": "vivo", "domain": "vivo.com", "link": "https://www.vivo.com", "category": "产品"},
     {"name": "华硕", "domain": "asus.com", "link": "https://w3.asus.com.cn", "category": "产品"},
     {"name": "华为", "domain": "huawei.com", "link": "https://www.huawei.com", "category": "产品"},
     {"name": "荣耀", "domain": "honor.com", "link": "https://www.honor.com", "category": "产品"},
