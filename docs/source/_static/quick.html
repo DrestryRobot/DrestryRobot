@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>底部横条跳转</title>
+    <title>底部横条跳转 - 夜间模式适配</title>
     <style>
+        :root {
+            --bar-color-light: rgba(0, 0, 0, 0.3);
+            --bar-color-dark: rgba(60, 60, 60, 0.85);
+        }
+
         body {
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
         }
 
-        /* 底部横条样式 */
+        /* 默认浅色模式 */
         .bottom-bar {
             position: fixed;
             bottom: 5px;
@@ -19,15 +24,22 @@
             transform: translateX(-50%);
             width: 300px; /* 宽一点 */
             height: 6px; /* 扁一点 */
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: var(--bar-color-light);
             border-radius: 10px;
             cursor: pointer;
-            transition: transform 0.2s ease-in-out;
+            transition: transform 0.2s ease-in-out, background-color 0.3s ease-in-out;
         }
 
         /* 悬停效果 */
         .bottom-bar:hover {
             transform: translateX(-50%) scale(1.1);
+        }
+
+        /* 夜间模式适配 */
+        @media (prefers-color-scheme: dark) {
+            .bottom-bar {
+                background-color: var(--bar-color-dark);
+            }
         }
     </style>
 </head>
