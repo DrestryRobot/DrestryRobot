@@ -18,6 +18,8 @@
 - 2025.05.07
    - 主页面
       - 新增底部导航条，支持快速跳转至SiteSearch
+   - SiteSearch
+      - 修复无法加载图标的问题
 - 2025.05.05
    - DigitalWorld
    - ModelView
@@ -30,6 +32,7 @@
       - 支持快速搜索各大官网网址
       - 支持快速分类各大官网网址
       - 支持快速访问各大官网网址
+
 
 .. raw:: html
 
@@ -89,6 +92,5 @@
 如果你有好的资源、技术、项目或产品，欢迎投稿到邮箱：2371478179@qq.com
 
 .. includehtml:: _static/weather.html
-
 
 .. includehtml:: _static/quick.html
