@@ -147,11 +147,18 @@ async function getBestIcon(domain) {
     return iconCache[domain];
 }
 
-// 获取网站数据
+// // 获取网站数据
+// async function fetchSiteData() {
+//     const response = await fetch("https://drestryrobot.readthedocs.io/zh-cn/latest/_static/SiteSearch/sites.json");
+//     return response.json();
+// }
+
+// 获取网站数据（从 GitHub raw URL）
 async function fetchSiteData() {
-    const response = await fetch("https://drestryrobot.readthedocs.io/zh-cn/latest/_static/SiteSearch/sites.json");
+    const response = await fetch("https://raw.githubusercontent.com/DrestryRobot/icon-storage/main/sites.json");
     return response.json();
 }
+
 
 const container = document.getElementById("gridContainer");
 let currentCategory = "全部"; // 当前分类
