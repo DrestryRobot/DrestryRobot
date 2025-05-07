@@ -116,7 +116,6 @@
 // loadGrid();
 
 
-
 // 缓存图标，避免重复请求
 const iconCache = JSON.parse(localStorage.getItem("iconCache")) || {};
 
@@ -141,7 +140,7 @@ async function checkImage(url, timeout = 5000) {
     });
 }
 
-// 仅从 `manifest.json` 获取图标
+// 尝试获取最佳图标：先查 manifest，再尝试 apple-touch-icon、favicon
 async function getBestIcon(domain) {
     if (iconCache[domain]) { 
         return iconCache[domain];
@@ -164,7 +163,20 @@ async function getBestIcon(domain) {
         }
     } catch (e) {}
 
-    return null; // 如果 `manifest.json` 没有图标，则返回 null
+    const appleIcon = `https://${domain}/apple-touch-icon.png`;
+    const favicon = `https://${domain}/favicon.ico`;
+
+    const result = await Promise.race([
+        checkImage(appleIcon),
+        checkImage(favicon)
+    ]);
+
+    if (result) {
+        iconCache[domain] = result;
+        localStorage.setItem("iconCache", JSON.stringify(iconCache));
+    }
+
+    return result; // 如果找不到图标，返回 null
 }
 
 // 获取网站数据
@@ -195,7 +207,7 @@ async function loadGrid(category = "全部", searchQuery = "") {
             gridItem.className = "grid-item";
             gridItem.onclick = () => window.location.href = item.link;
 
-            // 仅在找到 `manifest.json` 图标时才添加图标
+            // 仅在找到图标时才添加图标
             if (icons[index]) {
                 const icon = document.createElement("img");
                 icon.src = icons[index];
