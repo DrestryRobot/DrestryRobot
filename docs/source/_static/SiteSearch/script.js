@@ -133,51 +133,16 @@ async function checkImage(url) {
     });
 }
 
-// 尝试获取最佳图标：先查 GitHub 图标库，再查 manifest，再尝试 apple-touch-icon、favicon，最后降级到 Google S2 API
+// 只从 GitHub 获取图标
 async function getBestIcon(domain) {
     if (iconCache[domain]) { 
         return iconCache[domain];
     }
 
-    // 1️⃣ **优先从 GitHub 获取图标**
     const githubIcon = getGitHubIconUrl(domain);
-    if (await checkImage(githubIcon)) {
-        iconCache[domain] = githubIcon;
-        localStorage.setItem("iconCache", JSON.stringify(iconCache));
-        return githubIcon;
-    }
+    const validIcon = await checkImage(githubIcon);
 
-    // 2️⃣ **尝试从网站获取图标**
-    const manifestUrl = `https://${domain}/manifest.json`;
-    try {
-        const response = await fetch(manifestUrl);
-        if (response.ok) {
-            const data = await response.json();
-            if (data.icons && data.icons.length) {
-                let largestIcon = data.icons[data.icons.length - 1].src;
-                let iconUrl = new URL(largestIcon, manifestUrl).href;
-                if (await checkImage(iconUrl)) {
-                    iconCache[domain] = iconUrl;
-                    localStorage.setItem("iconCache", JSON.stringify(iconCache));
-                    return iconUrl;
-                }
-            }
-        }
-    } catch (e) {}
-
-    // 3️⃣ **尝试 apple-touch-icon 和 favicon**
-    const appleIcon = `https://${domain}/apple-touch-icon.png`;
-    const favicon = `https://${domain}/favicon.ico`;
-    const googleIcon = `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
-
-    const result = await Promise.race([
-        checkImage(appleIcon),
-        checkImage(favicon),
-        Promise.resolve(googleIcon)
-    ]);
-
-    // 4️⃣ **缓存并返回最终图标**
-    iconCache[domain] = result || googleIcon;
+    iconCache[domain] = validIcon || githubIcon; // 如果 GitHub 图标不存在，仍然返回默认路径
     localStorage.setItem("iconCache", JSON.stringify(iconCache));
     return iconCache[domain];
 }
@@ -247,3 +212,4 @@ document.getElementById("searchBox").addEventListener("keydown", function(event)
 
 // 初始加载全部项
 loadGrid();
+
