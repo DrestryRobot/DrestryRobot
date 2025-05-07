@@ -120,6 +120,9 @@
 // 缓存图标，避免重复请求
 const iconCache = JSON.parse(localStorage.getItem("iconCache")) || {};
 
+// GitHub 图标存储路径
+const getGitHubIconUrl = (domain) => `https://drestryrobot.github.io/icon-storage/icons/${domain}.png`;
+
 // 检测图片能否加载成功
 async function checkImage(url) {
     return new Promise((resolve) => {
@@ -130,15 +133,21 @@ async function checkImage(url) {
     });
 }
 
-// 获取国内可用的图标 API
-const getIowenIcon = (domain) => `https://api.iowen.cn/favicon/${domain}.png`;
-
-// 尝试获取最佳图标：先查 manifest，再尝试 apple-touch-icon、favicon，最后降级到 Iowen API
+// 尝试获取最佳图标：先查 GitHub 图标库，再查 manifest，再尝试 apple-touch-icon、favicon，最后降级到 Google S2 API
 async function getBestIcon(domain) {
     if (iconCache[domain]) { 
         return iconCache[domain];
     }
 
+    // 1️⃣ **优先从 GitHub 获取图标**
+    const githubIcon = getGitHubIconUrl(domain);
+    if (await checkImage(githubIcon)) {
+        iconCache[domain] = githubIcon;
+        localStorage.setItem("iconCache", JSON.stringify(iconCache));
+        return githubIcon;
+    }
+
+    // 2️⃣ **尝试从网站获取图标**
     const manifestUrl = `https://${domain}/manifest.json`;
     try {
         const response = await fetch(manifestUrl);
@@ -156,19 +165,21 @@ async function getBestIcon(domain) {
         }
     } catch (e) {}
 
+    // 3️⃣ **尝试 apple-touch-icon 和 favicon**
     const appleIcon = `https://${domain}/apple-touch-icon.png`;
     const favicon = `https://${domain}/favicon.ico`;
-    const iowenIcon = getIowenIcon(domain);
+    const googleIcon = `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
 
-    const results = await Promise.all([
+    const result = await Promise.race([
         checkImage(appleIcon),
-        checkImage(favicon)
+        checkImage(favicon),
+        Promise.resolve(googleIcon)
     ]);
 
-    const validIcon = results.find(icon => icon !== null) || iowenIcon;
-    iconCache[domain] = validIcon;
+    // 4️⃣ **缓存并返回最终图标**
+    iconCache[domain] = result || googleIcon;
     localStorage.setItem("iconCache", JSON.stringify(iconCache));
-    return validIcon;
+    return iconCache[domain];
 }
 
 // 获取网站数据
