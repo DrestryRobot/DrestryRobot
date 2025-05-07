@@ -18,8 +18,6 @@
 - 2025.05.07
    - 主页面
       - 新增底部导航条，支持快速跳转至SiteSearch
-   - SiteSearch
-      - 修复无法加载图标的问题
 - 2025.05.05
    - DigitalWorld
    - ModelView
