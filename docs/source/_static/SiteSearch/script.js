@@ -115,10 +115,10 @@
 // loadGrid();
 
 
-// 缓存图标，避免重复请求
+// **缓存图标，避免重复请求**
 const iconCache = JSON.parse(localStorage.getItem("iconCache")) || {};
 
-// 从 GitHub 图标存储库获取图标
+// **从 GitHub 图标存储库获取图标**
 async function getBestIcon(domain) {
     if (iconCache[domain]) { 
         return iconCache[domain];
@@ -126,29 +126,34 @@ async function getBestIcon(domain) {
 
     const githubIconUrl = `https://raw.githubusercontent.com/DrestryRobot/icon-storage/main/icons/${domain}.png`;
 
-    if (await checkImage(githubIconUrl)) {
-        iconCache[domain] = githubIconUrl;
-        localStorage.setItem("iconCache", JSON.stringify(iconCache));
-        return githubIconUrl;
+    // **检查 GitHub 图标是否存在**
+    try {
+        const response = await fetch(githubIconUrl, { method: "HEAD" });
+        if (response.ok) {
+            iconCache[domain] = githubIconUrl;
+            localStorage.setItem("iconCache", JSON.stringify(iconCache));
+            return githubIconUrl;
+        }
+    } catch (error) {
+        console.error(`获取图标失败: ${githubIconUrl}`, error);
     }
 
-    return null; // 如果 GitHub 上没有该域名的图标，则返回 null
+    // **如果 GitHub 没有该图标，使用默认图标**
+    const defaultIcon = "default-icon.png";
+    iconCache[domain] = defaultIcon;
+    localStorage.setItem("iconCache", JSON.stringify(iconCache));
+    return defaultIcon;
 }
 
-// 检测图片能否加载成功
-async function checkImage(url) {
-    return new Promise((resolve) => {
-        const img = new Image();
-        img.onload = () => resolve(url);
-        img.onerror = () => resolve(null);
-        img.src = url;
-    });
-}
-
-// 获取网站数据
+// **获取网站数据**
 async function fetchSiteData() {
-    const response = await fetch("https://drestryrobot.readthedocs.io/zh-cn/latest/_static/SiteSearch/sites.json");
-    return response.json();
+    try {
+        const response = await fetch("https://drestryrobot.readthedocs.io/zh-cn/latest/_static/SiteSearch/sites.json");
+        return response.json();
+    } catch (error) {
+        console.error("获取网站数据失败", error);
+        return [];
+    }
 }
 
 const container = document.getElementById("gridContainer");
@@ -156,56 +161,47 @@ let currentCategory = "全部"; // 当前分类
 
 // 加载网格项，支持分类与搜索（同时过滤）
 async function loadGrid(category = "全部", searchQuery = "") {
-    container.innerHTML = "";
-    
-    const gridData = await fetchSiteData();
-    const iconPromises = gridData.map(item => getBestIcon(item.domain));
-    const icons = await Promise.all(iconPromises);
+  container.innerHTML = "";
+  const iconPromises = gridData.map(item => getBestIcon(item.domain));
+  const icons = await Promise.all(iconPromises);
 
-    gridData.forEach((item, index) => {
-        // 先按分类过滤，再按搜索文字过滤（忽略大小写）
-        if ((category === "全部" || item.category === category) &&
-            (searchQuery === "" || item.name.toLowerCase().includes(searchQuery.toLowerCase()))) {
-            const wrapper = document.createElement("div");
-            wrapper.className = "grid-item-wrapper";
+  gridData.forEach((item, index) => {
+    // 先按分类过滤，再按搜索文字过滤（忽略大小写）
+    if ((category === "全部" || item.category === category) &&
+        (searchQuery === "" || item.name.toLowerCase().includes(searchQuery.toLowerCase()))) {
+      const wrapper = document.createElement("div");
+      wrapper.className = "grid-item-wrapper";
 
-            const gridItem = document.createElement("div");
-            gridItem.className = "grid-item";
-            gridItem.onclick = () => window.location.href = item.link;
+      const gridItem = document.createElement("div");
+      gridItem.className = "grid-item";
+      gridItem.onclick = () => window.location.href = item.link;
 
-            const icon = document.createElement("img");
-            icon.src = icons[index] || "default-icon.png"; // 如果没有找到图标，则使用默认图标
-            icon.alt = item.name;
+      const icon = document.createElement("img");
+      icon.src = icons[index];
+      icon.alt = item.name;
 
-            const title = document.createElement("div");
-            title.className = "grid-name";
-            title.innerText = item.name;
+      const title = document.createElement("div");
+      title.className = "grid-name";
+      title.innerText = item.name;
 
-            gridItem.appendChild(icon);
-            wrapper.appendChild(gridItem);
-            wrapper.appendChild(title);
-            container.appendChild(wrapper);
-        }
-    });
+      gridItem.appendChild(icon);
+      wrapper.appendChild(gridItem);
+      wrapper.appendChild(title);
+      container.appendChild(wrapper);
+    }
+  });
 }
 
 // 分类按钮点击时调用此函数
 function filterGrid(category) {
-    currentCategory = category;
-    const searchText = document.getElementById("searchBox").value.trim();
-    loadGrid(currentCategory, searchText);
+  currentCategory = category;
+  const searchText = document.getElementById("searchBox").value.trim();
+  loadGrid(currentCategory, searchText);
 }
 
 // 在搜索框内输入时实时过滤
 document.getElementById("searchBox").addEventListener("input", function() {
-    loadGrid(currentCategory, this.value.trim());
-});
-
-// 在用户按下回车后自动清空搜索框
-document.getElementById("searchBox").addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        this.value = ""; // 清空输入框
-    }
+  loadGrid(currentCategory, this.value.trim());
 });
 
 // 初始加载全部项
