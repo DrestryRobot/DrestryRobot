@@ -90,7 +90,7 @@
 
 .. toctree::
    :maxdepth: 2
-   :captions: 内容目录
+   :caption: 内容目录
 
    资源分享
    技术总结
