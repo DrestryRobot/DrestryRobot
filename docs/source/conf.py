@@ -1,5 +1,4 @@
 # Configuration file for the Sphinx documentation builder.
-
 # -- Project information
 
 project = 'DrestryRobot'
@@ -19,7 +18,6 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.autosectionlabel',
     'sphinx.ext.mathjax',
-    'sphinxcontrib.jquery' # 中文搜索
 ]
 
 intersphinx_mapping = {
@@ -42,9 +40,6 @@ html_js_files = [
     'https://www.googletagmanager.com/gtag/js?id=G-X0VQVVBVYP',
     'analytics.js',
 ]
-
-# # -- 添加中文搜索
-# html_search_language = 'zh'
 
 # -- 自定义网页包含指令
 from docutils import nodes
