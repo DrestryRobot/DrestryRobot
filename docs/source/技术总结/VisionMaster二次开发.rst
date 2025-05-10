@@ -2,6 +2,10 @@ VisionMaster二次开发
 =======================
 .. contents:: 目录
 
+VisionMaster二次开发
+----------------------
+VisionMaster二次开发，是指不通过VisionMaster去执行流程再发送数据给上位机程序，而是直接调用VisionMaster目录文件夹给的库和头文件，编写二次开发程序，实现利用程序执行流程并读取结果的功能。
+
 UTF-8编码问题
 ---------------
 报错
@@ -30,6 +34,8 @@ D:\FileData\VisionMaster4.4.0\Development\V4.x\Includes\MVD_ErrorDefine.h:1: war
 
 示例代码
 ----------
+.cpp
+~~~~~~~~
 :: 
 
     #include "IVmSolution.h"
