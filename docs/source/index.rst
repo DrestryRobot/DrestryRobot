@@ -109,7 +109,7 @@ github代码库地址：https://github.com/DrestryRobot/DrestryRobot.git
 共同创作方法：
    - 使用git克隆至本地文件夹
       - 打开本地文件夹，右键打开"Git Bash Here"工具
-      - 输入git clone https://github.com/DrestryRobot/DrestryRobot.git，回车，等待克隆完成
+      - 输入"git clone https://github.com/DrestryRobot/DrestryRobot.git"，回车，等待克隆完成
    - 使用VS Code编辑本地文件夹
       - 在VS Code中打开"DrestryRobot/docs/source"
       - 打开资源分享、技术总结文件夹，新建并编辑.rst文件即可
