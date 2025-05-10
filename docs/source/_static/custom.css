@@ -1,3 +1,34 @@
+/* 让图片和 HTML 代码之间有间距 */
 .custom-figure {
-    margin-bottom: 25px; /* 让图片和 HTML 代码之间有间距 */
+    margin-bottom: 25px; 
 }
+
+/* 折叠文字功能 */
+.update-container {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.update-summary {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px;
+    background-color: #e3e3e3;
+    border-radius: 5px;
+}
+
+.update-content {
+    display: none;
+    padding: 10px;
+    font-family: monospace;
+    white-space: pre-wrap;
+}
+
+.update-container:hover .update-content {
+    display: block;
+}
+
+/*  */
