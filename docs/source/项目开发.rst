@@ -1,6 +1,6 @@
 项目开发📌
 ===========
-.. figure:: _images/蓝白色扁平插画可爱插画微信公众号封面.gif
+.. figure:: _images/项目开发.gif
    :alt: Version
    :align: center
    :width: 100%

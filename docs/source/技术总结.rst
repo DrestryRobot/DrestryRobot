@@ -1,6 +1,6 @@
 技术总结📌
 ============
-.. figure:: _images/蓝白色扁平插画可爱插画微信公众号封面.gif
+.. figure:: _images/技术总结.gif
    :alt: Version
    :align: center
    :width: 100%

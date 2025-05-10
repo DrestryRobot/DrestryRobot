@@ -1,6 +1,6 @@
 产品展示📌
 ============
-.. figure:: _images/蓝色梦幻正能量金句微信公众号封面.gif
+.. figure:: _images/产品展示.gif
    :alt: Version
    :align: center
    :width: 100%
