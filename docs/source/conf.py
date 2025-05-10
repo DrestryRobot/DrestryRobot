@@ -41,6 +41,9 @@ html_js_files = [
     'analytics.js',
 ]
 
+# -- 自定义CSS样式
+html_css_files = ['custom.css']
+
 # -- 自定义网页包含指令
 from docutils import nodes
 from docutils.parsers.rst import Directive

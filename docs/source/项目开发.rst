@@ -1,19 +1,17 @@
 项目开发📌
 ===========
 .. figure:: _images/项目开发.gif
-   :alt: Version
+   :alt: 项目开发
    :align: center
    :width: 100%
+   :class: custom-figure
 
-.. raw:: html
+本版块为正在开发的一些项目，旨在于学习、交流和分享。
 
-   <br>
-
-本版块为@DrestryRobot推进的一些个人项目，旨在于学习、交流和分享。
-
+内容目录
+----------
 .. toctree::
    :maxdepth: 2
-   :caption: 内容目录
    :glob:
 
    项目开发/*

@@ -1,13 +1,10 @@
 欢迎来到DrestryRobot😃
 ==========================
-.. figure:: _images/蓝白橙色手写体自然景观旅行分享微信公众号封面.gif
-   :alt: Version
+.. figure:: _images/主页面.gif
+   :alt: 主页面
    :align: center
    :width: 100%
-
-.. raw:: html
-
-   <br>
+   :class: custom-figure
 
 "发现美，创造美"
 ----------------
@@ -34,24 +31,25 @@
 - 2025.05.07
    - 主页面
       - 新增底部导航条，支持快速跳转至SiteSearch
-- 2025.05.05
-   - DigitalWorld
-   - ModelView
-   - SiteSearch
-      - `SiteSearch <https://drestryrobot.readthedocs.io/zh-cn/latest/_static/SiteSearch/index.html>`_ 官网导航
-      - 优化界面UI设计
-      - 新增和删减部分官网
-- 2025.05.04
-   - SiteSearch
-      - 支持快速搜索各大官网网址
-      - 支持快速分类各大官网网址
-      - 支持快速访问各大官网网址
 
+.. 历史更新
 .. raw:: html
 
    <details>
    <summary>点击查看历史更新</summary>
    <pre>
+   - 2025.05.05
+      - DigitalWorld
+      - ModelView
+      - SiteSearch
+         - `SiteSearch <https://drestryrobot.readthedocs.io/zh-cn/latest/_static/SiteSearch/index.html>`_ 官网导航
+         - 优化界面UI设计
+         - 新增和删减部分官网
+   - 2025.05.04
+      - SiteSearch
+         - 支持快速搜索各大官网网址
+         - 支持快速分类各大官网网址
+         - 支持快速访问各大官网网址
    - 2025.05.03
       - DrestryRobot
          - DrestryRobot桌面应用程序
@@ -70,30 +68,30 @@
          - 温度emoji表情符号根据温度变化
          - 天气emoji表情符号根据天气变化
          - 适配手机和电脑屏幕
-
    - 2025.05.02
       - 技术总结
       - 表情符号
-
    - 2025.05.01
       - 技术标准
       - 导纳控制
       - 负载辨识
-
    - 2025.04.30
       - 机械模型
       - 网页链接
       - 老资源库
    </pre>
    </details>
-
-.. raw:: html
-
    <br>
 
+更新规划
+---------
+- 2025.05
+   - 支持中文搜索
+
+内容目录
+----------
 .. toctree::
    :maxdepth: 2
-   :caption: 内容目录
 
    资源分享
    技术总结
@@ -120,6 +118,8 @@ github代码库地址：https://github.com/DrestryRobot/DrestryRobot.git
 ----------
 如果你有好的资源、技术、项目或产品，欢迎投稿到邮箱：2371478179@qq.com。
 
+.. 天气卡片
 .. includehtml:: _static/weather.html
 
+.. 底部导航条
 .. includehtml:: _static/quick.html
