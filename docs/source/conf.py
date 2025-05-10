@@ -19,7 +19,6 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.autosectionlabel',
     'sphinx.ext.mathjax',
-    'sphinx.ext.search', # 中文搜索
     'sphinxcontrib.jquery' # 中文搜索
 ]
 
