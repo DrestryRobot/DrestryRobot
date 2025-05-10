@@ -14,9 +14,8 @@
 .. toctree::
    :maxdepth: 2
    :caption: 内容目录
+   :glob:
 
-   产品展示/AuboUnity
-   产品展示/DrestryRobot
-   产品展示/SiteSearch
-   产品展示/ModelView
+   产品展示/*
+
 

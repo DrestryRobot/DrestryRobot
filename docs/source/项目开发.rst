@@ -14,7 +14,6 @@
 .. toctree::
    :maxdepth: 2
    :caption: 内容目录
+   :glob:
 
-   项目开发/水下机器人
-   项目开发/YRobot
-   项目开发/DigitalWorld
+   项目开发/*
