@@ -1,9 +1,6 @@
 RST文档
 =========
 .. contents:: 目录
-   :depth: 2
-   :local:
-   :backlinks: entry
 
 1. 标题层级
 ------------
