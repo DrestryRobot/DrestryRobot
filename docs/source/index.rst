@@ -96,10 +96,6 @@
    项目开发
    产品展示
 
-投稿渠道
-----------
-如果你有好的资源、技术、项目或产品，欢迎投稿到邮箱：2371478179@qq.com。
-
 共同创作
 ---------
 共同创作资源分享、技术总结板块内容，用户可通过 `git <https://git-scm.com/>`_ + `VS Code <https://code.visualstudio.com/>`_ + `Github <https://github.com/>`_ 进行在线协同创作。
@@ -115,6 +111,10 @@ github代码库地址：https://github.com/DrestryRobot/DrestryRobot.git
       - 打开资源分享、技术总结文件夹，新建并编辑.rst文件即可
    - 使用VS Code源代码管理上传至 `Github <https://github.com/>`_ 代码库
       - 源代码管理中先提交更改，再同步更改
+
+投稿渠道
+----------
+如果你有好的资源、技术、项目或产品，欢迎投稿到邮箱：2371478179@qq.com。
 
 .. includehtml:: _static/weather.html
 
