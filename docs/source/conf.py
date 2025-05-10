@@ -42,6 +42,9 @@ html_js_files = [
     'analytics.js',
 ]
 
+# -- 添加中文搜索
+html_search_language = 'zh'
+
 # -- 自定义网页包含指令
 from docutils import nodes
 from docutils.parsers.rst import Directive
