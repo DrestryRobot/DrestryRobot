@@ -86,7 +86,25 @@ C语言入门，介绍基本的常用的C语言编写语句，会用这些基本
 ~~~~~~~~~~~
 ::
 
-	th
+	typedef struct // 使用 typedef 定义结构体别名
+	{
+    char name[50];   // 姓名
+    int age;         // 年龄
+    float score;     // 成绩
+	} Student;  // 结构体别名
+
+	int main() 
+	{
+    // 直接使用别名 Student 来定义变量
+    Student stu1 = {"Xiao Ming", 20, 89.5};
+
+    // 访问结构体成员
+    printf("姓名: %s\n", stu1.name);
+    printf("年龄: %d\n", stu1.age);
+    printf("成绩: %.2f\n", stu1.score);
+
+    return 0;
+	}
 
 
 
