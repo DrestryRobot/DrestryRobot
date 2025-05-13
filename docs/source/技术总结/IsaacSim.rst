@@ -104,6 +104,6 @@ IsaacSim资产包
 	- isaacsim.exp.base.kit文件详细路径如下
 	::
 		
-		”/home/<username>/isaacsim/apps/isaacsim.exp.base.kit“
-		“/home/<username>/miniconda3/envs/env_isaaclab/lib/python3.10/site-packages/isaacsim/apps/isaacsim.exp.base.kit”
+		路径一：”/home/<username>/isaacsim/apps/isaacsim.exp.base.kit“
+		路径二：“/home/<username>/miniconda3/envs/env_isaaclab/lib/python3.10/site-packages/isaacsim/apps/isaacsim.exp.base.kit”
 		# 注意“<username>”需要修改为自己的用户名
