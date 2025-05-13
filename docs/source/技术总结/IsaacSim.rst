@@ -56,5 +56,14 @@ Pip安装IsaacSim和IsaacLab
 	- 终端运行 ./isaaclab.sh -p scripts/tutorials/00_sim/create_empty.py # 此指令运行不成功则运行下条指令，功能是一样的
 	- 或者终端运行 python scripts/tutorials/00_sim/create_empty.py # GUI界面窗口正常加载，即完成isaaclab安装
 
+IsaacSim资产包
+----------------
+百度网盘下载链接🔗：https://pan.baidu.com/s/1H0BrGP3T-2Sm5rB-56RkOg?pwd=0000
+
+文件目录：
+
+- isaac-sim-assets-1@4.5.0-rc.36+release.19112.f59b3005.zip
+- isaac-sim-assets-2@4.5.0-rc.36+release.19112.f59b3005.zip
+- isaac-sim-assets-3@4.5.0-rc.36+release.19112.f59b3005.zip
 
 
