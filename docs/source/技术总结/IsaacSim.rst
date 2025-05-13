@@ -107,3 +107,20 @@ IsaacSim资产包
 		路径一：”/home/<username>/isaacsim/apps/isaacsim.exp.base.kit“
 		路径二：“/home/<username>/miniconda3/envs/env_isaaclab/lib/python3.10/site-packages/isaacsim/apps/isaacsim.exp.base.kit”
 		# 注意“<username>”需要修改为自己的用户名
+
+使用Extension进行编程
+-------------------------
+使用Extension进行编程，实际使用的是IsaacSim的Extension Template Generator（扩展模板生成器）开发工具。扩展模板生成器有四种模板可供使用，分别是：
+- Load Scenario Template（加载场景模板）
+- Scripting Template（脚本模板）
+- Configuration Tooling Template（配置工具模板）
+- UI Component Library Template（UI组件库模板）
+
+官方教程🔗：https://docs.isaacsim.omniverse.nvidia.com/latest/utilities/extension_template_generator.html
+
+使用方法：
+
+- 新建Extensions文件夹
+	- 位置随意，但一定要保证是空文件夹，否则IsaacSim会崩掉
+	- 用来储存后面用Extension Template Generator生成的扩展
+- 使用Extension Template Generator生成扩展
