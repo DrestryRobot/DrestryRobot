@@ -8,7 +8,9 @@ NVIDIA Isaac Sim™ is a reference application built on NVIDIA Omniverse that en
 IsaacSim，是一个机器人仿真软件，最新版本是4.5.0，从英伟达官网下载安装后，可在该平台上构建机器人仿真场景环境，通过编写python库代码对机器人进行控制。
 
 Pip安装IsaacSim和IsaacLab
---------------------------
+-------------------------
+推荐使用本方法安装IsaacSim和IsaacLab，不用下载安装包，终端运行指令即可完成下载、安装。
+
 官网教程：https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/pip_installation.html
 
 安装步骤：
