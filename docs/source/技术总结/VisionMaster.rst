@@ -1,4 +1,4 @@
-VisionMaster二次开发
+VisionMaster
 =======================
 .. contents:: 目录
 
