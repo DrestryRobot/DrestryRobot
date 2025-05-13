@@ -70,11 +70,11 @@ IsaacSim资产包
 
 下载安装方法
 ~~~~~~~~~~~~~~~~~~
-官网教程：https://docs.isaacsim.omniverse.nvidia.com/latest/installation/install_faq.html#isaac-sim-setup-assets-content-pack
+官网教程🔗：https://docs.isaacsim.omniverse.nvidia.com/latest/installation/install_faq.html#isaac-sim-setup-assets-content-pack
 
 安装步骤：
 
-- 下载 `资产包 <https://pan.baidu.com/s/1H0BrGP3T-2Sm5rB-56RkOg?pwd=0000>`_
+- 下载 `资产包 <https://pan.baidu.com/s/1H0BrGP3T-2Sm5rB-56RkOg?pwd=0000>`_ 🔗
 	- 将三个压缩包文件下载至"/home/<username>/Downloads"
 - 安装资产包
 	- 终端运行以下指令
