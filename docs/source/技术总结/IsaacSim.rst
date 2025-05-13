@@ -59,7 +59,7 @@ Pip安装IsaacSim和IsaacLab
 IsaacSim资产包
 ----------------
 资产包下载
-～～～～～～
+~~~~~~~~~~~~~~~~~~
 百度网盘下载链接🔗：https://pan.baidu.com/s/1H0BrGP3T-2Sm5rB-56RkOg?pwd=0000
 
 文件目录：
@@ -69,7 +69,7 @@ IsaacSim资产包
 - isaac-sim-assets-3@4.5.0-rc.36+release.19112.f59b3005.zip
 
 下载安装方法
-～～～～～～～
+~~~~~~~~~~~~~~~~~~
 官网教程：https://docs.isaacsim.omniverse.nvidia.com/latest/installation/install_faq.html#isaac-sim-setup-assets-content-pack
 
 安装步骤：
@@ -85,7 +85,7 @@ IsaacSim资产包
 		unzip "isaac-sim-assets-1@4.5.0-rc.36+release.19112.f59b3005.zip" -d ~/isaacsim_assets
 		unzip "isaac-sim-assets-2@4.5.0-rc.36+release.19112.f59b3005.zip" -d ~/isaacsim_assets
 		unzip "isaac-sim-assets-3@4.5.0-rc.36+release.19112.f59b3005.zip" -d ~/isaacsim_assets
-- 修改配置文件夹
+- 修改配置文件
 	- 打开isaacsim安装目录，找到“isaacsim/apps/isaacsim.exp.base.kit”文件，终端运行以下指令
 	::
 
@@ -101,7 +101,9 @@ IsaacSim资产包
 			"/home/<username>/isaacsim_assets/Assets/Isaac/4.5/Isaac/Samples",
 			"/home/<username>/isaacsim_assets/Assets/Isaac/4.5/Isaac/Sensors",
 		]
-	- isaacsim.exp.base.kit文件详细路径
-		- ”/home/<username>/isaacsim/apps/isaacsim.exp.base.kit“
-		- “/home/<username>/miniconda3/envs/env_isaaclab/lib/python3.10/site-packages/isaacsim/apps/isaacsim.exp.base.kit”
-		- 注意“<username>”需要修改为自己的用户名
+	- isaacsim.exp.base.kit文件详细路径如下
+	::
+		
+		”/home/<username>/isaacsim/apps/isaacsim.exp.base.kit“
+		“/home/<username>/miniconda3/envs/env_isaaclab/lib/python3.10/site-packages/isaacsim/apps/isaacsim.exp.base.kit”
+		# 注意“<username>”需要修改为自己的用户名
