@@ -79,6 +79,12 @@ CSDN教程🔗：https://blog.csdn.net/qq_45906972/article/details/146094971
 		NUCLEUS_ASSET_ROOT_DIR = ("/home/<username/isaacsim_assets/Assets/Isaac/4.5")
 	- 保存配置文件，即完成IsaacLab资产包配置
 
-.. note::
-	1. AttributeError: 'NoneType' object has no attribute 'GetPath'，出现这样的报错信息，表示IsaacLab资产包未正确配置。
+报错信息
+-----------
+AttributeError: 'Articulation' object has no attribute '_data'. Did you mean: 'data'?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
+AttributeError: 'NoneType' object has no attribute 'GetPath'
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+出现这样的报错信息，表示IsaacLab资产包未正确配置，按照 `IsaacLab资产包 <https://drestryrobot.readthedocs.io/zh-cn/latest/%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/IsaacLab.html#isaaclab>`_ 相关教程进行配置即可。
