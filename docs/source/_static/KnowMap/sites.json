@@ -1,7 +1,9 @@
 [
-  {"name": "SolidWorks", "link": "https://drestryrobot.readthedocs.io/技术总结/SolidWorks.html", "image": "https://drestryrobot.readthedocs.io/_static/KnowMap/images/dark-icon.ico", "category": "软件"},
+  {"name": "SolidWorks", "link": "https://drestryrobot.readthedocs.io/技术总结/SolidWorks.html", "image": "https://github.com/DrestryRobot/DrestryRobot/blob/main/docs/source/_static/KnowMap/images/dark-icon.ico", "category": "软件"},
   {"name": "Ubuntu", "link": "https://drestryrobot.readthedocs.io/技术总结/Ubuntu.html", "image": "https://drestryrobot.readthedocs.io/_static/KnowMap/images/dark-icon.ico", "category": "系统"},
   {"name": "IsaacSim", "link": "https://drestryrobot.readthedocs.io/技术总结/IsaacSim.html", "image": "https://drestryrobot.readthedocs.io/_static/KnowMap/images/light-icon.ico", "category": "仿真"},
   {"name": "IsaacLab", "link": "https://drestryrobot.readthedocs.io/技术总结/IsaacLab.html", "image": "https://drestryrobot.readthedocs.io/_static/KnowMap/images/light-icon.ico", "category": "仿真"},
   {"name": "C语言", "link": "https://drestryrobot.readthedocs.io/技术总结/C语言.html", "image": "https://drestryrobot.readthedocs.io/_static/KnowMap/images/light-icon.ico", "category": "编程"}
 ]
+
+ 
