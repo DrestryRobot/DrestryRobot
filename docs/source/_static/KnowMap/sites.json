@@ -1,5 +1,5 @@
 [
-  {"name": ".h头文件", "category": "编程"},
+  {"name": "头文件", "category": "编程"},
   {"name": "CAN通信", "category": "通信"},
   {"name": "C语言", "category": "编程"},
   {"name": "IsaacLab", "category": "仿真"},
