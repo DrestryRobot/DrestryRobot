@@ -1,6 +1,6 @@
 :root {
   --grid-size: 150px;
-  --grid-radius: 20px;
+  --grid-radius: 30px;
   --primary-color: #64c2ea75;
   --secondary-color: #e863ff7a;
   --text-color: #fff;
@@ -108,12 +108,12 @@ body {
 }
 
 .grid-item img {
-  width: 64px;
-  height: 64px;
-  border-radius: 8px;
-  object-fit: contain;
-  loading: lazy;
+  width: 100%;  /* 让图片填充整个网格 */
+  height: 100%; /* 让图片填充整个网格 */
+  border-radius: var(--grid-radius); /* 保持网格圆角 */
+  object-fit: cover; /* 让图片填充网格，同时裁剪超出部分 */
 }
+
 
 .grid-name {
   font-size: 16px;
