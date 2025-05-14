@@ -2,12 +2,18 @@ const container = document.getElementById("gridContainer");
 let currentCategory = "全部"; // 当前分类
 let gridData = []; // 存储从 JSON 读取的数据
 
+const BASE_URL = "https://drestryrobot.readthedocs.io/技术总结/"; // 知识点基础路径
+const IMAGE_BASE_URL = "https://drestryrobot.readthedocs.io/_static/KnowMap/images/"; // 图片基础路径
+
 // 读取 JSON 数据
 async function fetchData() {
   try {
-    const response = await fetch("sites.json"); // 读取 sites.json
+    const response = await fetch("sites.json");
+    if (!response.ok) {
+      throw new Error(`HTTP 错误！状态码: ${response.status}`);
+    }
     gridData = await response.json();
-    loadGrid(); // 加载数据
+    loadGrid();
   } catch (error) {
     console.error("数据加载失败:", error);
   }
@@ -25,10 +31,10 @@ function loadGrid(category = "全部", searchQuery = "") {
 
       const gridItem = document.createElement("div");
       gridItem.className = "grid-item";
-      gridItem.onclick = () => window.location.href = item.link;
+      gridItem.onclick = () => window.location.href = BASE_URL + item.name + ".html"; // ✅ 自动拼接完整知识点链接
 
       const icon = document.createElement("img");
-      icon.src = item.image;
+      icon.src = IMAGE_BASE_URL + item.image; // ✅ 自动拼接完整图片路径
       icon.alt = item.name;
 
       const title = document.createElement("div");
