@@ -13,11 +13,12 @@
 最近更新
 ---------
 - 2025.05.14
-   - `Ubuntu使用 <https://drestryrobot.readthedocs.io/技术总结/Ubuntu使用.html>`_
+   - `SolidWorks <https://drestryrobot.readthedocs.io/技术总结/SolidWorks.html>`_
+   - `Ubuntu <https://drestryrobot.readthedocs.io/技术总结/Ubuntu.html>`_
 - 2025.05.13
    - `IsaacSim <https://drestryrobot.readthedocs.io/技术总结/IsaacSim.html>`_ 
    - `IsaacLab <https://drestryrobot.readthedocs.io/技术总结/IsaacLab.html>`_ 
-   - `C语言入门 <https://drestryrobot.readthedocs.io/技术总结/C语言入门.html>`_
+   - `C语言 <https://drestryrobot.readthedocs.io/技术总结/C语言.html>`_
 - 2025.05.10
    - 主页面
       - 新增共同创作部分
