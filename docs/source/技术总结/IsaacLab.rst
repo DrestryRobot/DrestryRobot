@@ -1,4 +1,4 @@
-Isaac Lab
+IsaacLab
 ==========
 .. contents:: 目录
 
