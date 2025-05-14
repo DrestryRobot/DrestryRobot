@@ -34,7 +34,8 @@ function loadGrid(category = "全部", searchQuery = "") {
       gridItem.onclick = () => window.location.href = BASE_URL + item.name + ".html"; // ✅ 自动拼接完整知识点链接
 
       const icon = document.createElement("img");
-      icon.src = IMAGE_BASE_URL + item.name + ".png"; // ✅ 自动拼接完整图片路径
+      // icon.src = IMAGE_BASE_URL + item.name + ".png"; // ✅ 自动拼接完整图片路径
+      icon.src = IMAGE_BASE_URL + "默认图标.png"; // ✅ 自动拼接完整图片路径
       icon.alt = item.name;
 
       const title = document.createElement("div");
