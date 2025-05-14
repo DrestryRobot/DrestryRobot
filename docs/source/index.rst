@@ -124,6 +124,8 @@ github代码库地址：https://github.com/DrestryRobot/DrestryRobot.git
 ----------
 如果你有好的资源、技术、项目或产品，欢迎投稿到邮箱：2371478179@qq.com。
 
+根据稿件质量，给予5～15元/篇的激励，请在邮件中注明联系方式。
+
 .. 天气卡片
 .. includehtml:: _static/weather.html
 
