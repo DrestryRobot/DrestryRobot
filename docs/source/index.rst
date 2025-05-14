@@ -12,11 +12,12 @@
 
 最近更新
 ---------
+- 2025.05.14
+   - `Ubuntu使用 <https://drestryrobot.readthedocs.io/技术总结/Ubuntu使用.html>`_
 - 2025.05.13
-	- 技术总结
-		- `IsaacSim <https://drestryrobot.readthedocs.io/zh-cn/latest/%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/IsaacSim.html#isaac-sim>`_ 
-		- `IsaacLab <https://drestryrobot.readthedocs.io/zh-cn/latest/%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/IsaacLab.html#isaac-lab>`_ 
-		- `C语言入门 <https://drestryrobot.readthedocs.io/zh-cn/latest/%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/C%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8.html#c>`_
+   - `IsaacSim <https://drestryrobot.readthedocs.io/技术总结/IsaacSim.html>`_ 
+   - `IsaacLab <https://drestryrobot.readthedocs.io/技术总结/IsaacLab.html>`_ 
+   - `C语言入门 <https://drestryrobot.readthedocs.io/技术总结/C语言入门.html>`_
 - 2025.05.10
    - 主页面
       - 新增共同创作部分
@@ -47,7 +48,7 @@
       - DigitalWorld
       - ModelView
       - SiteSearch
-         - `SiteSearch <https://drestryrobot.readthedocs.io/zh-cn/latest/_static/SiteSearch/index.html>`_ 官网导航
+         - `SiteSearch <https://drestryrobot.readthedocs.io/_static/SiteSearch/index.html>`_ 官网导航
          - 优化界面UI设计
          - 新增和删减部分官网
    - 2025.05.04

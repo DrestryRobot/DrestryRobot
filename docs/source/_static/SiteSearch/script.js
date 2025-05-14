@@ -148,7 +148,7 @@ async function getBestIcon(domain) {
 // **获取网站数据**
 async function fetchSiteData() {
     try {
-        const response = await fetch("https://drestryrobot.readthedocs.io/zh-cn/latest/_static/SiteSearch/sites.json");
+        const response = await fetch("https://drestryrobot.readthedocs.io/_static/SiteSearch/sites.json");
         return response.json();
     } catch (error) {
         console.error("获取网站数据失败", error);
