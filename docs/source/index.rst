@@ -12,6 +12,9 @@
 
 最近更新
 ---------
+- 2025.05.15
+   - `KnowMap <https://drestryrobot.readthedocs.io/_static/KnowMap/index.html>`_
+      - 新增主页下方导航条快速访问
 - 2025.05.14
    - `SolidWorks <https://drestryrobot.readthedocs.io/技术总结/SolidWorks.html>`_
    - `Ubuntu <https://drestryrobot.readthedocs.io/技术总结/Ubuntu.html>`_
