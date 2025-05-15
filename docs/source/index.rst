@@ -13,6 +13,7 @@
 最近更新
 ---------
 - 2025.05.15
+   - `线性导轨 <https://drestryrobot.readthedocs.io/技术总结/线性导轨.html>`_
    - `3Dfindit <https://drestryrobot.readthedocs.io/技术总结/3Dfindit.html>`_
    - `KnowMap <https://drestryrobot.readthedocs.io/_static/KnowMap/index.html>`_
       - 新增主页下方导航条快速访问
