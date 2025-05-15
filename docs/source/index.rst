@@ -23,25 +23,7 @@
    - `IsaacSim <https://drestryrobot.readthedocs.io/技术总结/IsaacSim.html>`_ 
    - `IsaacLab <https://drestryrobot.readthedocs.io/技术总结/IsaacLab.html>`_ 
    - `C语言 <https://drestryrobot.readthedocs.io/技术总结/C语言.html>`_
-- 2025.05.10
-   - 主页面
-      - 新增共同创作部分
-   - 板块页面
-      - 封面焕新，青春洋溢
-   - 技术总结
-      - 新增目录功能，支持快速跳转标题
-      - 新增若干技术文档
-   - RST文档
-   - 六维力传感器
-   - VisionMaster二次开发
-- 2025.05.08
-   - SiteSearch
-      - 修复部分图标显示
-   - TCP通信
-   - 串口通信
-- 2025.05.07
-   - 主页面
-      - 新增底部导航条，支持快速跳转至SiteSearch
+
 
 .. 历史更新
 .. raw:: html
@@ -49,6 +31,25 @@
    <details>
    <summary>点击查看历史更新</summary>
    <pre>
+   - 2025.05.10
+      - 主页面
+         - 新增共同创作部分
+      - 板块页面
+         - 封面焕新，青春洋溢
+      - 技术总结
+         - 新增目录功能，支持快速跳转标题
+         - 新增若干技术文档
+      - RST文档
+      - 六维力传感器
+      - VisionMaster二次开发
+   - 2025.05.08
+      - SiteSearch
+         - 修复部分图标显示
+      - TCP通信
+      - 串口通信
+   - 2025.05.07
+      - 主页面
+         - 新增底部导航条，支持快速跳转至SiteSearch
    - 2025.05.05
       - DigitalWorld
       - ModelView
