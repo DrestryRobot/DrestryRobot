@@ -1,0 +1,69 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: "Microsoft YaHei", Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.toolbar {
+    height: 40px;
+    display: flex;
+    justify-content: space-between; /* 左右对齐 */
+    align-items: center;
+    padding: 5px 10px;
+    background: linear-gradient(45deg, #64c2ea75, #e863ff7a); /* 添加渐变色 */
+    color: white;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.toolbar .title {
+    font-size: 50px;
+    font-weight: bold;
+    background: linear-gradient(45deg, #64c1ea, #e863ff); /* 标题渐变色 */
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.save-btn {
+    padding: 6px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0056b3;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    transition: transform 0.2s ease-in-out, background 0.3s ease-in-out; /* 添加缩放动画 */
+}
+
+.save-btn:hover {
+    background-color: #003d80;
+    transform: scale(1.1); /* 鼠标悬停时放大按钮 */
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    height: calc(100% - 40px);
+}
+
+.editor, .preview {
+    flex: 1;
+    border: 2px solid #ddd;
+    border-radius: 5px; /* 添加圆角 */
+    padding: 10px;
+    background-color: #f2f2f2;
+    overflow-y: auto;
+    height: 100%;
+}
+
+textarea {
+    width: 100%;
+    height: 100%;
+    border: none;
+    font-size: 16px;
+    padding: 10px;
+    resize: none;
+    font-family: "Microsoft YaHei", Arial, sans-serif;
+}
