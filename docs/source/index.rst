@@ -25,7 +25,6 @@
    - `IsaacLab <https://drestryrobot.readthedocs.io/技术总结/IsaacLab.html>`_ 
    - `C语言 <https://drestryrobot.readthedocs.io/技术总结/C语言.html>`_
 
-
 .. 历史更新
 .. raw:: html
 
