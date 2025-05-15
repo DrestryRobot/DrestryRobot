@@ -5,12 +5,16 @@
     <title>RstEditor</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script> <!-- 引入 rst2html.js -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script> <!-- Pyodide 解析 RST -->
 </head>
 <body>
     <div class="toolbar">
         <span class="title">RstEditor</span>
-        <button class="save-btn" onclick="saveFile()">保存</button>
+        <div class="toolbar-actions">
+            <button class="import-btn" onclick="document.getElementById('fileInput').click()">打开</button>
+            <button class="save-btn" onclick="saveFile()">保存</button>
+            <input type="file" id="fileInput" accept=".rst" onchange="importFile()" style="display: none;" />
+        </div>
     </div>
     <div class="container">
         <div class="editor">

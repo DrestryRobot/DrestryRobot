@@ -17,7 +17,6 @@ async function preloadPyodide() {
 }
 preloadPyodide(); // **提前加载**
 
-
 async function loadPyodideAndDocutils() {
     window.pyodide = await loadPyodide();
     await pyodide.loadPackage(["micropip"]);
@@ -25,7 +24,6 @@ async function loadPyodideAndDocutils() {
     console.log("Pyodide 和 docutils 加载完成");
 }
 loadPyodideAndDocutils();
-
 
 async function updatePreview() {
     if (!window.pyodide) {
@@ -51,8 +49,6 @@ html_output
         document.getElementById("preview").innerHTML = "<p style='color:red;'>无法解析 RST 格式</p>";
     }
 }
-
-
 
 function saveFile() {
     const editor = document.getElementById("editor");
@@ -82,4 +78,22 @@ function saveFile() {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+}
+
+function importFile() {
+    const fileInput = document.getElementById("fileInput");
+    const file = fileInput.files[0]; 
+
+    if (!file) {
+        alert("请选择一个 RST 文件！");
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(event) {
+        document.getElementById("editor").value = event.target.result;
+        updatePreview(); // 立即更新预览
+    };
+
+    reader.readAsText(file); // 读取文件内容
 }

@@ -4,25 +4,28 @@ html, body {
     font-family: "Microsoft YaHei", Arial, sans-serif;
     display: flex;
     flex-direction: column;
+    overflow: hidden; /* 防止页面溢出 */
 }
 
 .toolbar {
-    height: 40px;
+    height: 50px; /* 增加一点高度以适配标题 */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 10px;
+    padding: 5px 15px;
     background: linear-gradient(45deg, #64c2ea75, #e863ff7a);
     color: white;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0; /* 不让 toolbar 压缩 */
 }
 
 .toolbar .title {
-    font-size: 50px;
+    font-size: 50px; /* 调整字体大小，避免过大影响布局 */
     font-weight: bold;
     background: linear-gradient(45deg, #64c1ea, #e863ff);
     -webkit-background-clip: text;
     color: transparent;
+    white-space: nowrap; /* 避免标题换行 */
 }
 
 .save-btn {
@@ -32,7 +35,7 @@ html, body {
     background-color: #0056b3;
     color: white;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 16px;
     transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
 }
 
@@ -45,25 +48,44 @@ html, body {
     flex: 1;
     display: flex;
     flex-direction: row;
-    height: calc(100% - 40px);
+    height: calc(100% - 50px); /* 让它正确填充剩余空间 */
+    overflow: hidden; /* 避免溢出 */
 }
 
 .editor, .preview {
     flex: 1;
     border: 2px solid #ddd;
     border-radius: 5px;
-    padding: 10px;
+    padding: 10px; /* 两者都保持相同的内边距 */
     background-color: #f2f2f2;
     overflow-y: auto;
-    height: 100%;
+    display: flex; /* 让内容填满整个区域 */
 }
 
 textarea {
     width: 100%;
-    height: 100%;
+    height: 100%; /* 填充整个编辑器 */
     border: none;
     font-size: 16px;
     padding: 10px;
-    resize: none;
+    resize: none; /* 禁用拖动 */
     font-family: "Microsoft YaHei", Arial, sans-serif;
 }
+
+.import-btn {
+    padding: 6px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+}
+
+.import-btn:hover {
+    background-color: #218838;
+    transform: scale(1.1);
+}
+
+
