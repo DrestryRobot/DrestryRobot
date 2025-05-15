@@ -106,12 +106,12 @@
 
 共同创作
 ---------
-共同创作资源分享、技术总结板块内容，用户可通过 `git <https://git-scm.com/>`_ + `VS Code <https://code.visualstudio.com/>`_ + `Github <https://github.com/>`_ 进行在线协同创作。
+共同创作资源分享、技术总结板块内容，用户可通过 `Git <https://git-scm.com/>`_ + `VS Code <https://code.visualstudio.com/>`_ + `Github <https://github.com/>`_ 进行在线协同创作。
 
-github代码库地址：https://github.com/DrestryRobot/DrestryRobot.git
+Github代码库地址：https://github.com/DrestryRobot/DrestryRobot.git
 
 共同创作方法：
-   - 使用git克隆至本地文件夹
+   - 使用Git克隆至本地文件夹
       - 打开本地文件夹，右键打开"Git Bash Here"工具
       - 输入"git clone https://github.com/DrestryRobot/DrestryRobot.git"，回车，等待克隆完成
    - 使用VS Code编辑本地文件夹
