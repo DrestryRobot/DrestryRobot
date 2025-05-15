@@ -12,6 +12,9 @@
 
 最近更新
 ---------
+- 2025.05.15
+   - `KnowMap <https://drestryrobot.readthedocs.io/_static/KnowMap/index.html>`_
+      - 新增主页下方导航条快速访问
 - 2025.05.14
    - `SolidWorks <https://drestryrobot.readthedocs.io/技术总结/SolidWorks.html>`_
    - `Ubuntu <https://drestryrobot.readthedocs.io/技术总结/Ubuntu.html>`_
@@ -106,12 +109,12 @@
 
 共同创作
 ---------
-共同创作资源分享、技术总结板块内容，用户可通过 `git <https://git-scm.com/>`_ + `VS Code <https://code.visualstudio.com/>`_ + `Github <https://github.com/>`_ 进行在线协同创作。
+共同创作资源分享、技术总结板块内容，用户可通过 `Git <https://git-scm.com/>`_ + `VS Code <https://code.visualstudio.com/>`_ + `Github <https://github.com/>`_ 进行在线协同创作。
 
-github代码库地址：https://github.com/DrestryRobot/DrestryRobot.git
+Github代码库地址：https://github.com/DrestryRobot/DrestryRobot.git
 
 共同创作方法：
-   - 使用git克隆至本地文件夹
+   - 使用Git克隆至本地文件夹
       - 打开本地文件夹，右键打开"Git Bash Here"工具
       - 输入"git clone https://github.com/DrestryRobot/DrestryRobot.git"，回车，等待克隆完成
    - 使用VS Code编辑本地文件夹
@@ -123,6 +126,8 @@ github代码库地址：https://github.com/DrestryRobot/DrestryRobot.git
 投稿渠道
 ----------
 如果你有好的资源、技术、项目或产品，欢迎投稿到邮箱：2371478179@qq.com。
+
+根据稿件质量，给予5～15元/篇的激励，请在邮件中注明联系方式。
 
 .. 天气卡片
 .. includehtml:: _static/weather.html
