@@ -25,6 +25,12 @@
    - `链传动 <https://drestryrobot.readthedocs.io/技术总结/链传动.html>`_
    - `齿轮传动 <https://drestryrobot.readthedocs.io/技术总结/齿轮传动.html>`_
    - `同步带传动 <https://drestryrobot.readthedocs.io/技术总结/同步带传动.html>`_
+   - `Git <https://drestryrobot.readthedocs.io/技术总结/Git.html>`_
+   - `Github <https://drestryrobot.readthedocs.io/技术总结/Github.html>`_
+   - `Keil <https://drestryrobot.readthedocs.io/技术总结/Keil.html>`_
+   - `Qt <https://drestryrobot.readthedocs.io/技术总结/Qt.html>`_
+   - `VSCode <https://drestryrobot.readthedocs.io/技术总结/VSCode.html>`_
+   - `Windows <https://drestryrobot.readthedocs.io/技术总结/Windows.html>`_
 - 2025.05.15
    - `线性导轨 <https://drestryrobot.readthedocs.io/技术总结/线性导轨.html>`_
    - `3Dfindit <https://drestryrobot.readthedocs.io/资源分享/3Dfindit.html>`_
