@@ -22,6 +22,9 @@
    - `Aubo机器人 <https://drestryrobot.readthedocs.io/技术总结/Aubo机器人.html>`_
    - `Beckhoff <https://drestryrobot.readthedocs.io/技术总结/Beckhoff.html>`_
    - `Matlab <https://drestryrobot.readthedocs.io/技术总结/Matlab.html>`_
+   - `链传动 <https://drestryrobot.readthedocs.io/技术总结/链传动.html>`_
+   - `齿轮传动 <https://drestryrobot.readthedocs.io/技术总结/齿轮传动.html>`_
+   - `同步带传动 <https://drestryrobot.readthedocs.io/技术总结/同步带传动.html>`_
 - 2025.05.15
    - `线性导轨 <https://drestryrobot.readthedocs.io/技术总结/线性导轨.html>`_
    - `3Dfindit <https://drestryrobot.readthedocs.io/资源分享/3Dfindit.html>`_
