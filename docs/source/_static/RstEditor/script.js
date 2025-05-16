@@ -1,26 +1,16 @@
 document.getElementById("editor").addEventListener("keydown", function(event) {
     if (event.key === "Tab") {
         event.preventDefault();
-        const start = this.selectionStart;
-        const end = this.selectionEnd;
+        const { selectionStart, selectionEnd, value } = this;
         const spaces = "    ";
-        this.value = this.value.substring(0, start) + spaces + this.value.substring(end);
-        this.selectionStart = this.selectionEnd = start + spaces.length;
+        this.value = value.slice(0, selectionStart) + spaces + value.slice(selectionEnd);
+        this.selectionStart = this.selectionEnd = selectionStart + spaces.length;
     }
 });
 
-async function preloadPyodide() {
-    window.pyodide = await loadPyodide();
-    await pyodide.loadPackage(["micropip"]);
-    await pyodide.runPythonAsync("import micropip; micropip.install('docutils')");
-    console.log("Pyodide 和 docutils 加载完成");
-}
-preloadPyodide(); // **提前加载**
-
 async function loadPyodideAndDocutils() {
     window.pyodide = await loadPyodide();
-    await pyodide.loadPackage(["micropip"]);
-    await pyodide.runPythonAsync("import micropip; micropip.install('docutils')");
+    await pyodide.loadPackage("docutils");  // ✅ 只加载 docutils，不需要 micropip
     console.log("Pyodide 和 docutils 加载完成");
 }
 loadPyodideAndDocutils();
@@ -31,9 +21,7 @@ async function updatePreview() {
         return;
     }
 
-    // **正确处理换行符**
-    const rstText = document.getElementById("editor").value.replace(/\r?\n/g, "\\n");
-
+    const rstText = document.getElementById("editor").value;
     let pyCode = `
 from docutils.core import publish_parts
 rst_text = """${rstText}"""
@@ -51,49 +39,61 @@ html_output
 }
 
 function saveFile() {
-    const editor = document.getElementById("editor");
-    const rstText = editor.value.trim(); 
+    const rstText = document.getElementById("editor").value.trim();
+    if (!rstText) return alert("文档为空，无法保存！");
 
-    if (!rstText) {
-        alert("文档为空，无法保存！");
-        return;
-    }
-
-    // 获取首行并确保有效内容
-    const lines = rstText.split(/\r?\n/).filter(line => line.trim() !== "" && !/^=+$/.test(line));
-    let firstLine = lines.length > 0 ? lines[0].trim() : "document";
-
-    if (!firstLine.match(/[\w\u4e00-\u9fa5]/)) {
-        firstLine = "document";
-    }
-
+    const firstLine = rstText.split(/\r?\n/).find(line => line.trim()) || "document";
     const fileName = firstLine.replace(/[^a-zA-Z0-9_\u4e00-\u9fa5-]/g, "_") + ".rst";
 
-    console.log("文件名:", fileName);
-
     const blob = new Blob([rstText], { type: "text/plain" });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = fileName;
+    const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: fileName });
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
 }
 
 function importFile() {
-    const fileInput = document.getElementById("fileInput");
-    const file = fileInput.files[0]; 
+    const file = document.getElementById("fileInput").files[0];
+    if (!file) return alert("请选择一个 RST 文件！");
 
-    if (!file) {
-        alert("请选择一个 RST 文件！");
+    const reader = new FileReader();
+    reader.onload = ({ target }) => {
+        document.getElementById("editor").value = target.result;
+        updatePreview();
+    };
+    reader.readAsText(file);
+}
+
+async function exportPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const fontUrl = "NotoSansSC-Regular.ttf";
+    const fontData = await fetch(fontUrl).then(res => res.arrayBuffer());
+    
+    // **更优化的 Base64 处理**
+    const byteArray = new Uint8Array(fontData);
+    let binaryString = "";
+    for (let i = 0; i < byteArray.length; i++) {
+        binaryString += String.fromCharCode(byteArray[i]);
+    }
+    const base64Font = btoa(binaryString);
+
+    // **注册并使用字体**
+    doc.addFileToVFS("NotoSansSC-Regular.ttf", base64Font);
+    doc.addFont("NotoSansSC-Regular.ttf", "NotoSansSC", "normal");
+    doc.setFont("NotoSansSC");
+
+    const previewText = document.getElementById("preview").textContent.trim();
+    if (!previewText) {
+        alert("预览区域为空，无法导出 PDF！");
         return;
     }
 
-    const reader = new FileReader();
-    reader.onload = function(event) {
-        document.getElementById("editor").value = event.target.result;
-        updatePreview(); // 立即更新预览
-    };
+    doc.text(previewText, 10, 10, { maxWidth: 180 });
+    doc.save("RST_Document.pdf");
+}
 
-    reader.readAsText(file); // 读取文件内容
+function openHelp() {
+    window.open("https://drestryrobot.readthedocs.io/产品展示/RstEditor.html", "_blank");
 }

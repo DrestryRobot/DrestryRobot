@@ -5,14 +5,18 @@
     <title>RstEditor</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
-    <script src="pyodide/pyodide.js"></script> 
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.27.5/full/pyodide.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
     <div class="toolbar">
         <span class="title">RstEditor</span>
-        <div class="toolbar-actions">
-            <button class="import-btn" onclick="document.getElementById('fileInput').click()">打开</button>
-            <button class="save-btn" onclick="saveFile()">保存</button>
+        <div class="btn-group">
+            <button class="btn import-btn" onclick="document.getElementById('fileInput').click()">打开</button>
+            <button class="btn save-btn" onclick="saveFile()">保存</button>
+            <button class="btn export-btn" onclick="exportPDF()">导出</button>
+            <button class="btn help-btn" onclick="openHelp()">帮助</button>
             <input type="file" id="fileInput" accept=".rst" onchange="importFile()" style="display: none;" />
         </div>
     </div>
