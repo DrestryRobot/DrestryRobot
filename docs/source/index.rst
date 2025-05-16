@@ -19,6 +19,9 @@
    - `KnowMap <https://drestryrobot.readthedocs.io/_static/KnowMap/index.html>`_
       - 新增部分知识点和知识点的图片图标
    - `Unity <https://drestryrobot.readthedocs.io/技术总结/Unity.html>`_
+   - `Aubo机器人 <https://drestryrobot.readthedocs.io/技术总结/Aubo机器人.html>`_
+   - `Beckhoff <https://drestryrobot.readthedocs.io/技术总结/Beckhoff.html>`_
+   - `Matlab <https://drestryrobot.readthedocs.io/技术总结/Matlab.html>`_
 - 2025.05.15
    - `线性导轨 <https://drestryrobot.readthedocs.io/技术总结/线性导轨.html>`_
    - `3Dfindit <https://drestryrobot.readthedocs.io/资源分享/3Dfindit.html>`_
