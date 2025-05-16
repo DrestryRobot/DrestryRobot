@@ -1,5 +1,6 @@
 Ubuntu
 ==========
+.. contents:: 目录
 
 Ubuntu
 ------------

@@ -8,6 +8,7 @@
     {"name": "SolidWorks", "category": "机械"},
     {"name": "TCP通信", "category": "控制"},
     {"name": "Ubuntu", "category": "其它"},
+    {"name": "Unity", "category": "其它"},
     {"name": "VisionMaster", "category": "算法"},
     {"name": "串口通信", "category": "控制"},
     {"name": "光电开关", "category": "其它"},
