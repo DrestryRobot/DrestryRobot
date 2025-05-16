@@ -16,7 +16,7 @@
    - `RstEditor <https://drestryrobot.readthedocs.io/_static/RstEditor/index.html>`_
       - 新增RST文档编辑和预览窗口
       - 新增打开、保存、导出、帮助等功能
-   - `KnowMap <https://drestryrobot.readthedocs.io/_static/KnowMap/index.html>`_、
+   - `KnowMap <https://drestryrobot.readthedocs.io/_static/KnowMap/index.html>`_
       - 新增部分知识点和知识点的图片图标
    - `Unity <https://drestryrobot.readthedocs.io/技术总结/Unity.html>`_
 - 2025.05.15
@@ -29,7 +29,7 @@
    - `Ubuntu <https://drestryrobot.readthedocs.io/技术总结/Ubuntu.html>`_
 - 2025.05.13
    - `IsaacSim <https://drestryrobot.readthedocs.io/技术总结/IsaacSim.html>`_ 
-   - `IsaacLab <https://drestryrobot.readthedocs.io/技术总结/IsaacLab.html>`_ 
+   - `IsaacLab <https://drestryrobot.readthedocs.io/技术总结/IsaacLab.html>`_
    - `C语言 <https://drestryrobot.readthedocs.io/技术总结/C语言.html>`_
 
 .. 历史更新
