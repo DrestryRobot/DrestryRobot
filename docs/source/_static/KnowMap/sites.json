@@ -11,7 +11,7 @@
     {"name": "Matlab", "category": "控制"},
     {"name": "PID控制", "category": "算法"},
     {"name": "Qt", "category": "其它"},
-    {"name": "RST文档", "category": "算法"},
+    {"name": "ReStructuredText", "category": "算法"},
     {"name": "SolidWorks", "category": "机械"},
     {"name": "TCP通信", "category": "控制"},
     {"name": "Ubuntu", "category": "其它"},
