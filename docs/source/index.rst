@@ -14,6 +14,11 @@
 ---------
 - 2025.05.16
    - `RstEditor <https://drestryrobot.readthedocs.io/_static/RstEditor/index.html>`_
+      - 新增RST文档编辑和预览窗口
+      - 新增打开、保存、导出、帮助等功能
+   - `KnowMap <https://drestryrobot.readthedocs.io/_static/KnowMap/index.html>`_、
+      - 新增部分知识点和知识点的图片图标
+   - `Unity <https://drestryrobot.readthedocs.io/技术总结/Unity.html>`_
 - 2025.05.15
    - `线性导轨 <https://drestryrobot.readthedocs.io/技术总结/线性导轨.html>`_
    - `3Dfindit <https://drestryrobot.readthedocs.io/资源分享/3Dfindit.html>`_
