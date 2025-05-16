@@ -37,10 +37,10 @@ function loadGrid(category = "全部", searchQuery = "") {
       icon.src = IMAGE_BASE_URL + item.name + ".png"; // 尝试使用自定义图片
       icon.alt = item.name;
 
-      // // 如果图片加载失败，则使用默认图片
-      // icon.onerror = () => {
-      //   icon.src = IMAGE_BASE_URL + "默认图标.png";
-      // };
+      // 如果图片加载失败，则使用默认图片
+      icon.onerror = () => {
+        icon.src = IMAGE_BASE_URL + "默认图标.png";
+      };
 
       const title = document.createElement("div");
       title.className = "grid-name";
