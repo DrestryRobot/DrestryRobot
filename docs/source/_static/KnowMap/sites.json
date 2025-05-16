@@ -18,6 +18,7 @@
     {"name": "光耦继电器", "category": "控制"},
     {"name": "力传感器", "category": "控制"},
     {"name": "双环PID", "category": "控制"},
+    {"name": "同步带传动", "category": "机械"},
     {"name": "头文件", "category": "其它"},
     {"name": "导纳控制", "category": "算法"},
     {"name": "气动控制", "category": "控制"},
@@ -25,5 +26,7 @@
     {"name": "线性导轨", "category": "机械"},
     {"name": "负载辨识", "category": "算法"},
     {"name": "轴孔装配", "category": "算法"},
-    {"name": "降压模块", "category": "其它"}
+    {"name": "链传动", "category": "机械"},
+    {"name": "降压模块", "category": "其它"},
+    {"name": "齿轮传动", "category": "机械"}
 ]
