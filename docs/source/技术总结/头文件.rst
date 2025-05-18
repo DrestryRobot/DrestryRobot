@@ -5,3 +5,142 @@
 头文件
 ----------
 头文件，是C、C++中使用广泛的文件格式，其功能是简化.c、.cpp文件代码，简单来说，把.h文件内的代码放到对应.c文件开头和单独放.h文件里面的效果和功能是一样的，也就是我们把.c文件里面的引用、声明、定义、初始化等部分代码单独放在.h文件里，既是为了简化.c代码，也是为了方便在别的.c文件里面对其.h文件进行引用。
+
+怎么写头文件
+=============
+示例代码
+--------
+先看一段示例代码：
+::
+
+    #ifndef G_PAY_H
+    #define G_PAY_H
+
+    #include <stdio.h>
+    #include "math.h"
+    #include <iostream>
+    #include <iomanip>
+
+    #define DATACOUNT 4 // 导入6组数据
+
+    // 六维力传感器零点漂移值
+    typedef struct {
+        double fx;
+        double fy;
+        double fz;
+        double tx;
+        double ty;
+        double tz;
+    } ZeroFt;
+
+    // 六维力传感器测量值
+    typedef struct {
+        double fx;
+        double fy;
+        double fz;
+        double tx;
+        double ty;
+        double tz;
+    } MeaFt;
+
+    // 六维力传感器补偿值
+    typedef struct {
+        double fx;
+        double fy;
+        double fz;
+        double tx;
+        double ty;
+        double tz;
+    } PayFt;
+
+    typedef struct {
+        double data[3];
+    } Vector3;
+
+    typedef struct {
+        double data[6];
+    } Vector6;
+
+    // 欧拉角结构体
+    struct EulerAngles {
+        double rx, ry, rz;
+    };
+
+    void zero_init(ZeroFt *ft, double fx, double fy, double fz, double tx, double ty, double tz);
+    void pay_calculate(PayFt *payft, MeaFt *meaft, ZeroFt *zeroft);
+    Vector6 leastSquares(double A[DATACOUNT * 3][6], Vector3 b[DATACOUNT]);
+    void loadIdentification(Vector6 fS[DATACOUNT], double rSB[DATACOUNT][3][3],double *G, Vector3 *p, Vector6 *F0, double *U, double *V);
+    void computeCompensatedForce(Vector6 *fS, Vector6 F0, double G, Vector3 p, double rSB[3][3], double U, double V, Vector6 *fComp);
+    void printResults(double *G, Vector3 *p, Vector6 *F0, double *U, double *V);
+    void invertMatrix3x3(double m[3][3], double inv[3][3]);
+    void eulerAnglesToRotationMatrixXYZ(const EulerAngles& e, double R[3][3]);
+    void crossProductMatrix(double F[3], double F_cross[3][3]);
+    void printMatrix3x3(const char* name, double matrix[DATACOUNT][3][3]);
+    void printMatrixAorB(const char* name, double matrix[DATACOUNT * 3][6]);
+    void printVector3(const char* name, double vector[DATACOUNT][3]);
+    void printVector6Array(const char* name, Vector6 vector[DATACOUNT]);
+    void printVector3Array(const char* name, Vector3 vector[DATACOUNT * 3]);
+    void printVector6(const char* name, Vector6 vector);
+    void printVector3Single(const char* name, double vector[3]);
+
+    extern ZeroFt zeroft;
+    extern MeaFt meaft;
+    extern PayFt payft;
+
+    #endif // G_PAY_H
+
+代码结构分析
+--------------
+代码中从上到下依次包含：
+
+- 头文件格式
+
+::
+
+    #ifndef G_PAY_H
+    #define G_PAY_H
+    ......    
+    #endif // G_PAY_H
+
+- 头文件引用
+
+::
+    
+    #include <stdio.h>
+    #include "math.h"
+    #include <iostream>
+    #include <iomanip>
+
+- 宏定义
+
+::
+
+    #define DATACOUNT 4
+
+- 结构体定义
+
+::
+
+    typedef struct {
+        double fx;
+        double fy;
+        double fz;
+        double tx;
+        double ty;
+        double tz;
+    } ZeroFt;  
+   
+- 函数声明
+
+::
+
+    void zero_init(ZeroFt *ft, double fx, double fy, double fz, double tx, double ty, double tz);
+    void pay_calculate(PayFt *payft, MeaFt *meaft, ZeroFt *zeroft);
+
+- 结构体外部声明
+
+::
+
+    extern ZeroFt zeroft;
+    extern MeaFt meaft;
+    extern PayFt payft;

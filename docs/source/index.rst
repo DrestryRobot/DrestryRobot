@@ -12,6 +12,8 @@
 
 最近更新
 ---------
+- 2025.05.18
+   - `头文件 <https://drestryrobot.readthedocs.io/技术总结/头文件.html>`_
 - 2025.05.16
    - `RstEditor <https://drestryrobot.readthedocs.io/_static/RstEditor/index.html>`_
       - 新增RST文档编辑和预览窗口
