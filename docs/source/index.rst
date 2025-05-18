@@ -13,6 +13,7 @@
 最近更新
 ---------
 - 2025.05.18
+   - `线性导轨 <https://drestryrobot.readthedocs.io/技术总结/线性导轨.html>`_
    - `IsaacLab <https://drestryrobot.readthedocs.io/技术总结/IsaacLab.html>`_
    - `IsaacSim <https://drestryrobot.readthedocs.io/技术总结/IsaacSim.html>`_
    - `头文件 <https://drestryrobot.readthedocs.io/技术总结/头文件.html>`_
