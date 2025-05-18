@@ -131,10 +131,11 @@
    - 支持中文搜索
    - SiteSearch 2.0
    - KnowMap 2.0
+   - UniEditor
    - drestryrobot.com
    - YRobot
    - 轴孔装配
-   
+
 .. raw:: html
 
    <details>
