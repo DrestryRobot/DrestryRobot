@@ -41,7 +41,6 @@
    - `VSCode <https://drestryrobot.readthedocs.io/技术总结/VSCode.html>`_
    - `Windows <https://drestryrobot.readthedocs.io/技术总结/Windows.html>`_
 
-.. 历史更新
 .. raw:: html
 
    <details>
@@ -122,9 +121,12 @@
    </pre>
    </details>
    <br>
+.. 点击查看历史更新
 
 更新规划
 ---------
+- 2025.06
+   - DigitalWorld
 - 2025.05
    - 支持中文搜索
    - SiteSearch 2.0
@@ -132,6 +134,17 @@
    - drestryrobot.com
    - YRobot
    - 轴孔装配
+   
+.. raw:: html
+
+   <details>
+   <summary>点击查看历史规划</summary>
+   <pre>
+
+   </pre>
+   </details>
+   <br>
+.. 点击查看历史规划
 
 .. toctree::
    :maxdepth: 2
