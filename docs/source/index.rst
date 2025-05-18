@@ -135,6 +135,9 @@
    - drestryrobot.com
    - YRobot
    - 轴孔装配
+   - 吹气清洁装置设计
+   - 清洁项目控制部分
+   - 北京项目
 
 .. raw:: html
 
