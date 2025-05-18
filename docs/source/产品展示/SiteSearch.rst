@@ -25,7 +25,7 @@ SiteSearch（官网导航）是一个方便用户快速检索、分类和访问�
 ---------
 - 2025.05.04
 
-    - 点击此处访问：`SiteSearch <https://drestryrobot.readthedocs.io/zh-cn/latest/_static/SiteSearch/index.html>`_
+    - 点击此处访问：`SiteSearch <https://drestryrobot.readthedocs.io/_static/SiteSearch/index.html>`_
 
 反馈建议
 ---------
