@@ -13,6 +13,8 @@
 最近更新
 ---------
 - 2025.05.18
+   - `KnowMap <https://drestryrobot.readthedocs.io/_static/KnowMap/index.html>`_
+      - 新增部分知识点和知识点的图片图标
    - `SBR直线导轨 <https://drestryrobot.readthedocs.io/技术总结/SBR直线导轨.html>`_
    - `光轴导轨 <https://drestryrobot.readthedocs.io/技术总结/光轴导轨.html>`_
    - `直线导轨 <https://drestryrobot.readthedocs.io/技术总结/直线导轨.html>`_

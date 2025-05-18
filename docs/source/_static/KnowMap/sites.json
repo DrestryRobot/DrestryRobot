@@ -33,7 +33,6 @@
     {"name": "电动推杆", "category": "控制"},
     {"name": "直线导轨", "category": "机械"},
     {"name": "负载辨识", "category": "算法"},
-    {"name": "轴孔装配", "category": "算法"},
     {"name": "链传动", "category": "机械"},
     {"name": "降压模块", "category": "其它"},
     {"name": "齿轮传动", "category": "机械"}
