@@ -33,18 +33,6 @@
    - `Qt <https://drestryrobot.readthedocs.io/技术总结/Qt.html>`_
    - `VSCode <https://drestryrobot.readthedocs.io/技术总结/VSCode.html>`_
    - `Windows <https://drestryrobot.readthedocs.io/技术总结/Windows.html>`_
-- 2025.05.15
-   - `线性导轨 <https://drestryrobot.readthedocs.io/技术总结/线性导轨.html>`_
-   - `3Dfindit <https://drestryrobot.readthedocs.io/资源分享/3Dfindit.html>`_
-   - `KnowMap <https://drestryrobot.readthedocs.io/_static/KnowMap/index.html>`_
-      - 新增主页下方导航条快速访问
-- 2025.05.14
-   - `SolidWorks <https://drestryrobot.readthedocs.io/技术总结/SolidWorks.html>`_
-   - `Ubuntu <https://drestryrobot.readthedocs.io/技术总结/Ubuntu.html>`_
-- 2025.05.13
-   - `IsaacSim <https://drestryrobot.readthedocs.io/技术总结/IsaacSim.html>`_ 
-   - `IsaacLab <https://drestryrobot.readthedocs.io/技术总结/IsaacLab.html>`_
-   - `C语言 <https://drestryrobot.readthedocs.io/技术总结/C语言.html>`_
 
 .. 历史更新
 .. raw:: html
@@ -52,6 +40,18 @@
    <details>
    <summary>点击查看历史更新</summary>
    <pre>
+   - 2025.05.15
+      - `线性导轨 <https://drestryrobot.readthedocs.io/技术总结/线性导轨.html>`_
+      - `3Dfindit <https://drestryrobot.readthedocs.io/资源分享/3Dfindit.html>`_
+      - `KnowMap <https://drestryrobot.readthedocs.io/_static/KnowMap/index.html>`_
+         - 新增主页下方导航条快速访问
+   - 2025.05.14
+      - `SolidWorks <https://drestryrobot.readthedocs.io/技术总结/SolidWorks.html>`_
+      - `Ubuntu <https://drestryrobot.readthedocs.io/技术总结/Ubuntu.html>`_
+   - 2025.05.13
+      - `IsaacSim <https://drestryrobot.readthedocs.io/技术总结/IsaacSim.html>`_ 
+      - `IsaacLab <https://drestryrobot.readthedocs.io/技术总结/IsaacLab.html>`_
+      - `C语言 <https://drestryrobot.readthedocs.io/技术总结/C语言.html>`_
    - 2025.05.10
       - 主页面
          - 新增共同创作部分
