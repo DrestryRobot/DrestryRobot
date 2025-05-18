@@ -127,6 +127,9 @@
 ---------
 - 2025.05
    - 支持中文搜索
+   - SiteSearch 2.0
+   - KnowMap 2.0
+   - drestryrobot.com
 
 .. toctree::
    :maxdepth: 2
