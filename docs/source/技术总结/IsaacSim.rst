@@ -13,48 +13,125 @@ Pip安装IsaacSim和IsaacLab
 
 官网教程：https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/pip_installation.html
 
-安装步骤：
+安装步骤：(linux终端运行以下命令安装)
 
 - 安装pip环境
-	- 终端运行 sudo apt install python3-pip
-	- 终端运行 pip --version # 运行出现pip版本即安装成功，反之未成功
+
+::
+
+	# 下载安装pip
+	sudo apt install python3-pip
+
+	# 检查pip安装
+	pip --version # 运行出现pip版本即安装成功，反之未成功
+
 - 安装conda环境
-	- 终端运行 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh # 下载miniconda
-	- 终端运行 bash Miniconda3-latest-Linux-x86_64.sh # 安装miniconda
-	- 配置环境变量
-		- 终端运行 echo 'export PATH=~/anaconda3/bin:$PATH' >> ~/.bashrc
-		- 终端运行 source ~/.bashrc
-	- 终端运行 conda --version # 运行出现conda版本即安装成功，反之未成功
+
+::
+
+	# 下载安装conda
+	wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh 
+	bash Miniconda3-latest-Linux-x86_64.sh
+
+	# 配置环境变量
+	echo 'export PATH=~/anaconda3/bin:$PATH' >> ~/.bashrc
+	source ~/.bashrc
+
+	# 检查conda安装
+	conda --version  # 运行出现conda版本即安装成功，反之未成功
+
 - 激活conda环境
-	- 终端运行 conda create -n env_isaaclab python=3.10 # 创建env_isaaclab环境，isaaclab都是基于这个环境运行的
-	- 终端运行 conda activate env_isaaclab # 激活env_isaaclab环境
+
+::
+
+	# 创建env_isaaclab环境
+	conda create -n env_isaaclab python=3.10
+
+	# 激活env_isaaclab环境
+	conda activate env_isaaclab 
+
 - 安装PyTorch
-	- 终端运行 pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu118
+
+::
+
+	pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu118
+
 - 安装isaacsim
-	- 终端运行 pip install --upgrade pip # 升级pip至最新版
-	- 终端运行 pip install 'isaacsim[all,extscache]==4.5.0' --extra-index-url https://pypi.nvidia.com # 下载安装isaacsim
+
+::
+
+	# 升级pip至最新版
+	pip install --upgrade pip 
+
+	# 下载安装isaacsim
+	pip install 'isaacsim[all,extscache]==4.5.0' --extra-index-url https://pypi.nvidia.com 
+
 - 测试isaacsim
-	- 终端运行 conda activate env_isaaclab # 激活env_isaaclab环境
-	- 终端运行 cd IsaacLab # 打开IsaacLab文件夹目录
-	- 终端运行 isaacsim # env_isaaclab环境下自带的命令，运行即可打开isaacsim
+
+::
+
+	# 激活env_isaaclab环境
+	conda activate env_isaaclab 
+
+	# 打开IsaacLab文件夹目录
+	cd IsaacLab 
+
+	# 打开isaacsim
+	isaacsim 
+
 - 安装git
-	- 终端运行 sudo apt install git # 下载安装git
-	- 终端运行 git --version # 运行出现git版本即安装成功，反之未成功
+
+::
+
+	# 下载安装git
+	sudo apt install git 
+
+	# 检查git安装
+	git --version # 运行出现git版本即安装成功，反之未成功
+
 - 克隆isaaclab
-	- 终端运行 git clone git@github.com:isaac-sim/IsaacLab.git # SSH方法，克隆isaaclab远程git库代码
-	- 或者终端运行 git clone https://github.com/isaac-sim/IsaacLab.git # HTTPS方法，克隆isaaclab远程git库代码
+
+::
+
+	# SSH方法
+	git clone git@github.com:isaac-sim/IsaacLab.git
+
+	# HTTPS方法
+	git clone https://github.com/isaac-sim/IsaacLab.git
+
 - 安装isaaclab
-	- 终端运行 conda activate env_isaaclab # 激活env_isaaclab环境
-	- 终端运行 cd IsaacLab # 打开IsaacLab文件夹目录
-	- 终端运行 ./isaaclab.sh --install # 安装isaaclab，PS:容易出现某些插件安装不成功的问题，建议先运行下面的切换国内镜像源指令
-		- 终端运行 mkdir -p ~/.pip
-		- 终端运行 echo "[global]" > ~/.pip/pip.conf
-		- 终端运行 echo "index-url = https://pypi.tuna.tsinghua.edu.cn/simple" >> ~/.pip/pip.conf
+
+::
+
+	# 激活env_isaaclab环境
+	conda activate env_isaaclab 
+	
+	# 打开IsaacLab文件夹目录
+	cd IsaacLab
+
+	# 切换国内镜像源（可选）
+	mkdir -p ~/.pip
+	echo "[global]" > ~/.pip/pip.conf
+	echo "index-url = https://pypi.tuna.tsinghua.edu.cn/simple" >> ~/.pip/pip.conf
+
+	# 安装isaaclab
+	./isaaclab.sh --install
+
 - 测试isaaclab
-	- 终端运行 conda activate env_isaaclab # 激活env_isaaclab环境
-	- 终端运行 cd IsaacLab # 打开IsaacLab文件夹目录
-	- 终端运行 ./isaaclab.sh -p scripts/tutorials/00_sim/create_empty.py # 此指令运行不成功则运行下条指令，功能是一样的
-	- 或者终端运行 python scripts/tutorials/00_sim/create_empty.py # GUI界面窗口正常加载，即完成isaaclab安装
+
+::
+
+	# 激活env_isaaclab环境
+	conda activate env_isaaclab 
+
+	# 打开IsaacLab文件夹目录
+	cd IsaacLab 
+
+	# 测试指令一
+	./isaaclab.sh -p scripts/tutorials/00_sim/create_empty.py
+
+	# 测试指令二
+	python scripts/tutorials/00_sim/create_empty.py
 
 IsaacSim资产包
 ----------------
@@ -74,39 +151,45 @@ IsaacSim资产包
 
 安装步骤：
 
-- 下载 `资产包 <https://pan.baidu.com/s/1H0BrGP3T-2Sm5rB-56RkOg?pwd=0000>`_ 🔗
-	- 将三个压缩包文件下载至"/home/<username>/Downloads"
+- 下载 `资产包 <https://pan.baidu.com/s/1H0BrGP3T-2Sm5rB-56RkOg?pwd=0000>`_ 🔗，移动到"/home/<username>/Downloads"文件夹
 - 安装资产包
-	- 终端运行以下指令
-	:: 
-	
-		mkdir ~/isaacsim_assets
-		cd ~/Downloads
-		unzip "isaac-sim-assets-1@4.5.0-rc.36+release.19112.f59b3005.zip" -d ~/isaacsim_assets
-		unzip "isaac-sim-assets-2@4.5.0-rc.36+release.19112.f59b3005.zip" -d ~/isaacsim_assets
-		unzip "isaac-sim-assets-3@4.5.0-rc.36+release.19112.f59b3005.zip" -d ~/isaacsim_assets
-- 修改配置文件
-	- 打开isaacsim安装目录，找到“isaacsim/apps/isaacsim.exp.base.kit”文件，终端运行以下指令
-	::
 
-		[settings]
-		persistent.isaac.asset_root.default = "/home/<username>/isaacsim_assets/Assets/Isaac/4.5"
-		exts."isaacsim.asset.browser".folders = [
-			"/home/<username>/isaacsim_assets/Assets/Isaac/4.5/Isaac/Robots",
-			"/home/<username>/isaacsim_assets/Assets/Isaac/4.5/Isaac/People",
-			"/home/<username>/isaacsim_assets/Assets/Isaac/4.5/Isaac/IsaacLab",
-			"/home/<username>/isaacsim_assets/Assets/Isaac/4.5/Isaac/Props",
-			"/home/<username>/isaacsim_assets/Assets/Isaac/4.5/Isaac/Environments",
-			"/home/<username>/isaacsim_assets/Assets/Isaac/4.5/Isaac/Materials",
-			"/home/<username>/isaacsim_assets/Assets/Isaac/4.5/Isaac/Samples",
-			"/home/<username>/isaacsim_assets/Assets/Isaac/4.5/Isaac/Sensors",
-		]
-	- isaacsim.exp.base.kit文件详细路径如下
-	::
-		
-		路径一：”/home/<username>/isaacsim/apps/isaacsim.exp.base.kit“
-		路径二：“/home/<username>/miniconda3/envs/env_isaaclab/lib/python3.10/site-packages/isaacsim/apps/isaacsim.exp.base.kit”
-		# 注意“<username>”需要修改为自己的用户名
+:: 
+
+	mkdir ~/isaacsim_assets
+	cd ~/Downloads
+	unzip "isaac-sim-assets-1@4.5.0-rc.36+release.19112.f59b3005.zip" -d ~/isaacsim_assets
+	unzip "isaac-sim-assets-2@4.5.0-rc.36+release.19112.f59b3005.zip" -d ~/isaacsim_assets
+	unzip "isaac-sim-assets-3@4.5.0-rc.36+release.19112.f59b3005.zip" -d ~/isaacsim_assets
+
+- 打开配置文件
+
+::
+
+	# 路径一
+	/home/<username>/isaacsim/apps/isaacsim.exp.base.kit
+
+	# 路径二
+	/home/<username>/miniconda3/envs/env_isaaclab/lib/python3.10/site-packages/isaacsim/apps/isaacsim.exp.base.kit
+
+	注意“<username>”需要修改为自己的Linux用户名
+
+- 修改配置文件，文件末尾添加以下代码
+
+::
+
+	[settings]
+	persistent.isaac.asset_root.default = "/home/<username>/isaacsim_assets/Assets/Isaac/4.5"
+	exts."isaacsim.asset.browser".folders = [
+		"/home/<username>/isaacsim_assets/Assets/Isaac/4.5/Isaac/Robots",
+		"/home/<username>/isaacsim_assets/Assets/Isaac/4.5/Isaac/People",
+		"/home/<username>/isaacsim_assets/Assets/Isaac/4.5/Isaac/IsaacLab",
+		"/home/<username>/isaacsim_assets/Assets/Isaac/4.5/Isaac/Props",
+		"/home/<username>/isaacsim_assets/Assets/Isaac/4.5/Isaac/Environments",
+		"/home/<username>/isaacsim_assets/Assets/Isaac/4.5/Isaac/Materials",
+		"/home/<username>/isaacsim_assets/Assets/Isaac/4.5/Isaac/Samples",
+		"/home/<username>/isaacsim_assets/Assets/Isaac/4.5/Isaac/Sensors",
+	]
 
 使用Extension进行编程
 -------------------------
