@@ -130,6 +130,8 @@
    - SiteSearch 2.0
    - KnowMap 2.0
    - drestryrobot.com
+   - YRobot
+   - 轴孔装配
 
 .. toctree::
    :maxdepth: 2
