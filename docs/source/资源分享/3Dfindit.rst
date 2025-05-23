@@ -1,5 +1,6 @@
 3Dfindit
 ===========
+.. contents:: 目录
 
 3Dfindit
 -----------
