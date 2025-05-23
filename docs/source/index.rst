@@ -12,6 +12,8 @@
 
 最近更新
 ---------
+- 2025.05.23
+   - `Copilot <https://drestryrobot.readthedocs.io/资源分享/Copilot.html>`_
 - 2025.05.18
    - `KnowMap <https://drestryrobot.readthedocs.io/_static/KnowMap/index.html>`_
       - 新增部分知识点和知识点的图片图标
