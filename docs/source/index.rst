@@ -14,6 +14,10 @@
 ---------
 - 2025.05.23
    - `Copilot <https://drestryrobot.readthedocs.io/资源分享/Copilot.html>`_
+   - `软件管家 <https://drestryrobot.readthedocs.io/资源分享/软件管家.html>`_
+   - `iconfont <https://drestryrobot.readthedocs.io/资源分享/iconfont.html>`_
+   - `Pixabay <https://drestryrobot.readthedocs.io/资源分享/Pixabay.html>`_
+   - `Z-Library <https://drestryrobot.readthedocs.io/资源分享/Z-Library.html>`_
 - 2025.05.18
    - `KnowMap <https://drestryrobot.readthedocs.io/_static/KnowMap/index.html>`_
       - 新增部分知识点和知识点的图片图标
@@ -124,33 +128,6 @@
    </details>
    <br>
 .. 点击查看历史更新
-
-更新规划
----------
-- 2025.06
-   - DigitalWorld
-- 2025.05
-   - 支持中文搜索
-   - SiteSearch 2.0
-   - KnowMap 2.0
-   - UniEditor
-   - drestryrobot.com
-   - YRobot
-   - 轴孔装配
-   - 吹气清洁装置设计
-   - 清洁项目控制部分
-   - 北京项目
-
-.. raw:: html
-
-   <details>
-   <summary>点击查看历史规划</summary>
-   <pre>
-
-   </pre>
-   </details>
-   <br>
-.. 点击查看历史规划
 
 .. toctree::
    :maxdepth: 2
