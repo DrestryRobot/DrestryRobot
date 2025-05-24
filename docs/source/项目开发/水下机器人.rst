@@ -1,6 +1,6 @@
 水下机器人
 ==========
-版本：2025.04.18
+.. contents:: 目录
 
 1 机械
 ------
@@ -16,7 +16,7 @@
 ~~~~~~~~~
 .. figure:: images/bbb.png
    :alt: 机械结构图
-   :width: 500px
+   :width: 100%
    :align: center
 
 2 控制

@@ -12,6 +12,9 @@
 
 最近更新
 ---------
+- 2025.05.24
+   - `项目开发 <https://drestryrobot.readthedocs.io/项目开发.html>`_
+      - 修改若干细节
 - 2025.05.23
    - `Copilot <https://drestryrobot.readthedocs.io/资源分享/Copilot.html>`_
    - `软件管家 <https://drestryrobot.readthedocs.io/资源分享/软件管家.html>`_
@@ -27,31 +30,31 @@
    - `IsaacLab <https://drestryrobot.readthedocs.io/技术总结/IsaacLab.html>`_
    - `IsaacSim <https://drestryrobot.readthedocs.io/技术总结/IsaacSim.html>`_
    - `头文件 <https://drestryrobot.readthedocs.io/技术总结/头文件.html>`_
-- 2025.05.16
-   - `RstEditor <https://drestryrobot.readthedocs.io/_static/RstEditor/index.html>`_
-      - 新增RST文档编辑和预览窗口
-      - 新增打开、保存、导出、帮助等功能
-   - `KnowMap <https://drestryrobot.readthedocs.io/_static/KnowMap/index.html>`_
-      - 新增部分知识点和知识点的图片图标
-   - `Unity <https://drestryrobot.readthedocs.io/技术总结/Unity.html>`_
-   - `Aubo机器人 <https://drestryrobot.readthedocs.io/技术总结/Aubo机器人.html>`_
-   - `Beckhoff <https://drestryrobot.readthedocs.io/技术总结/Beckhoff.html>`_
-   - `Matlab <https://drestryrobot.readthedocs.io/技术总结/Matlab.html>`_
-   - `链传动 <https://drestryrobot.readthedocs.io/技术总结/链传动.html>`_
-   - `齿轮传动 <https://drestryrobot.readthedocs.io/技术总结/齿轮传动.html>`_
-   - `同步带传动 <https://drestryrobot.readthedocs.io/技术总结/同步带传动.html>`_
-   - `Git <https://drestryrobot.readthedocs.io/技术总结/Git.html>`_
-   - `Github <https://drestryrobot.readthedocs.io/技术总结/Github.html>`_
-   - `Keil <https://drestryrobot.readthedocs.io/技术总结/Keil.html>`_
-   - `Qt <https://drestryrobot.readthedocs.io/技术总结/Qt.html>`_
-   - `VSCode <https://drestryrobot.readthedocs.io/技术总结/VSCode.html>`_
-   - `Windows <https://drestryrobot.readthedocs.io/技术总结/Windows.html>`_
 
 .. raw:: html
 
    <details>
    <summary>点击查看历史更新</summary>
    <pre>
+   - 2025.05.16
+      - `RstEditor <https://drestryrobot.readthedocs.io/_static/RstEditor/index.html>`_
+         - 新增RST文档编辑和预览窗口
+         - 新增打开、保存、导出、帮助等功能
+      - `KnowMap <https://drestryrobot.readthedocs.io/_static/KnowMap/index.html>`_
+         - 新增部分知识点和知识点的图片图标
+      - `Unity <https://drestryrobot.readthedocs.io/技术总结/Unity.html>`_
+      - `Aubo机器人 <https://drestryrobot.readthedocs.io/技术总结/Aubo机器人.html>`_
+      - `Beckhoff <https://drestryrobot.readthedocs.io/技术总结/Beckhoff.html>`_
+      - `Matlab <https://drestryrobot.readthedocs.io/技术总结/Matlab.html>`_
+      - `链传动 <https://drestryrobot.readthedocs.io/技术总结/链传动.html>`_
+      - `齿轮传动 <https://drestryrobot.readthedocs.io/技术总结/齿轮传动.html>`_
+      - `同步带传动 <https://drestryrobot.readthedocs.io/技术总结/同步带传动.html>`_
+      - `Git <https://drestryrobot.readthedocs.io/技术总结/Git.html>`_
+      - `Github <https://drestryrobot.readthedocs.io/技术总结/Github.html>`_
+      - `Keil <https://drestryrobot.readthedocs.io/技术总结/Keil.html>`_
+      - `Qt <https://drestryrobot.readthedocs.io/技术总结/Qt.html>`_
+      - `VSCode <https://drestryrobot.readthedocs.io/技术总结/VSCode.html>`_
+      - `Windows <https://drestryrobot.readthedocs.io/技术总结/Windows.html>`_
    - 2025.05.15
       - `线性导轨 <https://drestryrobot.readthedocs.io/技术总结/线性导轨.html>`_
       - `3Dfindit <https://drestryrobot.readthedocs.io/资源分享/3Dfindit.html>`_
@@ -137,28 +140,6 @@
    技术总结
    项目开发
    产品展示
-
-共同创作
----------
-共同创作资源分享、技术总结板块内容，用户可通过 `Git <https://git-scm.com/>`_ + `VS Code <https://code.visualstudio.com/>`_ + `Github <https://github.com/>`_ 进行在线协同创作。
-
-Github代码库地址：https://github.com/DrestryRobot/DrestryRobot.git
-
-共同创作方法：
-   - 使用Git克隆至本地文件夹
-      - 打开本地文件夹，右键打开"Git Bash Here"工具
-      - 输入"git clone https://github.com/DrestryRobot/DrestryRobot.git"，回车，等待克隆完成
-   - 使用VS Code编辑本地文件夹
-      - 在VS Code中打开"DrestryRobot/docs/source"
-      - 打开资源分享、技术总结文件夹，新建并编辑.rst文件即可
-   - 使用VS Code源代码管理上传至 `Github <https://github.com/>`_ 代码库
-      - 源代码管理中先提交更改，再同步更改
-
-投稿渠道
-----------
-如果你有好的资源、技术、项目或产品，欢迎投稿到邮箱：2371478179@qq.com。
-
-根据稿件质量，给予5～15元/篇的激励，请在邮件中注明联系方式。
 
 .. 天气卡片
 .. includehtml:: _static/weather.html
