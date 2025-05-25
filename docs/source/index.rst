@@ -13,6 +13,7 @@
 最近更新
 ---------
 - 2025.05.25
+   - `Git <https://drestryrobot.readthedocs.io/技术总结/Git.html>`_
    - `SakuraCat <https://drestryrobot.readthedocs.io/资源分享/SakuraCat.html>`_
 - 2025.05.24
    - `项目开发 <https://drestryrobot.readthedocs.io/项目开发.html>`_
