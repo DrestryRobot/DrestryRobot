@@ -1,7 +1,6 @@
 产品展示📌
 ============
-.. figure:: _images/产品展示.gif
-   :alt: 产品展示
+.. figure:: images/产品展示.gif
    :align: center
    :width: 100%
    :class: custom-figure

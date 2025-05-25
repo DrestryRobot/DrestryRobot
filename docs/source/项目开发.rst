@@ -1,7 +1,6 @@
 项目开发📌
 ===========
-.. figure:: _images/项目开发.gif
-   :alt: 项目开发
+.. figure:: images/项目开发.gif
    :align: center
    :width: 100%
    :class: custom-figure

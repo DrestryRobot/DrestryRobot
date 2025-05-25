@@ -1,7 +1,6 @@
 技术总结📌
 ============
-.. figure:: _images/技术总结.gif
-   :alt: 技术总结
+.. figure:: images/技术总结.gif
    :align: center
    :width: 100%
    :class: custom-figure

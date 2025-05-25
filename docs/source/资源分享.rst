@@ -1,7 +1,6 @@
 资源分享📌
 ===========
-.. figure:: _images/资源分享.gif
-   :alt: 资源分享
+.. figure:: images/资源分享.gif
    :align: center
    :width: 100%
    :class: custom-figure

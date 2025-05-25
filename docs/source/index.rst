@@ -1,7 +1,6 @@
 欢迎来到DrestryRobot😃
 ==========================
-.. figure:: _images/主页面.gif
-   :alt: 主页面
+.. figure:: images/欢迎页面.gif
    :align: center
    :width: 100%
    :class: custom-figure
@@ -110,7 +109,7 @@
       - DigitalWorld
       - ModelView
       - SiteSearch
-         - `SiteSearch <https://drestryrobot.readthedocs.io/_static/SiteSearch/index.html>`_ 官网导航
+         - `SiteSearch <https://drestryrobot.readthedocs.io/static/SiteSearch/index.html>`_ 官网导航
          - 优化界面UI设计
          - 新增和删减部分官网
    - 2025.05.04
@@ -162,7 +161,7 @@
    产品展示
 
 .. 天气卡片
-.. includehtml:: _static/weather.html
+.. includehtml:: static/weather.html
 
 .. 底部导航条
-.. includehtml:: _static/quick.html
+.. includehtml:: static/quick.html
