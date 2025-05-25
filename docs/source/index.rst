@@ -12,6 +12,8 @@
 
 最近更新
 ---------
+- 2025.05.25
+   - `SakuraCat <https://drestryrobot.readthedocs.io/资源分享/SakuraCat.html>`_
 - 2025.05.24
    - `项目开发 <https://drestryrobot.readthedocs.io/项目开发.html>`_
       - 修改若干细节
@@ -21,21 +23,21 @@
    - `iconfont <https://drestryrobot.readthedocs.io/资源分享/iconfont.html>`_
    - `Pixabay <https://drestryrobot.readthedocs.io/资源分享/Pixabay.html>`_
    - `Z-Library <https://drestryrobot.readthedocs.io/资源分享/Z-Library.html>`_
-- 2025.05.18
-   - `KnowMap <https://drestryrobot.readthedocs.io/_static/KnowMap/index.html>`_
-      - 新增部分知识点和知识点的图片图标
-   - `SBR直线导轨 <https://drestryrobot.readthedocs.io/技术总结/SBR直线导轨.html>`_
-   - `光轴导轨 <https://drestryrobot.readthedocs.io/技术总结/光轴导轨.html>`_
-   - `直线导轨 <https://drestryrobot.readthedocs.io/技术总结/直线导轨.html>`_
-   - `IsaacLab <https://drestryrobot.readthedocs.io/技术总结/IsaacLab.html>`_
-   - `IsaacSim <https://drestryrobot.readthedocs.io/技术总结/IsaacSim.html>`_
-   - `头文件 <https://drestryrobot.readthedocs.io/技术总结/头文件.html>`_
 
 .. raw:: html
 
    <details>
    <summary>点击查看历史更新</summary>
    <pre>
+   - 2025.05.18
+      - `KnowMap <https://drestryrobot.readthedocs.io/_static/KnowMap/index.html>`_
+         - 新增部分知识点和知识点的图片图标
+      - `SBR直线导轨 <https://drestryrobot.readthedocs.io/技术总结/SBR直线导轨.html>`_
+      - `光轴导轨 <https://drestryrobot.readthedocs.io/技术总结/光轴导轨.html>`_
+      - `直线导轨 <https://drestryrobot.readthedocs.io/技术总结/直线导轨.html>`_
+      - `IsaacLab <https://drestryrobot.readthedocs.io/技术总结/IsaacLab.html>`_
+      - `IsaacSim <https://drestryrobot.readthedocs.io/技术总结/IsaacSim.html>`_
+      - `头文件 <https://drestryrobot.readthedocs.io/技术总结/头文件.html>`_
    - 2025.05.16
       - `RstEditor <https://drestryrobot.readthedocs.io/_static/RstEditor/index.html>`_
          - 新增RST文档编辑和预览窗口
