@@ -13,17 +13,20 @@
 最近更新
 ---------
 - 2025.05.25
-   - `Git <https://drestryrobot.readthedocs.io/技术总结/Git.html>`_
-   - `SakuraCat <https://drestryrobot.readthedocs.io/资源分享/SakuraCat.html>`_
+   - 资源分享
+      - SakuraCat
+   - 技术总结
+      - Git
 - 2025.05.24
-   - `项目开发 <https://drestryrobot.readthedocs.io/项目开发.html>`_
+   - 项目开发
       - 修改若干细节
 - 2025.05.23
-   - `Copilot <https://drestryrobot.readthedocs.io/资源分享/Copilot.html>`_
-   - `软件管家 <https://drestryrobot.readthedocs.io/资源分享/软件管家.html>`_
-   - `iconfont <https://drestryrobot.readthedocs.io/资源分享/iconfont.html>`_
-   - `Pixabay <https://drestryrobot.readthedocs.io/资源分享/Pixabay.html>`_
-   - `Z-Library <https://drestryrobot.readthedocs.io/资源分享/Z-Library.html>`_
+   - 资源分享
+      - Copilot
+      - 软件管家
+      - iconfont
+      - Pixabay
+      - Z-Library
 
 .. raw:: html
 
@@ -31,45 +34,54 @@
    <summary>点击查看历史更新</summary>
    <pre>
    - 2025.05.18
-      - `KnowMap <https://drestryrobot.readthedocs.io/_static/KnowMap/index.html>`_
-         - 新增部分知识点和知识点的图片图标
-      - `SBR直线导轨 <https://drestryrobot.readthedocs.io/技术总结/SBR直线导轨.html>`_
-      - `光轴导轨 <https://drestryrobot.readthedocs.io/技术总结/光轴导轨.html>`_
-      - `直线导轨 <https://drestryrobot.readthedocs.io/技术总结/直线导轨.html>`_
-      - `IsaacLab <https://drestryrobot.readthedocs.io/技术总结/IsaacLab.html>`_
-      - `IsaacSim <https://drestryrobot.readthedocs.io/技术总结/IsaacSim.html>`_
-      - `头文件 <https://drestryrobot.readthedocs.io/技术总结/头文件.html>`_
+      - 技术总结
+         - SBR直线导轨
+         - 光轴导轨
+         - 直线导轨
+         - IsaacLab
+         - IsaacSim
+         - 头文件
+      - 产品展示
+         - KnowMap
+            - 新增部分知识点和知识点的图片图标
    - 2025.05.16
-      - `RstEditor <https://drestryrobot.readthedocs.io/_static/RstEditor/index.html>`_
-         - 新增RST文档编辑和预览窗口
-         - 新增打开、保存、导出、帮助等功能
-      - `KnowMap <https://drestryrobot.readthedocs.io/_static/KnowMap/index.html>`_
-         - 新增部分知识点和知识点的图片图标
-      - `Unity <https://drestryrobot.readthedocs.io/技术总结/Unity.html>`_
-      - `Aubo机器人 <https://drestryrobot.readthedocs.io/技术总结/Aubo机器人.html>`_
-      - `Beckhoff <https://drestryrobot.readthedocs.io/技术总结/Beckhoff.html>`_
-      - `Matlab <https://drestryrobot.readthedocs.io/技术总结/Matlab.html>`_
-      - `链传动 <https://drestryrobot.readthedocs.io/技术总结/链传动.html>`_
-      - `齿轮传动 <https://drestryrobot.readthedocs.io/技术总结/齿轮传动.html>`_
-      - `同步带传动 <https://drestryrobot.readthedocs.io/技术总结/同步带传动.html>`_
-      - `Git <https://drestryrobot.readthedocs.io/技术总结/Git.html>`_
-      - `Github <https://drestryrobot.readthedocs.io/技术总结/Github.html>`_
-      - `Keil <https://drestryrobot.readthedocs.io/技术总结/Keil.html>`_
-      - `Qt <https://drestryrobot.readthedocs.io/技术总结/Qt.html>`_
-      - `VSCode <https://drestryrobot.readthedocs.io/技术总结/VSCode.html>`_
-      - `Windows <https://drestryrobot.readthedocs.io/技术总结/Windows.html>`_
+      - 技术总结
+         - Unity
+         - Aubo机器人
+         - Beckhoff
+         - Matlab
+         - 链传动
+         - 齿轮传动
+         - 同步带传动
+         - Git
+         - Github
+         - Keil
+         - Qt
+         - VSCode
+         - Windows
+      - 产品展示
+         - RstEditor
+            - 新增RST文档编辑和预览窗口
+            - 新增打开、保存、导出、帮助等功能
+         - KnowMap
+            - 新增部分知识点和知识点的图片图标
    - 2025.05.15
-      - `线性导轨 <https://drestryrobot.readthedocs.io/技术总结/线性导轨.html>`_
-      - `3Dfindit <https://drestryrobot.readthedocs.io/资源分享/3Dfindit.html>`_
-      - `KnowMap <https://drestryrobot.readthedocs.io/_static/KnowMap/index.html>`_
-         - 新增主页下方导航条快速访问
+      - 资源分享
+         - 3Dfindit
+      - 技术总结
+         - 线性导轨
+      - 产品展示
+         - KnowMap
+            - 新增主页下方导航条快速访问
    - 2025.05.14
-      - `SolidWorks <https://drestryrobot.readthedocs.io/技术总结/SolidWorks.html>`_
-      - `Ubuntu <https://drestryrobot.readthedocs.io/技术总结/Ubuntu.html>`_
+      - 技术总结
+         - SolidWorks
+         - Ubuntu
    - 2025.05.13
-      - `IsaacSim <https://drestryrobot.readthedocs.io/技术总结/IsaacSim.html>`_ 
-      - `IsaacLab <https://drestryrobot.readthedocs.io/技术总结/IsaacLab.html>`_
-      - `C语言 <https://drestryrobot.readthedocs.io/技术总结/C语言.html>`_
+      - 技术总结
+         - IsaacSim
+         - IsaacLab
+         - C语言
    - 2025.05.10
       - 主页面
          - 新增共同创作部分
