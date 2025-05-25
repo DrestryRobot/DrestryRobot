@@ -9,7 +9,6 @@
 界面介绍
 --------
 .. figure:: images/软件管家.png
-   :alt: 主页面
    :align: center
    :width: 100%
    :class: custom-figure

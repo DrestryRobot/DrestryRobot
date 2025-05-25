@@ -9,7 +9,6 @@ SakuraCat，是一个科学上网工具。提供多个访问节点，稳定可�
 界面介绍
 --------
 .. figure:: images/SakuraCat.png
-   :alt: 主页面
    :align: center
    :width: 100%
    :class: custom-figure

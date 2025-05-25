@@ -9,7 +9,6 @@ iconfont，是阿里巴巴提供的矢量图标库网站，可以免费下载多
 界面介绍
 --------
 .. figure:: images/iconfont.png
-   :alt: 主页面
    :align: center
    :width: 100%
    :class: custom-figure
