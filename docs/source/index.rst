@@ -113,7 +113,7 @@
       - DigitalWorld
       - ModelView
       - SiteSearch
-         - `SiteSearch <https://drestryrobot.readthedocs.io/static/SiteSearch/index.html>`_ 官网导航
+         - SiteSearch，官网导航
          - 优化界面UI设计
          - 新增和删减部分官网
    - 2025.05.04
@@ -165,7 +165,7 @@
    产品展示
 
 .. 天气卡片
-.. includehtml:: static/weather.html
+.. includehtml:: _static/weather.html
 
 .. 底部导航条
-.. includehtml:: static/quick.html
+.. includehtml:: _static/quick.html
