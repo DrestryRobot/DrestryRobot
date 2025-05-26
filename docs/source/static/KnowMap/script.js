@@ -3,7 +3,7 @@ let currentCategory = "全部"; // 当前分类
 let gridData = []; // 存储从 JSON 读取的数据
 
 const BASE_URL = "https://drestryrobot.readthedocs.io/技术总结/"; // 知识点基础路径
-const IMAGE_BASE_URL = "https://drestryrobot.readthedocs.io/_static/KnowMap/images/"; // 图片基础路径
+const IMAGE_BASE_URL = "https://drestryrobot.readthedocs.io/static/KnowMap/images/"; // 图片基础路径
 
 // 读取 JSON 数据
 async function fetchData() {
