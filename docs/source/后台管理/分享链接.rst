@@ -11,6 +11,8 @@
 ~~~~~~~~~~~
 - 我的模型
     - 我的模型 https://pan.baidu.com/s/1TkoSIqWwvpCW42Vxd_v02A?pwd=0000
+- 
+    - LaTeX2Word-Equation-master.zip https://pan.baidu.com/s/1QyfftOhZzENNd0_7PniVdQ?pwd=0000
 
 技术总结
 ~~~~~~~~~~~~~
