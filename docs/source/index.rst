@@ -181,8 +181,8 @@
 
    资源分享
    技术总结
-   项目开发
-   产品展示
+   项目介绍
+   产品推荐
 
 .. 天气卡片
 .. includehtml:: _static/weather.html
