@@ -1,9 +1,11 @@
 欢迎来到DrestryRobot😃
 ==========================
 .. figure:: images/欢迎页面.gif
+   :alt: 欢迎页面
    :align: center
    :width: 100%
-   :class: custom-figure
+   
+   欢迎页面
 
 "发现美，创造美"
 ----------------
