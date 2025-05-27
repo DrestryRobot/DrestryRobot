@@ -1,4 +1,4 @@
-欢迎来到DrestryRobot😃
+欢迎来到DrestryRobot
 ==========================
 .. figure:: images/欢迎页面.gif
 
