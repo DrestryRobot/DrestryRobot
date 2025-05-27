@@ -10,11 +10,12 @@ SBR直线导轨选型
 ------------------
 SBR直线导轨尺寸表
 ~~~~~~~~~~~~~~~~~~~~~
-.. figure:: images/SBR直线导轨.png
+.. figure:: images/SBR直线导轨尺寸表.png
    :alt: SBR直线导轨尺寸表
    :align: center
    :width: 100%
-   :class: custom-figure
+   
+   SBR直线导轨尺寸表
 
 模型下载
 ~~~~~~~~~~~~

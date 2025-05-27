@@ -9,9 +9,11 @@ MathpixSnip，是一个Latex编辑和预览工具网站，支持上传图片、P
 网页介绍
 ----------
 .. figure:: images/MathpixSnip.png
-   :align: center
-   :width: 100%
-   :class: custom-figure
+    :alt: MathpixSnip
+    :align: center
+    :width: 100%
+    
+    MathpixSnip
 
 网址链接
 -----------
