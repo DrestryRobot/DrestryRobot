@@ -9,11 +9,6 @@ Pixabay，是一个国外免费的媒体素材资源下载网站，涵盖照片�
 界面介绍
 --------
 .. figure:: images/Pixabay.png
-   :alt: Pixabay
-   :align: center
-   :width: 100%
-   
-   Pixabay
 
 网页链接
 -----------

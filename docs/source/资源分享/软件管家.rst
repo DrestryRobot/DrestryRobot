@@ -9,11 +9,6 @@
 界面介绍
 --------
 .. figure:: images/软件管家.png
-   :alt: 软件管家
-   :align: center
-   :width: 100%
-   
-   软件管家
 
 网页链接
 -----------

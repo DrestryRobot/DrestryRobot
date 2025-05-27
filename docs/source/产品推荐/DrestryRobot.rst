@@ -4,19 +4,9 @@ DrestryRobot是一个基于Node.js开发的桌面应用程序，和DrestryRobot�
 
 界面设计
 ---------
-.. figure:: images/深色界面.png
-   :alt: 深色界面
-   :align: center
-   :width: 100%
-   
-   深色界面
+.. figure:: images/DrestryRobot.png
 
-.. figure:: images/浅色界面.png
-   :alt: 浅色界面
-   :align: center
-   :width: 100%
-
-   浅色界面
+.. figure:: images/DrestryRobot1.png
 
 功能介绍
 ---------
