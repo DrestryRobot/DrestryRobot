@@ -9,10 +9,11 @@
 界面介绍
 --------
 .. figure:: images/3Dfindit.png
-   :alt: 主页面
+   :alt: 3Dfindit
    :align: center
    :width: 100%
-   :class: custom-figure
+   
+   3Dfindit
 
 网页链接
 -----------
