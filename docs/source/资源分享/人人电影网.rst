@@ -9,9 +9,11 @@
 界面介绍
 --------
 .. figure:: images/人人电影网.png
+   :alt: 人人电影网
    :align: center
    :width: 100%
-   :class: custom-figure
+   
+   人人电影网
 
 网页链接
 -----------

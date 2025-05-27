@@ -8,9 +8,10 @@
 
 技术总结
 -----------
-.. figure:: images/双环PID.jpg
+.. figure:: images/双环PID.png
    :alt: 双环PID
    :align: center
+   :width: 100%
 
    双环PID
    

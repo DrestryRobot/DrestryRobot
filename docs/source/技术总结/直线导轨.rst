@@ -18,7 +18,8 @@ MGN系列直线导轨尺寸表
    :alt: MGN系列直线导轨尺寸表
    :align: center
    :width: 100%
-   :class: custom-figure
+   
+   MGN系列直线导轨尺寸表
 
 选型依据
 ~~~~~~~~~~

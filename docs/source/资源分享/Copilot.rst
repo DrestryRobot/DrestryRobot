@@ -9,10 +9,12 @@ Copilot，是微软开发的一款AI对话工具，基于GPT4大语言模型。�
 界面介绍
 --------
 .. figure:: images/Copilot.png
-   :align: center
-   :width: 100%
-   :class: custom-figure
-
+    :alt: Copilot
+    :align: center
+    :width: 100%
+    
+    Copilot
+    
 网页链接
 -----------
 网页链接：https://copilot.microsoft.com

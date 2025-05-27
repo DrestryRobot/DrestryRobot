@@ -5,11 +5,11 @@ SiteSearch（官网导航）是一个方便用户快速检索、分类和访问�
 界面设计
 ---------
 .. figure:: images/SiteSearch.png
-   :alt: Version
+   :alt: SiteSearch
    :align: center
    :width: 100%
 
-   界面显示
+   SiteSearch
 
 功能介绍
 ---------
