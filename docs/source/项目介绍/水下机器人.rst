@@ -14,7 +14,7 @@
 
 1.3 图示
 ~~~~~~~~~
-.. figure:: images/机械结构图.png
+.. figure:: images/水下机器人.png
 
 2 控制
 ------
@@ -26,7 +26,7 @@
 ~~~~~~~~~
 硬件部分实物搭建采用的是树莓派3B+、PixHawk4飞控，具体参考下图即可。
 
-.. figure:: images/硬件连线图.png
+.. figure:: images/水下机器人1.png
 
 2.3 软件
 ~~~~~~~~~
