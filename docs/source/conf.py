@@ -26,7 +26,7 @@ intersphinx_mapping = {
 }
 intersphinx_disabled_domains = ['std']
 
-html_static_path = ['static']
+html_static_path = ['_static']
 
 # -- Options for HTML output
 html_theme = 'sphinx_rtd_theme'

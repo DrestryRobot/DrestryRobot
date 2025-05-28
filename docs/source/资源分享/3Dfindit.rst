@@ -9,11 +9,6 @@
 界面介绍
 --------
 .. figure:: images/3Dfindit.png
-   :alt: 3Dfindit
-   :align: center
-   :width: 100%
-   
-   3Dfindit
 
 网页链接
 -----------

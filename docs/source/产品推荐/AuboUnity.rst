@@ -3,11 +3,6 @@ AuboUnity
 这是一个基于Unity平台搭建的Aubo机械臂仿真控制软件。
 
 .. figure:: images/AuboUnity.png
-   :alt: AuboUnity
-   :align: center
-   :width: 100%
-
-   AuboUnity
 
 项目简介
 ------------

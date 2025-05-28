@@ -9,11 +9,6 @@ Z-Library，是国外一个免费的电子图书资源下载网站，此处提�
 界面介绍
 --------
 .. figure:: images/Z-Library.png
-   :alt: Z-Library
-   :align: center
-   :width: 100%
-   
-   Z-Library
 
 网页链接
 -----------
