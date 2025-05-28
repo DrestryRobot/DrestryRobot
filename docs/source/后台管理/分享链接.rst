@@ -25,7 +25,7 @@
 - 铝型材
     - 标准件 铝型材 2020 3030 4040.zip https://pan.baidu.com/s/1-2nL1n-l1qIgzV2EZ40nAg?pwd=0000
 
-项目介绍
+项目实践
 ~~~~~~~~~~~
 - 水下机器人
     - 水下机器人B版.zip https://pan.baidu.com/s/1ZIeMYyqml1nNkztljZFXuA?pwd=0000
