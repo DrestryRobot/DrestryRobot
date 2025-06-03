@@ -1,7 +1,7 @@
 欢迎来到DrestryRobot
 ==========================
 .. figure:: images/欢迎页面.gif
-.. figure:: http://113.44.84.214/欢迎页面.gif
+.. figure:: http://113.44.84.214/%E6%AC%A2%E8%BF%8E%E9%A1%B5%E9%9D%A2.gif
 
 "美，无处不在"
 ----------------
