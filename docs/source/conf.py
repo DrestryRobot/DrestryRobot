@@ -74,3 +74,15 @@ def sort_by_mtime(app):
 
 def setup(app):
     app.connect('builder-inited', sort_by_mtime)
+
+# -- 悬浮窗
+html_theme_options = {
+    # 固定导航栏和目录
+    "sticky_navigation": True,  
+    # 目录跟随滚动
+    "navigation_depth": 4,
+    "collapse_navigation": False,
+    # 其他优化
+    "includehidden": True,      # 显示隐藏页面
+    "titles_only": False        # 显示完整目录层级（非仅标题）
+}

@@ -4,7 +4,7 @@ DrestryRobot
 
 .. toctree::
    :maxdepth: 2
-   :caption: 动态排序目录
+   :caption: 内容目录
 
    负载辨识
    VisionMaster
