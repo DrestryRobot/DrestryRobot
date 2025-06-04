@@ -18,7 +18,8 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.autosectionlabel',
     'sphinx.ext.mathjax',
-    "sphinx_copybutton",
+    'sphinx_copybutton',
+    'sphinx_reredirects',
 ]
 
 intersphinx_mapping = {
@@ -43,3 +44,20 @@ html_js_files = [
 
 # 主题设置
 pygments_style = "monokai"
+
+
+# 文件排序
+def sort_by_mtime(app):
+    from pathlib import Path
+    app.config.master_doc = 'index'
+    rst_files = sorted(
+        Path('.').glob('*.rst'),
+        key=lambda f: f.stat().st_mtime,
+        reverse=True
+    )
+    with open('index.rst', 'w') as f:
+        f.write(".. toctree::\n   :maxdepth: 2\n   :caption: 动态排序目录\n\n" +
+               "\n".join(f"   {p.stem}" for p in rst_files if p.stem != 'index'))
+
+def setup(app):
+    app.connect('builder-inited', sort_by_mtime)
