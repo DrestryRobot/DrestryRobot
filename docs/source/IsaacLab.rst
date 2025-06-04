@@ -16,7 +16,7 @@ Pip安装IsaacSim和IsaacLab
 
 - 安装pip环境
 
-::
+.. code:: bash
 
 	# 下载安装pip
 	sudo apt install python3-pip
@@ -26,7 +26,7 @@ Pip安装IsaacSim和IsaacLab
 
 - 安装conda环境
 
-::
+.. code:: bash
 
 	# 下载安装conda
 	wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh 
@@ -41,7 +41,7 @@ Pip安装IsaacSim和IsaacLab
 
 - 激活conda环境
 
-::
+.. code:: bash
 
 	# 创建env_isaaclab环境
 	conda create -n env_isaaclab python=3.10
@@ -51,13 +51,13 @@ Pip安装IsaacSim和IsaacLab
 
 - 安装PyTorch
 
-::
+.. code:: bash
 
 	pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu118
 
 - 安装isaacsim
 
-::
+.. code:: bash
 
 	# 升级pip至最新版
 	pip install --upgrade pip 
@@ -67,7 +67,7 @@ Pip安装IsaacSim和IsaacLab
 
 - 测试isaacsim
 
-::
+.. code:: bash
 
 	# 激活env_isaaclab环境
 	conda activate env_isaaclab 
@@ -80,7 +80,7 @@ Pip安装IsaacSim和IsaacLab
 
 - 安装git
 
-::
+.. code:: bash
 
 	# 下载安装git
 	sudo apt install git 
@@ -90,7 +90,7 @@ Pip安装IsaacSim和IsaacLab
 
 - 克隆isaaclab
 
-::
+.. code:: bash
 
 	# SSH方法
 	git clone git@github.com:isaac-sim/IsaacLab.git
@@ -100,7 +100,7 @@ Pip安装IsaacSim和IsaacLab
 
 - 安装isaaclab
 
-::
+.. code:: bash
 
 	# 激活env_isaaclab环境
 	conda activate env_isaaclab 
@@ -118,7 +118,7 @@ Pip安装IsaacSim和IsaacLab
 
 - 测试isaaclab
 
-::
+.. code:: bash
 
 	# 激活env_isaaclab环境
 	conda activate env_isaaclab 
@@ -143,19 +143,19 @@ CSDN教程🔗：https://blog.csdn.net/qq_45906972/article/details/146094971
 - 配置前先完成 `IsaacSim资产包 <https://drestryrobot.readthedocs.io/zh-cn/latest/%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/IsaacSim.html#isaacsim>`_ 相关教程
 - 打开配置文件
 
-::
+.. code:: bash
 
 	/home/<username>/IsaacLab/source/isaaclab/isaaclab/utils/assets.py
 
 - 找到这行代码 
 
-::
+.. code:: bash
 
 	NUCLEUS_ASSET_ROOT_DIR = carb.settings.get_settings().get("/persistent/isaac/asset_root/cloud")
 
 - 修改这行代码
 
-::
+.. code:: bash
 
 	NUCLEUS_ASSET_ROOT_DIR = ("/home/<username/isaacsim_assets/Assets/Isaac/4.5")
 	

@@ -13,7 +13,7 @@
 
     \mathrm{M_{d}~\left(\ddot{X}-\ddot{X}_{d}\right)+B_{d}~\left(\dot{X}-\dot{X}_{d}\right)+K_{d}~\left(X-X_{d}\right)=-F_{e}}
 
-导纳控制成功代码
+运行成功代码
 ----------------
 .h头文件
 ~~~~~~~~~~~

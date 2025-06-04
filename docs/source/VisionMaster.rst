@@ -18,7 +18,7 @@ D:\FileData\VisionMaster4.4.0\Development\V4.x\Includes\MVD_ErrorDefine.h:1: war
 
 打开 PowerShell（Win + R → 输入 powershell → 回车）。运行以下命令：
 
-.. code:: Bash
+.. code:: bash
 
     Get-ChildItem -Path "D:\FileData\VisionMaster4.4.0\Development\V4.x\Includes" -Filter *.h | ForEach-Object {
     $content = Get-Content $_.FullName
@@ -50,7 +50,7 @@ D:\FileData\VisionMaster4.4.0\Development\V4.x\Includes\MVD_ErrorDefine.h:1: war
 -----------------
 官方手册给的二次开发流程执行示例代码。
 
-.. code:: C++
+.. code:: c++
 
     #include "IVmSolution.h"
     #include "IVmProcedure.h"

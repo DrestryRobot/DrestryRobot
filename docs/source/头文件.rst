@@ -11,7 +11,8 @@
 示例代码
 ~~~~~~~~~~~~~
 先看一段示例代码：
-::
+
+.. code:: c++
 
     #ifndef G_PAY_H
     #define G_PAY_H
@@ -95,7 +96,7 @@
 
 - 头文件格式
 
-::
+.. code:: c++
 
     #ifndef G_PAY_H
     #define G_PAY_H
@@ -104,7 +105,7 @@
 
 - 头文件引用
 
-::
+.. code:: c++
     
     #include <stdio.h>
     #include "math.h"
@@ -113,13 +114,13 @@
 
 - 宏定义
 
-::
+.. code:: c++
 
     #define DATACOUNT 4
 
 - 结构体定义
 
-::
+.. code:: c++
 
     typedef struct {
         double fx;
@@ -132,14 +133,14 @@
    
 - 函数声明
 
-::
+.. code:: c++
 
     void zero_init(ZeroFt *ft, double fx, double fy, double fz, double tx, double ty, double tz);
     void pay_calculate(PayFt *payft, MeaFt *meaft, ZeroFt *zeroft);
 
 - 结构体外部声明
 
-::
+.. code:: c++
 
     extern ZeroFt zeroft;
     extern MeaFt meaft;
