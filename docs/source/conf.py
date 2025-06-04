@@ -1,15 +1,10 @@
 # Configuration file for the Sphinx documentation builder.
 # -- Project information
-
 project = 'DrestryRobot'
 copyright = '2025, DrestryRobot'
 author = 'DrestryRobot'
 
-# release = '2025.05.04'
-# version = '2025.05.04'
-
 # -- General configuration
-
 extensions = [
     'sphinx.ext.duration',
     'sphinx.ext.doctest',
@@ -42,10 +37,10 @@ html_js_files = [
     'analytics.js',
 ]
 
-# 主题设置
+# -- 主题设置
 pygments_style = "monokai"
 
-# 文件排序
+# -- 文件排序
 def sort_by_mtime(app):
     from pathlib import Path
     srcdir = app.srcdir
