@@ -7,4 +7,11 @@ DrestryRobot
    :caption: 内容目录
    :glob:
 
-   *.rst
+   *
+
+.. toctree::
+   :maxdepth: 2
+   :caption: 内容目录
+
+   CAN通信
+   VisionMaster
