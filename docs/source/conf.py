@@ -43,12 +43,3 @@ html_js_files = [
 
 # 主题设置
 pygments_style = "monokai"
-
-# 目录设置
-html_theme_options = {
-    "navigation_depth": 4,
-    "collapse_navigation": False,
-    "sticky_navigation": True,  # 固定导航栏
-    "includehidden": True,     # 显示隐藏页面
-    "titles_only": False       # 显示完整目录树（非仅标题）
-}
