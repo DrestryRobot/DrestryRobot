@@ -18,6 +18,7 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.autosectionlabel',
     'sphinx.ext.mathjax',
+    "sphinx_copybutton",
 ]
 
 intersphinx_mapping = {
@@ -40,35 +41,4 @@ html_js_files = [
     'analytics.js',
 ]
 
-# -- 自定义CSS样式
-html_css_files = ['custom.css']
-
-# -- 自定义网页包含指令
-from docutils import nodes
-from docutils.parsers.rst import Directive
-
-class IncludeHTML(Directive):
-    """
-    自定义指令，用于插入外部的 HTML 文件内容。
-    使用方法：
-    .. includehtml:: path/to/weather.html
-    """
-    required_arguments = 1
-    final_argument_whitespace = True
-
-    def run(self):
-        env = self.state.document.settings.env
-        rel_path, abs_path = env.relfn2path(self.arguments[0])
-        try:
-            with open(abs_path, "r", encoding="utf-8") as f:
-                html_content = f.read()
-        except Exception as err:
-            error = self.state_machine.reporter.error(
-                f"无法包含文件 {abs_path}: {err}",
-                nodes.literal_block(self.block_text, self.block_text),
-                line=self.lineno)
-            return [error]
-        return [nodes.raw("", html_content, format="html")]
-
-def setup(app):
-    app.add_directive("includehtml", IncludeHTML)
+pygments_style = "monokai"
