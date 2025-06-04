@@ -10,7 +10,7 @@
 
 .. math::
 
-    $\mathcal{F}_S=\mathcal{F}_0+\mathcal{F}_S{}^{(G)}+\mathcal{F}_S{}^{(e)}$
+    \mathcal{F}_S=\mathcal{F}_0+\mathcal{F}_S{}^{(G)}+\mathcal{F}_S{}^{(e)}
 
 负载辨识成功代码
 -----------------
