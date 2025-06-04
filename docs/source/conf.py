@@ -45,19 +45,37 @@ html_js_files = [
 # 主题设置
 pygments_style = "monokai"
 
-
 # 文件排序
 def sort_by_mtime(app):
     from pathlib import Path
-    app.config.master_doc = 'index'
+    srcdir = app.srcdir
     rst_files = sorted(
-        Path('.').glob('*.rst'),
+        Path(srcdir).glob('*.rst'),
         key=lambda f: f.stat().st_mtime,
         reverse=True
     )
-    with open('index.rst', 'w') as f:
-        f.write(".. toctree::\n   :maxdepth: 2\n   :caption: 动态排序目录\n\n" +
-               "\n".join(f"   {p.stem}" for p in rst_files if p.stem != 'index'))
+    
+    index_file = Path(srcdir) / 'index.rst'
+    toc_content = ".. toctree::\n   :maxdepth: 2\n   :caption: 动态排序目录\n\n" + \
+                 "\n".join(f"   {p.stem}" for p in rst_files 
+                          if p.stem != 'index' and not p.name.startswith('_'))
+    
+    # 读取和写入时强制使用 UTF-8 编码
+    try:
+        original_content = ""
+        if index_file.exists():
+            with open(index_file, 'r', encoding='utf-8') as f:
+                original_content = f.read()
+        
+        if ".. toctree::" in original_content:
+            new_content = original_content.split(".. toctree::")[0] + toc_content
+        else:
+            new_content = original_content + "\n\n" + toc_content
+        
+        with open(index_file, 'w', encoding='utf-8') as f:
+            f.write(new_content)
+    except UnicodeDecodeError as e:
+        raise RuntimeError(f"文件编码错误: {e}. 请确保所有 .rst 文件使用 UTF-8 编码") from e
 
 def setup(app):
     app.connect('builder-inited', sort_by_mtime)
