@@ -16,43 +16,43 @@ Git使用
 
 - 克隆
 
-::
+.. code:: git
     
     git clone <github代码库地址>
 
 - 拉取
 
-::
+.. code:: git
 
     git pull
 
 - 暂存
 
-:: 
+.. code:: git
 
     git add .
 
 - 提交
 
-::
+.. code:: git
 
     git commit -m "修改了什么"
 
 - 推送
 
-::
+.. code:: git
 
     git push
 
 - 状态
 
-::
+.. code:: git
 
     git status
 
 - 帮助
 
-::
+.. code:: git
 
     git help
 

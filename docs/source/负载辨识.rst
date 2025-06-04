@@ -16,7 +16,7 @@
 -----------------
 .h头文件
 ~~~~~~~~~
-.. code:: C++
+.. code:: c++
 
     #ifndef G_PAY_H
     #define G_PAY_H
@@ -95,13 +95,11 @@
     extern MeaFt meaft;
     extern PayFt payft;
 
-
-
     #endif // G_PAY_H
 
 .cpp源文件
 ~~~~~~~~~~~~~
-.. code:: C++
+.. code:: c++
 
     #include "g_pay.h"
 
