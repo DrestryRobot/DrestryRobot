@@ -36,7 +36,7 @@ D:\FileData\VisionMaster4.4.0\Development\V4.x\Includes\MVD_ErrorDefine.h:1: war
 ----------
 .cpp
 ~~~~~~~~
-:: 
+.. code:: C
 
     #include "IVmSolution.h"
     #include "IVmProcedure.h"
@@ -130,3 +130,5 @@ D:\FileData\VisionMaster4.4.0\Development\V4.x\Includes\MVD_ErrorDefine.h:1: war
 
         return IMVS_EC_OK;
     }
+
+
