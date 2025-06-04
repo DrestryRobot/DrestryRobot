@@ -7,8 +7,6 @@ DrestryRobot
 .. toctree::
    :maxdepth: 2
    :caption: 内容目录
+   :glob:
 
-   资源分享
-   技术总结
-   项目实践
-   好物推荐
+   *
