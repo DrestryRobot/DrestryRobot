@@ -12,16 +12,6 @@
 
     \mathrm{M}_{\mathrm{d}}\left(\ddot{\mathrm{X}}-\ddot{\mathrm{X}}_{\mathrm{d}}\right)+\mathrm{B}_{\mathrm{d}}\left(\dot{\mathrm{X}}-\dot{\mathrm{X}}_{\mathrm{d}}\right)+\mathrm{K}_{\mathrm{d}}\left(\mathrm{X}-\mathrm{X}_{\mathrm{d}}\right)=-\mathrm{F}_{\mathrm{e}}
 
-技术总结
------------
-技术路线
-~~~~~~~~~~~~~~
-
-
-技术难点
-~~~~~~~~~~~~~~
-
-
 核心代码
 ~~~~~~~~~~~~~~
 导纳控制计算代码：
