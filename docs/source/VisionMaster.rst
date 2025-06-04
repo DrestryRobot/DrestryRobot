@@ -8,8 +8,8 @@ VisionMaster，是一个视觉算法软件，提供可视化流程界面，支�
 
 UTF-8编码问题
 ---------------
-报错
-~~~~~
+报错信息
+~~~~~~~~~~
 D:\FileData\VisionMaster4.4.0\Development\V4.x\Includes\MVD_ErrorDefine.h:1: warning: C4828: 文件包含在偏移 0x8f 处开始的字符，该字符在当前源字符集中无效(代码页 65001)。
 
 解决办法
@@ -48,8 +48,8 @@ D:\FileData\VisionMaster4.4.0\Development\V4.x\Includes\MVD_ErrorDefine.h:1: war
 
 二次开发示例代码
 -----------------
-.cpp
-~~~~~~~~
+官方手册给的二次开发流程执行示例代码。
+
 .. code:: C++
 
     #include "IVmSolution.h"
@@ -163,7 +163,45 @@ D:\FileData\VisionMaster4.4.0\Development\V4.x\Includes\MVD_ErrorDefine.h:1: war
         return IMVS_EC_OK;
     }
 
+二次开发成功代码
+-----------------
 
+有关byte的报错
+----------------
+报错信息
+~~~~~~~~~~~~~
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\rpcndr.h:192: error: C2872: “byte”: 不明确的符号
+
+C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared\rpcndr.h(192): error C2872: “byte”: 不明确的符号
+
+C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared\rpcndr.h(191): note: 可能是“unsigned char byte”
+
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\MSVC\14.29.30133\include\cstddef(28): note: 或    “std::byte”
+
+解决办法
+~~~~~~~~~~~
+双击索引至报错位置，注释第191行代码，如果下次构建再次出现类似的报错，尝试取消第191行注释。
+
+.. figure:: images/VisionMaster1.png
+
+相关资源资料下载
+------------------
 VisionMaster二次开发手册V4.4.1
-----------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 https://pan.baidu.com/s/1sVOvvZ9EHKQk-sNFqpxERw?pwd=0000
+
+VisionMaster_CN_STD_V4.3.0_241105
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+https://pan.baidu.com/s/1U7p4hlfrr5zpBcEUYx9Pyw?pwd=0000
+
+VisionMaster_CN_STD_V4.4.0_240813
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+https://pan.baidu.com/s/1RejOfjY663fzFHVMDiwkfw?pwd=0000
+
+MVS_STD_4.4.0_240913
+~~~~~~~~~~~~~~~~~~~~~~
+https://pan.baidu.com/s/1JZ6PKcwnoTxoovVlpA-18A?pwd=0000
+
+test.sol
+~~~~~~~~~~
+https://pan.baidu.com/s/1QR-p5qF4VE2JygdGGHaSjw?pwd=0000
