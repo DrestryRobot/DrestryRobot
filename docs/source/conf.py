@@ -41,4 +41,11 @@ html_js_files = [
     'analytics.js',
 ]
 
+# 主题设置
 pygments_style = "monokai"
+
+# 目录设置
+html_theme_options = {
+    "navigation_depth": 4,  # 目录展开的层级深度（默认4）
+    "collapse_navigation": False,  # 是否默认折叠次级目录（False为展开）
+}
