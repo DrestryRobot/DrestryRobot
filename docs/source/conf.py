@@ -42,4 +42,4 @@ html_js_files = [
 ]
 
 # 主题设置
-# pygments_style = "monokai"
+pygments_style = "monokai"
