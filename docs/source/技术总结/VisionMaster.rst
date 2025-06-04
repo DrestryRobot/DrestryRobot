@@ -30,10 +30,24 @@ D:\FileData\VisionMaster4.4.0\Development\V4.x\Includes\MVD_ErrorDefine.h:1: war
         $content | Set-Content -Encoding UTF8 $_.FullName
     }
 
+流程的三种执行方式
+------------------
+.. figure:: images/VisionMaster.png
 
+手动触发
+~~~~~~~~~
+上位机中打开VisionMaster流程界面，直接点击运行执行流程、获取结果、发送数据。
 
-示例代码
-----------
+半软件触发
+~~~~~~~~~~
+上位机中打开VisionMaster流程界面，然后上位机执行程序，发送触发信号（一般为 1 ）到VisionMaster客户端，VM接收到软件触发信号后执行流程，获取结果，再原路返回发送给上位机执行程序。
+
+全软件触发
+~~~~~~~~~~~
+无需打开VisonMaster流程界面，直接在上位机中运行程序，即可链接VM后台头文件和库文件，在后台执行流程、获取结果、发送数据。
+
+二次开发示例代码
+-----------------
 .cpp
 ~~~~~~~~
 .. code:: C
@@ -130,5 +144,3 @@ D:\FileData\VisionMaster4.4.0\Development\V4.x\Includes\MVD_ErrorDefine.h:1: war
 
         return IMVS_EC_OK;
     }
-
-
