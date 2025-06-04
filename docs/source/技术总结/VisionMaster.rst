@@ -50,7 +50,7 @@ D:\FileData\VisionMaster4.4.0\Development\V4.x\Includes\MVD_ErrorDefine.h:1: war
 -----------------
 .cpp
 ~~~~~~~~
-.. code:: C
+.. code:: C++
 
     #include "IVmSolution.h"
     #include "IVmProcedure.h"
@@ -60,12 +60,12 @@ D:\FileData\VisionMaster4.4.0\Development\V4.x\Includes\MVD_ErrorDefine.h:1: war
     using namespace VisionMasterSDK::VmSolution;
     using namespace VisionMasterSDK::VmProcedure;
 
-    int main(int argc, char *argv[])
+    int main(void)
     {
         try
         {
             //加载方案，仅支持绝对路径，编码格式UTF-8
-            IVmSolution * pVmSol = LoadSolution("D:\\204Clean\\jishu\\shiju\\204Clean.sol", "");
+            IVmSolution * pVmSol = LoadSolution("D:\\test.sol", "");
             if (NULL == pVmSol)
             {
                 return IMVS_EC_NULL_PTR;
@@ -96,6 +96,22 @@ D:\FileData\VisionMaster4.4.0\Development\V4.x\Includes\MVD_ErrorDefine.h:1: war
             //通过流程对象接口获取流程参数对象，用于设置输入数据、设置/获取模块参数等
             IMVSProcedureParams *pParam = pPrcObj->GetParamObj();
 
+            //通过流程参数对象接口设置输入数据
+            //注意设置后输入数据仅当次执行有效，执行完成后清空，再次执行需再次设置
+            unsigned char image[64 * 64] = { 0 };
+            VisionMasterSDK::IoImage inputImage;
+            ImageBaseData imageBaseData = { 0 };
+            imageBaseData.Width = 64;
+            imageBaseData.Height = 64;
+            imageBaseData.DataLen = imageBaseData.Width * imageBaseData.Height;
+            imageBaseData.Pixelformat = MVD_PIXEL_MONO_08;
+            imageBaseData.ImageData = image;
+            inputImage.stImage = imageBaseData;
+            if (NULL != pParam)
+            {
+                pParam->SetInputImageV2("ImageData", &inputImage);
+            }
+
             //流程同步执行一次
             pPrcObj->Run();
 
@@ -103,32 +119,34 @@ D:\FileData\VisionMaster4.4.0\Development\V4.x\Includes\MVD_ErrorDefine.h:1: war
             //注意每次流程执行后，通过重新获取结果对象刷新其中输出数据
             //该操作存在耗时，建议获取结果对象后，直接使用对象获取具体输出数据
             IMVSProcedureResults *pRes = pPrcObj->GetResult();
-
-            string out = std::to_string(pRes->GetOutputFloat("out").pFloatVal[0]);
-            std::cout<<"out1:" << out <<std::endl;
-
-            string ocrResult = pRes->GetOutputString("out2").astStringVal[0].strValue;
-            std::cout<<"out2:" << ocrResult <<std::endl;
-
-            string ocrNum = std::to_string(pRes->GetOutputInt("out3").pIntVal[0]);
-            std::cout<<"out3:" << ocrNum <<std::endl;
-
-            try {
-                if(Result.nValueNum==0)
-                {
-                virsualCalibrationFlag = false;
-                std::cout<<"Calibration failed!"<<endl;
-                }else
-                {
-                virsualCalibrationFlag = true;
-                float angle = Result.pFloatVal[10];
-                // DebugStringData(Result.astStringVal[0]);
-                // float angle = ConvertStringToFloat_CPP(Result.astStringVal[0]);
-                std::cout<<"angle:" << angle <<std::endl;
-                }
-            } catch (std::exception) {
-                std::cout<<"Calibration failed!!"<<endl;
+            if (NULL != pRes)
+            {
+                IoImage outputImage = pRes->GetOutputImageV2("ImageData0");
             }
+
+            //加载流程，仅支持绝对路径，编码格式UTF-8
+            //注意非线程安全，不支持多线程调用
+            IVmProcedure * pPrcObjByPath = LoadProcedure("D:\\testPrc.prc");
+            if (NULL == pPrcObjByPath)
+            {
+                return IMVS_EC_NULL_PTR;
+            }
+
+            //设置连续执行时间间隔
+            pPrcObjByPath->SetRunInterval(500);
+
+            //流程开始连续执行
+            pPrcObjByPath->Runing();
+
+            //流程停止连续执行
+            pPrcObjByPath->StopRun();
+
+            //保存流程
+            //注意非线程安全，不支持多线程调用
+            pPrcObjByPath->SaveAsProcedure("D:\\testPrc.prc", "");
+
+            //删除流程
+            DestroyProcedureInstance(pPrcObjByPath);
 
             //退出程序前释放所有资源，注意避免在析构函数中调用
             DisposeResource();
@@ -144,3 +162,8 @@ D:\FileData\VisionMaster4.4.0\Development\V4.x\Includes\MVD_ErrorDefine.h:1: war
 
         return IMVS_EC_OK;
     }
+
+
+VisionMaster二次开发手册V4.4.1
+----------------------------------------------------
+https://pan.baidu.com/s/1sVOvvZ9EHKQk-sNFqpxERw?pwd=0000
