@@ -18,7 +18,7 @@ D:\FileData\VisionMaster4.4.0\Development\V4.x\Includes\MVD_ErrorDefine.h:1: war
 
 打开 PowerShell（Win + R → 输入 powershell → 回车）。运行以下命令：
 
-::
+.. code:: Bash
 
     Get-ChildItem -Path "D:\FileData\VisionMaster4.4.0\Development\V4.x\Includes" -Filter *.h | ForEach-Object {
     $content = Get-Content $_.FullName
