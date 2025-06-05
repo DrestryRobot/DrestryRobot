@@ -10,7 +10,7 @@ Git安装
 --------
 直接从 `Git官网 <https://git-scm.com/downloads>`_ 下载即可。
 
-Git使用
+Git指令
 ----------
 记住几条简单的命令行指令即可，在Git Bash命令行工具中执行这些指令。
 
@@ -55,4 +55,7 @@ Git使用
 .. code:: bash
 
     git help
+
+Git使用
+--------
 
