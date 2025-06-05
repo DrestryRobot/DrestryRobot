@@ -165,7 +165,7 @@ CSDN教程🔗：https://blog.csdn.net/qq_45906972/article/details/146094971
 ------------------
 报错信息
 ~~~~~~~~~
-.. warning::
+.. error::
 
 	AttributeError: 'Articulation' object has no attribute '_data'. Did you mean: 'data'?
 
@@ -177,7 +177,7 @@ CSDN教程🔗：https://blog.csdn.net/qq_45906972/article/details/146094971
 
 报错信息
 ~~~~~~~~~
-.. warning::
+.. error::
 	
 	AttributeError: 'NoneType' object has no attribute 'GetPath'?
 
