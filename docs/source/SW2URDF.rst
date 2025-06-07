@@ -20,4 +20,4 @@ https://github.com/ros/solidworks_urdf_exporter/releases
 
 视频中角度、力、速度限制那部分要认真填，不然导出来的Urdf这部分参数是缺失的。小编之前导入转换好的Urdf文件到IsaacSim里面，因为前面偷懒没按照教程说的设置力和速度，导致IsaacSim中Urdf模型默认的速度和力是无穷大好像，仿真直接崩掉了，下图框出来的那部分。
 
-.. figure:: images/SW2URDF.png
+.. figure:: images/SW2URDF/如何使用SW2URDF/1.png

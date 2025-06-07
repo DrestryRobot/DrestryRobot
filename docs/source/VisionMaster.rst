@@ -34,7 +34,7 @@ UTF-8编码问题
 
 流程的三种执行方式
 ------------------
-.. figure:: images/VisionMaster_流程的三种执行方式.png
+.. figure:: images/VisionMaster/流程的三种执行方式/1.png
 
 手动触发
 ~~~~~~~~~
@@ -183,7 +183,7 @@ UTF-8编码问题
 ~~~~~~~~~~~
 双击索引至报错位置，注释第191行代码，如果下次构建再次出现类似的报错，尝试取消第191行注释。
 
-.. figure:: images/VisionMaster_有关byte的报错.png
+.. figure:: images/VisionMaster/有关byte的报错/1.png
 
 相关资源资料下载
 ------------------

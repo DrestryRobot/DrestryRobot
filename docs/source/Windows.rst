@@ -8,7 +8,7 @@ Windows，无需多言，本项目基于Windows开发。
 
 远程桌面配置
 -------------
-.. figure:: images/Windows.png
+.. figure:: images/Windows/远程桌面配置/1.png
     :width: 100%
 
 被控端
