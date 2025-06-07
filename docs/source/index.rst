@@ -7,4 +7,4 @@ DrestryRobot
    :caption: 内容目录
    :glob:
 
-   rsts/*
+   *
