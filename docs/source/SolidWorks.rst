@@ -53,3 +53,15 @@ SolidWorks快捷键
 2、在 **搜索框** 中搜索 **命令** 并设置 **快捷键** 。
 
 .. figure:: images/SolidWorks/SolidWorks快捷键/2.png
+
+SolidWorks模型库
+-----------------
+这里分享一个SolidWorks模型资源免费下载网站，和本人自建的一个模型库。
+
+3Dfindit
+~~~~~~~~~~~
+访问网址🔗：https://partsolutions.com/ecatalogsolutions/download-3d-cad-models/
+
+自建模型库
+~~~~~~~~~~~~~~
+下载链接🔗：https://pan.baidu.com/s/1_u_evfEF_YNTvagaqCTnow?pwd=0000
