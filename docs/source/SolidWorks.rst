@@ -56,7 +56,7 @@ SolidWorks快捷键
 
 SolidWorks模型库
 -----------------
-这里分享一个SolidWorks模型资源免费下载网站，和本人自建的一个模型库。
+这里分享一个SolidWorks模型资源免费下载网站，和一个自建模型库。
 
 3Dfindit
 ~~~~~~~~~~~
