@@ -27,7 +27,7 @@ SolidWorks中，有一个隐藏功能 **保存/恢复设置** 。
 
 3、首次使用时，可以先点击 **保存设置** ，将设置保存到 **swSettings.sldreg** 文件。
 
-.. figure:: images/SolidWorks/保存恢复设置/2.png
+.. figure:: images/SolidWorks/保存恢复设置/3.png
 
 4、重新安装SW或者需要在其它设备上使用SW时，可以通过 **恢复设置** 功能从 **swSettings.sldreg** 文件快速恢复设置。
 
