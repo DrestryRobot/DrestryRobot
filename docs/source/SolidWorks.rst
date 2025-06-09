@@ -64,8 +64,8 @@ SolidWorks模型库
 
 自建模型库
 ~~~~~~~~~~~~~~
-下载链接🔗：https://pan.baidu.com/s/1_u_evfEF_YNTvagaqCTnow?pwd=0000
+下载链接📁：https://pan.baidu.com/s/1_u_evfEF_YNTvagaqCTnow?pwd=0000
 
 SolidWorks安装
 ----------------
-**下载和安装** 教程链接🔗：https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzA4MjU4MTg2Ng==&action=getalbum&album_id=3421591509479227395&scene=21#wechat_redirect
+下载和安装🔗：https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzA4MjU4MTg2Ng==&action=getalbum&album_id=3421591509479227395&scene=21#wechat_redirect

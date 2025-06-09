@@ -8,7 +8,7 @@ Git，是一个代码版本管理工具。可将Github代码储存库克隆至�
 
 Git安装
 --------
-直接从 `Git官网 <https://git-scm.com/downloads>`_ 下载即可。
+下载和安装🔗：https://git-scm.com/downloads
 
 Git指令
 ----------

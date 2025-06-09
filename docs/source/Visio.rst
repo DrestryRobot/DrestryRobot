@@ -14,6 +14,4 @@ Visio使用
 
 Visio安装
 -----------------
-下面介绍如何在Windows中安装Visio软件，并提供相关安装包资源。
-
-下载和教程链接🔗：https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzA4MjU4MTg2Ng==&action=getalbum&album_id=3421491400485666822&scene=21#wechat_redirect
+下载和安装🔗：https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzA4MjU4MTg2Ng==&action=getalbum&album_id=3421491400485666822&scene=21#wechat_redirect
