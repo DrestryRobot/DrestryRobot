@@ -2,15 +2,15 @@ IsaacLab
 ==========
 .. contents:: 目录
 
-What Is Isaac Lab?
+IsaacLab
 ------------------
-Isaac Lab is a unified and modular framework for robot learning that aims to simplify common workflows in robotics research (such as reinforcement learning, learning from demonstrations, and motion planning). It is built on NVIDIA Isaac Sim to leverage the latest simulation capabilities for photo-realistic scenes, and fast and efficient simulation.
+IsaacLab，是一个统一的、模块化的机器人学习框架，旨在简化机器人研究中的常见工作流程（如强化学习、从演示中学习和运动规划）。它基于NVIDIA Isaac Sim构建，利用最新的模拟功能实现照片级逼真场景，以及快速高效的模拟。
 
-Pip安装IsaacSim和IsaacLab
--------------------------
+IsaacLab安装
+---------------
 推荐使用本方法安装IsaacSim和IsaacLab，不用下载安装包，终端运行指令即可完成下载、安装。
 
-官网教程：https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/pip_installation.html
+官网教程🔗：https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/pip_installation.html
 
 安装步骤：(linux终端运行以下命令安装)
 
@@ -140,7 +140,7 @@ CSDN教程🔗：https://blog.csdn.net/qq_45906972/article/details/146094971
 
 配置教程：
 
-- 配置前先完成 `IsaacSim资产包 <https://drestryrobot.readthedocs.io/zh-cn/latest/%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/IsaacSim.html#isaacsim>`_ 相关教程
+- 配置前先完成 `IsaacSim资产包🔗 <https://drestryrobot.readthedocs.io/IsaacSim.html#isaacsim>`_ 相关教程
 - 打开配置文件
 
 .. code:: bash
@@ -161,7 +161,7 @@ CSDN教程🔗：https://blog.csdn.net/qq_45906972/article/details/146094971
 	
 - 保存配置文件，即完成IsaacLab资产包配置
 
-常见报错及解决办法
+IsaacLab疑难解答
 ------------------
 .. error:: 
 
@@ -169,7 +169,7 @@ CSDN教程🔗：https://blog.csdn.net/qq_45906972/article/details/146094971
 
 .. hint:: 
 	
-	请访问：https://github.com/isaac-sim/IsaacLab/discussions/623
+	请访问🔗：https://github.com/isaac-sim/IsaacLab/discussions/623
 
 .. error:: 
 	
@@ -177,4 +177,4 @@ CSDN教程🔗：https://blog.csdn.net/qq_45906972/article/details/146094971
 
 .. hint:: 
 
-	出现这样的报错信息，表示IsaacLab资产包未正确配置，按照 `IsaacLab资产包 <https://drestryrobot.readthedocs.io/zh-cn/latest/%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93/IsaacLab.html#isaaclab>`_ 相关教程进行配置即可。
+	出现这样的报错信息，表示IsaacLab资产包未正确配置，按照 `IsaacLab资产包🔗 <https://drestryrobot.readthedocs.io/IsaacLab.html#isaaclab>`_ 相关教程进行配置即可。

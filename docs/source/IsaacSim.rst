@@ -2,16 +2,15 @@ IsaacSim
 ==========
 .. contents:: 目录
 
-What Is Isaac Sim?
+IsaacSim
 ------------------
-NVIDIA Isaac Sim™ is a reference application built on NVIDIA Omniverse that enables developers to develop, simulate, and test AI-driven robots in physically-based virtual environments.
 IsaacSim，是一个机器人仿真软件，最新版本是4.5.0，从英伟达官网下载安装后，可在该平台上构建机器人仿真场景环境，通过编写python库代码对机器人进行控制。
 
-Pip安装IsaacSim和IsaacLab
+IsaacSim安装
 -------------------------
 推荐使用本方法安装IsaacSim和IsaacLab，不用下载安装包，终端运行指令即可完成下载、安装。
 
-官网教程：https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/pip_installation.html
+官网教程🔗：https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/pip_installation.html
 
 安装步骤：(linux终端运行以下命令安装)
 
@@ -137,7 +136,7 @@ IsaacSim资产包
 ----------------
 资产包下载
 ~~~~~~~~~~~~~~~~~~
-百度网盘下载链接🔗：https://pan.baidu.com/s/1H0BrGP3T-2Sm5rB-56RkOg?pwd=0000
+百度网盘下载链接📁：https://pan.baidu.com/s/1H0BrGP3T-2Sm5rB-56RkOg?pwd=0000
 
 文件目录：
 
@@ -146,12 +145,12 @@ IsaacSim资产包
 - isaac-sim-assets-3@4.5.0-rc.36+release.19112.f59b3005.zip
 
 下载安装方法
-~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~
 官网教程🔗：https://docs.isaacsim.omniverse.nvidia.com/latest/installation/install_faq.html#isaac-sim-setup-assets-content-pack
 
 安装步骤：
 
-- 下载 `资产包 <https://pan.baidu.com/s/1H0BrGP3T-2Sm5rB-56RkOg?pwd=0000>`_ 🔗，移动到"/home/<username>/Downloads"文件夹
+- 下载 `资产包📁 <https://pan.baidu.com/s/1H0BrGP3T-2Sm5rB-56RkOg?pwd=0000>`_ 🔗，移动到"/home/<username>/Downloads"文件夹
 - 安装资产包
 
 .. code:: bash
@@ -191,8 +190,8 @@ IsaacSim资产包
 		"/home/<username>/isaacsim_assets/Assets/Isaac/4.5/Isaac/Sensors",
 	]
 
-使用Extension进行编程
--------------------------
+IsaacSim扩展编程
+---------------------
 使用Extension进行编程，实际使用的是IsaacSim的Extension Template Generator（扩展模板生成器）开发工具。扩展模板生成器有四种模板可供使用，分别是：
 - Load Scenario Template（加载场景模板）
 - Scripting Template（脚本模板）
