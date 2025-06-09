@@ -191,7 +191,7 @@ VisionMaster二次开发手册V4.4.1📄：https://pan.baidu.com/s/1sVOvvZ9EHKQk
 
 VisionMaster_CN_STD_V4.3.0_241105📁：https://pan.baidu.com/s/1U7p4hlfrr5zpBcEUYx9Pyw?pwd=0000
 
-VisionMaster_CN_STD_V4.4.0_240813📁： https://pan.baidu.com/s/1RejOfjY663fzFHVMDiwkfw?pwd=0000
+VisionMaster_CN_STD_V4.4.0_240813📁：https://pan.baidu.com/s/1RejOfjY663fzFHVMDiwkfw?pwd=0000
 
 MVS_STD_4.4.0_240913📁：https://pan.baidu.com/s/1JZ6PKcwnoTxoovVlpA-18A?pwd=0000
 
