@@ -4,66 +4,138 @@ TCP通信
 
 TCP通信
 ---------
-TCP通信，是一种面向连接、可靠的传输协议，广泛用于互联网通信。它确保数据在发送端和接收端之间正确、有序地传输，并提供错误检测和流量控制机制。
+TCP通信，是一种通过网线端口在不同设备之间进行的通信。
 
-TCP通信的特点
-----------------
-1. **面向连接**：在通信前，必须建立连接（即“三次握手”）。
-2. **可靠传输**：确保数据包按顺序到达，并且无丢失、无重复。
-3. **流量控制**：根据接收端的处理能力调整发送速率，避免数据溢出。
-4. **拥塞控制**：在网络拥塞时，动态调整数据发送速率，减少丢包。
-5. **全双工通信**：支持同时发送和接收数据。
+TCP通信代码实现
+---------------
+TCP接收函数
+~~~~~~~~~~~~~~~~~~
+.. code:: c++
 
-TCP通信过程
-----------------
-连接建立（TCP三次握手）
-^^^^^^^^^^^^^^^^^^^^^^^^
-三次握手用于确保双方都能正常收发数据：
+    /* TCP接收函数 */
+    void runServer()
+    {
+        const char* server_ip = "127.0.0.1";
+        int server_port = 7930;
+        WSADATA wsaData;
+        SOCKET sockfd;
+        struct sockaddr_in server_addr;
+        char buffer[1024];
+        wchar_t wserver_ip[16];
 
-1. **客户端发送 SYN（同步）**：请求建立连接。
-2. **服务器回复 SYN-ACK**：确认收到请求，并准备建立连接。
-3. **客户端发送 ACK**：确认连接建立，通信开始。
+        // 将多字节字符串转换为宽字符字符串
+        size_t convertedChars = 0;
+        mbstowcs_s(&convertedChars, wserver_ip, server_ip, strlen(server_ip) + 1);
 
-数据传输
-^^^^^^^^
-- 发送端将数据拆分成多个数据包，并编号。
-- 接收端按序接收数据，并发送 ACK 确认。
-- 若数据丢失或错误，发送端会重传数据。
+        // 初始化Winsock
+        if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
+            std::cerr << "WSAStartup failed\n";
+            return;
+        }
 
-连接释放（TCP四次挥手）
-^^^^^^^^^^^^^^^^^^^^^^^^
-为了确保数据传输完成，TCP采用四次挥手来关闭连接：
+        // 创建socket
+        if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {
+            std::cerr << "Socket creation error\n";
+            WSACleanup();
+            return;
+        }
 
-1. **客户端发送 FIN**：请求断开连接。
-2. **服务器回复 ACK**：确认收到断开请求。
-3. **服务器发送 FIN**：通知客户端可以关闭连接。
-4. **客户端回复 ACK**：最终确认，连接关闭。
+        // 设置服务器地址
+        server_addr.sin_family = AF_INET;
+        server_addr.sin_port = htons(server_port);
 
-TCP vs UDP
-----------------
-.. list-table::
-   :header-rows: 1
+        // 使用InetPton替代inet_addr
+        if (InetPton(AF_INET, wserver_ip, &server_addr.sin_addr) <= 0) {
+            std::cerr << "Invalid address / Address not supported\n";
+            closesocket(sockfd);
+            WSACleanup();
+            return;
+        }
 
-   * - 特性
-     - TCP
-     - UDP
-   * - 连接方式
-     - 面向连接
-     - 无连接
-   * - 可靠性
-     - 高（有确认机制）
-     - 低（不保证数据到达）
-   * - 速度
-     - 较慢（需确认和重传）
-     - 快（无确认机制）
-   * - 适用场景
-     - 文件传输、HTTP、邮件
-     - 视频流、DNS查询、实时通信
+        // 连接服务器
+        if (connect(sockfd, (struct sockaddr*)&server_addr, sizeof(server_addr)) == SOCKET_ERROR) {
+            std::cerr << "Connection failed\n";
+            closesocket(sockfd);
+            WSACleanup();
+            return;
+        }
 
-应用场景
-----------------
-- **Web浏览（HTTP/HTTPS）**
-- **文件传输（FTP）**
-- **电子邮件（SMTP、IMAP、POP3）**
-- **远程登录（SSH、Telnet）**
+        // 接收一次数据
+        int valread = recv(sockfd, buffer, sizeof(buffer) - 1, 0);
+        if (valread > 0) {
+            buffer[valread] = '\0';
 
+            try {
+                angle1 = std::stod(buffer);
+            }
+            catch (const std::exception& e) {
+                std::cerr << "Conversion error: " << e.what() << std::endl;
+            }
+        }
+        else if (valread == 0) {
+            std::cout << "Connection closed by server\n";
+        }
+        else {
+            std::cerr << "Read error\n";
+        }
+
+        // 关闭socket
+        closesocket(sockfd);
+        WSACleanup();
+    }
+
+TCP发送函数
+~~~~~~~~~~~~~~~~~~
+.. code:: c++
+
+    /* TCP发送函数 */
+    void runClient() 
+    {
+        WSADATA wsaData;
+        if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
+            std::cerr << "WSAStartup 失败: " << WSAGetLastError() << std::endl;
+            return;
+        }
+
+        SOCKET clientSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+        if (clientSocket == INVALID_SOCKET) {
+            std::cerr << "创建 socket 失败: " << WSAGetLastError() << std::endl;
+            WSACleanup();
+            return;
+        }
+
+        sockaddr_in serverAddr;
+        serverAddr.sin_family = AF_INET;
+        serverAddr.sin_port = htons(7930);
+
+        // 使用 inet_pton 代替 inet_addr
+        if (inet_pton(AF_INET, "127.0.0.1", &serverAddr.sin_addr) <= 0) {
+            std::cerr << "Invalid address/ Address not supported" << std::endl;
+            closesocket(clientSocket);
+            WSACleanup();
+            return;
+        }
+
+        if (connect(clientSocket, (sockaddr*)&serverAddr, sizeof(serverAddr)) == SOCKET_ERROR) {
+            std::cerr << "连接失败: " << WSAGetLastError() << std::endl;
+            closesocket(clientSocket);
+            WSACleanup();
+            return;
+        }
+        else {
+            std::cout << "连接成功" << std::endl;
+        }
+
+        const char* message = "1";
+
+        int sendResult = send(clientSocket, message, strlen(message), 0);
+        if (sendResult == SOCKET_ERROR) {
+            std::cerr << "发送数据失败: " << WSAGetLastError() << std::endl;
+        }
+        else {
+            std::cout << "发送数据: " << message << std::endl;
+        }
+
+        closesocket(clientSocket);
+        WSACleanup();
+    }
