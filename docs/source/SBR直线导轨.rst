@@ -14,6 +14,6 @@ SBR直线导轨尺寸表
 
 模型下载
 ~~~~~~~~~~~~
-访问3Dfindit网站搜索MGN下载模型：https://partsolutions.com/ecatalogsolutions/download-3d-cad-models/
+访问3Dfindit网站搜索MGN下载模型🔗：https://partsolutions.com/ecatalogsolutions/download-3d-cad-models/
 
-这里提供SBR12S的模型下载：总装 SBR直线导轨 SBR12S.zip https://pan.baidu.com/s/1DNS5kfhKq07OnnFp4LTXKw?pwd=0000
+下载SBR12S模型📁：https://pan.baidu.com/s/1DNS5kfhKq07OnnFp4LTXKw?pwd=0000

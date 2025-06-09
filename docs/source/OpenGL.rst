@@ -12,7 +12,7 @@ OpenGL开发环境配置
 
 资源包下载
 ~~~~~~~~~~
-下载链接🔗：https://pan.baidu.com/s/182VEvjB5gp5vZRFOsXmkTw?pwd=0000
+下载链接📁：https://pan.baidu.com/s/182VEvjB5gp5vZRFOsXmkTw?pwd=0000
 
 资源包内包含三个文件，将在后面的配置中用到。
 
@@ -128,7 +128,7 @@ OpenGL开发环境配置
 
 OpenGL示例工程项目
 -------------------
-下载链接🔗：https://pan.baidu.com/s/1jDAVce4VqDvLNf-hLC9Pbw?pwd=0000
+下载链接📁：https://pan.baidu.com/s/1jDAVce4VqDvLNf-hLC9Pbw?pwd=0000
 
 project
 ~~~~~~~~

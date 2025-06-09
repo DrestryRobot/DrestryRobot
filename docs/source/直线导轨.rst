@@ -10,7 +10,7 @@
 -------------
 常用的是MGN系列，所以此处以上银科技的MGN系列为例进行选型介绍。
 
-官方技术文档🔗：https://www.hiwinsupport.com/download/tech_doc/gw/Linear_Guideway-(S).pdf
+官方技术文档📄：https://www.hiwinsupport.com/download/tech_doc/gw/Linear_Guideway-(S).pdf
 
 MGN系列直线导轨尺寸表
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -23,4 +23,4 @@ MGN系列直线导轨尺寸表
 
 模型下载
 ~~~~~~~~~~~~
-访问3Dfindit网站搜索MGN下载模型：https://partsolutions.com/ecatalogsolutions/download-3d-cad-models/
+访问3Dfindit网站搜索MGN下载模型📁：https://partsolutions.com/ecatalogsolutions/download-3d-cad-models/
