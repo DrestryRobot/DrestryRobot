@@ -20,6 +20,6 @@ ARCS 软件相关基础知识🔗：http://arcs.pages.aubo-robotics.cn:8001/arcs
 
 Application Notes 应用笔记🔗：https://docs.aubo-robotics.cn/application_notes
 
-SDK应用开发包🔗：https://pan.baidu.com/s/1XhoRcosJsd5nC0JaaPUjEg?pwd=0000
+SDK应用开发包🔗：https://pan.baidu.com/s/1jGRO-ckrEO520aIE502M-Q?pwd=0000
 
 SDK应用开发包（新）🔗：https://pan.baidu.com/s/1kJnkglZnfb6QmEYpNyHspQ?pwd=0000
