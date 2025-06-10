@@ -23,14 +23,12 @@ Visio中画 **连接线** 时，软件自动选择 **连接点** ，无法精确
 .. figure:: images/Visio/Visio连接线/1.png
     :width: 50%
 
-为了精确定位连接点，以正确表示流程图，推荐使用下图中所示的，将图片 **置于顶层** 的方法。
+为了精确定位连接点，以正确表示流程图。可以 **拖动连接线** ，然后将图片 **置于顶层** 。
 
-.. container:: row
+.. figure:: images/Visio/Visio连接线/2.png
+    :width: 50%
 
-    .. figure:: images/Visio/Visio连接线/2.png
-        :align: left
-        :width: 40%
+调整后，最终的 **连接线** 效果如下图所示。
 
-    .. figure:: images/Visio/Visio连接线/3.png
-        :align: right
-        :width: 40%
+.. figure:: images/Visio/Visio连接线/3.png
+    :width: 50%
