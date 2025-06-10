@@ -147,7 +147,7 @@ UTF-8编码问题
 ^^^^^^^^^
 .. warning::
 
-    - D:\FileData\VisionMaster4.4.0\Development\V4.x\Includes\MVD_ErrorDefine.h:1: warning: C4828: 文件包含在偏移 0x8f 处开始的字符，该字符在当前源字符集中无效(代码页 65001)。
+    - D:/FileData/VisionMaster4.4.0/Development/V4.x/Includes/MVD_ErrorDefine.h:1: warning: C4828: 文件包含在偏移 0x8f 处开始的字符，该字符在当前源字符集中无效(代码页 65001)。
 
 解决办法
 ^^^^^^^^^
