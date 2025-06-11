@@ -195,3 +195,5 @@ VisionMaster_CN_STD_V4.4.0_240813📁：https://pan.baidu.com/s/1RejOfjY663fzFHV
 MVS_STD_4.4.0_240913📁：https://pan.baidu.com/s/1JZ6PKcwnoTxoovVlpA-18A?pwd=0000
 
 test.sol📁：https://pan.baidu.com/s/1QR-p5qF4VE2JygdGGHaSjw?pwd=0000
+
+VisionMaster_CN_STD_V4.2.0（定制试用版3个月）📁：https://pan.baidu.com/s/17j3QiaQKOS8yNWvoJU2OeQ?pwd=0000
