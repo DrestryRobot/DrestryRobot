@@ -200,4 +200,4 @@ VisionMaster_CN_STD_V4.2.0（定制试用版3个月）📁：https://pan.baidu.c
 
 vm_test.zip📁： https://pan.baidu.com/s/1ybZCzPCCRyPKhP70dYC4QQ?pwd=0000
 
-VM FAQ手册(V1.12).chm：https://pan.baidu.com/s/1W1zNLaI3mks9RXw5mpechw?pwd=0000
+VM FAQ手册(V1.12).chm📁：https://pan.baidu.com/s/1W1zNLaI3mks9RXw5mpechw?pwd=0000
