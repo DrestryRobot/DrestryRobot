@@ -182,7 +182,7 @@ UTF-8编码问题
 ^^^^^^^^^
 双击索引至报错位置，注释第191行代码（或第192行），如果下次构建再次出现类似的报错，尝试取消第191行注释（或第192行）。
 
-.. figure:: images/VisionMaster/有关byte的报错/1.png
+.. figure:: ../images/VisionMaster/有关byte的报错/1.png
 
 VisionMaster资源下载
 ----------------------

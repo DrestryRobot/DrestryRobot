@@ -18,16 +18,16 @@ SolidWorks中，有一个隐藏功能 **保存/恢复设置** 。
 ~~~~~~~~
 1、点击 **设置按钮** 旁的下拉键即可找到 **保存/恢复设置** 功能按键。
 
-.. figure:: images/SolidWorks/保存恢复设置/1.png
+.. figure:: ../images/SolidWorks/保存恢复设置/1.png
     :width: 30%
 
 2、打开后，有 **保存设置** 、 **恢复设置** 、 **重置设置** 等选项。
 
-.. figure:: images/SolidWorks/保存恢复设置/2.png
+.. figure:: ../images/SolidWorks/保存恢复设置/2.png
 
 3、首次使用时，可以先点击 **保存设置** ，将设置保存到 **swSettings.sldreg** 文件。
 
-.. figure:: images/SolidWorks/保存恢复设置/3.png
+.. figure:: ../images/SolidWorks/保存恢复设置/3.png
 
 4、重新安装SW或者需要在其它设备上使用SW时，可以通过 **恢复设置** 功能从 **swSettings.sldreg** 文件快速恢复设置。
 
@@ -43,7 +43,7 @@ SolidWorks快捷键
 
 快捷键标准
 ~~~~~~~~~~~
-.. figure:: images/SolidWorks/SolidWorks快捷键/1.png
+.. figure:: ../images/SolidWorks/SolidWorks快捷键/1.png
     :width: 60%
 
 使用方法
@@ -52,7 +52,7 @@ SolidWorks快捷键
 
 2、在 **搜索框** 中搜索 **命令** 并设置 **快捷键** 。
 
-.. figure:: images/SolidWorks/SolidWorks快捷键/2.png
+.. figure:: ../images/SolidWorks/SolidWorks快捷键/2.png
 
 SolidWorks模型库
 -----------------

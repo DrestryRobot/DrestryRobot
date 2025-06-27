@@ -16,39 +16,39 @@ Qt安装
 --------
 1、欢迎。
 
-.. figure:: images/Qt/Qt安装/1.png
+.. figure:: ../images/Qt/Qt安装/1.png
 
 2、登录。
 
-.. figure:: images/Qt/Qt安装/2.png
+.. figure:: ../images/Qt/Qt安装/2.png
 
 3、开源义务。
 
-.. figure:: images/Qt/Qt安装/3.png
+.. figure:: ../images/Qt/Qt安装/3.png
 
 4、安装选项。
 
-.. figure:: images/Qt/Qt安装/4.png
+.. figure:: ../images/Qt/Qt安装/4.png
 
 5、自定义。
 
-.. figure:: images/Qt/Qt安装/5.png
+.. figure:: ../images/Qt/Qt安装/5.png
 
 6、许可协议。
 
-.. figure:: images/Qt/Qt安装/6.png
+.. figure:: ../images/Qt/Qt安装/6.png
 
 7、开始菜单文件夹。
 
-.. figure:: images/Qt/Qt安装/7.png
+.. figure:: ../images/Qt/Qt安装/7.png
 
 8、安装总结。
 
-.. figure:: images/Qt/Qt安装/8.png
+.. figure:: ../images/Qt/Qt安装/8.png
 
 9、正在安装。
 
-.. figure:: images/Qt/Qt安装/9.png
+.. figure:: ../images/Qt/Qt安装/9.png
 
 10、已完成。
 
@@ -62,35 +62,35 @@ Qt新建项目
 ------------
 1、创建项目。
 
-.. figure:: images/Qt/Qt新建项目/1.png
+.. figure:: ../images/Qt/Qt新建项目/1.png
 
 2、选择模板。
 
-.. figure:: images/Qt/Qt新建项目/2.png
+.. figure:: ../images/Qt/Qt新建项目/2.png
 
 3、配置路径。
 
-.. figure:: images/Qt/Qt新建项目/3.png
+.. figure:: ../images/Qt/Qt新建项目/3.png
 
 4、选择 **qmake** 构建系统。
 
-.. figure:: images/Qt/Qt新建项目/4.png
+.. figure:: ../images/Qt/Qt新建项目/4.png
 
 5、编辑 **类和文件** 信息。
 
-.. figure:: images/Qt/Qt新建项目/5.png
+.. figure:: ../images/Qt/Qt新建项目/5.png
 
 6、选择语言。
 
-.. figure:: images/Qt/Qt新建项目/6.png
+.. figure:: ../images/Qt/Qt新建项目/6.png
 
 7、选择构建套件。
 
-.. figure:: images/Qt/Qt新建项目/7.png
+.. figure:: ../images/Qt/Qt新建项目/7.png
 
 8、项目管理器
 
-.. figure:: images/Qt/Qt新建项目/8.png
+.. figure:: ../images/Qt/Qt新建项目/8.png
 
 9、完成项目新建。
 

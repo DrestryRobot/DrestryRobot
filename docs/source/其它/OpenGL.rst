@@ -59,11 +59,11 @@ OpenGL开发环境配置
 
 5、新建工程，**开始使用** -> **创建新项目** -> **控制台应用（C++）** 。
 
-.. figure:: images/OpenGL/OpenGL开发环境配置/1.png
+.. figure:: ../images/OpenGL/OpenGL开发环境配置/1.png
 
 6、配置新项目，**项目名称** -> **位置** -> **解决方案名称** -> **将解决方案和项目放在同一目录中(D)** 。
 
-.. figure:: images/OpenGL/OpenGL开发环境配置/2.png
+.. figure:: ../images/OpenGL/OpenGL开发环境配置/2.png
 
 7、配置头文件，**配置属性** -> **C/C++** -> **常规** -> **附加包含目录** -> **编辑** -> **新行** -> **选择目录** 。
 
@@ -72,11 +72,11 @@ OpenGL开发环境配置
     "D:\FileData\VS2022\Community\VC\Tools\MSVC\14.27.29110\include\GL"
     "D:\FileData\VS2022\Profession\VC\Tools\MSVC\14.27.29110\include\GL"
 
-.. figure:: images/OpenGL/OpenGL开发环境配置/3.png
+.. figure:: ../images/OpenGL/OpenGL开发环境配置/3.png
 
 8、配置库文件，**配置属性** -> **链接器** -> **输入** -> **附加依赖项** -> **编辑** -> **输入“glut32.lib”** 。
 
-.. figure:: images/OpenGL/OpenGL开发环境配置/4.png
+.. figure:: ../images/OpenGL/OpenGL开发环境配置/4.png
 
 9、编写程序代码，在 **.cpp** 中输入下方的示例程序代码。
 
@@ -120,11 +120,11 @@ OpenGL开发环境配置
 
 10、生成解决方案，解决方案配置选择 **Debug** ，解决方案平台选择 **X86** ，点击 **菜单栏** -> **生成** -> **生成解决方案（Ctrl+Shift+B）**，输出显示 **“生成: 1 成功，0 失败，0 最新，0 已跳过”** 即成功。
 
-.. figure:: images/OpenGL/OpenGL开发环境配置/5.png
+.. figure:: ../images/OpenGL/OpenGL开发环境配置/5.png
 
 11、运行程序，点击 **工具栏** -> **本地Windows调试器** ，看到如下运行结果，即成功。
 
-.. figure:: images/OpenGL/OpenGL开发环境配置/6.png
+.. figure:: ../images/OpenGL/OpenGL开发环境配置/6.png
 
 OpenGL示例工程项目
 -------------------
@@ -132,12 +132,12 @@ OpenGL示例工程项目
 
 project
 ~~~~~~~~
-.. figure:: images/OpenGL/OpenGL示例工程项目/1.png
+.. figure:: ../images/OpenGL/OpenGL示例工程项目/1.png
 
 bike
 ~~~~~~~
-.. figure:: images/OpenGL/OpenGL示例工程项目/2.gif
+.. figure:: ../images/OpenGL/OpenGL示例工程项目/2.gif
 
 slider
 ~~~~~~~~~
-.. figure:: images/OpenGL/OpenGL示例工程项目/3.gif
+.. figure:: ../images/OpenGL/OpenGL示例工程项目/3.gif
