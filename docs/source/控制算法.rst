@@ -1,9 +1,0 @@
-控制算法
-==========
-
-.. toctree::
-   :maxdepth: 2
-   :caption: 内容目录
-   :glob:
-
-   控制算法/*
