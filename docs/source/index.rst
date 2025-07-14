@@ -5,7 +5,6 @@ DrestryRobot
 .. toctree::
    :maxdepth: 2
    :caption: 内容目录
+   :glob:
 
-   机械设计
-   控制算法
-   其它
+   *
