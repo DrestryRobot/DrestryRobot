@@ -147,7 +147,7 @@ UTF-8编码问题
 ^^^^^^^^^
 .. warning::
 
-    - D:/FileData/VisionMaster4.4.0/Development/V4.x/Includes/MVD_ErrorDefine.h:1: warning: C4828: 文件包含在偏移 0x8f 处开始的字符，该字符在当前源字符集中无效(代码页 65001)。
+    - C:\Program Files\VisionMaster4.2.0/Development/V4.x/Includes/MVD_ErrorDefine.h:1: warning: C4828: 文件包含在偏移 0x8f 处开始的字符，该字符在当前源字符集中无效(代码页 65001)。
 
 解决办法
 ^^^^^^^^^
@@ -157,12 +157,12 @@ UTF-8编码问题
 
 .. code:: bash
 
-    Get-ChildItem -Path "D:\FileData\VisionMaster4.4.0\Development\V4.x\Includes" -Filter *.h | ForEach-Object {
+    Get-ChildItem -Path "C:\Program Files\VisionMaster4.2.0\Development\V4.x\Includes" -Filter *.h | ForEach-Object {
     $content = Get-Content $_.FullName
     $content | Set-Content -Encoding UTF8 $_.FullName
     }
 
-    Get-ChildItem -Path "D:\FileData\VisionMaster4.4.0\Development\V4.x\Includes" -Filter *.c | ForEach-Object {
+    Get-ChildItem -Path "C:\Program Files\VisionMaster4.2.0\Development\V4.x\Includes" -Filter *.c | ForEach-Object {
         $content = Get-Content $_.FullName
         $content | Set-Content -Encoding UTF8 $_.FullName
     }
