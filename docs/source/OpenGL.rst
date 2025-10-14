@@ -16,9 +16,11 @@ OpenGL开发环境配置
 
 资源包内包含三个文件，将在后面的配置中用到。
 
-- glut.h（头文件）
-- glut32.dll（动态链接库）
-- glut32.lib（库文件）
+.. code::
+
+    glut.h（头文件）
+    glut32.dll（动态链接库）
+    glut32.lib（库文件）
     
 配置方法
 ~~~~~~~~~
@@ -59,11 +61,11 @@ OpenGL开发环境配置
 
 5、新建工程，**开始使用** -> **创建新项目** -> **控制台应用（C++）** 。
 
-.. figure:: ../images/OpenGL/OpenGL开发环境配置/1.png
+.. figure:: images/OpenGL/OpenGL开发环境配置/1.png
 
 6、配置新项目，**项目名称** -> **位置** -> **解决方案名称** -> **将解决方案和项目放在同一目录中(D)** 。
 
-.. figure:: ../images/OpenGL/OpenGL开发环境配置/2.png
+.. figure:: images/OpenGL/OpenGL开发环境配置/2.png
 
 7、配置头文件，**配置属性** -> **C/C++** -> **常规** -> **附加包含目录** -> **编辑** -> **新行** -> **选择目录** 。
 
@@ -72,11 +74,11 @@ OpenGL开发环境配置
     "D:\FileData\VS2022\Community\VC\Tools\MSVC\14.27.29110\include\GL"
     "D:\FileData\VS2022\Profession\VC\Tools\MSVC\14.27.29110\include\GL"
 
-.. figure:: ../images/OpenGL/OpenGL开发环境配置/3.png
+.. figure:: images/OpenGL/OpenGL开发环境配置/3.png
 
 8、配置库文件，**配置属性** -> **链接器** -> **输入** -> **附加依赖项** -> **编辑** -> **输入“glut32.lib”** 。
 
-.. figure:: ../images/OpenGL/OpenGL开发环境配置/4.png
+.. figure:: images/OpenGL/OpenGL开发环境配置/4.png
 
 9、编写程序代码，在 **.cpp** 中输入下方的示例程序代码。
 
