@@ -1,7 +1,7 @@
 # Configuration file for the Sphinx documentation builder.
 # -- Project information
-project = '接地网'
-copyright = '2025, 接地科技'
+project = 'DrestryRobot'
+copyright = '2025, DrestryRobot'
 author = 'DrestryRobot'
 
 # -- General configuration
