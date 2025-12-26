@@ -21,7 +21,7 @@ DrestryRobot
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: 内容目录
    :glob:
 
