@@ -30,11 +30,3 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 一般人看不懂的。
 
 一知半解的不写。
-
-
-.. toctree::
-   :maxdepth: 1
-   :caption: 内容目录
-   :glob:
-
-   *
