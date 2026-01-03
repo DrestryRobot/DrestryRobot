@@ -1,2 +1,12 @@
 控制 设备通信
 ===============
+
+CAN通信
+---------
+.. raw:: html
+
+   <iframe src="https://v.douyin.com/bWxynPoqRcE/"
+           width="560" height="315"
+           frameborder="0"
+           allowfullscreen>
+   </iframe>
