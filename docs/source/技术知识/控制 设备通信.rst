@@ -3,10 +3,4 @@
 
 CAN通信
 ---------
-.. raw:: html
-
-   <iframe src="https://v.douyin.com/bWxynPoqRcE/"
-           width="560" height="315"
-           frameborder="0"
-           allowfullscreen>
-   </iframe>
+.. douyin:: 7581461264627436841
