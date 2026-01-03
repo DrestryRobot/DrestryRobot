@@ -14,7 +14,6 @@ extensions = [
     'sphinx.ext.autosectionlabel',
     'sphinx.ext.mathjax',
     'sphinx_copybutton',
-    'douyin',
 ]
 
 intersphinx_mapping = {
