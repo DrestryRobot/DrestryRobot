@@ -1,2 +1,13 @@
 控制 设备通信
 ===============
+
+CAN通信
+---------
+.. raw:: html
+
+   <div style="width: 100%; text-align: center;">
+       <iframe src="https://onedrive.live.com/?viewid=88a43f21%2D0d77%2D42f7%2Db4c8%2D0b556b08338e&id=%2Fpersonal%2F0481ffc2bfc3858b%2FDocuments%2F202509%20SolidWorks%E4%BF%AE%E6%94%B9%E5%8E%9F%E7%82%B9%20%281%29%2Emp4&parent=%2Fpersonal%2F0481ffc2bfc3858b%2FDocuments"
+               style="width: 100%; height: 500px; border: none;"
+               scrolling="no" allowfullscreen>
+       </iframe>
+   </div>
