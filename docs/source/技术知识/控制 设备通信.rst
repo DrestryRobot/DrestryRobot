@@ -3,12 +3,6 @@
 
 CAN通信
 ---------
-.. raw:: html
-
-   <iframe src="https://aweme.snssdk.com/aweme/v1/play/?video_id=v0200fg10000d4rc51nog65ju70gq9e0&ratio=1080p&line=0"
-           width="560" height="315"
-           frameborder="0"
-           allowfullscreen>
-   </iframe>
+.. douyin:: https://www.douyin.com/video/7581461264627436841
 
 
