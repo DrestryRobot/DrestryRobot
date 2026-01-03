@@ -18,8 +18,8 @@ class DouyinDirective(Directive):
             )
             soup = BeautifulSoup(resp.text, "html.parser")
 
-            # 找到视频直链（ShowBL 页面里通常有 class="download" 的链接）
-            video_link = soup.find("a", {"class": "download"})
+            # 找到视频直链（ShowBL 页面里通常有下载按钮）
+            video_link = soup.find("a", string="下载视频")
             if video_link:
                 mp4_url = video_link["href"]
                 html = f"""
@@ -30,7 +30,7 @@ class DouyinDirective(Directive):
                 """
                 return [nodes.raw('', html, format='html')]
             else:
-                return [nodes.paragraph(text="未能解析视频直链")]
+                return [nodes.paragraph(text="未能解析到视频直链")]
         except Exception as e:
             return [nodes.paragraph(text=f"解析失败: {e}")]
 
