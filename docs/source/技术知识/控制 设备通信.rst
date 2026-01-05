@@ -6,7 +6,7 @@ CAN通信
 .. raw:: html
 
    <div style="width: 100%; text-align: center;">
-       <iframe src="https://onedrive.live.com/personal/0481ffc2bfc3858b/_layouts/15/stream.aspx?id=%2Fpersonal%2F0481ffc2bfc3858b%2FDocuments%2F202509%20SolidWorks%E4%BF%AE%E6%94%B9%E5%8E%9F%E7%82%B9%20%281%29%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Edd9c8f61%2D6919%2D40b2%2Dab94%2Db269ab3d4a0c"
+       <iframe src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/11%E6%9C%8822%E6%97%A5.mp4"
                style="width: 100%; height: 500px; border: none;"
                scrolling="no" allowfullscreen>
        </iframe>
