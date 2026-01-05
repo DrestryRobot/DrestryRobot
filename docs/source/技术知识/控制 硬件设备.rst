@@ -1,2 +1,58 @@
 控制 硬件设备
 ===============
+
+降压模块
+----------
+.. raw:: html
+
+   <div style="width: 100%; text-align: center;">
+       <video width="100%" controls>
+           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E9%99%8D%E5%8E%8B%E6%A8%A1%E5%9D%97.mp4" type="video/mp4">
+       </video>
+   </div>
+
+视频来源：自制
+
+上传时间：2026年01月05日
+
+电动推杆
+----------
+.. raw:: html
+
+   <div style="width: 100%; text-align: center;">
+       <video width="100%" controls>
+           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E7%94%B5%E5%8A%A8%E6%8E%A8%E6%9D%86.mp4" type="video/mp4">
+       </video>
+   </div>
+
+视频来源：自制
+
+上传时间：2026年01月05日
+
+光电开关
+----------
+.. raw:: html
+
+   <div style="width: 100%; text-align: center;">
+       <video width="100%" controls>
+           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E5%85%89%E7%94%B5%E5%BC%80%E5%85%B3.mp4" type="video/mp4">
+       </video>
+   </div>
+
+视频来源：自制
+
+上传时间：2026年01月05日
+
+气动控制
+----------
+.. raw:: html
+
+   <div style="width: 100%; text-align: center;">
+       <video width="100%" controls>
+           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E6%B0%94%E5%8A%A8%E6%8E%A7%E5%88%B6.mp4" type="video/mp4">
+       </video>
+   </div>
+
+视频来源：自制
+
+上传时间：2026年01月05日
