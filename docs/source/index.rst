@@ -37,3 +37,63 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
    :glob:
 
    *
+
+知识网络
+----------
+- 技术知识
+   - 机械
+      - 三维建模
+      - 二维制图
+      - 零件选型
+      - 加工装配
+   - 控制
+      - 控制算法
+      - 设备通信
+      - 硬件设备
+      - 主控程序
+   - 算法
+      - 定位导航
+      - 机器学习
+      - 视觉识别
+   - 仿真
+      - 模型训练
+      - 数字孪生
+      - 虚实融合
+   - 交互
+      - 软件界面
+      - 硬件设备
+   - 管理
+      - 合标准化
+
+- 理论学习
+   - 机械
+      - 机械设计
+      - 机械原理
+      - 机械制造
+   - 控制
+      - 电子电工
+      - 控制工程
+   - 算法
+      - 机器学习
+
+- 软件工具
+   - 机械
+      - AutoCAD
+      - KeyShot
+      - SolidWorks
+   - 控制
+      - Keil
+      - Qt
+      - STM32CubeMX
+      - Visual Studio
+   - 算法
+   - 仿真
+      - Ansys
+      - Delmia
+      - Isaac Lab
+      - Isaac Sim
+      - Unity
+      - Webots
+   - 工具
+      - Matlab
+      - VS Code
