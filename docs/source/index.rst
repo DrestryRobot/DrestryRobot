@@ -86,7 +86,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
       - Qt
       - STM32CubeMX
       - Visual Studio
-   - 算法
    - 仿真
       - Ansys
       - Delmia
