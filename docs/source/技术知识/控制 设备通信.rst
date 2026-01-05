@@ -10,3 +10,5 @@ CAN通信
            <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/CAN%E9%80%9A%E4%BF%A1.mp4" type="video/mp4">
        </video>
    </div>
+   
+视频来源：自制

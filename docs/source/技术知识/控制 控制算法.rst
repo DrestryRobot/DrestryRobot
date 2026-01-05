@@ -11,6 +11,8 @@ PID控制
        </video>
    </div>
 
+视频来源：自制
+
 双环PID
 ----------
 .. raw:: html
@@ -20,3 +22,5 @@ PID控制
            <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E5%8F%8C%E7%8E%AFPID.mp4" type="video/mp4">
        </video>
    </div>
+
+视频来源：自制
