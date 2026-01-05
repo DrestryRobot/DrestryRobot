@@ -7,7 +7,7 @@ CAN通信
 
    <div style="width: 100%; text-align: center;">
        <video width="100%" height="500" controls>
-           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/11%E6%9C%8822%E6%97%A5.mp4" type="video/mp4">
+           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/CAN%E9%80%9A%E4%BF%A1.mp4" type="video/mp4">
            您的浏览器不支持 video 标签。
        </video>
    </div>
