@@ -12,6 +12,9 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 团队成员
 -------------
 - 余贺文
+   - 东华大学机械工程专业学士
+   - 西北工业大学机器人工程专业硕士
+   - 研究方向包括机器人结构设计、软硬件开发、智能体训练等
 
 编撰原则
 -------------
@@ -96,3 +99,12 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
    - 工具
       - Matlab
       - VS Code
+
+相关群聊
+----------
+抖音群
+
+.. image:: https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E6%8A%96%E9%9F%B3%E7%BE%A4.jpg
+   :alt: 抖音群
+   :align: left
+   :width: 400px
