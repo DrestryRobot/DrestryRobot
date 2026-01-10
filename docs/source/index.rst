@@ -107,7 +107,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 .. image:: https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E6%8A%96%E9%9F%B3%E7%BE%A4.jpg
    :width: 400px
 
-
 加入我们
 ----------
 微信码
