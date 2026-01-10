@@ -3,4 +3,6 @@
 
 电子图书
 -----------
-`点击这里打开 <https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E6%A2%B0%E8%AE%BE%E8%AE%A1.pdf>`_
+`点击这里打开上册 <https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E7%94%B5%E5%B7%A5%E5%AD%A6%28%E4%B8%8B%29%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF.pdf>`_
+
+`点击这里打开下册 <https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E7%94%B5%E5%B7%A5%E5%AD%A6%28%E4%B8%8B%29%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF.pdf>`_
