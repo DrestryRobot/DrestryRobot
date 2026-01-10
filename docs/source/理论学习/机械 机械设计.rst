@@ -5,8 +5,9 @@
 ----------
 .. raw:: html
 
-   <iframe src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E6%A2%B0%E8%AE%BE%E8%AE%A1.pdf"
-           width="100%"
-           height="800px"
-           style="margin:0; padding:0; border:none;">
-   </iframe>
+   <embed src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E6%A2%B0%E8%AE%BE%E8%AE%A1.pdf"
+          type="application/pdf"
+          width="100%"
+          height="800px"
+          style="border:none;">
+
