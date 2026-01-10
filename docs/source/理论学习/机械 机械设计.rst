@@ -3,6 +3,6 @@
 
 机械设计
 ----------
-电子课本：https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E6%A2%B0%E8%AE%BE%E8%AE%A1.pdf
+电子课本：`点击这里打开 <https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E6%A2%B0%E8%AE%BE%E8%AE%A1.pdf>`_
 
 
