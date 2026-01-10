@@ -3,11 +3,6 @@
 
 机械设计
 ----------
-.. raw:: html
+电子课本：https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E6%A2%B0%E8%AE%BE%E8%AE%A1.pdf
 
-   <embed src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E6%A2%B0%E8%AE%BE%E8%AE%A1.pdf"
-          type="application/pdf"
-          width="100%"
-          height="800px"
-          style="border:none;">
 
