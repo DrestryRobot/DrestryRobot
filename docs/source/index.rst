@@ -105,15 +105,12 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 抖音群
 
 .. image:: https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E6%8A%96%E9%9F%B3%E7%BE%A4.jpg
-   :alt: 抖音群
-   :align: left
    :width: 400px
+
 
 加入我们
 ----------
 微信码
 
 .. image:: https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E7%A0%81.png
-   :alt: 微信码
-   :align: left
    :width: 400px
