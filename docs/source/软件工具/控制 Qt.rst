@@ -30,8 +30,6 @@ Qt是一个跨平台的应用程序开发软件，主要是基于C++的开发，
      - UI 文件
      - 使用 Qt Designer 生成的 XML 格式界面布局文件
 
-Qt入门
-~~~~~~~
 .. raw:: html
 
    <div style="width: 100%; text-align: center;">
