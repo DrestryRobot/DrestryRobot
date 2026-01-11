@@ -31,3 +31,18 @@ PID控制
 
 导纳控制
 ----------
+
+
+重力补偿
+-----------
+.. raw:: html
+
+   <div style="width: 100%; text-align: center;">
+       <video width="100%" controls>
+           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E9%87%8D%E5%8A%9B%E8%A1%A5%E5%81%BF.mp4" type="video/mp4">
+       </video>
+   </div>
+
+视频来源：自制
+
+上传时间：2026年01月11日
