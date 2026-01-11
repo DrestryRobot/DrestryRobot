@@ -7,29 +7,45 @@ Qt是一个跨平台的应用程序开发软件，主要是基于C++的开发，
 
 一个基本的Qt项目工程主要包括如下部分：
 
-- **untitled.pro**  
-  项目文件：Qt 的工程配置文件，定义编译规则、包含的模块、资源等
+.. list-table:: Qt 项目文件结构
+   :header-rows: 1
+   :widths: 20 20 60
 
-- **main.cpp**  
-  源文件：程序入口，通常包含 QApplication 初始化和主窗口显示
+   * - 文件名
+     - 文件类型
+     - 描述
+   * - untitled.pro
+     - 项目文件
+     - Qt 的工程配置文件，定义编译规则、包含的模块、资源等
+   * - main.cpp
+     - 源文件
+     - 程序入口，通常包含 QApplication 初始化和主窗口显示
+   * - mainwindow.h
+     - 头文件
+     - 主窗口类的声明，定义界面逻辑和槽函数接口
+   * - mainwindow.cpp
+     - 源文件
+     - 主窗口类的实现，处理 UI 事件、信号与槽连接等
+   * - mainwindow.ui
+     - UI 文件
+     - 使用 Qt Designer 生成的 XML 格式界面布局文件
 
-- **mainwindow.h**  
-  头文件：主窗口类的声明，定义界面逻辑和槽函数接口
+Qt入门
+~~~~~~~
+.. raw:: html
 
-- **mainwindow.cpp**  
-  源文件：主窗口类的实现，处理 UI 事件、信号与槽连接等
+   <div style="width: 100%; text-align: center;">
+       <video width="100%" controls>
+           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/Qt%E5%85%A5%E9%97%A8.mp4" type="video/mp4">
+       </video>
+   </div>
 
-- **mainwindow.ui**  
-  UI 文件：使用 Qt Designer 生成的 XML 格式界面布局文件
+视频来源：自制
 
-- **resources.qrc** （可选）  
-  资源文件：用于嵌入图像、图标、样式等资源到程序中
+上传时间：2026年01月11日
 
-- **images/** （可选）  
-  资源目录：存放项目用到的图像文件
+  
 
-- **build/** （可选）  
-  构建目录：编译生成的中间文件和可执行文件所在位置
 
 
 
