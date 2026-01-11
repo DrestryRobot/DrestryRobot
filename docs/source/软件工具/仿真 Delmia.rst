@@ -3,6 +3,10 @@
 
 Delmia入门
 ------------
+Delmia是一个数字化制造软件平台，主要用于工业运营的虚拟仿真、流程优化和制造执行管理。
+
+Delmia
+
 .. raw:: html
 
    <div style="width: 100%; text-align: center;">
