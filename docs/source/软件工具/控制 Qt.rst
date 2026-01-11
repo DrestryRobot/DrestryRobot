@@ -7,8 +7,8 @@ Qt是一个跨平台的应用程序开发软件，主要是基于C++的开发，
 
 一个基本的Qt项目工程主要包括如下部分：
 
-.. list-table:: Qt 项目文件结构
-   :header-rows: 1
+.. list-table:: 
+   :header-rows: 0
    :widths: 20 20 60
 
    * - 文件名
