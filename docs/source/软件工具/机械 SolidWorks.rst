@@ -11,6 +11,18 @@ SolidWorks是一个机械设计软件，主要包括零件设计、装配设计�
 
 工程图绘制包括创建视图、添加注释等核心功能，其中，创建视图包括了常见的三视图、投影视图、剖视图、局部视图等，添加注释包括了粗糙度、几何公差、注释文本、零件序号、材料明细表等。
 
+.. raw:: html
+
+   <div style="width: 100%; text-align: center;">
+       <video width="100%" controls>
+           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/SolidWorks%E5%85%A5%E9%97%A8.mp4" type="video/mp4">
+       </video>
+   </div>
+
+视频来源：自制
+
+上传时间：2026年01月14日
+
 SolidWorks安装指南
 ------------------
 .. raw:: html
