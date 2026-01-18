@@ -3,6 +3,24 @@
 
 .h头文件
 ----------
+h头文件的作用,通过demo.h和demo.c文件的示例,解释了头文件在C语言中的作用,包括引用头文件、定义结构体、声明函数和外部结构体等。
+
+▷00:00 引言
+
+▷00:06 demo.h文件
+
+demo.h文件中定义了一个结构体变量demo.h。
+
+▷00:27 demo.c文件
+
+demo.c文件中定义了demo函数,给demo.h结构体变量赋值。
+
+▷00:58 demo.h文件的作用
+
+demo.h文件中引用demo.h头文件,定义结构体Demo,声明demo函数和外部结构体。
+
+▷02:30 总结
+
 .. raw:: html
 
    <div style="width: 100%; text-align: center;">
