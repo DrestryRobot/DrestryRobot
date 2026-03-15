@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"*.rst": "rst",
+			"*.frm": "vb",
+			"memory": "cpp"
+		}
+	}
+}
