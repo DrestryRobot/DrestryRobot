@@ -1,5 +1,13 @@
 SolidWorks 入门
 ====================
+.. raw:: html
+
+   <div style="width: 100%; text-align: center;">
+       <video width="100%" controls>
+           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/SolidWorks%E5%85%A5%E9%97%A8.mp4" type="video/mp4">
+       </video>
+   </div>
+   
 SolidWorks是一个机械设计软件，主要包括零件设计、装配设计和工程图绘制三个核心板块。
 
 零件设计包括草图绘制、特征操作、曲面设计等等，常见的功能有，草图的点、线、矩形、圆、圆弧、多边形等绘制，特征的拉伸、旋转、镜像等操作。
@@ -29,15 +37,3 @@ SolidWorks软件界面包括菜单栏、设置页面和导航栏。
 ▷02:21 总结
 
 SolidWorks软件主要包括新建零件、装配体和工程图文件三大功能。
-
-.. raw:: html
-
-   <div style="width: 100%; text-align: center;">
-       <video width="100%" controls>
-           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/SolidWorks%E5%85%A5%E9%97%A8.mp4" type="video/mp4">
-       </video>
-   </div>
-
-视频来源：自制
-
-上传时间：2026年01月14日

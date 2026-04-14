@@ -1,5 +1,13 @@
 Qt 入门
 ==================
+.. raw:: html
+
+   <div style="width: 100%; text-align: center;">
+       <video width="100%" controls>
+           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/Qt%E5%85%A5%E9%97%A8.mp4" type="video/mp4">
+       </video>
+   </div>
+   
 Qt是一个跨平台的应用程序开发软件，主要是基于C++的开发，也有一部分基于Python的。
 
 一个基本的Qt项目工程主要包括如下部分：
@@ -44,18 +52,6 @@ QT用于C++应用程序开发,包括欢迎界面、编辑界面等。
 ▷01:30 运行项目
 
 运行项目,渲染出一个空窗口。
-
-.. raw:: html
-
-   <div style="width: 100%; text-align: center;">
-       <video width="100%" controls>
-           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/Qt%E5%85%A5%E9%97%A8.mp4" type="video/mp4">
-       </video>
-   </div>
-
-视频来源：自制
-
-上传时间：2026年01月11日
 
   
 

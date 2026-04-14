@@ -1,5 +1,13 @@
 算法 重力补偿
 ===============
+.. raw:: html
+
+   <div style="width: 100%; text-align: center;">
+       <video width="100%" controls>
+           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E9%87%8D%E5%8A%9B%E8%A1%A5%E5%81%BF.mp4" type="video/mp4">
+       </video>
+   </div>
+   
 重力补偿算法包括负载辨识和重力补偿两部分。通过输入多组机械未端姿态数据和六维力传感器数据,进行最小二乘法拟合运算,得到重力补偿参数。再将实时数据输入重力补偿算法,减去重力分力,得到补偿值。补偿值越接近0,补偿效果越好。
 
 ▷00:01 引言
@@ -19,15 +27,3 @@
 ▷01:57 核心程序代码
 
 展示了负载辨识和重力补偿部分的核心程序代码。
-
-.. raw:: html
-
-   <div style="width: 100%; text-align: center;">
-       <video width="100%" controls>
-           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E9%87%8D%E5%8A%9B%E8%A1%A5%E5%81%BF.mp4" type="video/mp4">
-       </video>
-   </div>
-
-视频来源：自制
-
-上传时间：2026年01月11日

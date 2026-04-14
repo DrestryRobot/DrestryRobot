@@ -1,5 +1,13 @@
 通信 CAN通信
 ===============
+.. raw:: html
+
+   <div style="width: 100%; text-align: center;">
+       <video width="100%" controls>
+           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/CAN%E9%80%9A%E4%BF%A1.mp4" type="video/mp4">
+       </video>
+   </div>
+   
 控制电机的基本原理包括:控制器通过信号线发送电流值给电子调速器,电子调速器控制电机电流。为实现多电机控制,控制器需发送标志符给电子调速器,以区分不同电机。在PID控制中,电机需反馈角度、速度等信息给控制器,同样需发送标志符。
 
 ▷00:00 控制电机的基本原理
@@ -17,15 +25,3 @@
 ▷05:30 PID控制中的反馈
 
 电机通过反馈标志符向控制器发送角度、速度等信息。
-
-.. raw:: html
-
-   <div style="width: 100%; text-align: center;">
-       <video width="100%" controls>
-           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/CAN%E9%80%9A%E4%BF%A1.mp4" type="video/mp4">
-       </video>
-   </div>
-   
-视频来源：自制
-
-上传时间：2026年01月05日

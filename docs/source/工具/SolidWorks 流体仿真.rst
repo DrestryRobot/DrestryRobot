@@ -1,5 +1,13 @@
 SolidWorks 流体仿真
 ====================
+.. raw:: html
+
+   <div style="width: 100%; text-align: center;">
+       <video width="100%" controls>
+           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/202604%20SolidWorks%E6%B5%81%E4%BD%93%E4%BB%BF%E7%9C%9F.mp4" type="video/mp4">
+       </video>
+   </div>
+   
 如何在SolidWorks中使用Flow Simulation插件进行流体仿真,包括新建项目、设置边界条件、网格划分、运行项目和结果展示。通过分析切面图和流动迹线,可以优化结构设计。
 
 ▷00:00 引言
@@ -23,15 +31,3 @@ SolidWorks 流体仿真
 ▷13:46 结果分析与优化
 
 分析结果,根据流动轨迹和切面图优化结构,注意重新计算。
-
-.. raw:: html
-
-   <div style="width: 100%; text-align: center;">
-       <video width="100%" controls>
-           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/202604%20SolidWorks%E6%B5%81%E4%BD%93%E4%BB%BF%E7%9C%9F.mp4" type="video/mp4">
-       </video>
-   </div>
-
-视频来源：自制
-
-上传时间：2026年04月06日

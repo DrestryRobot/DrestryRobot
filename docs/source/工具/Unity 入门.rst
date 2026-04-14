@@ -1,5 +1,13 @@
 Unity 入门
 ==================
+.. raw:: html
+
+   <div style="width: 100%; text-align: center;">
+       <video width="100%" controls>
+           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/Unity%E5%85%A5%E9%97%A8.mp4" type="video/mp4">
+       </video>
+   </div>
+   
 Unity大家都知道，很多平时玩的游戏都是基于Unity开发的，比较有意思有特点的是用Unity开发的游戏默认在程序开始时会显示Unity的商标动画，以表示这是基于Unity开发的。
 
 在这里我们并不使用Unity作为游戏开发工具，而是作为机器人开发的数字孪生环节来做，近些年，Unity加大了对游戏之外，如工业数字孪生的功能支持，由此，我们使用其做机器人应用场景的数字孪生开发。
@@ -31,15 +39,3 @@ Unity Hub用于下载编辑器版本,新建项目,加载资源。
 ▷08:00 运行与游戏模式
 
 运行项目后进入游戏模式,可设置分辨率、显示内容等。
-
-.. raw:: html
-
-   <div style="width: 100%; text-align: center;">
-       <video width="100%" controls>
-           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/Unity%E5%85%A5%E9%97%A8.mp4" type="video/mp4">
-       </video>
-   </div>
-
-视频来源：自制
-
-上传时间：2026年01月18日

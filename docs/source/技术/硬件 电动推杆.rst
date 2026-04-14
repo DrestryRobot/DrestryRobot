@@ -7,7 +7,3 @@
            <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E7%94%B5%E5%8A%A8%E6%8E%A8%E6%9D%86.mp4" type="video/mp4">
        </video>
    </div>
-
-视频来源：自制
-
-上传时间：2026年01月05日
