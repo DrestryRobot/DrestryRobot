@@ -1,8 +1,5 @@
-视觉 VisionMaster
-===================
-
-VisionMaster疑难解答
---------------------------
+VisionMaster 疑难解答
+=======================
 UTF-8编码问题
 ~~~~~~~~~~~~~~~
 报错信息
@@ -45,21 +42,3 @@ UTF-8编码问题
 双击索引至报错位置，注释第191行代码（或第192行），如果下次构建再次出现类似的报错，尝试取消第191行注释（或第192行）。
 
 .. figure:: images/VisionMaster/有关byte的报错/1.png
-
-VisionMaster资源下载
-----------------------
-VisionMaster二次开发手册V4.4.1📄：https://pan.baidu.com/s/1sVOvvZ9EHKQk-sNFqpxERw?pwd=0000
-
-VisionMaster_CN_STD_V4.3.0_241105📁：https://pan.baidu.com/s/1U7p4hlfrr5zpBcEUYx9Pyw?pwd=0000
-
-VisionMaster_CN_STD_V4.4.0_240813📁：https://pan.baidu.com/s/1RejOfjY663fzFHVMDiwkfw?pwd=0000
-
-MVS_STD_4.4.0_240913📁：https://pan.baidu.com/s/1JZ6PKcwnoTxoovVlpA-18A?pwd=0000
-
-test.sol📁：https://pan.baidu.com/s/1QR-p5qF4VE2JygdGGHaSjw?pwd=0000
-
-VisionMaster_CN_STD_V4.2.0（定制试用版3个月）📁：https://pan.baidu.com/s/17j3QiaQKOS8yNWvoJU2OeQ?pwd=0000
-
-vm_test.zip📁： https://pan.baidu.com/s/1ybZCzPCCRyPKhP70dYC4QQ?pwd=0000
-
-VM FAQ手册(V1.12).chm📁：https://pan.baidu.com/s/1W1zNLaI3mks9RXw5mpechw?pwd=0000
