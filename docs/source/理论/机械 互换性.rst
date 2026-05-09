@@ -1,7 +1,5 @@
 机械 互换性
 ==================
-`点击这里下载 <https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E4%BA%92%E6%8D%A2%E6%80%A7%E4%B8%8E%E6%8A%80%E6%9C%AF%E6%B5%8B%E9%87%8F.pdf>`_
-
 .. raw:: html
 
    <iframe src="https://view.xdocin.com/view?src=https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E4%BA%92%E6%8D%A2%E6%80%A7%E4%B8%8E%E6%8A%80%E6%9C%AF%E6%B5%8B%E9%87%8F.pdf"

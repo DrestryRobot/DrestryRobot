@@ -1,7 +1,5 @@
 机械 机械原理
 ==================
-`点击这里下载 <https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86.pdf>`_
-
 .. raw:: html
 
    <iframe src="https://view.xdocin.com/view?src=https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86.pdf"

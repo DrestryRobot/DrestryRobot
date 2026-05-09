@@ -1,7 +1,5 @@
 机械 机械制造
 ==================
-`点击这里下载 <https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E6%A2%B0%E5%88%B6%E9%80%A0%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80.pdf>`_
-
 .. raw:: html
 
    <iframe src="https://view.xdocin.com/view?src=https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E6%A2%B0%E5%88%B6%E9%80%A0%E6%8A%80%E6%9C%AF%E5%9F%BA%E7%A1%80.pdf"
