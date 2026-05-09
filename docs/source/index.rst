@@ -41,19 +41,32 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
    <!-- Artalk 评论系统 -->
    <link href="https://unpkg.com/artalk@2/dist/Artalk.css" rel="stylesheet">
    <div id="Comments"></div>
-   <script src="https://unpkg.com/artalk@2/dist/Artalk.js"></script>
    <script>
-     document.addEventListener('DOMContentLoaded', function() {
-       if (typeof Artalk !== 'undefined') {
-         new Artalk({
-           el: '#Comments',
-           pageKey: window.location.pathname,
-           pageTitle: document.title,
-           server: 'https://comment.drestryrobot.cn',
-           site: 'DrestryRobot'
-         });
-       } else {
-         console.error('Artalk.js 加载失败');
+     (function() {
+       // 轮询检查 Artalk 是否已加载
+       function initArtalk() {
+         if (typeof Artalk !== 'undefined') {
+           // Artalk 已加载，进行初始化
+           new Artalk({
+             el: '#Comments',
+             pageKey: window.location.pathname,
+             pageTitle: document.title,
+             server: 'https://comment.drestryrobot.cn',
+             site: 'DrestryRobot',
+           });
+         } else {
+           // 如果还没加载，100ms 后再试
+           setTimeout(initArtalk, 100);
+         }
        }
-     });
+
+       // 加载 Artalk 脚本
+       var script = document.createElement('script');
+       script.src = 'https://unpkg.com/artalk@2/dist/Artalk.js';
+       script.onload = initArtalk;
+       script.onerror = function() {
+         console.error('Artalk.js 加载失败，请检查网络');
+       };
+       document.head.appendChild(script);
+     })();
    </script>
