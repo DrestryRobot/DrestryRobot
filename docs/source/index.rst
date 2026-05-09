@@ -42,11 +42,10 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
    *
 
+留言评论
+-------------
 .. raw:: html
 
    <!-- 来必力评论区 -->
-   <div style="margin-top: 60px; border-top: 1px solid #eee; padding-top: 30px;">
-     <h3 style="margin-bottom: 20px;">💬 留言评论</h3>
-     <livere-comment client-id="S3CruF3md6wzLjqPnwxO"></livere-comment>
-     <script type="module" src="https://www.livere.org/livere-widget.js"></script>
-   </div>
+   <livere-comment client-id="S3CruF3md6wzLjqPnwxO"></livere-comment>
+   <script type="module" src="https://www.livere.org/livere-widget.js"></script>
