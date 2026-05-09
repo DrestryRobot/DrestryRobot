@@ -4,207 +4,32 @@
 
 .. raw:: html
 
-   <iframe src="about:blank" id="pdf-frame" width="100%" height="800px" style="border: 2px solid #ccc; border-radius: 8px;"></iframe>
-   
-   <script>
-       // 动态创建iframe内容，避免RST页面干扰
-       var iframe = document.getElementById('pdf-frame');
-       var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-       
-       iframeDoc.open();
-       iframeDoc.write(`
-           <!DOCTYPE html>
-           <html>
-           <head>
-               <title>PDF Viewer</title>
-               <style>
-                   * {
-                       margin: 0;
-                       padding: 0;
-                       box-sizing: border-box;
-                   }
-                   body {
-                       background: #525659;
-                       font-family: sans-serif;
-                   }
-                   #controls {
-                       position: sticky;
-                       top: 0;
-                       background: #333;
-                       color: white;
-                       padding: 10px;
-                       text-align: center;
-                       z-index: 100;
-                   }
-                   button {
-                       padding: 8px 16px;
-                       margin: 0 5px;
-                       cursor: pointer;
-                       background: #007bff;
-                       color: white;
-                       border: none;
-                       border-radius: 4px;
-                   }
-                   button:hover {
-                       background: #0056b3;
-                   }
-                   button:disabled {
-                       background: #6c757d;
-                       cursor: not-allowed;
-                   }
-                   #page-info {
-                       display: inline-block;
-                       margin: 0 15px;
-                       color: white;
-                   }
-                   #pdf-container {
-                       padding: 20px;
-                       text-align: center;
-                       min-height: 600px;
-                   }
-                   canvas {
-                       margin: 0 auto;
-                       box-shadow: 0 0 10px rgba(0,0,0,0.3);
-                       background: white;
-                       max-width: 100%;
-                       height: auto;
-                   }
-                   .loading {
-                       text-align: center;
-                       padding: 50px;
-                       color: white;
-                       font-size: 18px;
-                   }
-                   .error {
-                       color: #ff6b6b;
-                       text-align: center;
-                       padding: 50px;
-                       background: #333;
-                       margin: 20px;
-                       border-radius: 8px;
-                   }
-               </style>
-               <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"><\/script>
-           </head>
-           <body>
-               <div id="controls">
-                   <button id="prev" disabled>上一页</button>
-                   <span id="page-info">第 0 / 0 页</span>
-                   <button id="next" disabled>下一页</button>
-                   <input type="number" id="page-input" placeholder="页码" style="width:60px; margin-left:10px;">
-                   <button id="go">跳转</button>
-               </div>
-               <div id="pdf-container">
-                   <div class="loading">正在加载PDF，请稍候...</div>
-               </div>
-               
-               <script>
-                   var url = 'https://drestryrobot.oss-cn-shanghai.aliyuncs.com/C%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1.pdf';
-                   var pdfDoc = null;
-                   var currentPage = 1;
-                   var totalPages = 0;
-                   var scale = 1.2;
-                   
-                   function showLoading(show) {
-                       var container = document.getElementById('pdf-container');
-                       if (show && !pdfDoc) {
-                           container.innerHTML = '<div class="loading">正在加载PDF，请稍候...</div>';
-                       }
-                   }
-                   
-                   function showError(message) {
-                       var container = document.getElementById('pdf-container');
-                       container.innerHTML = '<div class="error"><strong>加载失败</strong><br>' + message + '<br><br>请尝试<a href="' + url + '" target="_blank">点击这里直接下载查看</a></div>';
-                   }
-                   
-                   function renderPage(pageNum) {
-                       if (!pdfDoc) return;
-                       
-                       var container = document.getElementById('pdf-container');
-                       container.innerHTML = '<div class="loading">渲染第 ' + pageNum + ' 页...</div>';
-                       
-                       pdfDoc.getPage(pageNum).then(function(page) {
-                           var viewport = page.getViewport({scale: scale});
-                           
-                           var canvas = document.createElement('canvas');
-                           var context = canvas.getContext('2d');
-                           canvas.height = viewport.height;
-                           canvas.width = viewport.width;
-                           
-                           container.innerHTML = '';
-                           container.appendChild(canvas);
-                           
-                           var renderContext = {
-                               canvasContext: context,
-                               viewport: viewport
-                           };
-                           
-                           page.render(renderContext).promise.then(function() {
-                               document.getElementById('page-info').innerText = '第 ' + pageNum + ' / ' + totalPages + ' 页';
-                               document.getElementById('prev').disabled = (pageNum <= 1);
-                               document.getElementById('next').disabled = (pageNum >= totalPages);
-                           }).catch(function(error) {
-                               container.innerHTML = '<div class="error">渲染错误: ' + error.message + '</div>';
-                           });
-                       }).catch(function(error) {
-                           container.innerHTML = '<div class="error">获取页面失败: ' + error.message + '</div>';
-                       });
-                   }
-                   
-                   function initPDF() {
-                       var container = document.getElementById('pdf-container');
-                       container.innerHTML = '<div class="loading">正在加载PDF文件...</div>';
-                       
-                       pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
-                       
-                       var loadingTask = pdfjsLib.getDocument({
-                           url: url,
-                           cMapUrl: 'https://cdn.jsdelivr.net/npm/pdf.js-dist@2.16.105/cmaps/',
-                           cMapPacked: true,
-                       });
-                       
-                       loadingTask.promise.then(function(pdf) {
-                           pdfDoc = pdf;
-                           totalPages = pdf.numPages;
-                           currentPage = 1;
-                           
-                           document.getElementById('page-info').innerText = '第 1 / ' + totalPages + ' 页';
-                           document.getElementById('prev').disabled = true;
-                           document.getElementById('next').disabled = (totalPages <= 1);
-                           
-                           renderPage(currentPage);
-                       }).catch(function(error) {
-                           console.error('PDF加载错误:', error);
-                           showError(error.message);
-                       });
-                   }
-                   
-                   document.getElementById('prev').addEventListener('click', function() {
-                       if (pdfDoc && currentPage > 1) {
-                           currentPage--;
-                           renderPage(currentPage);
-                       }
-                   });
-                   
-                   document.getElementById('next').addEventListener('click', function() {
-                       if (pdfDoc && currentPage < totalPages) {
-                           currentPage++;
-                           renderPage(currentPage);
-                       }
-                   });
-                   
-                   document.getElementById('go').addEventListener('click', function() {
-                       var pageNum = parseInt(document.getElementById('page-input').value);
-                       if (pdfDoc && pageNum >= 1 && pageNum <= totalPages) {
-                           currentPage = pageNum;
-                           renderPage(currentPage);
-                       }
-                   });
-                   
-                   initPDF();
-               <\/script>
-           </body>
-           </html>
-       `);
-       iframeDoc.close();
-   </script>
+   <div style="background: #f0f7ff; border-left: 4px solid #4285f4; padding: 15px; margin: 20px 0; border-radius: 4px;">
+       <p style="margin: 0 0 10px 0;">
+           <strong>📚 文件信息</strong><br>
+           文件名：C语言程序设计.pdf<br>
+           文件大小：78 MB<br>
+           建议：由于文件较大，在线预览可能需要较长时间，<strong>推荐下载后使用本地PDF阅读器打开</strong>。
+       </p>
+       <p style="margin: 0;">
+           <a href="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/C%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1.pdf" 
+              target="_blank" 
+              style="display: inline-block; background: #4285f4; color: white; padding: 10px 24px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+               📥 立即下载 PDF (78 MB)
+           </a>
+           <span style="margin-left: 15px; color: #666;">右键另存为</span>
+       </p>
+   </div>
+
+.. raw:: html
+
+   <div style="margin: 20px 0;">
+       <iframe src="https://docs.google.com/viewer?url=https://drestryrobot.oss-cn-shanghai.aliyuncs.com/C%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1.pdf&embedded=true" 
+               width="100%" 
+               height="800px" 
+               style="border: 1px solid #ccc; border-radius: 8px;">
+       </iframe>
+       <p style="text-align: center; color: #666; font-size: 12px; margin-top: 5px;">
+           ⚡ 如果预览失败，请直接下载后查看
+       </p>
+   </div>
