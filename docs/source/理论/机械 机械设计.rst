@@ -1,3 +1,11 @@
 机械 机械设计
 ==================
 `点击这里下载 <https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E6%A2%B0%E8%AE%BE%E8%AE%A1.pdf>`_
+
+.. raw:: html
+
+   <iframe src="https://view.xdocin.com/view?src=https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E6%9C%BA%E6%A2%B0%E8%AE%BE%E8%AE%A1.pdf"
+           width="100%" 
+           height="800px" 
+           style="border: 1px solid #ccc; border-radius: 8px;">
+   </iframe>
