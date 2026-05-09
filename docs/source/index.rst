@@ -39,9 +39,9 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 .. raw:: html
 
    <!-- Artalk 评论系统 -->
-   <link href="https://registry.npmmirror.com/artalk/2.9.1/files/dist/Artalk.css" rel="stylesheet">
+   <link href="https://unpkg.com/artalk@2/dist/Artalk.css" rel="stylesheet">
    <div id="Comments"></div>
-   <script src="https://registry.npmmirror.com/artalk/2.9.1/files/dist/Artalk.js"></script>
+   <script src="https://unpkg.com/artalk@2/dist/Artalk.js"></script>
    <script>
      document.addEventListener('DOMContentLoaded', function() {
        if (typeof Artalk !== 'undefined') {
