@@ -42,11 +42,21 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
    <div id="Comments"></div>
    <script src="https://comment.drestryrobot.cn/artalk/Artalk.js"></script>
    <script>
-     new Artalk({
-       el: '#Comments',
-       pageKey: location.pathname,
-       pageTitle: document.title,
-       server: 'https://comment.drestryrobot.cn',
-       site: 'DrestryRobot'
-     })
+     (function() {
+       // 轮询检查 Artalk 是否可用
+       function initArtalk() {
+         if (typeof Artalk !== 'undefined') {
+           new Artalk({
+             el: '#Comments',
+             pageKey: window.location.pathname,
+             pageTitle: document.title,
+             server: 'https://comment.drestryrobot.cn',
+             site: 'DrestryRobot'
+           });
+         } else {
+           setTimeout(initArtalk, 100);
+         }
+       }
+       initArtalk();
+     })();
    </script>
