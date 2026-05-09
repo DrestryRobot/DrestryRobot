@@ -38,6 +38,15 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 -------------
 .. raw:: html
 
-   <!-- 来必力评论区 -->
-   <livere-comment client-id="S3CruF3md6wzLjqPnwxO"></livere-comment>
-   <script type="module" src="https://www.livere.org/livere-widget.js"></script>
+   <link href="https://cdn.jsdelivr.net/npm/artalk@2/dist/Artalk.css" rel="stylesheet">
+   <div id="Comments"></div>
+   <script src="https://cdn.jsdelivr.net/npm/artalk@2/dist/Artalk.js"></script>
+   <script>
+     new Artalk({
+       el: '#Comments',
+       pageKey: window.location.pathname,
+       pageTitle: document.title,
+       server: 'http://115.175.43.254:23366',
+       site: 'DrestryRobot'
+     })
+   </script>
