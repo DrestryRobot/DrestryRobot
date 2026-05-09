@@ -47,5 +47,5 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 .. raw:: html
 
    <!-- 来必力评论区 -->
-   <livere-comment client-id="S3CruF3md6wzLjqPnwxO"></livere-comment>
+   <livere-comment client-id="S3CruF3md6wzLjqPnwxO" theme="light"></livere-comment>
    <script type="module" src="https://www.livere.org/livere-widget.js"></script>
