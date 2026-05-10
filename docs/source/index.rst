@@ -65,35 +65,3 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
        document.head.appendChild(script);
      })();
    </script>
-   
-留言评论
--------------
-.. raw:: html
-
-   <link href="https://comment.drestryrobot.cn/artalk/Artalk.css" rel="stylesheet">
-   <div id="Comments"></div>
-   <script>
-     (function() {
-       var script = document.createElement('script');
-       script.src = 'https://comment.drestryrobot.cn/artalk/Artalk.js';
-       script.onload = function() {
-         // Artalk 是以 ES Module 形式导出的，构造函数在 default 属性中
-         if (window.Artalk && window.Artalk.default) {
-           new window.Artalk.default({
-             el: '#Comments',
-             pageKey: window.location.pathname,
-             pageTitle: document.title,
-             server: 'https://comment.drestryrobot.cn',
-             site: 'DrestryRobot'
-           });
-           console.log('Artalk 初始化成功');
-         } else {
-           console.error('Artalk 加载失败，无法找到构造函数');
-         }
-       };
-       script.onerror = function() {
-         console.error('Artalk.js 文件加载失败');
-       };
-       document.head.appendChild(script);
-     })();
-   </script>
