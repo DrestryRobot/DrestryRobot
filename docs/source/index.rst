@@ -39,26 +39,8 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
     <!-- 引入 marked.js 解析 Markdown -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <!-- 引入 MathJax 3 并配置 -->
-    <script>
-    window.MathJax = {
-        tex: {
-            inlineMath: [['$', '$'], ['\\(', '\\)']],
-            displayMath: [['$$', '$$'], ['\\[', '\\]']],
-            processEscapes: true
-        },
-        options: {
-            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-        },
-        startup: {
-            pageReady: () => {
-                return MathJax.startup.defaultPageReady();
-            }
-        }
-    };
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
-    
+    <!-- 引入 MathJax 渲染公式 -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
     <!-- 引入 highlight.js 代码高亮 -->
     <script src="https://cdn.jsdelivr.net/npm/highlight.js/lib/core.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/highlight.js/lib/languages/python.min.js"></script>
@@ -88,6 +70,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
     
     /* 移动端适配 */
     @media (max-width: 768px) {
+        /* 折叠状态：底部居中显示 */
         .dr-chat-container.dr-collapsed {
             width: auto !important;
             max-width: none !important;
@@ -98,7 +81,9 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             top: auto !important;
             transform: translateX(-50%) !important;
             border-radius: 12px !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2) !important;
         }
+        /* 展开状态：全屏底部弹出 */
         .dr-chat-container:not(.dr-collapsed) {
             width: 100vw !important;
             max-width: 100vw !important;
@@ -113,6 +98,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         .dr-chat-container:not(.dr-collapsed) .dr-chat-body {
             height: calc(80vh - 52px) !important;
         }
+        /* 折叠时隐藏消息区域和输入框 */
         .dr-chat-container.dr-collapsed .dr-chat-body {
             display: none !important;
         }
@@ -131,10 +117,12 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         white-space: nowrap !important;
     }
     
+    /* 折叠时头部圆角保持 */
     .dr-chat-container.dr-collapsed .dr-chat-header {
         border-radius: 12px !important;
     }
     
+    /* 展开时头部圆角只保留顶部 */
     .dr-chat-container:not(.dr-collapsed) .dr-chat-header {
         border-radius: 12px 12px 0 0 !important;
     }
@@ -197,12 +185,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         color: #d73a49 !important;
     }
     
-    /* 公式样式 */
-    .dr-message mjx-container {
-        margin: 8px 0 !important;
-        overflow-x: auto !important;
-    }
-    
     .dr-user {
         background: #1a1a2e !important;
         color: white !important;
@@ -232,6 +214,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         border-radius: 0 0 12px 12px !important;
     }
     
+    /* 输入框样式 */
     .dr-chat-input-area .dr-chat-input,
     #dr-chat-input.dr-chat-input {
         flex: 1 !important;
@@ -285,6 +268,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         transform: rotate(180deg) !important;
     }
     
+    /* 流式输出光标闪烁效果 */
     .dr-typing-cursor {
         display: inline-block;
         width: 2px;
@@ -297,6 +281,12 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
     @keyframes dr-blink {
         0%, 100% { opacity: 1; }
         50% { opacity: 0; }
+    }
+    
+    mjx-container {
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        margin: 8px 0 !important;
     }
     </style>
 
@@ -337,7 +327,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             container.classList.toggle('dr-collapsed');
         });
         
-        // 配置 marked
+        // 配置 marked 支持代码高亮
         marked.setOptions({
             highlight: function(code, lang) {
                 if (lang && hljs.getLanguage(lang)) {
@@ -349,81 +339,35 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             }
         });
         
-        // 将 Markdown 转换为 HTML，不转义公式
         function markdownToHtml(text) {
             if (!text) return '';
             
-            // ========== 修复 DeepSeek 的 FORMULA_X 占位符 ==========
-            // 定义常用公式映射表
-            const formulaMap = {
-                0: '$$e(t) = r(t) - y(t)$$',
-                1: '$$u(t) = K_p e(t) + K_i \\int_0^t e(\\tau) d\\tau + K_d \\frac{de(t)}{dt}$$',
-                2: '$$\\tau = K_p (\\theta_d - \\theta) + K_d (\\dot{\\theta}_d - \\dot{\\theta})$$',
-                3: '$$\\mathbf{F} = K_p \\mathbf{e}_p + K_i \\int \\mathbf{e}_p dt + K_d \\dot{\\mathbf{e}}_p$$',
-                4: '$$\\frac{K_d s}{\\tau_f s + 1}$$',
-                5: '$$r(t)$$',
-                6: '$$y(t)$$',
-                7: '$$u(t)$$',
-                8: '$$K_p$$',
-                9: '$$K_i$$',
-                10: '$$K_d$$',
-                11: '$$K_p e(t)$$',
-                12: '$$K_i \\int e(t) dt$$',
-                13: '$$K_d \\frac{de(t)}{dt}$$',
-                14: '$$\\theta_d$$',
-                15: '$$\\theta$$',
-                16: '$$\\tau$$',
-                17: '$$\\mathbf{e}_p$$',
-                18: '$$\\mathbf{F}$$',
-                19: '$$K_u$$',
-                20: '$$T_u$$'
-            };
+            const latexBlocks = [];
+            const latexInlines = [];
             
-            // 替换所有 FORMULA_X 占位符
-            text = text.replace(/FORMULA_(\d+)/g, (match, num) => {
-                const idx = parseInt(num, 10);
-                return formulaMap[idx] || `$$\\text{Formula}_{${idx}}$$`;
-            });
-            // ========== 修复结束 ==========
-            
-            // 保护公式不被 marked 破坏
-            const formulas = [];
-            
-            // 保护块级公式 $$...$$
-            let processed = text.replace(/\$\$([\s\S]*?)\$\$/g, (match, formula) => {
-                const idx = formulas.length;
-                formulas.push({ type: 'display', content: formula });
-                return `__FORMULA_${idx}__`;
+            text = text.replace(/\$\$([\s\S]*?)\$\$/g, (match, formula) => {
+                const idx = latexBlocks.length;
+                latexBlocks.push(formula);
+                return `@@LATEX_BLOCK_${idx}@@`;
             });
             
-            // 保护行内公式 $...$
-            processed = processed.replace(/\$([^\$\n]+?)\$/g, (match, formula) => {
-                const idx = formulas.length;
-                formulas.push({ type: 'inline', content: formula });
-                return `__FORMULA_${idx}__`;
+            text = text.replace(/\$([^\$\n]+?)\$/g, (match, formula) => {
+                const idx = latexInlines.length;
+                latexInlines.push(formula);
+                return `@@LATEX_INLINE_${idx}@@`;
             });
             
-            // 解析 Markdown
-            let html = marked.parse(processed, { mangle: false, headerIds: false });
+            let html = marked.parse(text, { mangle: false, headerIds: false });
             
-            // 恢复公式
-            formulas.forEach((formula, idx) => {
-                const placeholder = `__FORMULA_${idx}__`;
-                if (formula.type === 'display') {
-                    html = html.replace(placeholder, `$$${formula.content}$$`);
-                } else {
-                    html = html.replace(placeholder, `$${formula.content}$`);
-                }
+            html = html.replace(/@@LATEX_BLOCK_(\d+)@@/g, (match, idx) => {
+                return `$$${latexBlocks[parseInt(idx)]}$$`;
+            });
+            
+            html = html.replace(/@@LATEX_INLINE_(\d+)@@/g, (match, idx) => {
+                return `$${latexInlines[parseInt(idx)]}$`;
             });
             
             return html;
-        }
-        
-        // 强制渲染公式
-        function renderMath(element) {
-            if (window.MathJax && element) {
-                MathJax.typesetPromise([element]).catch(err => console.warn('MathJax error:', err));
-            }
         }
         
         function addStreamingMessage() {
@@ -441,21 +385,15 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             let rendered = markdownToHtml(streamingContent);
             currentStreamingDiv.innerHTML = rendered + '<span class="dr-typing-cursor"></span>';
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
-            // 实时渲染公式
-            if (window.MathJax && currentStreamingDiv) {
-                MathJax.typesetPromise([currentStreamingDiv]).catch(err => console.warn('MathJax error:', err));
-            }
         }
         
         function finishStreamingMessage() {
             if (!currentStreamingDiv) return;
             let rendered = markdownToHtml(streamingContent);
             currentStreamingDiv.innerHTML = rendered;
-            // 渲染公式
             if (window.MathJax) {
                 MathJax.typesetPromise([currentStreamingDiv]).catch(err => console.warn('MathJax error:', err));
             }
-            // 代码高亮
             if (typeof hljs !== 'undefined') {
                 currentStreamingDiv.querySelectorAll('pre code').forEach((block) => {
                     hljs.highlightElement(block);
@@ -473,9 +411,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 div.textContent = content;
             } else {
                 div.innerHTML = markdownToHtml(content);
-                // 渲染公式
-                renderMath(div);
-                // 代码高亮
                 if (typeof hljs !== 'undefined') {
                     div.querySelectorAll('pre code').forEach((block) => {
                         hljs.highlightElement(block);
@@ -485,6 +420,10 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             
             messagesDiv.appendChild(div);
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            
+            if (role === 'bot' && window.MathJax) {
+                MathJax.typesetPromise([div]).catch(err => console.warn('MathJax error:', err));
+            }
         }
         
         async function sendMessage() {
