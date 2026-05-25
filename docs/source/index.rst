@@ -37,9 +37,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
 .. raw:: html
 
-    <!-- 引入 marked.js 解析 Markdown -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <!-- 引入 MathJax 渲染公式 -->
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
     <style>
@@ -47,7 +45,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         position: fixed;
         bottom: 20px;
         right: 20px;
-        width: 380px;
+        width: 400px;
         max-width: 90vw;
         background: white;
         border-radius: 12px;
@@ -107,6 +105,9 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         text-align: right;
         border-bottom-right-radius: 4px;
     }
+    .dr-user p, .dr-user ul, .dr-user li {
+        color: white;
+    }
     .dr-bot {
         background: #e8e8ec;
         color: #1a1a2e;
@@ -147,7 +148,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
     .dr-collapsed .dr-chat-body {
         display: none;
     }
-    /* MathJax 渲染的公式样式 */
     mjx-container {
         overflow-x: auto;
         overflow-y: hidden;
@@ -190,39 +190,54 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             container.classList.toggle('dr-collapsed');
         });
         
-        // 将 Markdown 转换为 HTML，同时保留 LaTeX 公式
+        // 智能公式转换：独立的公式行转为 $$...$$，行内保持 $...$
+        function convertFormulas(text) {
+            // 将独立成行的 $...$ 转换为 $$...$$
+            // 匹配行首空格 + $内容$ + 行尾，且前后没有其他字符
+            text = text.replace(/^\s*\$([^$]+?)\$\s*$/gm, (match, formula) => {
+                // 避免转换已经包含 $$ 的
+                if (formula.trim().startsWith('$')) return match;
+                return `$$${formula}$$`;
+            });
+            return text;
+        }
+        
+        // 将 Markdown 转换为 HTML，正确保留公式
         function markdownToHtml(text) {
             if (!text) return '';
             
-            // 临时保护 LaTeX 公式，避免被 marked 误解析
-            const latexBlocks = [];
-            const latexInlines = [];
+            // 预处理：转换独立行公式
+            text = convertFormulas(text);
             
-            // 保护块级公式 \[ ... \]
-            text = text.replace(/\\\[([\s\S]*?)\\\]/g, (match, formula) => {
-                const idx = latexBlocks.length;
-                latexBlocks.push(formula);
-                return `@@LATEX_BLOCK_${idx}@@`;
+            // 保护各种公式格式，避免被 marked 破坏
+            const blocks = [];
+            const inlines = [];
+            
+            // 保护块级公式 $$...$$
+            text = text.replace(/\$\$([\s\S]*?)\$\$/g, (match, formula) => {
+                const idx = blocks.length;
+                blocks.push(formula);
+                return `@@MATH_BLOCK_${idx}@@`;
             });
             
-            // 保护行内公式 \( ... \)
-            text = text.replace(/\\\(([\s\S]*?)\\\)/g, (match, formula) => {
-                const idx = latexInlines.length;
-                latexInlines.push(formula);
-                return `@@LATEX_INLINE_${idx}@@`;
+            // 保护行内公式 $...$（但不保护已经处理成块级的）
+            text = text.replace(/(?<!\$)\$(?!\$)([^$]+?)\$(?!\$)/g, (match, formula) => {
+                const idx = inlines.length;
+                inlines.push(formula);
+                return `@@MATH_INLINE_${idx}@@`;
             });
             
             // 使用 marked 解析 Markdown
             let html = marked.parse(text, { mangle: false, headerIds: false });
             
             // 恢复块级公式
-            html = html.replace(/@@LATEX_BLOCK_(\d+)@@/g, (match, idx) => {
-                return `\\[${latexBlocks[parseInt(idx)]}\\]`;
+            html = html.replace(/@@MATH_BLOCK_(\d+)@@/g, (match, idx) => {
+                return `$$${blocks[parseInt(idx)]}$$`;
             });
             
             // 恢复行内公式
-            html = html.replace(/@@LATEX_INLINE_(\d+)@@/g, (match, idx) => {
-                return `\\(${latexInlines[parseInt(idx)]}\\)`;
+            html = html.replace(/@@MATH_INLINE_(\d+)@@/g, (match, idx) => {
+                return `$${inlines[parseInt(idx)]}$`;
             });
             
             return html;
@@ -233,17 +248,14 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             div.className = `dr-message dr-${role}`;
             
             if (role === 'user') {
-                // 用户消息直接显示纯文本
                 div.textContent = content;
             } else {
-                // 机器人消息：Markdown -> HTML
                 div.innerHTML = markdownToHtml(content);
             }
             
             messagesDiv.appendChild(div);
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
             
-            // 触发 MathJax 渲染新公式
             if (role === 'bot' && window.MathJax) {
                 MathJax.typesetPromise([div]).catch(err => console.warn('MathJax error:', err));
             }
@@ -275,7 +287,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                         messages: [
                             { 
                                 role: 'system', 
-                                content: '你是 DrestryRobot 知识库的机器人专家。回答应严谨、深刻、偏重机器人学理论（运动学/动力学/控制/感知）。使用 Markdown 格式组织回答：用 ## 表示小标题，用 - 表示列表，用 $...$ 或 $$...$$ 表示公式（不要用 \\( 和 \\)，直接用 $ 或 $$）。段落之间用空行分隔。'
+                                content: '你是 DrestryRobot 知识库的机器人专家。回答应严谨、深刻、偏重机器人学理论（运动学/动力学/控制/感知）。使用 Markdown 格式：用 ## 表示小标题，用 - 表示列表，用 $...$ 表示行内公式，用 $$...$$ 表示独立成行的公式。段落之间用空行分隔。'
                             },
                             { role: 'user', content: message }
                         ],
