@@ -50,7 +50,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js/styles/github-dark.css">
 
     <style>
-    /* 基础容器样式 */
+    /* 基础容器样式 - 桌面端右下角 */
     .dr-chat-container {
         position: fixed !important;
         bottom: 20px !important;
@@ -68,19 +68,39 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         line-height: 1.6 !important;
     }
     
-    /* 移动端适配：小屏幕时宽度100%，底部边距调整 */
+    /* 移动端适配 */
     @media (max-width: 768px) {
-        .dr-chat-container {
+        /* 折叠状态：底部居中显示 */
+        .dr-chat-container.dr-collapsed {
+            width: auto !important;
+            max-width: none !important;
+            min-width: 160px !important;
+            bottom: 20px !important;
+            left: 50% !important;
+            right: auto !important;
+            top: auto !important;
+            transform: translateX(-50%) !important;
+            border-radius: 12px !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2) !important;
+        }
+        /* 展开状态：全屏底部弹出 */
+        .dr-chat-container:not(.dr-collapsed) {
             width: 100vw !important;
             max-width: 100vw !important;
-            bottom: 0 !important;
-            right: 0 !important;
-            border-radius: 12px 12px 0 0 !important;
             height: 80vh !important;
-            max-height: 80vh !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            top: auto !important;
+            transform: none !important;
+            border-radius: 12px 12px 0 0 !important;
         }
-        .dr-chat-body {
+        .dr-chat-container:not(.dr-collapsed) .dr-chat-body {
             height: calc(80vh - 52px) !important;
+        }
+        /* 折叠时隐藏消息区域和输入框 */
+        .dr-chat-container.dr-collapsed .dr-chat-body {
+            display: none !important;
         }
     }
     
@@ -94,13 +114,17 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         display: flex !important;
         justify-content: space-between !important;
         user-select: none !important;
+        white-space: nowrap !important;
     }
     
-    /* 移动端头部圆角调整 */
-    @media (max-width: 768px) {
-        .dr-chat-header {
-            border-radius: 12px 12px 0 0 !important;
-        }
+    /* 折叠时头部圆角保持 */
+    .dr-chat-container.dr-collapsed .dr-chat-header {
+        border-radius: 12px !important;
+    }
+    
+    /* 展开时头部圆角只保留顶部 */
+    .dr-chat-container:not(.dr-collapsed) .dr-chat-header {
+        border-radius: 12px 12px 0 0 !important;
     }
     
     .dr-chat-body {
@@ -315,7 +339,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             }
         });
         
-        // 将 Markdown 转换为 HTML
         function markdownToHtml(text) {
             if (!text) return '';
             
@@ -347,7 +370,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             return html;
         }
         
-        // 流式添加内容（打字机效果）
         function addStreamingMessage() {
             currentStreamingDiv = document.createElement('div');
             currentStreamingDiv.className = 'dr-message dr-bot';
@@ -360,23 +382,18 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         function updateStreamingContent(newChunk) {
             if (!currentStreamingDiv) return;
             streamingContent += newChunk;
-            // 实时渲染 Markdown
             let rendered = markdownToHtml(streamingContent);
-            // 添加光标
             currentStreamingDiv.innerHTML = rendered + '<span class="dr-typing-cursor"></span>';
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
         }
         
         function finishStreamingMessage() {
             if (!currentStreamingDiv) return;
-            // 移除光标，最终渲染
             let rendered = markdownToHtml(streamingContent);
             currentStreamingDiv.innerHTML = rendered;
-            // 触发 MathJax 渲染
             if (window.MathJax) {
                 MathJax.typesetPromise([currentStreamingDiv]).catch(err => console.warn('MathJax error:', err));
             }
-            // 触发代码高亮
             if (typeof hljs !== 'undefined') {
                 currentStreamingDiv.querySelectorAll('pre code').forEach((block) => {
                     hljs.highlightElement(block);
@@ -386,12 +403,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             streamingContent = '';
         }
         
-        function addMessage(role, content, isStreaming = false) {
-            if (role === 'bot' && isStreaming) {
-                addStreamingMessage();
-                return;
-            }
-            
+        function addMessage(role, content) {
             const div = document.createElement('div');
             div.className = `dr-message dr-${role}`;
             
@@ -399,7 +411,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 div.textContent = content;
             } else {
                 div.innerHTML = markdownToHtml(content);
-                // 触发代码高亮
                 if (typeof hljs !== 'undefined') {
                     div.querySelectorAll('pre code').forEach((block) => {
                         hljs.highlightElement(block);
@@ -423,8 +434,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             input.value = '';
             
             isLoading = true;
-            
-            // 创建流式消息占位
             addStreamingMessage();
             
             try {
@@ -444,7 +453,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                             { role: 'user', content: message }
                         ],
                         temperature: 0.3,
-                        stream: true  // 启用流式输出
+                        stream: true
                     })
                 });
                 
