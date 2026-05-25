@@ -36,183 +36,104 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
 .. raw:: html
 
-    <style>
-    .dr-chat-container {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 360px;
-        max-width: 90vw;
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        font-family: system-ui, sans-serif;
-        z-index: 9999;
-        display: flex;
-        flex-direction: column;
-    }
-    .dr-chat-header {
-        background: #1a1a2e;
-        color: white;
-        padding: 12px 16px;
-        border-radius: 12px 12px 0 0;
-        font-weight: bold;
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-    }
-    .dr-chat-body {
-        display: flex;
-        flex-direction: column;
-        height: 400px;
-    }
-    .dr-chat-messages {
-        flex: 1;
-        overflow-y: auto;
-        padding: 12px;
-        background: #f5f5f5;
-        font-size: 14px;
-    }
-    .dr-message {
-        margin-bottom: 12px;
-        padding: 8px 12px;
-        border-radius: 8px;
-        max-width: 85%;
-        word-wrap: break-word;
-    }
-    .dr-user {
-        background: #1a1a2e;
-        color: white;
-        margin-left: auto;
-        text-align: right;
-    }
-    .dr-bot {
-        background: #e0e0e0;
-        color: #1a1a2e;
-        margin-right: auto;
-    }
-    .dr-loading {
-        color: #666;
-        font-style: italic;
-        padding: 8px 12px;
-    }
-    .dr-chat-input-area {
-        display: flex;
-        padding: 12px;
-        gap: 8px;
-        border-top: 1px solid #ddd;
-        background: white;
-        border-radius: 0 0 12px 12px;
-    }
-    .dr-chat-input {
-        flex: 1;
-        padding: 8px 12px;
-        border: 1px solid #ccc;
-        border-radius: 20px;
-        outline: none;
-    }
-    .dr-chat-send {
-        background: #1a1a2e;
-        color: white;
-        border: none;
-        border-radius: 20px;
-        padding: 8px 16px;
-        cursor: pointer;
-    }
-    .dr-collapsed .dr-chat-body {
-        display: none;
-    }
-    </style>
-
-    <div id="dr-chat-widget" class="dr-chat-container dr-collapsed">
-        <div class="dr-chat-header">
-            <span>🤖 DrestryRobot 智能助手</span>
-            <span>▼</span>
+    <div id="dr-chat" style="position:fixed; bottom:20px; right:20px; width:400px; background:#fff; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.15); z-index:9999; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size:14px; line-height:1.5;">
+        <div style="background:#1a1a2e; color:white; padding:12px 16px; border-radius:12px 12px 0 0; cursor:pointer; font-weight:600;" onclick="toggleChat()">
+            🤖 DrestryRobot 助手 <span style="float:right">▼</span>
         </div>
-        <div class="dr-chat-body">
-            <div class="dr-chat-messages">
-                <div class="dr-message dr-bot">你好，我是 DrestryRobot 助手。请提出机器人相关问题。</div>
-            </div>
-            <div class="dr-chat-input-area">
-                <input type="text" class="dr-chat-input" placeholder="问点什么...">
-                <button class="dr-chat-send">发送</button>
+        <div id="dr-body" style="display:none; flex-direction:column;">
+            <div id="dr-msgs" style="height:400px; overflow-y:auto; padding:16px; background:#fafafa;"></div>
+            <div style="display:flex; padding:12px 16px; gap:10px; border-top:1px solid #e0e0e0; background:white;">
+                <input id="dr-input" type="text" style="flex:1; padding:10px 14px; border:1px solid #ccc; border-radius:24px; outline:none; font-size:14px;" placeholder="输入问题...">
+                <button id="dr-send" style="background:#1a1a2e; color:white; border:none; border-radius:24px; padding:8px 20px; cursor:pointer;">发送</button>
             </div>
         </div>
     </div>
 
     <script>
-    (function() {
-        const DEEPSEEK_KEY = 'sk-c09347c4e827479a842a21acf5771103';
-        
-        // 防止重复加载
-        if (window.__drestryrobotChatLoaded) return;
-        window.__drestryrobotChatLoaded = true;
-        
-        const container = document.getElementById('dr-chat-widget');
-        const header = container.querySelector('.dr-chat-header');
-        const messagesDiv = container.querySelector('.dr-chat-messages');
-        const input = container.querySelector('.dr-chat-input');
-        const sendBtn = container.querySelector('.dr-chat-send');
-        
-        let isLoading = false;
-        
-        header.addEventListener('click', () => {
-            container.classList.toggle('dr-collapsed');
-        });
-        
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
+        function toggleChat() {
+            const body = document.getElementById('dr-body');
+            body.style.display = body.style.display === 'none' ? 'flex' : 'none';
         }
-        
-        async function sendMessage() {
-            const message = input.value.trim();
-            if (!message || isLoading) return;
+
+        const KEY = 'sk-c09347c4e827479a842a21acf5771103';
+        const msgs = document.getElementById('dr-msgs');
+        const input = document.getElementById('dr-input');
+        const send = document.getElementById('dr-send');
+
+        function addMsg(role, text) {
+            const div = document.createElement('div');
+            div.style.marginBottom = '12px';
+            div.style.padding = '10px 14px';
+            div.style.borderRadius = '12px';
+            div.style.maxWidth = '85%';
+            div.style.wordWrap = 'break-word';
             
-            messagesDiv.innerHTML += `<div class="dr-message dr-user">${escapeHtml(message)}</div>`;
+            if (role === 'user') {
+                div.style.background = '#1a1a2e';
+                div.style.color = 'white';
+                div.style.marginLeft = 'auto';
+                div.style.borderBottomRightRadius = '4px';
+                div.innerText = text;
+            } else {
+                div.style.background = '#e8e8ec';
+                div.style.color = '#1a1a2e';
+                div.style.marginRight = 'auto';
+                div.style.borderBottomLeftRadius = '4px';
+                // 机器人消息：用 innerHTML 并触发 MathJax 渲染
+                div.innerHTML = text;
+            }
+            msgs.appendChild(div);
+            
+            // 如果是机器人消息，让 MathJax 渲染其中的公式
+            if (role === 'bot' && window.MathJax) {
+                MathJax.typesetPromise([div]).catch(err => console.log(err));
+            }
+            
+            msgs.scrollTop = msgs.scrollHeight;
+        }
+
+        async function sendMsg() {
+            const q = input.value.trim();
+            if (!q) return;
+            addMsg('user', q);
             input.value = '';
-            
+
             const loadingDiv = document.createElement('div');
-            loadingDiv.className = 'dr-loading';
+            loadingDiv.style.marginBottom = '12px';
+            loadingDiv.style.padding = '10px 14px';
+            loadingDiv.style.color = '#888';
+            loadingDiv.style.fontStyle = 'italic';
             loadingDiv.innerText = '思考中...';
-            messagesDiv.appendChild(loadingDiv);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
-            isLoading = true;
-            
+            msgs.appendChild(loadingDiv);
+            msgs.scrollTop = msgs.scrollHeight;
+
             try {
-                const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+                const res = await fetch('https://api.deepseek.com/v1/chat/completions', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${DEEPSEEK_KEY}`
-                    },
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${KEY}` },
                     body: JSON.stringify({
                         model: 'deepseek-chat',
-                        messages: [
-                            { role: 'system', content: '你是 DrestryRobot 知识库的机器人专家。回答应严谨、深刻、偏重机器人学理论（运动学/动力学/控制/感知），不用代码但可用公式，避免浅显解释。' },
-                            { role: 'user', content: message }
-                        ],
-                        temperature: 0.3
+                        messages: [{ role: 'user', content: q }]
                     })
                 });
-                
-                const data = await response.json();
+                const data = await res.json();
                 const reply = data.choices[0].message.content;
-                
                 loadingDiv.remove();
-                messagesDiv.innerHTML += `<div class="dr-message dr-bot">${escapeHtml(reply)}</div>`;
-                messagesDiv.scrollTop = messagesDiv.scrollHeight;
-            } catch (error) {
+                addMsg('bot', reply);
+            } catch(e) {
                 loadingDiv.remove();
-                messagesDiv.innerHTML += `<div class="dr-message dr-bot">❌ 调用失败：${error.message}</div>`;
+                addMsg('bot', '调用失败：' + e.message);
             }
-            isLoading = false;
         }
+
+        send.onclick = sendMsg;
+        input.onkeypress = (e) => { if (e.key === 'Enter') sendMsg(); };
         
-        sendBtn.addEventListener('click', sendMessage);
-        input.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
-        });
-    })();
+        // 初始欢迎消息
+        setTimeout(() => {
+            if (msgs.children.length === 0) {
+                addMsg('bot', '你好，我是 DrestryRobot 助手。请提出机器人相关问题。');
+            }
+        }, 100);
     </script>
+
