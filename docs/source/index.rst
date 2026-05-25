@@ -190,54 +190,38 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             container.classList.toggle('dr-collapsed');
         });
         
-        // 智能公式转换：独立的公式行转为 $$...$$，行内保持 $...$
-        function convertFormulas(text) {
-            // 将独立成行的 $...$ 转换为 $$...$$
-            // 匹配行首空格 + $内容$ + 行尾，且前后没有其他字符
-            text = text.replace(/^\s*\$([^$]+?)\$\s*$/gm, (match, formula) => {
-                // 避免转换已经包含 $$ 的
-                if (formula.trim().startsWith('$')) return match;
-                return `$$${formula}$$`;
-            });
-            return text;
-        }
-        
-        // 将 Markdown 转换为 HTML，正确保留公式
+        // 将 Markdown 转换为 HTML，正确保留所有公式
         function markdownToHtml(text) {
             if (!text) return '';
             
-            // 预处理：转换独立行公式
-            text = convertFormulas(text);
+            // 步骤1: 保护所有公式（包括 $...$ 和 $$...$$），避免被 marked 破坏
+            const formulas = [];
             
-            // 保护各种公式格式，避免被 marked 破坏
-            const blocks = [];
-            const inlines = [];
-            
-            // 保护块级公式 $$...$$
+            // 匹配块级公式 $$...$$
             text = text.replace(/\$\$([\s\S]*?)\$\$/g, (match, formula) => {
-                const idx = blocks.length;
-                blocks.push(formula);
-                return `@@MATH_BLOCK_${idx}@@`;
+                const idx = formulas.length;
+                formulas.push({ type: 'block', content: formula });
+                return `<<<FORMULA_${idx}>>>`;
             });
             
-            // 保护行内公式 $...$（但不保护已经处理成块级的）
-            text = text.replace(/(?<!\$)\$(?!\$)([^$]+?)\$(?!\$)/g, (match, formula) => {
-                const idx = inlines.length;
-                inlines.push(formula);
-                return `@@MATH_INLINE_${idx}@@`;
+            // 匹配行内公式 $...$（不跨行）
+            text = text.replace(/\$([^\$\n]+?)\$/g, (match, formula) => {
+                const idx = formulas.length;
+                formulas.push({ type: 'inline', content: formula });
+                return `<<<FORMULA_${idx}>>>`;
             });
             
-            // 使用 marked 解析 Markdown
+            // 步骤2: 使用 marked 解析 Markdown
             let html = marked.parse(text, { mangle: false, headerIds: false });
             
-            // 恢复块级公式
-            html = html.replace(/@@MATH_BLOCK_(\d+)@@/g, (match, idx) => {
-                return `$$${blocks[parseInt(idx)]}$$`;
-            });
-            
-            // 恢复行内公式
-            html = html.replace(/@@MATH_INLINE_(\d+)@@/g, (match, idx) => {
-                return `$${inlines[parseInt(idx)]}$`;
+            // 步骤3: 恢复公式
+            html = html.replace(/<<<FORMULA_(\d+)>>>/g, (match, idx) => {
+                const formula = formulas[parseInt(idx)];
+                if (formula.type === 'block') {
+                    return `$$${formula.content}$$`;
+                } else {
+                    return `$${formula.content}$`;
+                }
             });
             
             return html;
