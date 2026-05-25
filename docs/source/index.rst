@@ -44,148 +44,156 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
     <style>
     .dr-chat-container {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 400px;
-        max-width: 90vw;
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        z-index: 9999;
-        display: flex;
-        flex-direction: column;
-        font-size: 14px;
-        line-height: 1.6;
+        position: fixed !important;
+        bottom: 20px !important;
+        right: 20px !important;
+        width: 400px !important;
+        max-width: 90vw !important;
+        background: white !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2) !important;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+        z-index: 9999 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        font-size: 14px !important;
+        line-height: 1.6 !important;
     }
     .dr-chat-header {
-        background: #1a1a2e;
-        color: white;
-        padding: 12px 16px;
-        border-radius: 12px 12px 0 0;
-        font-weight: bold;
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-        user-select: none;
+        background: #1a1a2e !important;
+        color: white !important;
+        padding: 12px 16px !important;
+        border-radius: 12px 12px 0 0 !important;
+        font-weight: bold !important;
+        cursor: pointer !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        user-select: none !important;
     }
     .dr-chat-body {
-        display: flex;
-        flex-direction: column;
-        height: 480px;
+        display: flex !important;
+        flex-direction: column !important;
+        height: 480px !important;
     }
     .dr-chat-messages {
-        flex: 1;
-        overflow-y: auto;
-        padding: 16px;
-        background: #fafafa;
-        font-size: 14px;
-        line-height: 1.6;
+        flex: 1 !important;
+        overflow-y: auto !important;
+        padding: 16px !important;
+        background: #fafafa !important;
+        font-size: 14px !important;
+        line-height: 1.6 !important;
     }
     .dr-message {
-        margin-bottom: 16px;
-        padding: 10px 14px;
-        border-radius: 12px;
-        max-width: 85%;
-        word-wrap: break-word;
-        font-size: 14px;
-        line-height: 1.6;
+        margin-bottom: 16px !important;
+        padding: 10px 14px !important;
+        border-radius: 12px !important;
+        max-width: 85% !important;
+        word-wrap: break-word !important;
+        font-size: 14px !important;
+        line-height: 1.6 !important;
     }
     .dr-message p {
-        margin: 0 0 8px 0;
+        margin: 0 0 8px 0 !important;
     }
     .dr-message p:last-child {
-        margin-bottom: 0;
+        margin-bottom: 0 !important;
     }
     .dr-message ul, .dr-message ol {
-        margin: 8px 0;
-        padding-left: 20px;
+        margin: 8px 0 !important;
+        padding-left: 20px !important;
     }
     .dr-message li {
-        margin: 4px 0;
+        margin: 4px 0 !important;
     }
     .dr-user {
-        background: #1a1a2e;
-        color: white;
-        margin-left: auto;
-        text-align: right;
-        border-bottom-right-radius: 4px;
+        background: #1a1a2e !important;
+        color: white !important;
+        margin-left: auto !important;
+        text-align: right !important;
+        border-bottom-right-radius: 4px !important;
     }
     .dr-bot {
-        background: #e8e8ec;
-        color: #1a1a2e;
-        margin-right: auto;
-        border-bottom-left-radius: 4px;
+        background: #e8e8ec !important;
+        color: #1a1a2e !important;
+        margin-right: auto !important;
+        border-bottom-left-radius: 4px !important;
     }
     .dr-loading {
-        color: #888;
-        font-style: italic;
-        padding: 10px 14px;
-        margin-bottom: 16px;
-        font-size: 13px;
+        color: #888 !important;
+        font-style: italic !important;
+        padding: 10px 14px !important;
+        margin-bottom: 16px !important;
+        font-size: 13px !important;
     }
     .dr-chat-input-area {
-        display: flex;
-        padding: 12px 16px;
-        gap: 10px;
-        border-top: 1px solid #e0e0e0;
-        background: white;
-        border-radius: 0 0 12px 12px;
+        display: flex !important;
+        padding: 12px 16px !important;
+        gap: 10px !important;
+        border-top: 1px solid #e0e0e0 !important;
+        background: white !important;
+        border-radius: 0 0 12px 12px !important;
     }
-    .dr-chat-input {
-        flex: 1;
-        padding: 12px 16px;
-        border: 1px solid #d0d0d0;
-        border-radius: 28px;
-        outline: none;
-        font-size: 15px;
-        font-family: inherit;
-        line-height: 1.4;
-        transition: border-color 0.2s, box-shadow 0.2s;
-        background: #fefefe;
+    /* 输入框样式 - 加强优先级 */
+    .dr-chat-input-area .dr-chat-input,
+    div.dr-chat-input-area input.dr-chat-input,
+    #dr-chat-input.dr-chat-input {
+        flex: 1 !important;
+        padding: 12px 16px !important;
+        border: 1px solid #ccc !important;
+        border-radius: 28px !important;
+        outline: none !important;
+        font-size: 15px !important;
+        font-family: inherit !important;
+        line-height: 1.4 !important;
+        background: white !important;
+        box-sizing: border-box !important;
+        height: auto !important;
+        min-height: 44px !important;
     }
-    .dr-chat-input:focus {
-        border-color: #1a1a2e;
-        box-shadow: 0 0 0 3px rgba(26, 26, 46, 0.1);
+    .dr-chat-input-area .dr-chat-input:focus,
+    #dr-chat-input.dr-chat-input:focus {
+        border-color: #1a1a2e !important;
+        box-shadow: 0 0 0 2px rgba(26, 26, 46, 0.2) !important;
     }
-    .dr-chat-input::placeholder {
-        color: #aaa;
-        font-size: 14px;
+    .dr-chat-input-area .dr-chat-input::placeholder {
+        color: #aaa !important;
+        font-size: 14px !important;
     }
-    .dr-chat-send {
-        background: #1a1a2e;
-        color: white;
-        border: none;
-        border-radius: 28px;
-        padding: 0 22px;
-        cursor: pointer;
-        font-size: 14px;
-        font-weight: 500;
-        font-family: inherit;
-        transition: background 0.2s, transform 0.1s;
+    /* 发送按钮样式 */
+    .dr-chat-input-area .dr-chat-send,
+    #dr-chat-send.dr-chat-send {
+        background: #1a1a2e !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 28px !important;
+        padding: 0 22px !important;
+        cursor: pointer !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        font-family: inherit !important;
+        min-height: 44px !important;
+        transition: background 0.2s !important;
     }
-    .dr-chat-send:hover {
-        background: #2a2a3e;
+    .dr-chat-input-area .dr-chat-send:hover {
+        background: #2a2a3e !important;
     }
-    .dr-chat-send:active {
-        transform: scale(0.97);
+    .dr-chat-input-area .dr-chat-send:active {
+        transform: scale(0.97) !important;
     }
     .dr-collapsed .dr-chat-body {
-        display: none;
-    }
-    /* MathJax 渲染的公式样式 */
-    mjx-container {
-        overflow-x: auto;
-        overflow-y: hidden;
-        margin: 8px 0;
+        display: none !important;
     }
     .dr-arrow {
-        transition: transform 0.2s ease;
-        display: inline-block;
+        transition: transform 0.2s ease !important;
+        display: inline-block !important;
     }
     .dr-collapsed .dr-arrow {
-        transform: rotate(180deg);
+        transform: rotate(180deg) !important;
+    }
+    mjx-container {
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        margin: 8px 0 !important;
     }
     </style>
 
@@ -214,7 +222,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         
         const container = document.getElementById('dr-chat-widget');
         const header = container.querySelector('.dr-chat-header');
-        const arrow = container.querySelector('.dr-arrow');
         const messagesDiv = document.getElementById('dr-chat-messages');
         const input = document.getElementById('dr-chat-input');
         const sendBtn = document.getElementById('dr-chat-send');
@@ -225,37 +232,30 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             container.classList.toggle('dr-collapsed');
         });
         
-        // 将 Markdown 转换为 HTML，同时保留 LaTeX 公式
         function markdownToHtml(text) {
             if (!text) return '';
             
-            // 临时保护 LaTeX 公式，避免被 marked 误解析
             const latexBlocks = [];
             const latexInlines = [];
             
-            // 保护 $$...$$ 块级公式
             text = text.replace(/\$\$([\s\S]*?)\$\$/g, (match, formula) => {
                 const idx = latexBlocks.length;
                 latexBlocks.push(formula);
                 return `@@LATEX_BLOCK_${idx}@@`;
             });
             
-            // 保护 $...$ 行内公式
             text = text.replace(/\$([^\$\n]+?)\$/g, (match, formula) => {
                 const idx = latexInlines.length;
                 latexInlines.push(formula);
                 return `@@LATEX_INLINE_${idx}@@`;
             });
             
-            // 使用 marked 解析 Markdown
             let html = marked.parse(text, { mangle: false, headerIds: false });
             
-            // 恢复块级公式
             html = html.replace(/@@LATEX_BLOCK_(\d+)@@/g, (match, idx) => {
                 return `$$${latexBlocks[parseInt(idx)]}$$`;
             });
             
-            // 恢复行内公式
             html = html.replace(/@@LATEX_INLINE_(\d+)@@/g, (match, idx) => {
                 return `$${latexInlines[parseInt(idx)]}$`;
             });
@@ -276,7 +276,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             messagesDiv.appendChild(div);
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
             
-            // 触发 MathJax 渲染新公式
             if (role === 'bot' && window.MathJax) {
                 MathJax.typesetPromise([div]).catch(err => console.warn('MathJax error:', err));
             }
@@ -288,7 +287,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             
             addMessage('user', message);
             input.value = '';
-            input.style.height = 'auto';
             
             const loadingDiv = document.createElement('div');
             loadingDiv.className = 'dr-loading';
@@ -330,16 +328,10 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         
         sendBtn.addEventListener('click', sendMessage);
         input.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
+            if (e.key === 'Enter') {
                 e.preventDefault();
                 sendMessage();
             }
-        });
-        
-        // 自动调整输入框高度（可选）
-        input.addEventListener('input', function() {
-            this.style.height = 'auto';
-            this.style.height = Math.min(this.scrollHeight, 100) + 'px';
         });
     })();
     </script>
