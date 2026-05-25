@@ -55,7 +55,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         display: flex;
         flex-direction: column;
         font-size: 14px;
-        line-height: 1.6;
+        line-height: 1.5;
     }
     .dr-chat-header {
         background: #1a1a2e;
@@ -88,25 +88,15 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
     .dr-message p {
         margin: 0 0 8px 0;
     }
-    .dr-message p:last-child {
-        margin-bottom: 0;
-    }
     .dr-message ul, .dr-message ol {
         margin: 8px 0;
         padding-left: 20px;
-    }
-    .dr-message li {
-        margin: 4px 0;
     }
     .dr-user {
         background: #1a1a2e;
         color: white;
         margin-left: auto;
-        text-align: right;
         border-bottom-right-radius: 4px;
-    }
-    .dr-user p, .dr-user ul, .dr-user li {
-        color: white;
     }
     .dr-bot {
         background: #e8e8ec;
@@ -118,7 +108,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         color: #888;
         font-style: italic;
         padding: 10px 14px;
-        margin-bottom: 16px;
     }
     .dr-chat-input-area {
         display: flex;
@@ -134,7 +123,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         border: 1px solid #ccc;
         border-radius: 24px;
         outline: none;
-        font-size: 14px;
     }
     .dr-chat-send {
         background: #1a1a2e;
@@ -143,14 +131,12 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         border-radius: 24px;
         padding: 8px 20px;
         cursor: pointer;
-        font-size: 14px;
     }
     .dr-collapsed .dr-chat-body {
         display: none;
     }
     mjx-container {
         overflow-x: auto;
-        overflow-y: hidden;
         margin: 8px 0;
     }
     </style>
@@ -174,91 +160,75 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
     <script>
     (function() {
         const DEEPSEEK_KEY = 'sk-c09347c4e827479a842a21acf5771103';
-        
         if (window.__drestryrobotChatLoaded) return;
         window.__drestryrobotChatLoaded = true;
-        
-        const container = document.getElementById('dr-chat-widget');
-        const header = container.querySelector('.dr-chat-header');
+
         const messagesDiv = document.getElementById('dr-chat-messages');
         const input = document.getElementById('dr-chat-input');
         const sendBtn = document.getElementById('dr-chat-send');
-        
+        const container = document.getElementById('dr-chat-widget');
+        const header = container.querySelector('.dr-chat-header');
+
         let isLoading = false;
-        
+
         header.addEventListener('click', () => {
             container.classList.toggle('dr-collapsed');
         });
-        
-        // 将 Markdown 转换为 HTML，正确保留所有公式
-        function markdownToHtml(text) {
+
+        // 公式与 Markdown 解析
+        function renderMarkdown(text) {
             if (!text) return '';
-            
-            // 步骤1: 保护所有公式（包括 $...$ 和 $$...$$），避免被 marked 破坏
             const formulas = [];
-            
-            // 匹配块级公式 $$...$$
-            text = text.replace(/\$\$([\s\S]*?)\$\$/g, (match, formula) => {
-                const idx = formulas.length;
+            // 保护块级公式
+            let processed = text.replace(/\$\$([\s\S]*?)\$\$/g, (match, formula) => {
                 formulas.push({ type: 'block', content: formula });
-                return `<<<FORMULA_${idx}>>>`;
+                return `__FORMULA_BLOCK_${formulas.length-1}__`;
             });
-            
-            // 匹配行内公式 $...$（不跨行）
-            text = text.replace(/\$([^\$\n]+?)\$/g, (match, formula) => {
-                const idx = formulas.length;
+            // 保护行内公式
+            processed = processed.replace(/\$([^\$\n]+?)\$/g, (match, formula) => {
                 formulas.push({ type: 'inline', content: formula });
-                return `<<<FORMULA_${idx}>>>`;
+                return `__FORMULA_INLINE_${formulas.length-1}__`;
             });
             
-            // 步骤2: 使用 marked 解析 Markdown
-            let html = marked.parse(text, { mangle: false, headerIds: false });
+            let html = marked.parse(processed, { mangle: false, headerIds: false });
             
-            // 步骤3: 恢复公式
-            html = html.replace(/<<<FORMULA_(\d+)>>>/g, (match, idx) => {
-                const formula = formulas[parseInt(idx)];
+            formulas.forEach((formula, idx) => {
                 if (formula.type === 'block') {
-                    return `$$${formula.content}$$`;
+                    html = html.replace(`__FORMULA_BLOCK_${idx}__`, `$$${formula.content}$$`);
                 } else {
-                    return `$${formula.content}$`;
+                    html = html.replace(`__FORMULA_INLINE_${idx}__`, `$${formula.content}$`);
                 }
             });
-            
             return html;
         }
-        
+
         function addMessage(role, content) {
             const div = document.createElement('div');
             div.className = `dr-message dr-${role}`;
-            
             if (role === 'user') {
                 div.textContent = content;
             } else {
-                div.innerHTML = markdownToHtml(content);
+                div.innerHTML = renderMarkdown(content);
             }
-            
             messagesDiv.appendChild(div);
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
-            
             if (role === 'bot' && window.MathJax) {
-                MathJax.typesetPromise([div]).catch(err => console.warn('MathJax error:', err));
+                MathJax.typesetPromise([div]).catch(e => console.warn(e));
             }
         }
-        
+
         async function sendMessage() {
             const message = input.value.trim();
             if (!message || isLoading) return;
-            
             addMessage('user', message);
             input.value = '';
-            
+
             const loadingDiv = document.createElement('div');
             loadingDiv.className = 'dr-loading';
             loadingDiv.textContent = '思考中...';
             messagesDiv.appendChild(loadingDiv);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
             isLoading = true;
-            
+
             try {
                 const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
                     method: 'POST',
@@ -269,16 +239,12 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     body: JSON.stringify({
                         model: 'deepseek-chat',
                         messages: [
-                            { 
-                                role: 'system', 
-                                content: '你是 DrestryRobot 知识库的机器人专家。回答应严谨、深刻、偏重机器人学理论（运动学/动力学/控制/感知）。使用 Markdown 格式：用 ## 表示小标题，用 - 表示列表，用 $...$ 表示行内公式，用 $$...$$ 表示独立成行的公式。段落之间用空行分隔。'
-                            },
+                            { role: 'system', content: '你是 DrestryRobot 知识库的机器人专家。回答使用 Markdown，行内公式用 $...$，块级公式用 $$...$$，标题用 ##，列表用 -。' },
                             { role: 'user', content: message }
                         ],
                         temperature: 0.3
                     })
                 });
-                
                 const data = await response.json();
                 const reply = data.choices[0].message.content;
                 loadingDiv.remove();
@@ -289,7 +255,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             }
             isLoading = false;
         }
-        
+
         sendBtn.addEventListener('click', sendMessage);
         input.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') sendMessage();
