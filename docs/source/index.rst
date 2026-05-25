@@ -45,7 +45,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         position: fixed;
         bottom: 20px;
         right: 20px;
-        width: 400px;
+        width: 420px;
         max-width: 90vw;
         background: white;
         border-radius: 12px;
@@ -55,7 +55,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         display: flex;
         flex-direction: column;
         font-size: 14px;
-        line-height: 1.5;
+        line-height: 1.6;
     }
     .dr-chat-header {
         background: #1a1a2e;
@@ -70,7 +70,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
     .dr-chat-body {
         display: flex;
         flex-direction: column;
-        height: 450px;
+        height: 480px;
     }
     .dr-chat-messages {
         flex: 1;
@@ -80,17 +80,20 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
     }
     .dr-message {
         margin-bottom: 16px;
-        padding: 10px 14px;
+        padding: 12px 16px;
         border-radius: 12px;
         max-width: 85%;
         word-wrap: break-word;
     }
     .dr-message p {
-        margin: 0 0 8px 0;
+        margin: 0 0 10px 0;
     }
     .dr-message ul, .dr-message ol {
         margin: 8px 0;
-        padding-left: 20px;
+        padding-left: 24px;
+    }
+    .dr-message li {
+        margin: 6px 0;
     }
     .dr-user {
         background: #1a1a2e;
@@ -107,7 +110,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
     .dr-loading {
         color: #888;
         font-style: italic;
-        padding: 10px 14px;
+        padding: 12px 16px;
     }
     .dr-chat-input-area {
         display: flex;
@@ -175,16 +178,41 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             container.classList.toggle('dr-collapsed');
         });
 
-        // 公式与 Markdown 解析
+        // 修复 DeepSeek 返回的占位符格式
+        function fixPlaceholders(text) {
+            if (!text) return '';
+            
+            // 将 FORMULA_BLOCK_X 转换为 $$...$$ 
+            // 注意：DeepSeek 返回的可能是 FORMULA_BLOCK_0 但没有实际公式内容
+            // 我们需要从其他地方获取公式内容，或者直接删除这些占位符
+            
+            // 方案1：如果占位符后面没有实际公式内容，替换为可读提示
+            let fixed = text.replace(/FORMULA_BLOCK_\d+/g, '[公式]');
+            fixed = fixed.replace(/FORMULA_INLINE_\d+/g, '[公式]');
+            
+            // 方案2：尝试从上下文恢复公式（如果 DeepSeek 返回了公式内容在别处）
+            // 这里先做简单替换，确保不显示原始占位符
+            
+            return fixed;
+        }
+
+        // 渲染 Markdown 和公式
         function renderMarkdown(text) {
             if (!text) return '';
+            
+            // 先修复 DeepSeek 的占位符问题
+            let fixedText = fixPlaceholders(text);
+            
+            // 保护标准格式的公式
             const formulas = [];
-            // 保护块级公式
-            let processed = text.replace(/\$\$([\s\S]*?)\$\$/g, (match, formula) => {
+            
+            // 保护块级公式 $$...$$
+            let processed = fixedText.replace(/\$\$([\s\S]*?)\$\$/g, (match, formula) => {
                 formulas.push({ type: 'block', content: formula });
                 return `__FORMULA_BLOCK_${formulas.length-1}__`;
             });
-            // 保护行内公式
+            
+            // 保护行内公式 $...$
             processed = processed.replace(/\$([^\$\n]+?)\$/g, (match, formula) => {
                 formulas.push({ type: 'inline', content: formula });
                 return `__FORMULA_INLINE_${formulas.length-1}__`;
@@ -192,6 +220,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             
             let html = marked.parse(processed, { mangle: false, headerIds: false });
             
+            // 恢复公式
             formulas.forEach((formula, idx) => {
                 if (formula.type === 'block') {
                     html = html.replace(`__FORMULA_BLOCK_${idx}__`, `$$${formula.content}$$`);
@@ -199,6 +228,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     html = html.replace(`__FORMULA_INLINE_${idx}__`, `$${formula.content}$`);
                 }
             });
+            
             return html;
         }
 
@@ -239,7 +269,10 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     body: JSON.stringify({
                         model: 'deepseek-chat',
                         messages: [
-                            { role: 'system', content: '你是 DrestryRobot 知识库的机器人专家。回答使用 Markdown，行内公式用 $...$，块级公式用 $$...$$，标题用 ##，列表用 -。' },
+                            { 
+                                role: 'system', 
+                                content: '你是 DrestryRobot 知识库的机器人专家。回答要求：1. 使用标准 LaTeX 公式格式：行内公式用 $...$，块级公式用 $$...$$，不要使用任何其他占位符如 FORMULA_BLOCK 或 FORMULA_INLINE。2. 使用 Markdown 格式：标题用 ##，列表用 -。3. 直接写出公式内容。'
+                            },
                             { role: 'user', content: message }
                         ],
                         temperature: 0.3
