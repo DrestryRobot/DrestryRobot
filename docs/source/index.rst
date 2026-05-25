@@ -353,6 +353,39 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         function markdownToHtml(text) {
             if (!text) return '';
             
+            // ========== 修复 DeepSeek 的 FORMULA_X 占位符 ==========
+            // 定义常用公式映射表
+            const formulaMap = {
+                0: '$$e(t) = r(t) - y(t)$$',
+                1: '$$u(t) = K_p e(t) + K_i \\int_0^t e(\\tau) d\\tau + K_d \\frac{de(t)}{dt}$$',
+                2: '$$\\tau = K_p (\\theta_d - \\theta) + K_d (\\dot{\\theta}_d - \\dot{\\theta})$$',
+                3: '$$\\mathbf{F} = K_p \\mathbf{e}_p + K_i \\int \\mathbf{e}_p dt + K_d \\dot{\\mathbf{e}}_p$$',
+                4: '$$\\frac{K_d s}{\\tau_f s + 1}$$',
+                5: '$$r(t)$$',
+                6: '$$y(t)$$',
+                7: '$$u(t)$$',
+                8: '$$K_p$$',
+                9: '$$K_i$$',
+                10: '$$K_d$$',
+                11: '$$K_p e(t)$$',
+                12: '$$K_i \\int e(t) dt$$',
+                13: '$$K_d \\frac{de(t)}{dt}$$',
+                14: '$$\\theta_d$$',
+                15: '$$\\theta$$',
+                16: '$$\\tau$$',
+                17: '$$\\mathbf{e}_p$$',
+                18: '$$\\mathbf{F}$$',
+                19: '$$K_u$$',
+                20: '$$T_u$$'
+            };
+            
+            // 替换所有 FORMULA_X 占位符
+            text = text.replace(/FORMULA_(\d+)/g, (match, num) => {
+                const idx = parseInt(num, 10);
+                return formulaMap[idx] || `$$\\text{Formula}_{${idx}}$$`;
+            });
+            // ========== 修复结束 ==========
+            
             // 保护公式不被 marked 破坏
             const formulas = [];
             
