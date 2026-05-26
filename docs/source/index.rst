@@ -36,14 +36,15 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
 .. raw:: html
 
-    <div id="dr-chat-root" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"></div>
+    <div id="dr-chat-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"></div>
 
     <style>
-        .dr-chat-container {
+        /* 主容器 */
+        .dr-chat-widget {
             position: fixed !important;
             bottom: 20px !important;
             right: 20px !important;
-            width: 380px !important;
+            width: 400px !important;
             max-width: 90vw !important;
             background: white !important;
             border-radius: 16px !important;
@@ -54,50 +55,381 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             flex-direction: column !important;
             font-size: 14px !important;
             line-height: 1.5 !important;
+            transition: all 0.2s ease !important;
         }
+        
+        /* 折叠状态 */
+        .dr-chat-widget.dr-collapsed {
+            width: auto !important;
+            min-width: 160px !important;
+        }
+        .dr-chat-widget.dr-collapsed .dr-chat-body {
+            display: none !important;
+        }
+        
+        /* 移动端适配 */
         @media (max-width: 768px) {
-            .dr-chat-container.dr-collapsed { width: auto !important; min-width: 140px !important; bottom: 20px !important; left: 50% !important; right: auto !important; transform: translateX(-50%) !important; }
-            .dr-chat-container:not(.dr-collapsed) { width: 100vw !important; height: 80vh !important; bottom: 0 !important; left: 0 !important; right: 0 !important; border-radius: 16px 16px 0 0 !important; }
-            .dr-chat-container:not(.dr-collapsed) .dr-chat-body { height: calc(80vh - 56px) !important; }
-            .dr-chat-container.dr-collapsed .dr-chat-body { display: none !important; }
+            .dr-chat-widget.dr-collapsed {
+                bottom: 20px !important;
+                left: 50% !important;
+                right: auto !important;
+                transform: translateX(-50%) !important;
+            }
+            .dr-chat-widget:not(.dr-collapsed) {
+                width: 100vw !important;
+                height: 80vh !important;
+                bottom: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                border-radius: 16px 16px 0 0 !important;
+            }
+            .dr-chat-widget:not(.dr-collapsed) .dr-chat-body {
+                height: calc(80vh - 56px) !important;
+            }
         }
-        .dr-chat-header { background: #1a1a2e; color: white; padding: 12px 16px; border-radius: 16px 16px 0 0; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-        .dr-header-left { display: flex; align-items: center; gap: 8px; }
-        .dr-header-right { display: flex; align-items: center; gap: 12px; }
-        .dr-quota-badge { background: #4caf50; color: white; font-size: 11px; border-radius: 20px; padding: 4px 10px; }
+        
+        /* 头部 */
+        .dr-chat-header {
+            background: #1a1a2e !important;
+            color: white !important;
+            padding: 12px 16px !important;
+            border-radius: 16px 16px 0 0 !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            user-select: none !important;
+        }
+        
+        .dr-header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .dr-header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        /* 配额标签 */
+        .dr-quota-badge {
+            background: #4caf50;
+            color: white;
+            font-size: 12px;
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-weight: normal;
+        }
         .dr-quota-badge.low { background: #ff9800; }
         .dr-quota-badge.none { background: #f44336; }
-        .dr-arrow { transition: transform 0.2s; font-size: 12px; }
-        .dr-collapsed .dr-arrow { transform: rotate(180deg); }
-        .dr-chat-body { display: flex; flex-direction: column; height: 500px; background: #f5f5f5; }
-        .dr-chat-messages { flex: 1; overflow-y: auto; padding: 16px; background: #fafafa; }
-        .dr-message { margin-bottom: 12px; padding: 8px 12px; border-radius: 12px; max-width: 85%; word-wrap: break-word; }
-        .dr-user { background: #1a1a2e; color: white; margin-left: auto; border-bottom-right-radius: 4px; }
-        .dr-bot { background: #e8e8ec; color: #1a1a2e; margin-right: auto; border-bottom-left-radius: 4px; }
-        .dr-chat-input-area { display: flex; padding: 12px; gap: 8px; border-top: 1px solid #e0e0e0; background: white; position: relative; }
-        .dr-chat-input { flex: 1; padding: 10px 14px; border: 1px solid #ddd; border-radius: 24px; outline: none; font-size: 14px; }
-        .dr-chat-send { background: #1a1a2e; color: white; border: none; border-radius: 24px; padding: 0 18px; cursor: pointer; font-size: 13px; }
-        .dr-chat-send:disabled { background: #ccc; cursor: not-allowed; }
-        .dr-unlock-btn { background: #ff9800 !important; }
-        .dr-donate-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10001; display: flex; justify-content: center; align-items: center; visibility: hidden; opacity: 0; transition: all 0.3s; }
-        .dr-donate-modal.active { visibility: visible; opacity: 1; }
-        .dr-donate-content { background: white; border-radius: 24px; max-width: 90vw; width: 340px; padding: 24px; text-align: center; position: relative; }
-        .dr-donate-qr { width: 220px; height: 220px; margin: 16px auto; background: #f5f5f5; border-radius: 12px; overflow: hidden; }
-        .dr-donate-qr img { width: 100%; height: auto; }
-        .dr-device-id-input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 12px; margin: 12px 0; font-family: monospace; font-size: 12px; background: #f5f5f5; text-align: center; }
-        .dr-tip { background: #fff3e0; padding: 10px; border-radius: 12px; font-size: 12px; color: #e67e22; margin: 12px 0; }
-        .dr-check-payment { background: #ff9800; color: white; border: none; border-radius: 28px; padding: 12px; width: 100%; font-size: 15px; font-weight: bold; cursor: pointer; margin-top: 12px; }
-        .dr-close-modal { position: absolute; top: 12px; right: 16px; font-size: 22px; cursor: pointer; color: #999; }
-        .dr-disclaimer { font-size: 10px; color: #999; margin-top: 14px; padding-top: 10px; border-top: 1px solid #eee; }
-        .dr-typing-cursor { display: inline-block; width: 2px; height: 1.2em; background-color: #1a1a2e; margin-left: 2px; vertical-align: middle; animation: blink 1s step-end infinite; }
-        @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
-        .dr-quota-warning { background: #fff3e0; padding: 8px; font-size: 12px; text-align: center; color: #e67e22; }
-        .dr-lock-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,240,0.95); border-radius: 12px; display: flex; align-items: center; justify-content: center; z-index: 10; }
-        .dr-lock-message { background: #1a1a2e; color: white; padding: 10px 20px; border-radius: 40px; font-size: 13px; font-weight: bold; cursor: pointer; }
-        pre { background: #0d1117; color: #e6edf3; padding: 12px; border-radius: 8px; overflow-x: auto; margin: 8px 0; }
-        code { font-family: 'SF Mono', Monaco, monospace; font-size: 13px; }
-        :not(pre) > code { background: #e8e8ec; padding: 2px 6px; border-radius: 4px; color: #d73a49; }
-        mjx-container { overflow-x: auto !important; margin: 8px 0 !important; }
+        .dr-quota-badge.unlocked { background: #9c27b0; }
+        
+        /* 箭头 */
+        .dr-arrow {
+            transition: transform 0.2s ease;
+            font-size: 12px;
+        }
+        .dr-collapsed .dr-arrow {
+            transform: rotate(180deg);
+        }
+        
+        /* 主体 */
+        .dr-chat-body {
+            display: flex !important;
+            flex-direction: column !important;
+            height: 500px !important;
+            background: #f5f5f5;
+        }
+        
+        /* 消息区域 */
+        .dr-chat-messages {
+            flex: 1 !important;
+            overflow-y: auto !important;
+            padding: 16px !important;
+            background: #fafafa !important;
+        }
+        
+        .dr-message {
+            margin-bottom: 12px !important;
+            padding: 10px 14px !important;
+            border-radius: 12px !important;
+            max-width: 85% !important;
+            word-wrap: break-word !important;
+            line-height: 1.5 !important;
+        }
+        
+        .dr-message p {
+            margin: 0 0 8px 0;
+        }
+        .dr-message p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .dr-user {
+            background: #1a1a2e !important;
+            color: white !important;
+            margin-left: auto !important;
+            border-bottom-right-radius: 4px !important;
+        }
+        
+        .dr-bot {
+            background: #e8e8ec !important;
+            color: #1a1a2e !important;
+            margin-right: auto !important;
+            border-bottom-left-radius: 4px !important;
+        }
+        
+        /* 输入区域 */
+        .dr-chat-input-area {
+            display: flex !important;
+            padding: 12px 16px !important;
+            gap: 10px !important;
+            border-top: 1px solid #e0e0e0 !important;
+            background: white !important;
+            position: relative;
+        }
+        
+        .dr-chat-input {
+            flex: 1 !important;
+            padding: 10px 16px !important;
+            border: 1px solid #ddd !important;
+            border-radius: 24px !important;
+            outline: none !important;
+            font-size: 14px !important;
+            transition: border-color 0.2s;
+        }
+        
+        .dr-chat-input:focus {
+            border-color: #1a1a2e !important;
+            box-shadow: 0 0 0 2px rgba(26,26,46,0.1);
+        }
+        
+        .dr-chat-send {
+            background: #1a1a2e !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 24px !important;
+            padding: 0 20px !important;
+            cursor: pointer !important;
+            font-size: 14px !important;
+            font-weight: 500 !important;
+            transition: background 0.2s;
+        }
+        
+        .dr-chat-send:hover {
+            background: #2a2a3e !important;
+        }
+        
+        .dr-chat-send:disabled {
+            background: #ccc !important;
+            cursor: not-allowed;
+        }
+        
+        .dr-unlock-btn {
+            background: #ff9800 !important;
+        }
+        .dr-unlock-btn:hover {
+            background: #fb8c00 !important;
+        }
+        
+        /* 加载动画 */
+        .dr-loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ccc;
+            border-top-color: #1a1a2e;
+            border-radius: 50%;
+            animation: dr-spin 0.8s linear infinite;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        @keyframes dr-spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* 配额警告 */
+        .dr-quota-warning {
+            background: #fff3e0;
+            padding: 8px 12px;
+            font-size: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ffe0b2;
+            color: #e67e22;
+        }
+        
+        /* 锁定遮罩 */
+        .dr-lock-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,240,0.95);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            backdrop-filter: blur(2px);
+        }
+        
+        .dr-lock-message {
+            background: #1a1a2e;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+        .dr-lock-message:hover {
+            transform: scale(1.02);
+        }
+        
+        /* 打字光标 */
+        .dr-typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background-color: #1a1a2e;
+            margin-left: 2px;
+            vertical-align: middle;
+            animation: dr-blink 1s step-end infinite;
+        }
+        @keyframes dr-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        /* 付费弹窗 */
+        .dr-pay-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 10001;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+        .dr-pay-modal.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .dr-pay-content {
+            background: white;
+            border-radius: 24px;
+            max-width: 90vw;
+            width: 360px;
+            padding: 24px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.3);
+        }
+        .dr-pay-qr {
+            width: 220px;
+            height: 220px;
+            margin: 16px auto;
+            background: #f5f5f5;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .dr-pay-qr img {
+            width: 100%;
+            height: auto;
+        }
+        .dr-device-id {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            margin: 12px 0;
+            font-family: monospace;
+            font-size: 12px;
+            background: #f5f5f5;
+            text-align: center;
+            cursor: pointer;
+        }
+        .dr-pay-tip {
+            background: #fff3e0;
+            padding: 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            color: #e67e22;
+            margin: 12px 0;
+        }
+        .dr-pay-btn {
+            background: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 28px;
+            padding: 12px;
+            width: 100%;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: background 0.2s;
+        }
+        .dr-pay-btn:hover {
+            background: #fb8c00;
+        }
+        .dr-close-pay {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 22px;
+            cursor: pointer;
+            color: #999;
+        }
+        .dr-disclaimer {
+            font-size: 10px;
+            color: #999;
+            margin-top: 14px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+        
+        /* 代码块样式 */
+        pre {
+            background: #0d1117;
+            color: #e6edf3;
+            padding: 12px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 8px 0;
+        }
+        code {
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            font-size: 13px;
+        }
+        :not(pre) > code {
+            background: #e8e8ec;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #d73a49;
+        }
+        
+        /* MathJax 公式 */
+        mjx-container {
+            overflow-x: auto !important;
+            margin: 8px 0 !important;
+        }
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -105,58 +437,88 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
 .. raw:: html
 
-    <div id="dr-chat-widget" class="dr-chat-container dr-collapsed">
+    <div id="dr-chat-widget" class="dr-chat-widget dr-collapsed">
         <div class="dr-chat-header">
-            <div class="dr-header-left"><span>🤖 DrestryRobot 助手</span><span id="quotaBadge" class="dr-quota-badge">免费 3/3 次</span></div>
-            <div class="dr-header-right"><span class="dr-arrow">▼</span></div>
+            <div class="dr-header-left">
+                <span>🤖 DrestryRobot 智能助手</span>
+                <span id="quotaBadge" class="dr-quota-badge">免费 3/3 次</span>
+            </div>
+            <div class="dr-header-right">
+                <span class="dr-arrow">▼</span>
+            </div>
         </div>
         <div class="dr-chat-body">
-            <div id="quotaWarning" class="dr-quota-warning" style="display:none;">⚠️ 免费额度已用完，请付费解锁</div>
-            <div class="dr-chat-messages" id="chatMessages"><div class="dr-message dr-bot">🤖 欢迎！<br>🎁 新用户 3次免费<br>💰 用完后 ¥1 永久解锁<br>开始提问吧！</div></div>
+            <div id="quotaWarning" class="dr-quota-warning" style="display: none;">
+                ⚠️ 免费额度已用完，请点击下方按钮付费解锁
+            </div>
+            <div class="dr-chat-messages" id="chatMessages">
+                <div class="dr-message dr-bot">
+                    🤖 欢迎使用 DrestryRobot 专业助手！<br><br>
+                    🎁 新用户赠送 <strong>3次免费提问</strong> 额度<br>
+                    💰 3次用完后，仅需 <strong>¥1</strong> 即可永久解锁无限次使用<br><br>
+                    开始提问吧！
+                </div>
+            </div>
             <div class="dr-chat-input-area" id="inputArea">
-                <input type="text" class="dr-chat-input" id="chatInput" placeholder="输入问题...">
+                <input type="text" class="dr-chat-input" id="chatInput" placeholder="输入机器人相关问题...">
                 <button class="dr-chat-send" id="sendBtn">发送</button>
             </div>
         </div>
     </div>
 
-    <div id="payModal" class="dr-donate-modal">
-        <div class="dr-donate-content">
-            <span class="dr-close-modal" id="closeModalBtn">&times;</span>
-            <h3>💰 ¥1 永久解锁</h3>
-            <div class="dr-donate-qr"><img src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/202605%20%E8%B5%9E%E8%B5%8F%E7%A0%81.png" alt="赞赏码"></div>
-            <div class="dr-tip">💡 扫码支付 <strong>¥1</strong><br>⚠️ 备注填写下方设备ID</div>
-            <input type="text" id="deviceIdInput" class="dr-device-id-input" readonly onclick="this.select()">
-            <button class="dr-check-payment" id="submitPayBtn">✅ 我已支付，输入密码解锁</button>
-            <div class="dr-disclaimer">⚠️ 个人开发，服务可能调整，请谅解</div>
+    <div id="payModal" class="dr-pay-modal">
+        <div class="dr-pay-content">
+            <span class="dr-close-pay" id="closePayBtn">&times;</span>
+            <h3>💰 永久解锁无限使用</h3>
+            <div class="dr-pay-qr">
+                <img src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/202605%20%E8%B5%9E%E8%B5%8F%E7%A0%81.png" alt="赞赏码">
+            </div>
+            <div class="dr-pay-tip">
+                💡 扫码支付 <strong>¥1</strong> 永久解锁<br>
+                ⚠️ 支付时请在「备注」中填写下方设备ID
+            </div>
+            <input type="text" id="deviceIdInput" class="dr-device-id" readonly onclick="this.select()">
+            <button class="dr-pay-btn" id="submitPayBtn">✅ 我已支付，输入密码解锁</button>
+            <div class="dr-disclaimer">
+                ⚠️ 个人开发项目，服务可能随时下架，请谅解
+            </div>
         </div>
     </div>
 
     <script>
     (function() {
-        // 解锁密码（直接显示在提示中）
+        // ========== 配置 ==========
         var UNLOCK_PASSWORD = 'DrestryRobot';
         var FREE_QUOTA = 3;
+        
+        // Storage Keys
         var STORAGE_USED = 'dr_used_quota';
         var STORAGE_DEVICE = 'dr_device_id';
         var STORAGE_UNLOCKED = 'dr_unlocked_v4';
+        
+        // DeepSeek API
         var DEEPSEEK_KEY = 'sk-c09347c4e827479a842a21acf5771103';
         
+        // ========== 设备ID管理 ==========
         function getDeviceId() {
             var id = localStorage.getItem(STORAGE_DEVICE);
             if (!id) {
-                id = 'DR_' + Date.now().toString(36) + '_' + Math.random().toString(36).substring(2, 10);
+                var timestamp = Date.now().toString(36);
+                var random = Math.random().toString(36).substring(2, 10);
+                id = 'DR_' + timestamp + '_' + random;
                 localStorage.setItem(STORAGE_DEVICE, id);
             }
             return id;
         }
         
+        // ========== 解锁状态 ==========
         function isUnlocked() {
             var list = JSON.parse(localStorage.getItem(STORAGE_UNLOCKED) || '[]');
             return list.indexOf(getDeviceId()) !== -1;
         }
         
-        function markUnlocked(deviceId) {
+        function markUnlocked() {
+            var deviceId = getDeviceId();
             var list = JSON.parse(localStorage.getItem(STORAGE_UNLOCKED) || '[]');
             if (list.indexOf(deviceId) === -1) {
                 list.push(deviceId);
@@ -164,27 +526,29 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             }
         }
         
-        function getUsed() {
+        // ========== 配额管理 ==========
+        function getUsedQuota() {
             if (isUnlocked()) return FREE_QUOTA;
             return parseInt(localStorage.getItem(STORAGE_USED) || '0');
         }
         
-        function getRemaining() {
+        function getRemainingQuota() {
             if (isUnlocked()) return Infinity;
-            return Math.max(0, FREE_QUOTA - getUsed());
+            return Math.max(0, FREE_QUOTA - getUsedQuota());
         }
         
-        function incrementUsed() {
+        function incrementUsedQuota() {
             if (isUnlocked()) return;
-            var used = getUsed() + 1;
+            var used = getUsedQuota() + 1;
             localStorage.setItem(STORAGE_USED, used.toString());
             updateUI();
         }
         
         function canAsk() {
-            return getRemaining() > 0;
+            return getRemainingQuota() > 0;
         }
         
+        // ========== UI更新 ==========
         function updateUI() {
             var badge = document.getElementById('quotaBadge');
             var warning = document.getElementById('quotaWarning');
@@ -194,40 +558,60 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             
             if (isUnlocked()) {
                 badge.innerHTML = '🌟 永久解锁';
-                badge.style.background = '#9c27b0';
+                badge.className = 'dr-quota-badge unlocked';
                 if (warning) warning.style.display = 'none';
                 if (input) input.disabled = false;
-                if (sendBtn) { sendBtn.disabled = false; sendBtn.innerHTML = '发送'; sendBtn.classList.remove('dr-unlock-btn'); }
-                var overlay = inputArea ? inputArea.querySelector('.dr-lock-overlay') : null;
-                if (overlay) overlay.remove();
+                if (sendBtn) {
+                    sendBtn.disabled = false;
+                    sendBtn.innerHTML = '发送';
+                    sendBtn.classList.remove('dr-unlock-btn');
+                }
+                removeLockOverlay(inputArea);
                 return;
             }
             
-            var remaining = getRemaining();
+            var remaining = getRemainingQuota();
             badge.innerHTML = '🎁 免费 ' + remaining + '/' + FREE_QUOTA + ' 次';
             
             if (remaining <= 0) {
                 badge.className = 'dr-quota-badge none';
                 if (warning) warning.style.display = 'block';
                 if (input) input.disabled = true;
-                if (sendBtn) { sendBtn.disabled = false; sendBtn.innerHTML = '💰 付费解锁'; sendBtn.classList.add('dr-unlock-btn'); }
-                if (inputArea && !inputArea.querySelector('.dr-lock-overlay')) {
-                    var lock = document.createElement('div');
-                    lock.className = 'dr-lock-overlay';
-                    lock.innerHTML = '<div class="dr-lock-message">💰 点击付费 ¥1 永久解锁</div>';
-                    lock.onclick = function() { showPayModal(); };
-                    inputArea.appendChild(lock);
+                if (sendBtn) {
+                    sendBtn.disabled = false;
+                    sendBtn.innerHTML = '🔓 付费解锁';
+                    sendBtn.classList.add('dr-unlock-btn');
                 }
+                addLockOverlay(inputArea);
             } else {
                 badge.className = remaining === 1 ? 'dr-quota-badge low' : 'dr-quota-badge';
                 if (warning) warning.style.display = 'none';
                 if (input) input.disabled = false;
-                if (sendBtn) { sendBtn.disabled = false; sendBtn.innerHTML = '发送'; sendBtn.classList.remove('dr-unlock-btn'); }
-                var overlay2 = inputArea ? inputArea.querySelector('.dr-lock-overlay') : null;
-                if (overlay2) overlay2.remove();
+                if (sendBtn) {
+                    sendBtn.disabled = false;
+                    sendBtn.innerHTML = '发送';
+                    sendBtn.classList.remove('dr-unlock-btn');
+                }
+                removeLockOverlay(inputArea);
             }
         }
         
+        function addLockOverlay(container) {
+            if (!container || container.querySelector('.dr-lock-overlay')) return;
+            var lock = document.createElement('div');
+            lock.className = 'dr-lock-overlay';
+            lock.innerHTML = '<div class="dr-lock-message">🔐 额度已用完，点击付费 ¥1 永久解锁</div>';
+            lock.onclick = function() { showPayModal(); };
+            container.appendChild(lock);
+        }
+        
+        function removeLockOverlay(container) {
+            if (!container) return;
+            var overlay = container.querySelector('.dr-lock-overlay');
+            if (overlay) overlay.remove();
+        }
+        
+        // ========== 付费弹窗 ==========
         function showPayModal() {
             document.getElementById('deviceIdInput').value = getDeviceId();
             document.getElementById('payModal').classList.add('active');
@@ -240,15 +624,14 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         function submitPayment() {
             var pwd = prompt('🔐 请输入解锁密码\n\n密码: DrestryRobot');
             if (pwd === UNLOCK_PASSWORD) {
-                var deviceId = getDeviceId();
-                markUnlocked(deviceId);
+                markUnlocked();
                 updateUI();
                 closePayModal();
                 alert('✅ 解锁成功！现在可以无限次提问了。');
                 var msgs = document.getElementById('chatMessages');
                 var msg = document.createElement('div');
                 msg.className = 'dr-message dr-bot';
-                msg.innerHTML = '🎉 恭喜！已永久解锁！';
+                msg.innerHTML = '🎉 恭喜！您已永久解锁无限次提问权限！';
                 msgs.appendChild(msg);
                 msgs.scrollTop = msgs.scrollHeight;
             } else {
@@ -256,125 +639,194 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             }
         }
         
-        // ========== 聊天功能 ==========
-        var isLoading = false;
-        
+        // ========== Markdown 和 LaTeX 渲染 ==========
         function mdToHtml(text) {
             if (!text) return '';
             var latexBlocks = [], latexInlines = [];
-            text = text.replace(/\$\$([\s\S]*?)\$\$/g, function(m, f) { var i = latexBlocks.length; latexBlocks.push(f); return '@@LB_' + i + '@@'; });
-            text = text.replace(/\$([^\$\n]+?)\$/g, function(m, f) { var i = latexInlines.length; latexInlines.push(f); return '@@LI_' + i + '@@'; });
+            text = text.replace(/\$\$([\s\S]*?)\$\$/g, function(match, formula) {
+                var idx = latexBlocks.length;
+                latexBlocks.push(formula);
+                return '@@LB_' + idx + '@@';
+            });
+            text = text.replace(/\$([^\$\n]+?)\$/g, function(match, formula) {
+                var idx = latexInlines.length;
+                latexInlines.push(formula);
+                return '@@LI_' + idx + '@@';
+            });
             var html = marked.parse(text, { mangle: false, headerIds: false });
-            html = html.replace(/@@LB_(\d+)@@/g, function(m, i) { return '$$' + latexBlocks[parseInt(i)] + '$$'; });
-            html = html.replace(/@@LI_(\d+)@@/g, function(m, i) { return '$' + latexInlines[parseInt(i)] + '$'; });
+            html = html.replace(/@@LB_(\d+)@@/g, function(match, idx) {
+                return '$$' + latexBlocks[parseInt(idx)] + '$$';
+            });
+            html = html.replace(/@@LI_(\d+)@@/g, function(match, idx) {
+                return '$' + latexInlines[parseInt(idx)] + '$';
+            });
             return html;
         }
         
-        function addMsg(role, content) {
+        // ========== 聊天功能 ==========
+        var isLoading = false;
+        
+        function addMessage(role, content, isHtml) {
             var msgs = document.getElementById('chatMessages');
             var div = document.createElement('div');
             div.className = 'dr-message dr-' + role;
-            if (role === 'user') { div.textContent = content; }
-            else { div.innerHTML = mdToHtml(content); }
+            if (role === 'user') {
+                div.textContent = content;
+            } else {
+                div.innerHTML = isHtml ? content : mdToHtml(content);
+            }
             msgs.appendChild(div);
             msgs.scrollTop = msgs.scrollHeight;
-            if (role === 'bot' && window.MathJax) MathJax.typesetPromise([div]).catch(function(e) {});
+            if (role === 'bot' && window.MathJax) {
+                MathJax.typesetPromise([div]).catch(function(e) {});
+            }
         }
         
-        function showLoading() {
+        function showTyping() {
             var msgs = document.getElementById('chatMessages');
-            var loadingDiv = document.createElement('div');
-            loadingDiv.className = 'dr-message dr-bot';
-            loadingDiv.id = 'loadingMsg';
-            loadingDiv.innerHTML = '<span style="display:inline-block;width:16px;height:16px;border:2px solid #ccc;border-top-color:#1a1a2e;border-radius:50%;animation:spin 0.8s linear infinite;"></span> 思考中...';
-            msgs.appendChild(loadingDiv);
+            var typingDiv = document.createElement('div');
+            typingDiv.className = 'dr-message dr-bot';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = '<span class="dr-typing-cursor"></span>';
+            msgs.appendChild(typingDiv);
             msgs.scrollTop = msgs.scrollHeight;
+            return typingDiv;
         }
         
-        function hideLoading() {
-            var loading = document.getElementById('loadingMsg');
-            if (loading) loading.remove();
+        function removeTyping() {
+            var typing = document.getElementById('typingIndicator');
+            if (typing) typing.remove();
         }
         
-        var style = document.createElement('style');
-        style.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
-        document.head.appendChild(style);
-        
-        async function sendMsg() {
-            if (!canAsk()) { showPayModal(); return; }
+        async function sendMessage() {
+            if (!canAsk()) {
+                showPayModal();
+                return;
+            }
+            
             var input = document.getElementById('chatInput');
-            var msg = input.value.trim();
-            if (!msg || isLoading) return;
-            addMsg('user', msg);
+            var message = input.value.trim();
+            if (!message || isLoading) return;
+            
+            addMessage('user', message);
             input.value = '';
-            if (!isUnlocked()) incrementUsed();
+            
+            if (!isUnlocked()) {
+                incrementUsedQuota();
+            }
+            
             isLoading = true;
-            showLoading();
+            showTyping();
             
             try {
                 var response = await fetch('https://api.deepseek.com/v1/chat/completions', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + DEEPSEEK_KEY },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + DEEPSEEK_KEY
+                    },
                     body: JSON.stringify({
                         model: 'deepseek-chat',
                         messages: [
-                            { role: 'system', content: '你是机器人学专家。回答严谨深刻。用Markdown格式：##标题、-列表、$公式$、```代码```。' },
-                            { role: 'user', content: msg }
+                            { 
+                                role: 'system', 
+                                content: '你是 DrestryRobot 知识库的机器人专家。回答应严谨、深刻、偏重机器人学理论。使用 Markdown 格式：用 ## 标题，用 - 列表，用 $...$ 或 $$...$$ 公式。代码块用 ```language 标记。'
+                            },
+                            { role: 'user', content: message }
                         ],
                         temperature: 0.3,
                         stream: false
                     })
                 });
                 
+                removeTyping();
+                
                 if (!response.ok) {
                     throw new Error('API请求失败: ' + response.status);
                 }
                 
                 var data = await response.json();
-                hideLoading();
                 
                 if (data && data.choices && data.choices[0] && data.choices[0].message) {
                     var reply = data.choices[0].message.content;
-                    addMsg('bot', reply);
+                    addMessage('bot', reply);
                 } else if (data && data.error) {
-                    addMsg('bot', 'API错误：' + data.error.message);
+                    addMessage('bot', 'API错误：' + data.error.message);
                 } else {
-                    addMsg('bot', '返回数据格式异常，请重试。');
+                    addMessage('bot', '返回数据格式异常，请重试。');
                 }
             } catch(error) {
-                hideLoading();
-                addMsg('bot', '调用失败：' + error.message + '\n\n请检查网络后重试。');
+                removeTyping();
+                addMessage('bot', '调用失败：' + error.message + '\n\n请检查网络后重试。');
             }
             isLoading = false;
         }
         
+        // ========== 事件绑定 ==========
         function bindEvents() {
+            var widget = document.getElementById('dr-chat-widget');
             var header = document.querySelector('.dr-chat-header');
-            var send = document.getElementById('sendBtn');
+            var sendBtn = document.getElementById('sendBtn');
             var input = document.getElementById('chatInput');
-            var closeModal = document.getElementById('closeModalBtn');
+            var closePay = document.getElementById('closePayBtn');
             var submitPay = document.getElementById('submitPayBtn');
             
             if (header) {
-                header.addEventListener('click', function() {
-                    document.getElementById('dr-chat-widget').classList.toggle('dr-collapsed');
+                header.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    widget.classList.toggle('dr-collapsed');
                 });
             }
-            if (send) send.addEventListener('click', function() { if (!canAsk() && !isUnlocked()) showPayModal(); else sendMsg(); });
-            if (input) input.addEventListener('keypress', function(e) { if (e.key === 'Enter') { e.preventDefault(); if (!canAsk() && !isUnlocked()) showPayModal(); else sendMsg(); } });
-            if (closeModal) closeModal.addEventListener('click', closePayModal);
-            if (submitPay) submitPay.addEventListener('click', submitPayment);
+            
+            if (sendBtn) {
+                sendBtn.addEventListener('click', function() {
+                    if (!canAsk() && !isUnlocked()) {
+                        showPayModal();
+                    } else {
+                        sendMessage();
+                    }
+                });
+            }
+            
+            if (input) {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        if (!canAsk() && !isUnlocked()) {
+                            showPayModal();
+                        } else {
+                            sendMessage();
+                        }
+                    }
+                });
+            }
+            
+            if (closePay) {
+                closePay.addEventListener('click', closePayModal);
+            }
+            
+            if (submitPay) {
+                submitPay.addEventListener('click', submitPayment);
+            }
+            
+            // 点击弹窗背景关闭
+            var modal = document.getElementById('payModal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closePayModal();
+                    }
+                });
+            }
         }
         
+        // ========== 初始化 ==========
         function init() {
             bindEvents();
             updateUI();
             console.log('DrestryRobot 已启动 | 解锁密码: ' + UNLOCK_PASSWORD);
+            console.log('当前设备ID:', getDeviceId());
         }
-        
-        window.showPayModal = showPayModal;
-        window.closePayModal = closePayModal;
-        window.submitPayment = submitPayment;
         
         init();
     })();
