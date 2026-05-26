@@ -132,6 +132,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         .dr-arrow {
             transition: transform 0.2s ease;
             font-size: 12px;
+            display: inline-block;
         }
         .dr-collapsed .dr-arrow {
             transform: rotate(180deg);
@@ -236,20 +237,40 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             background: #fb8c00 !important;
         }
         
-        /* 加载动画 */
-        .dr-loading {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            border: 2px solid #ccc;
-            border-top-color: #1a1a2e;
-            border-radius: 50%;
-            animation: dr-spin 0.8s linear infinite;
-            vertical-align: middle;
-            margin-right: 8px;
+        /* 思考动画 */
+        .dr-thinking {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
         }
-        @keyframes dr-spin {
-            to { transform: rotate(360deg); }
+        .dr-thinking-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #1a1a2e;
+            border-radius: 50%;
+            animation: dr-bounce 1.4s infinite ease-in-out both;
+        }
+        .dr-thinking-dot:nth-child(1) { animation-delay: -0.32s; }
+        .dr-thinking-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes dr-bounce {
+            0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+        
+        /* 打字光标 */
+        .dr-typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background-color: #1a1a2e;
+            margin-left: 2px;
+            vertical-align: middle;
+            animation: dr-blink 1s step-end infinite;
+        }
+        @keyframes dr-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
         
         /* 配额警告 */
@@ -291,21 +312,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         }
         .dr-lock-message:hover {
             transform: scale(1.02);
-        }
-        
-        /* 打字光标 */
-        .dr-typing-cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1.2em;
-            background-color: #1a1a2e;
-            margin-left: 2px;
-            vertical-align: middle;
-            animation: dr-blink 1s step-end infinite;
-        }
-        @keyframes dr-blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
         }
         
         /* 付费弹窗 */
@@ -663,8 +669,10 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             return html;
         }
         
-        // ========== 聊天功能 ==========
+        // ========== 聊天功能（流式响应） ==========
         var isLoading = false;
+        var currentStreamingDiv = null;
+        var streamingContent = '';
         
         function addMessage(role, content, isHtml) {
             var msgs = document.getElementById('chatMessages');
@@ -680,22 +688,51 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             if (role === 'bot' && window.MathJax) {
                 MathJax.typesetPromise([div]).catch(function(e) {});
             }
+            return div;
         }
         
-        function showTyping() {
+        // 显示思考动画（三个跳动的点）
+        function showThinking() {
             var msgs = document.getElementById('chatMessages');
-            var typingDiv = document.createElement('div');
-            typingDiv.className = 'dr-message dr-bot';
-            typingDiv.id = 'typingIndicator';
-            typingDiv.innerHTML = '<span class="dr-typing-cursor"></span>';
-            msgs.appendChild(typingDiv);
+            var thinkingDiv = document.createElement('div');
+            thinkingDiv.className = 'dr-message dr-bot';
+            thinkingDiv.id = 'thinkingIndicator';
+            thinkingDiv.innerHTML = '<div class="dr-thinking"><span class="dr-thinking-dot"></span><span class="dr-thinking-dot"></span><span class="dr-thinking-dot"></span></div>';
+            msgs.appendChild(thinkingDiv);
             msgs.scrollTop = msgs.scrollHeight;
-            return typingDiv;
         }
         
-        function removeTyping() {
-            var typing = document.getElementById('typingIndicator');
-            if (typing) typing.remove();
+        function hideThinking() {
+            var thinking = document.getElementById('thinkingIndicator');
+            if (thinking) thinking.remove();
+        }
+        
+        // 开始流式输出
+        function startStreaming() {
+            currentStreamingDiv = document.createElement('div');
+            currentStreamingDiv.className = 'dr-message dr-bot';
+            currentStreamingDiv.innerHTML = '<span class="dr-typing-cursor"></span>';
+            document.getElementById('chatMessages').appendChild(currentStreamingDiv);
+            streamingContent = '';
+        }
+        
+        function updateStreaming(chunk) {
+            if (!currentStreamingDiv) return;
+            streamingContent += chunk;
+            var rendered = mdToHtml(streamingContent);
+            currentStreamingDiv.innerHTML = rendered + '<span class="dr-typing-cursor"></span>';
+            document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+        }
+        
+        function finishStreaming() {
+            if (!currentStreamingDiv) return;
+            var rendered = mdToHtml(streamingContent);
+            currentStreamingDiv.innerHTML = rendered;
+            if (window.MathJax) {
+                MathJax.typesetPromise([currentStreamingDiv]).catch(function(e) {});
+            }
+            currentStreamingDiv = null;
+            streamingContent = '';
         }
         
         async function sendMessage() {
@@ -716,7 +753,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             }
             
             isLoading = true;
-            showTyping();
+            showThinking();
             
             try {
                 var response = await fetch('https://api.deepseek.com/v1/chat/completions', {
@@ -735,28 +772,51 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                             { role: 'user', content: message }
                         ],
                         temperature: 0.3,
-                        stream: false
+                        stream: true
                     })
                 });
-                
-                removeTyping();
                 
                 if (!response.ok) {
                     throw new Error('API请求失败: ' + response.status);
                 }
                 
-                var data = await response.json();
-                
-                if (data && data.choices && data.choices[0] && data.choices[0].message) {
-                    var reply = data.choices[0].message.content;
-                    addMessage('bot', reply);
-                } else if (data && data.error) {
-                    addMessage('bot', 'API错误：' + data.error.message);
-                } else {
-                    addMessage('bot', '返回数据格式异常，请重试。');
+                if (!response.body) {
+                    throw new Error('响应不支持流式读取');
                 }
+                
+                hideThinking();
+                startStreaming();
+                
+                var reader = response.body.getReader();
+                var decoder = new TextDecoder();
+                var buffer = '';
+                
+                while (true) {
+                    var result = await reader.read();
+                    if (result.done) break;
+                    buffer += decoder.decode(result.value, { stream: true });
+                    var lines = buffer.split('\n');
+                    buffer = lines.pop() || '';
+                    for (var i = 0; i < lines.length; i++) {
+                        var line = lines[i];
+                        if (line.startsWith('data: ')) {
+                            var data = line.slice(6);
+                            if (data === '[DONE]') continue;
+                            try {
+                                var parsed = JSON.parse(data);
+                                var chunk = parsed.choices && parsed.choices[0] && parsed.choices[0].delta && parsed.choices[0].delta.content;
+                                if (chunk) updateStreaming(chunk);
+                            } catch(e) {}
+                        }
+                    }
+                }
+                finishStreaming();
             } catch(error) {
-                removeTyping();
+                hideThinking();
+                if (currentStreamingDiv) {
+                    currentStreamingDiv.remove();
+                    currentStreamingDiv = null;
+                }
                 addMessage('bot', '调用失败：' + error.message + '\n\n请检查网络后重试。');
             }
             isLoading = false;
