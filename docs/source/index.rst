@@ -39,8 +39,11 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
     <div id="dr-chat-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"></div>
 
     <style>
-        /* 防止移动端缩放 */
+        /* 防止 iOS 输入框焦点时缩放 */
         @media (max-width: 768px) {
+            input, textarea, button {
+                font-size: 16px !important;
+            }
             body {
                 touch-action: pan-y pinch-zoom;
             }
@@ -61,16 +64,29 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             display: flex !important;
             flex-direction: column !important;
             transition: all 0.3s ease !important;
+            overflow: hidden !important;
         }
         
-        /* 桌面端折叠状态 - 保持相同宽度 */
+        /* 桌面端折叠状态 - 保持相同宽度，所有角都有圆角 */
         .dr-chat-widget.dr-collapsed {
             width: 400px !important;
             max-width: 90vw !important;
             min-width: auto !important;
+            border-radius: 16px !important;
+        }
+        .dr-chat-widget.dr-collapsed .dr-chat-header {
+            border-radius: 16px !important;
         }
         .dr-chat-widget.dr-collapsed .dr-chat-body {
             display: none !important;
+        }
+        
+        /* 桌面端展开状态 - 只有顶部圆角 */
+        .dr-chat-widget:not(.dr-collapsed) {
+            border-radius: 16px 16px 0 0 !important;
+        }
+        .dr-chat-widget:not(.dr-collapsed) .dr-chat-header {
+            border-radius: 16px 16px 0 0 !important;
         }
         
         /* 移动端适配 */
@@ -145,7 +161,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             background: #1a1a2e !important;
             color: white !important;
             padding: 12px 16px !important;
-            border-radius: 16px 16px 0 0 !important;
             font-weight: 600 !important;
             cursor: pointer !important;
             display: flex !important;
@@ -205,6 +220,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             flex-direction: column !important;
             height: 500px !important;
             background: #f5f5f5;
+            position: relative;
         }
         
         /* 消息区域 */
@@ -221,6 +237,16 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             content: "";
             display: table;
             clear: both;
+        }
+        
+        /* 底部提示文字 */
+        .dr-footer-tip {
+            text-align: center;
+            font-size: 10px;
+            color: #999;
+            padding: 6px 12px;
+            background: #f5f5f5;
+            border-top: 1px solid #e8e8e8;
         }
         
         /* 消息气泡通用样式 */
@@ -355,7 +381,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             display: flex !important;
             padding: 12px 16px !important;
             gap: 10px !important;
-            border-top: 1px solid #e0e0e0 !important;
             background: white !important;
             position: relative;
         }
@@ -448,7 +473,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             padding: 8px 12px;
             font-size: 12px;
             text-align: center;
-            border-bottom: 1px solid #ffe0b2;
             color: #e67e22;
         }
         
@@ -549,7 +573,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             margin: 12px 0;
         }
         .dr-pay-btn {
-            background: #ff9800;
+            background: #4caf50;
             color: white;
             border: none;
             border-radius: 28px;
@@ -562,7 +586,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             transition: background 0.2s;
         }
         .dr-pay-btn:hover {
-            background: #fb8c00;
+            background: #45a049;
         }
         .dr-close-pay {
             position: absolute;
@@ -604,7 +628,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         </div>
         <div class="dr-chat-body">
             <div id="quotaWarning" class="dr-quota-warning" style="display: none;">
-                ⚠️ 免费额度已用完，请点击下方按钮付费解锁
+                ⚠️ 免费额度已用完，请付费解锁
             </div>
             <div class="dr-chat-messages" id="chatMessages">
                 <div class="dr-message dr-bot">
@@ -613,6 +637,9 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     💰 3次用完后，仅需 <strong>¥1</strong> 即可永久解锁无限次使用<br><br>
                     开始提问吧！
                 </div>
+            </div>
+            <div class="dr-footer-tip" id="footerTip">
+                ✨ 内容由 DeepSeek 生成，仅供参考
             </div>
             <div class="dr-chat-input-area" id="inputArea">
                 <input type="text" class="dr-chat-input" id="chatInput" placeholder="输入机器人相关问题...">
@@ -629,13 +656,13 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 <img src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/202605%20%E8%B5%9E%E8%B5%8F%E7%A0%81.png" alt="赞赏码">
             </div>
             <div class="dr-pay-tip">
-                💡 扫码支付 <strong>¥1</strong> 永久解锁<br>
+                💡 微信/支付宝扫码支付 <strong>¥1</strong><br>
                 ⚠️ 支付时请在「备注」中填写下方设备ID
             </div>
             <input type="text" id="deviceIdInput" class="dr-device-id" readonly onclick="this.select()">
-            <button class="dr-pay-btn" id="submitPayBtn">✅ 我已支付，输入密码解锁</button>
+            <button class="dr-pay-btn" id="submitPayBtn">✅ 我已支付，申请解锁</button>
             <div class="dr-disclaimer">
-                ⚠️ 个人开发项目，服务可能随时下架，请谅解
+                ⚠️ 个人开发项目，服务可能随时调整，请谅解
             </div>
         </div>
     </div>
@@ -643,12 +670,11 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
     <script>
     (function() {
         // ========== 配置 ==========
-        var UNLOCK_PASSWORD = 'DrestryRobot';
         var FREE_QUOTA = 3;
         
         var STORAGE_USED = 'dr_used_quota';
         var STORAGE_DEVICE = 'dr_device_id';
-        var STORAGE_UNLOCKED = 'dr_unlocked_v4';
+        var STORAGE_UNLOCKED = 'dr_unlocked_v5';
         
         var DEEPSEEK_KEY = 'sk-c09347c4e827479a842a21acf5771103';
         
@@ -769,22 +795,18 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             document.getElementById('payModal').classList.remove('active');
         }
         
+        // 直接解锁，无需密码
         function submitPayment() {
-            var pwd = prompt('🔐 请输入解锁密码\n\n密码: DrestryRobot');
-            if (pwd === UNLOCK_PASSWORD) {
-                markUnlocked();
-                updateUI();
-                closePayModal();
-                alert('✅ 解锁成功！现在可以无限次提问了。');
-                var msgs = document.getElementById('chatMessages');
-                var msg = document.createElement('div');
-                msg.className = 'dr-message dr-bot';
-                msg.innerHTML = '🎉 恭喜！您已永久解锁无限次提问权限！';
-                msgs.appendChild(msg);
-                msgs.scrollTop = msgs.scrollHeight;
-            } else {
-                alert('❌ 密码错误！请确认已付款后输入正确密码。');
-            }
+            markUnlocked();
+            updateUI();
+            closePayModal();
+            alert('✅ 解锁成功！现在可以无限次提问了。');
+            var msgs = document.getElementById('chatMessages');
+            var msg = document.createElement('div');
+            msg.className = 'dr-message dr-bot';
+            msg.innerHTML = '🎉 恭喜！您已永久解锁无限次提问权限！';
+            msgs.appendChild(msg);
+            msgs.scrollTop = msgs.scrollHeight;
         }
         
         // 移动端展开时禁止页面滚动
@@ -1001,7 +1023,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     e.stopPropagation();
                     var isExpanding = widget.classList.contains('dr-collapsed');
                     widget.classList.toggle('dr-collapsed');
-                    // 移动端展开时禁止页面滚动
                     if (window.innerWidth <= 768) {
                         toggleBodyScroll(!isExpanding);
                     }
@@ -1062,7 +1083,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         function init() {
             bindEvents();
             updateUI();
-            console.log('DrestryRobot 已启动 | 解锁密码: ' + UNLOCK_PASSWORD);
+            console.log('DrestryRobot 已启动');
         }
         
         init();
