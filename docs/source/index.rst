@@ -60,8 +60,8 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         
         /* 折叠状态 - 桌面端 */
         .dr-chat-widget.dr-collapsed {
-            width: auto !important;
-            min-width: 160px !important;
+            width: 400px !important;
+            min-width: 400px !important;
             max-width: auto !important;
         }
         .dr-chat-widget.dr-collapsed .dr-chat-body {
