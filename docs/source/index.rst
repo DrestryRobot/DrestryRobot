@@ -39,7 +39,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
     <div id="dr-chat-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"></div>
 
     <style>
-        /* 主容器 */
+        /* 主容器 - 默认桌面端样式 */
         .dr-chat-widget {
             position: fixed !important;
             bottom: 20px !important;
@@ -55,38 +55,62 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             flex-direction: column !important;
             font-size: 14px !important;
             line-height: 1.5 !important;
-            transition: all 0.2s ease !important;
+            transition: all 0.3s ease !important;
         }
         
-        /* 折叠状态 - 保持相同宽度 */
+        /* 折叠状态 - 桌面端 */
         .dr-chat-widget.dr-collapsed {
-            width: 400px !important;
-            min-width: 400px !important;
+            width: auto !important;
+            min-width: 160px !important;
+            max-width: auto !important;
         }
         .dr-chat-widget.dr-collapsed .dr-chat-body {
             display: none !important;
         }
         
-        /* 移动端适配 */
+        /* 移动端适配 (宽度 <= 768px) */
         @media (max-width: 768px) {
             .dr-chat-widget.dr-collapsed {
-                width: auto !important;
-                min-width: 160px !important;
+                position: fixed !important;
                 bottom: 20px !important;
                 left: 50% !important;
                 right: auto !important;
                 transform: translateX(-50%) !important;
+                width: auto !important;
+                min-width: 140px !important;
+                max-width: auto !important;
+                border-radius: 40px !important;
+            }
+            .dr-chat-widget.dr-collapsed .dr-chat-header {
+                border-radius: 40px !important;
+                padding: 10px 20px !important;
             }
             .dr-chat-widget:not(.dr-collapsed) {
-                width: 100vw !important;
-                height: 80vh !important;
-                bottom: 0 !important;
+                position: fixed !important;
+                top: 0 !important;
                 left: 0 !important;
                 right: 0 !important;
-                border-radius: 16px 16px 0 0 !important;
+                bottom: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                height: 100% !important;
+                border-radius: 0 !important;
+                margin: 0 !important;
+                transform: none !important;
+            }
+            .dr-chat-widget:not(.dr-collapsed) .dr-chat-header {
+                border-radius: 0 !important;
+                padding: 14px 16px !important;
             }
             .dr-chat-widget:not(.dr-collapsed) .dr-chat-body {
-                height: calc(80vh - 56px) !important;
+                height: calc(100% - 52px) !important;
+                display: flex !important;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .dr-chat-widget.dr-collapsed .dr-chat-header:hover {
+                background: #2a2a3e !important;
             }
         }
         
@@ -102,6 +126,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             justify-content: space-between !important;
             align-items: center !important;
             user-select: none !important;
+            transition: background 0.2s ease !important;
         }
         
         .dr-header-left {
@@ -123,8 +148,9 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             color: white;
             font-size: 12px;
             border-radius: 20px;
-            padding: 4px 12px;
+            padding: 4px 10px;
             font-weight: normal;
+            white-space: nowrap;
         }
         .dr-quota-badge.low { background: #ff9800; }
         .dr-quota-badge.none { background: #f44336; }
@@ -132,7 +158,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         
         /* 箭头 */
         .dr-arrow {
-            transition: transform 0.2s ease;
+            transition: transform 0.3s ease;
             font-size: 12px;
             display: inline-block;
         }
@@ -154,54 +180,77 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             overflow-y: auto !important;
             padding: 16px !important;
             background: #fafafa !important;
-        }
-        
-        .dr-message {
-            margin-bottom: 12px !important;
-            padding: 10px 14px !important;
-            border-radius: 12px !important;
-            max-width: 85% !important;
-            word-wrap: break-word !important;
-            line-height: 1.5 !important;
-            display: inline-block !important;
-        }
-        
-        /* 用户消息 - 右对齐，自适应宽度 */
-        .dr-user {
-            background: #1a1a2e !important;
-            color: white !important;
-            text-align: right !important;
-            border-bottom-right-radius: 4px !important;
-            float: right !important;
-            clear: both !important;
-        }
-        
-        /* 机器人消息 - 左对齐，自适应宽度 */
-        .dr-bot {
-            background: #e8e8ec !important;
-            color: #1a1a2e !important;
-            text-align: left !important;
-            border-bottom-left-radius: 4px !important;
-            float: left !important;
-            clear: both !important;
-        }
-        
-        /* 清除浮动 */
-        .dr-chat-messages {
             overflow-x: hidden !important;
         }
+        
         .dr-chat-messages:after {
             content: "";
             display: table;
             clear: both;
         }
         
-        /* 消息内容换行 */
+        /* 消息气泡通用样式 */
+        .dr-message {
+            margin-bottom: 12px !important;
+            padding: 10px 14px !important;
+            border-radius: 12px !important;
+            max-width: 85% !important;
+            word-wrap: break-word !important;
+            display: inline-block !important;
+            font-size: 14px !important;
+            line-height: 1.5 !important;
+            text-align: justify !important;  /* 两端对齐 */
+        }
+        
+        /* 用户消息 - 右对齐 */
+        .dr-user {
+            background: #1a1a2e !important;
+            color: white !important;
+            border-bottom-right-radius: 4px !important;
+            float: right !important;
+            clear: both !important;
+            text-align: justify !important;
+        }
+        
+        /* 机器人消息 - 左对齐 */
+        .dr-bot {
+            background: #e8e8ec !important;
+            color: #1a1a2e !important;
+            border-bottom-left-radius: 4px !important;
+            float: left !important;
+            clear: both !important;
+            text-align: justify !important;
+        }
+        
+        /* 消息内容中的段落也两端对齐 */
         .dr-message p {
-            margin: 0 0 8px 0;
+            margin: 0 0 6px 0;
+            text-align: justify !important;
         }
         .dr-message p:last-child {
             margin-bottom: 0;
+        }
+        
+        /* 列表样式保持左对齐（列表不需要两端对齐） */
+        .dr-message ul, .dr-message ol {
+            margin: 6px 0;
+            padding-left: 20px;
+            text-align: left !important;
+        }
+        .dr-message li {
+            text-align: left !important;
+        }
+        
+        /* 标题保持左对齐 */
+        .dr-message h1, .dr-message h2, .dr-message h3, 
+        .dr-message h4, .dr-message h5, .dr-message h6 {
+            text-align: left !important;
+            margin: 8px 0 4px 0;
+        }
+        
+        /* 代码块保持左对齐 */
+        .dr-message pre, .dr-message code {
+            text-align: left !important;
         }
         
         /* 输入区域 */
@@ -222,6 +271,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             outline: none !important;
             font-size: 14px !important;
             transition: border-color 0.2s;
+            font-family: inherit;
         }
         
         .dr-chat-input:focus {
@@ -239,6 +289,8 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             font-size: 14px !important;
             font-weight: 500 !important;
             transition: background 0.2s;
+            white-space: nowrap;
+            font-family: inherit;
         }
         
         .dr-chat-send:hover {
@@ -257,7 +309,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             background: #fb8c00 !important;
         }
         
-        /* 思考动画 - 三个跳动点 */
+        /* 思考动画 */
         .dr-thinking {
             display: flex;
             align-items: center;
@@ -517,15 +569,12 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         var UNLOCK_PASSWORD = 'DrestryRobot';
         var FREE_QUOTA = 3;
         
-        // Storage Keys
         var STORAGE_USED = 'dr_used_quota';
         var STORAGE_DEVICE = 'dr_device_id';
         var STORAGE_UNLOCKED = 'dr_unlocked_v4';
         
-        // DeepSeek API
         var DEEPSEEK_KEY = 'sk-c09347c4e827479a842a21acf5771103';
         
-        // ========== 设备ID管理 ==========
         function getDeviceId() {
             var id = localStorage.getItem(STORAGE_DEVICE);
             if (!id) {
@@ -537,7 +586,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             return id;
         }
         
-        // ========== 解锁状态 ==========
         function isUnlocked() {
             var list = JSON.parse(localStorage.getItem(STORAGE_UNLOCKED) || '[]');
             return list.indexOf(getDeviceId()) !== -1;
@@ -552,7 +600,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             }
         }
         
-        // ========== 配额管理 ==========
         function getUsedQuota() {
             if (isUnlocked()) return FREE_QUOTA;
             return parseInt(localStorage.getItem(STORAGE_USED) || '0');
@@ -574,7 +621,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             return getRemainingQuota() > 0;
         }
         
-        // ========== UI更新 ==========
         function updateUI() {
             var badge = document.getElementById('quotaBadge');
             var warning = document.getElementById('quotaWarning');
@@ -637,7 +683,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             if (overlay) overlay.remove();
         }
         
-        // ========== 付费弹窗 ==========
         function showPayModal() {
             document.getElementById('deviceIdInput').value = getDeviceId();
             document.getElementById('payModal').classList.add('active');
@@ -665,7 +710,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             }
         }
         
-        // ========== Markdown 和 LaTeX 渲染 ==========
         function mdToHtml(text) {
             if (!text) return '';
             var latexBlocks = [], latexInlines = [];
@@ -689,13 +733,12 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             return html;
         }
         
-        // ========== 聊天功能（流式响应） ==========
+        // ========== 聊天功能 ==========
         var isLoading = false;
         var currentStreamingDiv = null;
         var streamingContent = '';
         var autoScrollEnabled = true;
         
-        // 检测用户是否手动滚动
         function bindScrollEvent() {
             var msgsDiv = document.getElementById('chatMessages');
             if (!msgsDiv) return;
@@ -705,7 +748,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             });
         }
         
-        // 自动滚动到底部
         function scrollToBottom() {
             if (!autoScrollEnabled) return;
             var msgsDiv = document.getElementById('chatMessages');
@@ -731,7 +773,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             return div;
         }
         
-        // 显示思考动画（三个跳动的点）
         function showThinking() {
             var msgs = document.getElementById('chatMessages');
             var thinkingDiv = document.createElement('div');
@@ -747,7 +788,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             if (thinking) thinking.remove();
         }
         
-        // 开始流式输出
         function startStreaming() {
             currentStreamingDiv = document.createElement('div');
             currentStreamingDiv.className = 'dr-message dr-bot';
@@ -865,7 +905,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             isLoading = false;
         }
         
-        // ========== 折叠功能 ==========
         function bindCollapseEvent() {
             var widget = document.getElementById('dr-chat-widget');
             var header = document.querySelector('.dr-chat-header');
@@ -878,7 +917,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             }
         }
         
-        // ========== 事件绑定 ==========
         function bindEvents() {
             var sendBtn = document.getElementById('sendBtn');
             var input = document.getElementById('chatInput');
@@ -919,7 +957,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 submitPay.addEventListener('click', submitPayment);
             }
             
-            // 点击弹窗背景关闭
             var modal = document.getElementById('payModal');
             if (modal) {
                 modal.addEventListener('click', function(e) {
@@ -930,12 +967,10 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             }
         }
         
-        // ========== 初始化 ==========
         function init() {
             bindEvents();
             updateUI();
             console.log('DrestryRobot 已启动 | 解锁密码: ' + UNLOCK_PASSWORD);
-            console.log('当前设备ID:', getDeviceId());
         }
         
         init();
