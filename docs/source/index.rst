@@ -58,10 +58,10 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             transition: all 0.2s ease !important;
         }
         
-        /* 折叠状态 */
+        /* 折叠状态 - 保持相同宽度 */
         .dr-chat-widget.dr-collapsed {
-            width: auto !important;
-            min-width: 160px !important;
+            width: 400px !important;
+            min-width: 400px !important;
         }
         .dr-chat-widget.dr-collapsed .dr-chat-body {
             display: none !important;
@@ -70,6 +70,8 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         /* 移动端适配 */
         @media (max-width: 768px) {
             .dr-chat-widget.dr-collapsed {
+                width: auto !important;
+                min-width: 160px !important;
                 bottom: 20px !important;
                 left: 50% !important;
                 right: auto !important;
@@ -161,27 +163,45 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             max-width: 85% !important;
             word-wrap: break-word !important;
             line-height: 1.5 !important;
+            display: inline-block !important;
         }
         
+        /* 用户消息 - 右对齐，自适应宽度 */
+        .dr-user {
+            background: #1a1a2e !important;
+            color: white !important;
+            text-align: right !important;
+            border-bottom-right-radius: 4px !important;
+            float: right !important;
+            clear: both !important;
+        }
+        
+        /* 机器人消息 - 左对齐，自适应宽度 */
+        .dr-bot {
+            background: #e8e8ec !important;
+            color: #1a1a2e !important;
+            text-align: left !important;
+            border-bottom-left-radius: 4px !important;
+            float: left !important;
+            clear: both !important;
+        }
+        
+        /* 清除浮动 */
+        .dr-chat-messages {
+            overflow-x: hidden !important;
+        }
+        .dr-chat-messages:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        
+        /* 消息内容换行 */
         .dr-message p {
             margin: 0 0 8px 0;
         }
         .dr-message p:last-child {
             margin-bottom: 0;
-        }
-        
-        .dr-user {
-            background: #1a1a2e !important;
-            color: white !important;
-            margin-left: auto !important;
-            border-bottom-right-radius: 4px !important;
-        }
-        
-        .dr-bot {
-            background: #e8e8ec !important;
-            color: #1a1a2e !important;
-            margin-right: auto !important;
-            border-bottom-left-radius: 4px !important;
         }
         
         /* 输入区域 */
@@ -237,12 +257,12 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             background: #fb8c00 !important;
         }
         
-        /* 思考动画 */
+        /* 思考动画 - 三个跳动点 */
         .dr-thinking {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 10px 14px;
+            gap: 6px;
+            padding: 4px 0;
         }
         .dr-thinking-dot {
             width: 8px;
@@ -673,6 +693,26 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         var isLoading = false;
         var currentStreamingDiv = null;
         var streamingContent = '';
+        var autoScrollEnabled = true;
+        
+        // 检测用户是否手动滚动
+        function bindScrollEvent() {
+            var msgsDiv = document.getElementById('chatMessages');
+            if (!msgsDiv) return;
+            msgsDiv.addEventListener('scroll', function() {
+                var isAtBottom = msgsDiv.scrollHeight - msgsDiv.scrollTop - msgsDiv.clientHeight < 50;
+                autoScrollEnabled = isAtBottom;
+            });
+        }
+        
+        // 自动滚动到底部
+        function scrollToBottom() {
+            if (!autoScrollEnabled) return;
+            var msgsDiv = document.getElementById('chatMessages');
+            if (msgsDiv) {
+                msgsDiv.scrollTop = msgsDiv.scrollHeight;
+            }
+        }
         
         function addMessage(role, content, isHtml) {
             var msgs = document.getElementById('chatMessages');
@@ -684,7 +724,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 div.innerHTML = isHtml ? content : mdToHtml(content);
             }
             msgs.appendChild(div);
-            msgs.scrollTop = msgs.scrollHeight;
+            scrollToBottom();
             if (role === 'bot' && window.MathJax) {
                 MathJax.typesetPromise([div]).catch(function(e) {});
             }
@@ -697,9 +737,9 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             var thinkingDiv = document.createElement('div');
             thinkingDiv.className = 'dr-message dr-bot';
             thinkingDiv.id = 'thinkingIndicator';
-            thinkingDiv.innerHTML = '<div class="dr-thinking"><span class="dr-thinking-dot"></span><span class="dr-thinking-dot"></span><span class="dr-thinking-dot"></span></div>';
+            thinkingDiv.innerHTML = '<div class="dr-thinking"><span class="dr-thinking-dot"></span><span class="dr-thinking-dot"></span><span class="dr-thinking-dot"></span><span style="margin-left:4px;">思考中...</span></div>';
             msgs.appendChild(thinkingDiv);
-            msgs.scrollTop = msgs.scrollHeight;
+            scrollToBottom();
         }
         
         function hideThinking() {
@@ -714,6 +754,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             currentStreamingDiv.innerHTML = '<span class="dr-typing-cursor"></span>';
             document.getElementById('chatMessages').appendChild(currentStreamingDiv);
             streamingContent = '';
+            scrollToBottom();
         }
         
         function updateStreaming(chunk) {
@@ -721,7 +762,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             streamingContent += chunk;
             var rendered = mdToHtml(streamingContent);
             currentStreamingDiv.innerHTML = rendered + '<span class="dr-typing-cursor"></span>';
-            document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+            scrollToBottom();
         }
         
         function finishStreaming() {
@@ -733,6 +774,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             }
             currentStreamingDiv = null;
             streamingContent = '';
+            scrollToBottom();
         }
         
         async function sendMessage() {
@@ -753,6 +795,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             }
             
             isLoading = true;
+            autoScrollEnabled = true;
             showThinking();
             
             try {
@@ -822,14 +865,10 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             isLoading = false;
         }
         
-        // ========== 事件绑定 ==========
-        function bindEvents() {
+        // ========== 折叠功能 ==========
+        function bindCollapseEvent() {
             var widget = document.getElementById('dr-chat-widget');
             var header = document.querySelector('.dr-chat-header');
-            var sendBtn = document.getElementById('sendBtn');
-            var input = document.getElementById('chatInput');
-            var closePay = document.getElementById('closePayBtn');
-            var submitPay = document.getElementById('submitPayBtn');
             
             if (header) {
                 header.addEventListener('click', function(e) {
@@ -837,6 +876,17 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     widget.classList.toggle('dr-collapsed');
                 });
             }
+        }
+        
+        // ========== 事件绑定 ==========
+        function bindEvents() {
+            var sendBtn = document.getElementById('sendBtn');
+            var input = document.getElementById('chatInput');
+            var closePay = document.getElementById('closePayBtn');
+            var submitPay = document.getElementById('submitPayBtn');
+            
+            bindCollapseEvent();
+            bindScrollEvent();
             
             if (sendBtn) {
                 sendBtn.addEventListener('click', function() {
