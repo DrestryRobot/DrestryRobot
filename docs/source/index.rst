@@ -123,7 +123,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         gap: 12px;
     }
     
-    /* 配额标签样式 */
     .dr-quota-badge {
         background: #4caf50;
         color: white;
@@ -141,7 +140,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
     .dr-quota-badge.low { background: #ff9800; }
     .dr-quota-badge.none { background: #f44336; }
     
-    /* 管理员按钮 - 与配额标签完全相同的高度和样式 */
     .dr-admin-icon {
         cursor: pointer;
         font-size: 12px;
@@ -160,7 +158,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         background: rgba(255,255,255,0.3);
     }
     
-    /* 箭头大小调整 */
     .dr-arrow {
         transition: transform 0.2s ease !important;
         display: inline-flex !important;
@@ -170,7 +167,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
     }
     .dr-collapsed .dr-arrow { transform: rotate(180deg) !important; }
     
-    /* 管理员面板 */
     .dr-admin-panel {
         display: none;
         background: white;
@@ -340,7 +336,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         50% { opacity: 0; }
     }
     
-    /* 赞赏码弹窗 */
     .dr-donate-modal {
         position: fixed;
         top: 0;
@@ -423,6 +418,14 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         cursor: pointer;
         color: #999;
     }
+    .dr-disclaimer {
+        font-size: 11px;
+        color: #999;
+        margin-top: 16px;
+        padding-top: 12px;
+        border-top: 1px solid #eee;
+        text-align: center;
+    }
     
     .dr-quota-warning {
         background: #fff3e0;
@@ -483,7 +486,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         <div id="adminPanel" class="dr-admin-panel">
             <div class="dr-admin-header">
                 <span>🔐 待解锁订单</span>
-                <button class="dr-refresh-btn" onclick="loadPendingOrders()">刷新</button>
+                <button class="dr-refresh-btn" id="refreshOrdersBtn">刷新</button>
             </div>
             <div style="padding: 8px 10px 0 10px;">
                 <input type="text" id="searchOrderInput" class="search-input" placeholder="🔍 搜索设备ID">
@@ -505,7 +508,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
 <div id="donateModal" class="dr-donate-modal">
     <div class="dr-donate-content">
-        <span class="dr-close-modal" onclick="closeDonateModal()">&times;</span>
+        <span class="dr-close-modal" id="closeModalBtn">&times;</span>
         <h3>💰 永久解锁无限使用</h3>
         <div class="dr-donate-qr">
             <img src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/202605%20%E8%B5%9E%E8%B5%8F%E7%A0%81.png" alt="赞赏码" style="width:100%">
@@ -516,46 +519,46 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             <input type="text" id="deviceIdDisplay" class="dr-username-input" readonly onclick="this.select()" style="background:#f0f0f0; font-size:12px;">
             填写错误将无法解锁！
         </div>
-        <button class="dr-check-payment" onclick="submitPaymentInfo()">✅ 我已支付，申请解锁</button>
-        <div style="font-size: 12px; color: #999; margin-top: 12px;">
-            ⏰ 管理员会在5分钟内处理
+        <button class="dr-check-payment" id="submitPaymentBtn">✅ 我已支付，申请解锁</button>
+        <div class="dr-disclaimer">
+            ⚠️ 个人开发项目，服务可能随时下架，请谅解
         </div>
     </div>
 </div>
 
 <script>
 (function() {
-    const ADMIN_PASSWORD = '666666';
-    const UNLOCK_PRICE = 1;
-    const FREE_QUOTA = 3;
+    var ADMIN_PASSWORD = '666666';
+    var UNLOCK_PRICE = 1;
+    var FREE_QUOTA = 3;
     
-    const STORAGE_USED_QUOTA = 'drestryrobot_used_quota';
-    const STORAGE_PENDING = 'drestryrobot_pending_payments';
-    const STORAGE_DEVICE_ID = 'drestryrobot_device_id';
-    const STORAGE_UNLOCKED_DEVICES = 'drestryrobot_unlocked_devices_v2';
+    var STORAGE_USED_QUOTA = 'drestryrobot_used_quota';
+    var STORAGE_PENDING = 'drestryrobot_pending_payments';
+    var STORAGE_DEVICE_ID = 'drestryrobot_device_id';
+    var STORAGE_UNLOCKED_DEVICES = 'drestryrobot_unlocked_devices_v2';
     
-    const DEEPSEEK_KEY = 'sk-c09347c4e827479a842a21acf5771103';
+    var DEEPSEEK_KEY = 'sk-c09347c4e827479a842a21acf5771103';
     
     function getDeviceId() {
-        let deviceId = localStorage.getItem(STORAGE_DEVICE_ID);
+        var deviceId = localStorage.getItem(STORAGE_DEVICE_ID);
         if (!deviceId) {
-            const timestamp = Date.now().toString(36);
-            const random = Math.random().toString(36).substring(2, 15);
-            deviceId = `DR_${timestamp}_${random}`;
+            var timestamp = Date.now().toString(36);
+            var random = Math.random().toString(36).substring(2, 15);
+            deviceId = 'DR_' + timestamp + '_' + random;
             localStorage.setItem(STORAGE_DEVICE_ID, deviceId);
         }
         return deviceId;
     }
     
     function isDeviceUnlocked() {
-        const deviceId = getDeviceId();
-        const unlockedDevices = JSON.parse(localStorage.getItem(STORAGE_UNLOCKED_DEVICES) || '[]');
-        return unlockedDevices.includes(deviceId);
+        var deviceId = getDeviceId();
+        var unlockedDevices = JSON.parse(localStorage.getItem(STORAGE_UNLOCKED_DEVICES) || '[]');
+        return unlockedDevices.indexOf(deviceId) !== -1;
     }
     
     function markDeviceUnlocked(deviceId) {
-        const unlockedDevices = JSON.parse(localStorage.getItem(STORAGE_UNLOCKED_DEVICES) || '[]');
-        if (!unlockedDevices.includes(deviceId)) {
+        var unlockedDevices = JSON.parse(localStorage.getItem(STORAGE_UNLOCKED_DEVICES) || '[]');
+        if (unlockedDevices.indexOf(deviceId) === -1) {
             unlockedDevices.push(deviceId);
             localStorage.setItem(STORAGE_UNLOCKED_DEVICES, JSON.stringify(unlockedDevices));
         }
@@ -577,7 +580,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
     
     function incrementUsedQuota() {
         if (isPermanentlyUnlocked()) return;
-        const current = getUsedQuota();
+        var current = getUsedQuota();
         localStorage.setItem(STORAGE_USED_QUOTA, (current + 1).toString());
         updateQuotaUI();
     }
@@ -587,16 +590,16 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
     }
     
     function updateQuotaUI() {
-        const quotaBadge = document.getElementById('quotaBadge');
-        const quotaWarning = document.getElementById('quotaWarning');
+        var quotaBadge = document.getElementById('quotaBadge');
+        var quotaWarning = document.getElementById('quotaWarning');
         
         if (isPermanentlyUnlocked()) {
             quotaBadge.innerHTML = '🌟 永久解锁';
             quotaBadge.className = 'dr-quota-badge';
             quotaBadge.style.background = '#9c27b0';
             if (quotaWarning) quotaWarning.style.display = 'none';
-            const input = document.getElementById('dr-chat-input');
-            const sendBtn = document.getElementById('dr-chat-send');
+            var input = document.getElementById('dr-chat-input');
+            var sendBtn = document.getElementById('dr-chat-send');
             if (input) input.disabled = false;
             if (sendBtn) {
                 sendBtn.disabled = false;
@@ -607,14 +610,14 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             return;
         }
         
-        const remaining = getRemainingQuota();
-        quotaBadge.innerHTML = `🎁 免费 ${remaining}/${FREE_QUOTA} 次`;
+        var remaining = getRemainingQuota();
+        quotaBadge.innerHTML = '🎁 免费 ' + remaining + '/' + FREE_QUOTA + ' 次';
         
         if (remaining <= 0) {
             quotaBadge.className = 'dr-quota-badge none';
             if (quotaWarning) quotaWarning.style.display = 'block';
-            const input = document.getElementById('dr-chat-input');
-            const sendBtn = document.getElementById('dr-chat-send');
+            var input = document.getElementById('dr-chat-input');
+            var sendBtn = document.getElementById('dr-chat-send');
             if (input) input.disabled = true;
             if (sendBtn) {
                 sendBtn.disabled = false;
@@ -625,8 +628,8 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         } else {
             quotaBadge.className = remaining <= 1 ? 'dr-quota-badge low' : 'dr-quota-badge';
             if (quotaWarning) quotaWarning.style.display = 'none';
-            const input = document.getElementById('dr-chat-input');
-            const sendBtn = document.getElementById('dr-chat-send');
+            var input = document.getElementById('dr-chat-input');
+            var sendBtn = document.getElementById('dr-chat-send');
             if (input) input.disabled = false;
             if (sendBtn) {
                 sendBtn.disabled = false;
@@ -638,25 +641,25 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
     }
     
     function addLockOverlay() {
-        const inputArea = document.getElementById('input-area');
+        var inputArea = document.getElementById('input-area');
         if (inputArea && !inputArea.querySelector('.dr-lock-overlay')) {
-            const lockDiv = document.createElement('div');
+            var lockDiv = document.createElement('div');
             lockDiv.className = 'dr-lock-overlay';
             lockDiv.innerHTML = '<div class="dr-lock-message">💰 额度已用完，点击付费 ¥1 永久解锁</div>';
-            lockDiv.querySelector('.dr-lock-message').addEventListener('click', () => showDonateModal());
+            lockDiv.querySelector('.dr-lock-message').addEventListener('click', function() { showDonateModal(); });
             inputArea.style.position = 'relative';
             inputArea.appendChild(lockDiv);
         }
     }
     
     function removeLockOverlay() {
-        const inputArea = document.getElementById('input-area');
-        const overlay = inputArea?.querySelector('.dr-lock-overlay');
+        var inputArea = document.getElementById('input-area');
+        var overlay = inputArea ? inputArea.querySelector('.dr-lock-overlay') : null;
         if (overlay) overlay.remove();
     }
     
     function showDonateModal() {
-        const deviceId = getDeviceId();
+        var deviceId = getDeviceId();
         document.getElementById('deviceIdDisplay').value = deviceId;
         document.getElementById('donateModal').classList.add('active');
     }
@@ -666,7 +669,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
     }
     
     function submitPaymentInfo() {
-        const deviceId = getDeviceId();
+        var deviceId = getDeviceId();
         
         if (isPermanentlyUnlocked()) {
             alert('您已经永久解锁了，可以直接使用！');
@@ -674,8 +677,14 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             return;
         }
         
-        const pending = JSON.parse(localStorage.getItem(STORAGE_PENDING) || '[]');
-        const existing = pending.find(p => p.deviceId === deviceId && p.status === 'pending');
+        var pending = JSON.parse(localStorage.getItem(STORAGE_PENDING) || '[]');
+        var existing = null;
+        for (var i = 0; i < pending.length; i++) {
+            if (pending[i].deviceId === deviceId && pending[i].status === 'pending') {
+                existing = pending[i];
+                break;
+            }
+        }
         if (existing) {
             alert('您已提交过申请，请等待管理员处理');
             closeDonateModal();
@@ -690,21 +699,21 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         });
         localStorage.setItem(STORAGE_PENDING, JSON.stringify(pending));
         
-        alert(`申请已提交！\n\n设备ID：${deviceId}\n金额：¥${UNLOCK_PRICE}\n\n请确保在支付备注中填写了正确的设备ID，管理员确认后会为您永久解锁。`);
+        alert('申请已提交！\n\n设备ID：' + deviceId + '\n金额：¥' + UNLOCK_PRICE + '\n\n请确保在支付备注中填写了正确的设备ID，管理员确认后会为您永久解锁。');
         closeDonateModal();
     }
     
-    let adminAuthenticated = false;
-    let adminPanelOpen = false;
+    var adminAuthenticated = false;
+    var adminPanelOpen = false;
     
     function toggleAdminPanel() {
-        const panel = document.getElementById('adminPanel');
+        var panel = document.getElementById('adminPanel');
         if (adminPanelOpen) {
             panel.classList.remove('active');
             adminPanelOpen = false;
         } else {
             if (!adminAuthenticated) {
-                const pwd = prompt('请输入管理员密码：');
+                var pwd = prompt('请输入管理员密码：');
                 if (pwd !== ADMIN_PASSWORD) {
                     alert('密码错误');
                     return;
@@ -718,14 +727,18 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
     }
     
     function loadPendingOrders() {
-        const pending = JSON.parse(localStorage.getItem(STORAGE_PENDING) || '[]');
-        const searchTerm = document.getElementById('searchOrderInput')?.value.toLowerCase() || '';
-        const orderListDiv = document.getElementById('orderList');
+        var pending = JSON.parse(localStorage.getItem(STORAGE_PENDING) || '[]');
+        var searchInput = document.getElementById('searchOrderInput');
+        var searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+        var orderListDiv = document.getElementById('orderList');
         
-        const filtered = pending.filter(order => 
-            order.status === 'pending' && 
-            (searchTerm === '' || order.deviceId.toLowerCase().includes(searchTerm))
-        );
+        var filtered = [];
+        for (var i = 0; i < pending.length; i++) {
+            var order = pending[i];
+            if (order.status === 'pending' && (searchTerm === '' || order.deviceId.toLowerCase().indexOf(searchTerm) !== -1)) {
+                filtered.push(order);
+            }
+        }
         
         if (filtered.length === 0) {
             orderListDiv.innerHTML = '<div style="text-align:center; padding:20px; color:#999;">暂无待处理订单</div>';
@@ -733,26 +746,33 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         }
         
         orderListDiv.innerHTML = '';
-        filtered.forEach(order => {
-            const orderDiv = document.createElement('div');
+        for (var j = 0; j < filtered.length; j++) {
+            var order = filtered[j];
+            var orderDiv = document.createElement('div');
             orderDiv.className = 'dr-order-item';
-            orderDiv.innerHTML = `
-                <div class="dr-order-device">🖥️ ${escapeHtml(order.deviceId)}</div>
-                <div class="dr-order-time">⏰ ${new Date(order.time).toLocaleString()}</div>
-                <div class="dr-order-time">💰 ¥${order.amount}</div>
-                <button class="dr-unlock-btn-admin" onclick="confirmUnlock('${escapeHtml(order.deviceId)}')">
-                    ✅ 确认已收款，永久解锁
-                </button>
-            `;
+            orderDiv.innerHTML = '<div class="dr-order-device">🖥️ ' + escapeHtml(order.deviceId) + '</div>' +
+                '<div class="dr-order-time">⏰ ' + new Date(order.time).toLocaleString() + '</div>' +
+                '<div class="dr-order-time">💰 ¥' + order.amount + '</div>' +
+                '<button class="dr-unlock-btn-admin" data-deviceid="' + escapeHtml(order.deviceId) + '">✅ 确认已收款，永久解锁</button>';
             orderListDiv.appendChild(orderDiv);
-        });
+            var btn = orderDiv.querySelector('.dr-unlock-btn-admin');
+            btn.addEventListener('click', (function(did) {
+                return function() { confirmUnlock(did); };
+            })(order.deviceId));
+        }
     }
     
     function confirmUnlock(deviceId) {
-        if (!confirm(`确认设备 "${deviceId}" 已完成 ¥1 支付并为其永久解锁吗？`)) return;
+        if (!confirm('确认设备 "' + deviceId + '" 已完成 ¥1 支付并为其永久解锁吗？')) return;
         
-        const pending = JSON.parse(localStorage.getItem(STORAGE_PENDING) || '[]');
-        const orderIndex = pending.findIndex(p => p.deviceId === deviceId && p.status === 'pending');
+        var pending = JSON.parse(localStorage.getItem(STORAGE_PENDING) || '[]');
+        var orderIndex = -1;
+        for (var i = 0; i < pending.length; i++) {
+            if (pending[i].deviceId === deviceId && pending[i].status === 'pending') {
+                orderIndex = i;
+                break;
+            }
+        }
         if (orderIndex !== -1) {
             pending.splice(orderIndex, 1);
             localStorage.setItem(STORAGE_PENDING, JSON.stringify(pending));
@@ -762,15 +782,15 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         updateQuotaUI();
         
         if (getDeviceId() === deviceId) {
-            alert(`✅ 您的设备已永久解锁！现在可以无限次提问了。`);
-            const messagesDiv = document.getElementById('dr-chat-messages');
-            const successMsg = document.createElement('div');
+            alert('✅ 您的设备已永久解锁！现在可以无限次提问了。');
+            var messagesDiv = document.getElementById('dr-chat-messages');
+            var successMsg = document.createElement('div');
             successMsg.className = 'dr-message dr-bot';
             successMsg.innerHTML = '🎉 恭喜！您已永久解锁无限次提问权限！';
             messagesDiv.appendChild(successMsg);
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
         } else {
-            alert(`✅ 设备 ${deviceId} 已永久解锁！`);
+            alert('✅ 设备 ' + deviceId + ' 已永久解锁！');
         }
         
         loadPendingOrders();
@@ -785,56 +805,66 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         });
     }
     
-    let isLoading = false;
-    let currentStreamingDiv = null;
-    let streamingContent = '';
+    var isLoading = false;
+    var currentStreamingDiv = null;
+    var streamingContent = '';
     
-    marked.setOptions({
-        highlight: function(code, lang) {
-            if (lang && hljs.getLanguage(lang)) {
-                try {
-                    return hljs.highlight(code, { language: lang }).value;
-                } catch (e) {}
+    if (typeof marked !== 'undefined') {
+        marked.setOptions({
+            highlight: function(code, lang) {
+                if (lang && hljs && hljs.getLanguage(lang)) {
+                    try {
+                        return hljs.highlight(code, { language: lang }).value;
+                    } catch (e) {}
+                }
+                return code;
             }
-            return code;
-        }
-    });
+        });
+    }
     
     function markdownToHtml(text) {
         if (!text) return '';
-        const latexBlocks = [], latexInlines = [];
-        text = text.replace(/\$\$([\s\S]*?)\$\$/g, (match, formula) => {
-            const idx = latexBlocks.length;
+        var latexBlocks = [];
+        var latexInlines = [];
+        text = text.replace(/\$\$([\s\S]*?)\$\$/g, function(match, formula) {
+            var idx = latexBlocks.length;
             latexBlocks.push(formula);
-            return `@@LATEX_BLOCK_${idx}@@`;
+            return '@@LATEX_BLOCK_' + idx + '@@';
         });
-        text = text.replace(/\$([^\$\n]+?)\$/g, (match, formula) => {
-            const idx = latexInlines.length;
+        text = text.replace(/\$([^\$\n]+?)\$/g, function(match, formula) {
+            var idx = latexInlines.length;
             latexInlines.push(formula);
-            return `@@LATEX_INLINE_${idx}@@`;
+            return '@@LATEX_INLINE_' + idx + '@@';
         });
-        let html = marked.parse(text, { mangle: false, headerIds: false });
-        html = html.replace(/@@LATEX_BLOCK_(\d+)@@/g, (match, idx) => `$$${latexBlocks[parseInt(idx)]}$$`);
-        html = html.replace(/@@LATEX_INLINE_(\d+)@@/g, (match, idx) => `$${latexInlines[parseInt(idx)]}$`);
+        var html = marked.parse(text, { mangle: false, headerIds: false });
+        html = html.replace(/@@LATEX_BLOCK_(\d+)@@/g, function(match, idx) {
+            return '$$' + latexBlocks[parseInt(idx)] + '$$';
+        });
+        html = html.replace(/@@LATEX_INLINE_(\d+)@@/g, function(match, idx) {
+            return '$' + latexInlines[parseInt(idx)] + '$';
+        });
         return html;
     }
     
     function addMessage(role, content) {
-        const messagesDiv = document.getElementById('dr-chat-messages');
-        const div = document.createElement('div');
-        div.className = `dr-message dr-${role}`;
+        var messagesDiv = document.getElementById('dr-chat-messages');
+        var div = document.createElement('div');
+        div.className = 'dr-message dr-' + role;
         if (role === 'user') {
             div.textContent = content;
         } else {
             div.innerHTML = markdownToHtml(content);
             if (typeof hljs !== 'undefined') {
-                div.querySelectorAll('pre code').forEach(block => hljs.highlightElement(block));
+                var codeBlocks = div.querySelectorAll('pre code');
+                for (var i = 0; i < codeBlocks.length; i++) {
+                    hljs.highlightElement(codeBlocks[i]);
+                }
             }
         }
         messagesDiv.appendChild(div);
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
         if (role === 'bot' && window.MathJax) {
-            MathJax.typesetPromise([div]).catch(e => console.warn);
+            MathJax.typesetPromise([div]).catch(function(e) { console.warn(e); });
         }
     }
     
@@ -849,18 +879,24 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
     function updateStreamingContent(newChunk) {
         if (!currentStreamingDiv) return;
         streamingContent += newChunk;
-        let rendered = markdownToHtml(streamingContent);
+        var rendered = markdownToHtml(streamingContent);
         currentStreamingDiv.innerHTML = rendered + '<span class="dr-typing-cursor"></span>';
-        document.getElementById('dr-chat-messages').scrollTop = document.getElementById('dr-chat-messages').scrollHeight;
+        var msgsDiv = document.getElementById('dr-chat-messages');
+        msgsDiv.scrollTop = msgsDiv.scrollHeight;
     }
     
     function finishStreamingMessage() {
         if (!currentStreamingDiv) return;
-        let rendered = markdownToHtml(streamingContent);
+        var rendered = markdownToHtml(streamingContent);
         currentStreamingDiv.innerHTML = rendered;
-        if (window.MathJax) MathJax.typesetPromise([currentStreamingDiv]).catch(e => console.warn);
+        if (window.MathJax) {
+            MathJax.typesetPromise([currentStreamingDiv]).catch(function(e) { console.warn(e); });
+        }
         if (typeof hljs !== 'undefined') {
-            currentStreamingDiv.querySelectorAll('pre code').forEach(block => hljs.highlightElement(block));
+            var codeBlocks = currentStreamingDiv.querySelectorAll('pre code');
+            for (var i = 0; i < codeBlocks.length; i++) {
+                hljs.highlightElement(codeBlocks[i]);
+            }
         }
         currentStreamingDiv = null;
         streamingContent = '';
@@ -872,8 +908,8 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             return;
         }
         
-        const input = document.getElementById('dr-chat-input');
-        const message = input.value.trim();
+        var input = document.getElementById('dr-chat-input');
+        var message = input.value.trim();
         if (!message || isLoading) return;
         
         addMessage('user', message);
@@ -887,11 +923,11 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         addStreamingMessage();
         
         try {
-            const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+            var response = await fetch('https://api.deepseek.com/v1/chat/completions', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${DEEPSEEK_KEY}`
+                    'Authorization': 'Bearer ' + DEEPSEEK_KEY
                 },
                 body: JSON.stringify({
                     model: 'deepseek-chat',
@@ -904,23 +940,24 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 })
             });
             
-            const reader = response.body.getReader();
-            const decoder = new TextDecoder();
-            let buffer = '';
+            var reader = response.body.getReader();
+            var decoder = new TextDecoder();
+            var buffer = '';
             
             while (true) {
-                const { done, value } = await reader.read();
-                if (done) break;
-                buffer += decoder.decode(value, { stream: true });
-                const lines = buffer.split('\n');
+                var result = await reader.read();
+                if (result.done) break;
+                buffer += decoder.decode(result.value, { stream: true });
+                var lines = buffer.split('\n');
                 buffer = lines.pop() || '';
-                for (const line of lines) {
+                for (var i = 0; i < lines.length; i++) {
+                    var line = lines[i];
                     if (line.startsWith('data: ')) {
-                        const data = line.slice(6);
+                        var data = line.slice(6);
                         if (data === '[DONE]') continue;
                         try {
-                            const parsed = JSON.parse(data);
-                            const chunk = parsed.choices[0]?.delta?.content || '';
+                            var parsed = JSON.parse(data);
+                            var chunk = parsed.choices[0] && parsed.choices[0].delta ? parsed.choices[0].delta.content : '';
                             if (chunk) updateStreamingContent(chunk);
                         } catch (e) {}
                     }
@@ -932,33 +969,49 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 currentStreamingDiv.remove();
                 currentStreamingDiv = null;
             }
-            addMessage('bot', `调用失败：${error.message}`);
+            addMessage('bot', '调用失败：' + error.message);
         }
         isLoading = false;
     }
     
     function bindEvents() {
-        const header = document.querySelector('.dr-chat-header');
-        const sendBtn = document.getElementById('dr-chat-send');
-        const input = document.getElementById('dr-chat-input');
-        const adminToggle = document.getElementById('adminToggle');
+        var header = document.querySelector('.dr-chat-header');
+        var sendBtn = document.getElementById('dr-chat-send');
+        var input = document.getElementById('dr-chat-input');
+        var adminToggle = document.getElementById('adminToggle');
+        var refreshBtn = document.getElementById('refreshOrdersBtn');
+        var closeModalBtn = document.getElementById('closeModalBtn');
+        var submitPaymentBtn = document.getElementById('submitPaymentBtn');
+        var searchInput = document.getElementById('searchOrderInput');
         
         if (header) {
-            header.addEventListener('click', (e) => {
-                if (e.target === adminToggle || adminToggle.contains(e.target)) return;
+            header.addEventListener('click', function(e) {
+                if (e.target === adminToggle || (adminToggle && adminToggle.contains(e.target))) return;
                 document.getElementById('dr-chat-widget').classList.toggle('dr-collapsed');
             });
         }
         
         if (adminToggle) {
-            adminToggle.addEventListener('click', (e) => {
+            adminToggle.addEventListener('click', function(e) {
                 e.stopPropagation();
                 toggleAdminPanel();
             });
         }
         
+        if (refreshBtn) {
+            refreshBtn.addEventListener('click', function() { loadPendingOrders(); });
+        }
+        
+        if (closeModalBtn) {
+            closeModalBtn.addEventListener('click', function() { closeDonateModal(); });
+        }
+        
+        if (submitPaymentBtn) {
+            submitPaymentBtn.addEventListener('click', function() { submitPaymentInfo(); });
+        }
+        
         if (sendBtn) {
-            sendBtn.addEventListener('click', () => {
+            sendBtn.addEventListener('click', function() {
                 if (!canAskQuestion() && !isPermanentlyUnlocked()) {
                     showDonateModal();
                 } else {
@@ -968,7 +1021,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         }
         
         if (input) {
-            input.addEventListener('keypress', (e) => {
+            input.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     e.preventDefault();
                     if (!canAskQuestion() && !isPermanentlyUnlocked()) {
@@ -980,9 +1033,8 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             });
         }
         
-        const searchInput = document.getElementById('searchOrderInput');
         if (searchInput) {
-            searchInput.addEventListener('input', () => loadPendingOrders());
+            searchInput.addEventListener('input', function() { loadPendingOrders(); });
         }
     }
     
