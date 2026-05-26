@@ -105,11 +105,10 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         .dr-quota-warning { background: #fff3e0; padding: 8px; font-size: 12px; text-align: center; color: #e67e22; }
         .dr-lock-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,240,0.95); border-radius: 12px; display: flex; align-items: center; justify-content: center; z-index: 10; }
         .dr-lock-message { background: #1a1a2e; color: white; padding: 10px 20px; border-radius: 40px; font-size: 13px; font-weight: bold; cursor: pointer; }
-        mjx-container { overflow-x: auto !important; margin: 8px 0 !important; }
-        /* 简单代码块样式（不使用hljs） */
         pre { background: #0d1117; color: #e6edf3; padding: 12px; border-radius: 8px; overflow-x: auto; margin: 8px 0; }
         code { font-family: 'SF Mono', Monaco, monospace; font-size: 13px; }
         :not(pre) > code { background: #e8e8ec; padding: 2px 6px; border-radius: 4px; color: #d73a49; }
+        mjx-container { overflow-x: auto !important; margin: 8px 0 !important; }
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -324,10 +323,8 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             return str.replace(/[&<>]/g, function(m) { if (m === '&') return '&amp;'; if (m === '<') return '&lt;'; if (m === '>') return '&gt;'; return m; });
         }
         
-        // ========== 聊天功能（不使用hljs，避免冲突） ==========
+        // ========== 聊天功能（改用非流式，避免兼容性问题） ==========
         var isLoading = false;
-        var streamingDiv = null;
-        var streamContent = '';
         
         function mdToHtml(text) {
             if (!text) return '';
@@ -351,28 +348,26 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             if (role === 'bot' && window.MathJax) MathJax.typesetPromise([div]).catch(function(e) {});
         }
         
-        function startStream() {
-            streamingDiv = document.createElement('div');
-            streamingDiv.className = 'dr-message dr-bot';
-            streamingDiv.innerHTML = '<span class="dr-typing-cursor"></span>';
-            document.getElementById('chatMessages').appendChild(streamingDiv);
-            streamContent = '';
+        // 显示加载动画
+        function showLoading() {
+            var msgs = document.getElementById('chatMessages');
+            var loadingDiv = document.createElement('div');
+            loadingDiv.className = 'dr-message dr-bot';
+            loadingDiv.id = 'loadingMsg';
+            loadingDiv.innerHTML = '<span style="display:inline-block;width:16px;height:16px;border:2px solid #ccc;border-top-color:#1a1a2e;border-radius:50%;animation:spin 0.8s linear infinite;"></span> 思考中...';
+            msgs.appendChild(loadingDiv);
+            msgs.scrollTop = msgs.scrollHeight;
         }
         
-        function updateStream(chunk) {
-            if (!streamingDiv) return;
-            streamContent += chunk;
-            streamingDiv.innerHTML = mdToHtml(streamContent) + '<span class="dr-typing-cursor"></span>';
-            document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+        function hideLoading() {
+            var loading = document.getElementById('loadingMsg');
+            if (loading) loading.remove();
         }
         
-        function endStream() {
-            if (!streamingDiv) return;
-            streamingDiv.innerHTML = mdToHtml(streamContent);
-            if (window.MathJax) MathJax.typesetPromise([streamingDiv]).catch(function(e) {});
-            streamingDiv = null;
-            streamContent = '';
-        }
+        // 添加旋转动画
+        var style = document.createElement('style');
+        style.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
+        document.head.appendChild(style);
         
         async function sendMsg() {
             if (!canAsk()) { showPayModal(); return; }
@@ -383,50 +378,41 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             input.value = '';
             if (!isUnlocked()) incrementUsed();
             isLoading = true;
-            startStream();
+            showLoading();
             
             try {
+                // 使用非流式模式，避免 stream 兼容性问题
                 var response = await fetch('https://api.deepseek.com/v1/chat/completions', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + DEEPSEEK_KEY },
                     body: JSON.stringify({
                         model: 'deepseek-chat',
-                        messages: [{ role: 'system', content: '你是机器人学专家。回答严谨深刻。用Markdown格式：##标题、-列表、$公式$、```代码```。' }, { role: 'user', content: msg }],
+                        messages: [
+                            { role: 'system', content: '你是机器人学专家。回答严谨深刻。用Markdown格式：##标题、-列表、$公式$、```代码```。' },
+                            { role: 'user', content: msg }
+                        ],
                         temperature: 0.3,
-                        stream: true
+                        stream: false  // 改为非流式
                     })
                 });
                 
-                if (!response.ok) throw new Error('API请求失败: ' + response.status);
-                if (!response.body) throw new Error('响应不支持流式读取');
-                
-                var reader = response.body.getReader();
-                var decoder = new TextDecoder();
-                var buffer = '';
-                
-                while (true) {
-                    var result = await reader.read();
-                    if (result.done) break;
-                    buffer += decoder.decode(result.value, { stream: true });
-                    var lines = buffer.split('\n');
-                    buffer = lines.pop() || '';
-                    for (var i = 0; i < lines.length; i++) {
-                        var line = lines[i];
-                        if (line.startsWith('data: ')) {
-                            var data = line.slice(6);
-                            if (data === '[DONE]') continue;
-                            try {
-                                var parsed = JSON.parse(data);
-                                var chunk = parsed.choices && parsed.choices[0] && parsed.choices[0].delta && parsed.choices[0].delta.content;
-                                if (chunk) updateStream(chunk);
-                            } catch(e) {}
-                        }
-                    }
+                if (!response.ok) {
+                    throw new Error('API请求失败: ' + response.status);
                 }
-                endStream();
+                
+                var data = await response.json();
+                hideLoading();
+                
+                if (data && data.choices && data.choices[0] && data.choices[0].message) {
+                    var reply = data.choices[0].message.content;
+                    addMsg('bot', reply);
+                } else if (data && data.error) {
+                    addMsg('bot', 'API错误：' + data.error.message);
+                } else {
+                    addMsg('bot', '返回数据格式异常，请重试。');
+                }
             } catch(error) {
-                if (streamingDiv) streamingDiv.remove();
-                streamingDiv = null;
+                hideLoading();
                 addMsg('bot', '调用失败：' + error.message + '\n\n请检查网络后重试。');
             }
             isLoading = false;
