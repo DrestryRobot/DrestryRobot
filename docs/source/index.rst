@@ -3,8 +3,9 @@
 .. raw:: html
 
    <div style="text-align: center; margin: 20px 0; padding: 10px; background: #f5f5f5; border-radius: 5px;">
-       <div id="counter-placeholder">
-           📊 数据加载<span class="dot-animation"></span>
+       <div id="counter-placeholder" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+           <div class="spinner"></div>
+           <span>数据加载中...</span>
        </div>
        <div id="counter-content" style="display: none;">
            <span id="vercount_container_site_pv" style="display: none;">
@@ -33,15 +34,16 @@
    </div>
 
    <style>
-       .dot-animation::after {
-           content: '';
-           animation: dot 1.5s steps(3, end) infinite;
+       .spinner {
+           width: 18px;
+           height: 18px;
+           border: 2px solid #ccc;
+           border-top-color: #0366d6;
+           border-radius: 50%;
+           animation: spin 0.8s linear infinite;
        }
-       @keyframes dot {
-           0% { content: ''; }
-           33% { content: '.'; }
-           66% { content: '..'; }
-           100% { content: '...'; }
+       @keyframes spin {
+           to { transform: rotate(360deg); }
        }
    </style>
 
