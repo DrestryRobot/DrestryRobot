@@ -25,7 +25,7 @@
    </style>
 
    <div style="text-align: center; margin: 20px 0;">
-       <div id="loading"><div class="spinner"></div> 数据加载中...</div>
+       <div id="loading" style="display: flex; align-items: center; justify-content: center; gap: 8px;"><div class="spinner"></div> 数据加载中...</div>
        <div id="counter" style="display: none;">
            <span id="vercount_container_site_pv" style="display: none;">
                <span class="full">🌐 本站总访问量：</span><span class="short">🌐 访问量：</span>
