@@ -77,11 +77,11 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
        <!-- 手机端显示的短文字 -->
        <span class="counter-text-short">
            <span id="vercount_container_site_pv_short" style="display: none;">
-               🌐 <span id="vercount_value_site_pv">0</span> 次
+               🌐 访问量：<span id="vercount_value_site_pv">0</span> 次
            </span>
            &nbsp;|&nbsp;
            <span id="vercount_container_site_uv_short" style="display: none;">
-               👥 <span id="vercount_value_site_uv">0</span> 人
+               👥 访客数：<span id="vercount_value_site_uv">0</span> 人
            </span>
        </span>
    </div>
