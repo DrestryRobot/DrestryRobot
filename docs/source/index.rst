@@ -98,15 +98,16 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             * {
                 margin: 0;
                 padding: 0;
-                box-sizing: border-box;
+ box-sizing: border-box;
             }
 
-            /* 深浅色主题变量 */
-            :root {
+            /* 统一主题变量 - 同时适配深色和浅色模式 */
+            .drestry-reward {
                 --text: #1e293b;
                 --text-muted: #64748b;
                 --accent: #3b82f6;
-                --accent-light: #dbeafe;
+                --accent-hover: #2563eb;
+                --accent-light: #e0e7ff;
                 --success: #10b981;
                 --success-light: #d1fae5;
                 --error: #ef4444;
@@ -119,10 +120,11 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             }
 
             @media (prefers-color-scheme: dark) {
-                :root {
+                .drestry-reward {
                     --text: #f1f5f9;
                     --text-muted: #94a3b8;
                     --accent: #60a5fa;
+                    --accent-hover: #93c5fd;
                     --accent-light: #1e293b;
                     --success: #34d399;
                     --success-light: #1e293b;
@@ -147,7 +149,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 padding: 0;
             }
 
-            /* 上传框 - 宽度100%自适应，固定比例16:9 */
             .upload-zone {
                 background: var(--card-bg);
                 border: 2px dashed var(--border);
@@ -214,7 +215,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 padding: 12px;
             }
 
-            /* 清除按钮 - 使用flex完美居中 */
+            /* 清除按钮 */
             .clear-btn {
                 position: absolute;
                 top: 12px;
@@ -233,7 +234,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 backdrop-filter: blur(4px);
                 border: 1px solid rgba(255, 255, 255, 0.3);
                 transition: all 0.2s ease;
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             }
 
             .clear-btn span {
@@ -256,7 +256,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 visibility: visible;
             }
 
-            /* 底部浮层 - 统一位置 */
+            /* 底部浮层 - 固定位置，不移动 */
             .bottom-overlay {
                 position: absolute;
                 bottom: 0;
@@ -270,21 +270,19 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 backdrop-filter: blur(16px);
                 -webkit-backdrop-filter: blur(16px);
                 border-radius: 0 0 22px 22px;
-                transition: opacity 0.25s ease, transform 0.25s ease;
                 height: 42px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 border-top: 1px solid rgba(255, 255, 255, 0.15);
                 box-sizing: border-box;
+                transition: opacity 0.2s ease;
             }
 
-            /* 更换图片提示 - 始终可见 */
+            /* 更换图片提示 */
             .change-overlay {
                 background: var(--overlay-bg);
                 color: white;
-                opacity: 1;
-                transform: translateY(0);
             }
 
             .change-overlay span {
@@ -293,12 +291,11 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 gap: 6px;
             }
 
-            /* 状态浮层 - 默认隐藏 */
+            /* 状态浮层 - 与更换提示同一位置 */
             .status-overlay {
                 background: var(--overlay-bg);
                 color: white;
                 opacity: 0;
-                transform: translateY(0);
                 pointer-events: none;
             }
 
@@ -307,18 +304,18 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             }
 
             .status-overlay.loading {
-                background: rgba(59, 130, 246, 0.85);
+                background: var(--accent);
             }
 
             .status-overlay.success {
-                background: rgba(16, 185, 129, 0.85);
+                background: var(--success);
             }
 
             .status-overlay.error {
-                background: rgba(239, 68, 68, 0.85);
+                background: var(--error);
             }
 
-            /* 隐藏更换图片提示 */
+            /* 隐藏更换提示 */
             .change-overlay.hide {
                 opacity: 0;
                 pointer-events: none;
@@ -421,7 +418,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 font-size: 1.35rem;
             }
 
-            /* 二维码背景始终白色 */
             .qr-wrapper {
                 background: #ffffff;
                 border-radius: 20px;
@@ -448,7 +444,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 font-size: 0.8rem;
             }
 
-            /* 移动端适配 */
             @media (max-width: 560px) {
                 .drestry-reward {
                     padding-bottom: 16px;
@@ -498,6 +493,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
                     <img class="preview-img" id="previewImg" alt="预览">
 
+                    <!-- 两个浮层始终在同一位置，通过透明度切换 -->
                     <div class="bottom-overlay change-overlay" id="changeOverlay">
                         <span>🖱️ 点击更换图片</span>
                     </div>
@@ -533,6 +529,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 const rewardCard = document.getElementById('rewardCard');
                 const clearBtn = document.getElementById('clearBtn');
                 
+                // 初始状态：显示更换提示，隐藏状态
                 changeOverlay.classList.remove('hide');
                 statusOverlay.classList.remove('show');
                 
@@ -581,19 +578,24 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 
                 function showStatus(msg, type) {
                     if (timeout) clearTimeout(timeout);
+                    // 隐藏更换提示
                     changeOverlay.classList.add('hide');
+                    // 设置状态内容
                     statusOverlay.innerHTML = '';
                     statusOverlay.className = 'bottom-overlay status-overlay';
                     statusOverlay.classList.add(type);
                     if (type === 'loading') statusOverlay.innerHTML = '<span class="loading-spinner"></span> ' + msg;
                     else if (type === 'success') statusOverlay.innerHTML = '<span class="success-check">✓</span> ' + msg;
                     else statusOverlay.innerHTML = '✗ ' + msg;
+                    // 显示状态
                     statusOverlay.classList.add('show');
                 }
                 
                 function hideStatus() {
                     if (timeout) clearTimeout(timeout);
+                    // 隐藏状态
                     statusOverlay.classList.remove('show');
+                    // 显示更换提示
                     changeOverlay.classList.remove('hide');
                 }
                 
