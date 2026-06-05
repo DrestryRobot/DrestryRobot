@@ -140,6 +140,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 width: 100%;
                 margin: 0;
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                padding-bottom: 20px;
             }
 
             .reward-inner {
@@ -291,7 +292,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 gap: 6px;
             }
 
-            /* 状态浮层 - 始终显示在正确位置 */
+            /* 状态浮层 */
             .status-overlay {
                 background: var(--overlay-bg);
                 color: white;
@@ -449,6 +450,9 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
             /* 移动端适配 */
             @media (max-width: 560px) {
+                .drestry-reward {
+                    padding-bottom: 16px;
+                }
                 .upload-icon {
                     font-size: 40px;
                 }
