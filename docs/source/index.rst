@@ -45,3 +45,43 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
    :glob:
 
    *
+
+.. raw:: html
+
+   <style>
+       /* 默认（电脑端）显示完整文字，手机端隐藏 */
+       .counter-text-full { display: inline; }
+       .counter-text-short { display: none; }
+
+       /* 当屏幕宽度小于 768px 时（手机端），显示短文字，隐藏完整文字 */
+       @media (max-width: 768px) {
+           .counter-text-full { display: none; }
+           .counter-text-short { display: inline; }
+       }
+   </style>
+
+   <div style="text-align: center; margin: 20px 0; padding: 10px; background: #f5f5f5; border-radius: 5px;">
+       <script defer src="https://vercount.one/js"></script>
+
+       <!-- 电脑端显示的完整文字 -->
+       <span class="counter-text-full">
+           <span id="vercount_container_site_pv" style="display: none;">
+               🌐 本站总访问量：<span id="vercount_value_site_pv">0</span> 次
+           </span>
+           &nbsp;|&nbsp;
+           <span id="vercount_container_site_uv" style="display: none;">
+               👥 本站总访客数：<span id="vercount_value_site_uv">0</span> 人
+           </span>
+       </span>
+
+       <!-- 手机端显示的短文字 -->
+       <span class="counter-text-short">
+           <span id="vercount_container_site_pv_short" style="display: none;">
+               🌐 <span id="vercount_value_site_pv">0</span> 次
+           </span>
+           &nbsp;|&nbsp;
+           <span id="vercount_container_site_uv_short" style="display: none;">
+               👥 <span id="vercount_value_site_uv">0</span> 人
+           </span>
+       </span>
+   </div>
