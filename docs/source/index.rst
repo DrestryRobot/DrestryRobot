@@ -3,8 +3,9 @@
 .. raw:: html
 
    <div style="text-align: center; margin: 20px 0; padding: 10px; background: #f5f5f5; border-radius: 5px;">
-       <div id="counter-placeholder">
-           <div class="skeleton" style="width: 200px; height: 20px; margin: 0 auto;"></div>
+       <div id="counter-placeholder" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+           <div class="spinner"></div>
+           <span>数据加载中...</span>
        </div>
        <div id="counter-content" style="display: none;">
            <span id="vercount_container_site_pv" style="display: none;">
@@ -33,18 +34,19 @@
    </div>
 
    <style>
-       .skeleton {
-           background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
-           background-size: 200% 100%;
-           animation: shimmer 1.5s infinite;
-           border-radius: 4px;
+       .spinner {
+           width: 18px;
+           height: 18px;
+           border: 2px solid #ccc;
+           border-top-color: #0366d6;
+           border-radius: 50%;
+           animation: spin 0.8s linear infinite;
        }
-       @keyframes shimmer {
-           0% { background-position: 200% 0; }
-           100% { background-position: -200% 0; }
+       @keyframes spin {
+           to { transform: rotate(360deg); }
        }
    </style>
-   
+
 🧩 基本介绍
 -------------
 DrestryRobot是一个机器人开发知识库，其涵盖了机器人开发所需要用到的各类技术知识和软件工具。
