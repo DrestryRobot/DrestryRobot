@@ -107,7 +107,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 padding-bottom: 20px;
             }
 
-            /* 上传框容器 - 整体 */
+            /* 上传框容器 - 16:9，相对定位 */
             .upload-zone {
                 background: #f5f5f7;
                 border: 2px dashed #d4d4d8;
@@ -116,6 +116,8 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 transition: border-color 0.25s ease;
                 position: relative;
                 width: 100%;
+                aspect-ratio: 16 / 9;
+                overflow: hidden;
                 box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
             }
 
@@ -123,17 +125,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 border-color: #a1a1aa;
             }
 
-            /* 图片容器 - 16:9比例 */
-            .image-container {
-                position: relative;
-                width: 100%;
-                padding-top: 56.25%;
-                background: #f5f5f7;
-                overflow: hidden;
-                border-radius: 24px 24px 0 0;
-            }
-
-            /* 上传提示 */
+            /* 上传提示 - 绝对定位居中 */
             .upload-content {
                 position: absolute;
                 top: 0;
@@ -172,7 +164,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 font-weight: 500;
             }
 
-            /* 预览图片包装器 */
+            /* 预览图片包装器 - 水平垂直居中 */
             .preview-wrapper {
                 position: absolute;
                 top: 0;
@@ -238,20 +230,24 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 background: #dc2626;
             }
 
-            /* 状态栏 - 绝对定位，不参与父容器高度计算 */
+            /* 状态栏 - 胶囊状浮动在上传窗口底部 */
             .status-bar {
                 position: absolute;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                height: 44px;
+                bottom: 12px;
+                left: 50%;
+                transform: translateX(-50%);
+                min-width: 160px;
+                height: 38px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 transition: background-color 0.2s ease;
-                border-radius: 0 0 22px 22px;
-                background: rgba(0, 0, 0, 0.6);
-                z-index: 10;
+                border-radius: 40px;
+                background: rgba(0, 0, 0, 0.75);
+                backdrop-filter: blur(8px);
+                z-index: 20;
+                padding: 0 16px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
             }
 
             .status-content {
@@ -259,14 +255,14 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 align-items: center;
                 justify-content: center;
                 gap: 6px;
-                font-size: 0.875rem;
+                font-size: 0.8125rem;
                 font-weight: 500;
                 color: white;
                 white-space: nowrap;
             }
 
             /* 不同状态背景色 */
-            .status-bar.default { background: rgba(0, 0, 0, 0.6); }
+            .status-bar.default { background: rgba(0, 0, 0, 0.75); }
             .status-bar.loading { background: #71717a; }
             .status-bar.success { background: #10b981; }
             .status-bar.error { background: #ef4444; }
@@ -396,11 +392,12 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 .upload-icon { font-size: 40px; }
                 .upload-text { font-size: 0.9rem; }
                 .upload-desc { font-size: 0.75rem; }
-                .status-bar { height: 40px; }
-                .status-content { font-size: 0.75rem; }
+                .status-bar { height: 34px; min-width: 130px; bottom: 10px; }
+                .status-content { font-size: 0.7rem; }
                 .qr-img { width: 110px; height: 110px; }
                 .reward-card { padding: 16px; }
                 .toast { font-size: 12px; padding: 8px 16px; bottom: 20px; }
+                .action-btn { top: 8px; right: 8px; width: 24px; height: 24px; font-size: 14px; }
             }
         </style>
     </head>
@@ -411,23 +408,22 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     <span>✓</span>
                 </div>
 
-                <div class="image-container">
-                    <div class="upload-content">
-                        <div class="upload-icon">📸</div>
-                        <div class="upload-text">点击上传截图</div>
-                        <div class="upload-desc">
-                            上传包含 <span class="domain">drestryrobot.readthedocs.io</span> 的分享截图有奖
-                        </div>
-                    </div>
-                    <div class="preview-wrapper" id="previewWrapper">
-                        <img class="preview-img" id="previewImg" alt="预览">
+                <div class="upload-content">
+                    <div class="upload-icon">📸</div>
+                    <div class="upload-text">点击上传截图</div>
+                    <div class="upload-desc">
+                        上传包含 <span class="domain">drestryrobot.readthedocs.io</span> 的分享截图有奖
                     </div>
                 </div>
 
-                <!-- 状态栏绝对定位，不影响父容器高度 -->
+                <div class="preview-wrapper" id="previewWrapper">
+                    <img class="preview-img" id="previewImg" alt="预览">
+                </div>
+
+                <!-- 胶囊状态栏浮动在上传窗口底部 -->
                 <div class="status-bar default" id="statusBar">
                     <div class="status-content" id="statusContent">
-                        <span>🖱️ 点击更换图片</span>
+                        <span>🖱️ 点击上传</span>
                     </div>
                 </div>
 
@@ -489,7 +485,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     fileInput.value = '';
                     rewardCard.style.display = 'none';
                     statusBar.className = 'status-bar default';
-                    statusContent.innerHTML = '<span>🖱️ 点击更换图片</span>';
+                    statusContent.innerHTML = '<span>🖱️ 点击上传</span>';
                     actionBtn.className = 'action-btn copy-btn';
                     actionBtn.innerHTML = '<span>✓</span>';
                 }
