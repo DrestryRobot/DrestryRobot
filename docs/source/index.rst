@@ -1,5 +1,17 @@
 🔥 DrestryRobot
 =====================================
+.. raw:: html
+
+   <div style="text-align: center; margin: 20px 0; padding: 10px; background: #f5f5f5; border-radius: 5px;">
+       <script defer src="https://vercount.one/js"></script>
+       <span id="vercount_container_site_pv" style="display: none;">
+           🌐 本站总访问量：<span id="vercount_value_site_pv">0</span> 次
+       </span>
+       &nbsp;|&nbsp;
+       <span id="vercount_container_site_uv" style="display: none;">
+           👥 本站总访客数：<span id="vercount_value_site_uv">0</span> 人
+       </span>
+   </div>
 
 🧩 基本介绍
 -------------
