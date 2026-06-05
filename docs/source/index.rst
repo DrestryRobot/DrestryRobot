@@ -111,7 +111,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 padding: 0;
             }
 
-            /* 使用 padding-top 实现 16:9，兼容性更好 */
             .upload-zone {
                 background: #f5f5f7;
                 border: 2px dashed #d4d4d8;
@@ -120,7 +119,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 transition: all 0.25s ease;
                 position: relative;
                 width: 100%;
-                padding-top: 56.25%; /* 16:9 = 9/16 = 0.5625 */
+                padding-top: 56.25%;
                 overflow: hidden;
                 box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
             }
@@ -130,7 +129,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 background: #eaeaef;
             }
 
-            /* 内部内容绝对定位覆盖整个区域 */
             .upload-inner {
                 position: absolute;
                 top: 0;
@@ -195,7 +193,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 display: block;
             }
 
-            /* 右上角按钮 */
             .action-btn {
                 position: absolute;
                 top: 12px;
@@ -249,7 +246,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 visibility: visible;
             }
 
-            /* 提示浮层 */
             .toast {
                 position: fixed;
                 bottom: 30px;
@@ -274,7 +270,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 opacity: 1;
             }
 
-            /* ========== 底部状态栏 ========== */
+            /* ========== 状态栏 - 固定高度，内容固定宽度 ========== */
             .status-bar {
                 position: absolute;
                 bottom: 0;
@@ -285,36 +281,37 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 -webkit-backdrop-filter: blur(16px);
                 border-radius: 0 0 22px 22px;
                 border-top: 1px solid rgba(0, 0, 0, 0.06);
+                z-index: 10;
+                transition: background-color 0.2s ease;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                z-index: 10;
-                transition: background-color 0.2s ease;
             }
 
-            /* 无预览时隐藏状态栏 */
             .upload-zone:not(.has-preview) .status-bar {
                 display: none;
             }
 
-            /* 有预览时显示 */
             .upload-zone.has-preview .status-bar {
                 display: flex;
             }
 
-            /* 状态内容 */
+            /* 关键修复：所有状态内容使用固定最小宽度，确保位置一致 */
             .status-content {
-                display: flex;
+                display: inline-flex;
                 align-items: center;
                 justify-content: center;
                 gap: 6px;
                 font-size: 0.875rem;
                 font-weight: 500;
                 color: white;
-                transition: all 0.2s ease;
+                white-space: nowrap;
+                min-width: 160px;
+                text-align: center;
+                line-height: 1.4;
             }
 
-            /* 不同状态的背景色 */
+            /* 不同状态背景色 */
             .status-bar.default {
                 background: rgba(0, 0, 0, 0.6);
             }
@@ -331,14 +328,14 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 background: #ef4444;
             }
 
-            /* 简单动画 */
-            @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(2px); }
-                to { opacity: 1; transform: translateY(0); }
+            /* 简单淡入动画 - 不改变尺寸 */
+            @keyframes gentleFade {
+                0% { opacity: 0; }
+                100% { opacity: 1; }
             }
 
             .status-content {
-                animation: fadeIn 0.2s ease-out;
+                animation: gentleFade 0.2s ease-out;
             }
 
             .spinner-small {
@@ -355,7 +352,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 to { transform: rotate(360deg); }
             }
 
-            /* 有预览时隐藏上传提示，显示预览图 */
             .upload-zone.has-preview .upload-content {
                 opacity: 0;
                 visibility: hidden;
@@ -365,7 +361,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 display: flex;
             }
 
-            /* 领奖卡片 */
             .reward-card {
                 background: #f5f5f7;
                 border: 1px solid #e4e4e9;
@@ -476,7 +471,8 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     height: 40px;
                 }
                 .status-content {
-                    font-size: 0.8rem;
+                    font-size: 0.75rem;
+                    min-width: 130px;
                 }
                 .action-btn {
                     top: 8px;
@@ -607,6 +603,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 
                 function updateStatus(type, message, iconHtml) {
                     statusBar.className = 'status-bar ' + type;
+                    // 所有消息统一使用相同结构，位置保持一致
                     statusContent.innerHTML = iconHtml + ' ' + message;
                 }
                 
@@ -636,7 +633,15 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     uploadZone.style.borderColor = '#d4d4d8';
                     const file = e.dataTransfer.files[0];
                     if (file && file.type.startsWith('image/')) handleFile(file);
-                    else updateStatus('error', '请上传图片', '<span>✗</span>');
+                    else {
+                        updateStatus('error', '请上传图片', '<span>✗</span>');
+                        setTimeout(() => {
+                            if (uploadZone.classList.contains('has-preview')) {
+                                statusBar.className = 'status-bar default';
+                                statusContent.innerHTML = '<span>🖱️ 点击更换图片</span>';
+                            }
+                        }, 1000);
+                    }
                 });
                 
                 fileInput.addEventListener('change', (e) => {
@@ -654,8 +659,10 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 
                 function resetToDefault() {
                     if (timeout) clearTimeout(timeout);
-                    statusBar.className = 'status-bar default';
-                    statusContent.innerHTML = '<span>🖱️ 点击更换图片</span>';
+                    if (uploadZone.classList.contains('has-preview')) {
+                        statusBar.className = 'status-bar default';
+                        statusContent.innerHTML = '<span>🖱️ 点击更换图片</span>';
+                    }
                 }
                 
                 function showConfetti() {
@@ -679,7 +686,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 
                 async function handleFile(file) {
                     rewardCard.style.display = 'none';
-                    resetToDefault();
                     
                     const reader = new FileReader();
                     reader.onload = (e) => {
