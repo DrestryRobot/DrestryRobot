@@ -88,343 +88,485 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 -------------
 .. raw:: html
 
-    <style>
-        .drestry-reward {
-            max-width: 560px;
-            margin: 0 auto;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-        
-        /* 主题变量 */
-        .drestry-reward {
-            --text: #212529;
-            --text-muted: #6c757d;
-            --accent: #3b82f6;
-            --accent-bg: #eef2ff;
-            --success: #10b981;
-            --success-bg: #d1fae5;
-            --error: #ef4444;
-            --error-bg: #fee2e2;
-        }
-        
-        @media (prefers-color-scheme: dark) {
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <title>分享有奖 · DrestryRobot</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background: transparent;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                padding: 20px;
+                display: flex;
+                justify-content: center;
+            }
+
             .drestry-reward {
-                --text: #cdd6f4;
-                --text-muted: #a6adc8;
-                --accent: #89b4fa;
-                --accent-bg: #313244;
-                --success: #a6e3a1;
-                --success-bg: #313244;
-                --error: #f38ba8;
-                --error-bg: #313244;
+                max-width: 500px;
+                width: 100%;
             }
-        }
-        
-        .reward-inner {
-            padding: 20px 16px;
-        }
-        
-        .reward-desc {
-            color: var(--text-muted);
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .reward-desc strong {
-            color: var(--accent);
-            font-family: monospace;
-            font-size: 12px;
-            background: var(--accent-bg);
-            padding: 2px 6px;
-            border-radius: 12px;
-            word-break: break-all;
-        }
-        
-        .upload-zone {
-            background: transparent;
-            border: 2px dashed var(--text-muted);
-            border-radius: 20px;
-            text-align: center;
-            cursor: pointer;
-            padding: 28px 16px;
-            margin-bottom: 16px;
-            transition: all 0.2s;
-        }
-        
-        .upload-zone:active {
-            transform: scale(0.98);
-        }
-        
-        .upload-icon {
-            font-size: 44px;
-            margin-bottom: 8px;
-        }
-        
-        .upload-text {
-            color: var(--text);
-            font-weight: 500;
-            font-size: 15px;
-            margin-bottom: 4px;
-        }
-        
-        .upload-hint {
-            color: var(--text-muted);
-            font-size: 11px;
-        }
-        
-        .preview-box {
-            display: none;
-            margin-bottom: 16px;
-            border-radius: 16px;
-            overflow: hidden;
-            background: transparent;
-        }
-        
-        .preview-box img {
-            width: 100%;
-            max-height: 160px;
-            object-fit: contain;
-            display: block;
-            border-radius: 12px;
-        }
-        
-        .status {
-            padding: 12px 16px;
-            border-radius: 16px;
-            font-size: 13px;
-            margin-bottom: 16px;
-            display: none;
-            word-break: break-word;
-            text-align: center;
-        }
-        
-        .status.loading {
-            background: var(--accent-bg);
-            color: var(--accent);
-            display: block;
-        }
-        
-        .status.success {
-            background: var(--success-bg);
-            color: var(--success);
-            display: block;
-        }
-        
-        .status.error {
-            background: var(--error-bg);
-            color: var(--error);
-            display: block;
-        }
-        
-        .qr-container {
-            background: transparent;
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            display: none;
-        }
-        
-        .qr-img {
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 12px;
-            background: #fff;
-            border-radius: 16px;
-            padding: 10px;
-        }
-        
-        .qr-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        
-        .qr-note {
-            color: var(--text-muted);
-            font-size: 12px;
-            text-align: center;
-        }
-        
-        .reward-footer {
-            margin-top: 20px;
-            font-size: 10px;
-            color: var(--text-muted);
-            text-align: center;
-            padding-top: 16px;
-        }
-        
-        @media (max-width: 560px) {
+
+            /* 主题变量 */
+            .drestry-reward {
+                --text: #212529;
+                --text-muted: #6c757d;
+                --accent: #3b82f6;
+                --accent-bg: #eef2ff;
+                --success: #10b981;
+                --success-bg: #d1fae5;
+                --error: #ef4444;
+                --error-bg: #fee2e2;
+                --border: #e9ecef;
+                --card-bg: #ffffff;
+                --overlay-bg: rgba(0,0,0,0.6);
+                --qr-border: #e5e7eb;
+            }
+
+            @media (prefers-color-scheme: dark) {
+                .drestry-reward {
+                    --text: #cdd6f4;
+                    --text-muted: #a6adc8;
+                    --accent: #89b4fa;
+                    --accent-bg: #313244;
+                    --success: #a6e3a1;
+                    --success-bg: #313244;
+                    --error: #f38ba8;
+                    --error-bg: #313244;
+                    --border: #3a3a4a;
+                    --card-bg: #1e1e2e;
+                    --overlay-bg: rgba(0,0,0,0.7);
+                    --qr-border: #3a3a4a;
+                }
+            }
+
             .reward-inner {
-                padding: 16px;
+                padding: 20px;
             }
+
+            .reward-desc {
+                color: var(--text-muted);
+                font-size: 14px;
+                line-height: 1.5;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .reward-desc strong {
+                color: var(--accent);
+                font-family: monospace;
+                font-size: 12px;
+                background: var(--accent-bg);
+                padding: 2px 8px;
+                border-radius: 20px;
+            }
+
             .upload-zone {
-                padding: 24px 16px;
+                background: var(--card-bg);
+                border: 2px dashed var(--border);
+                border-radius: 20px;
+                text-align: center;
+                cursor: pointer;
+                transition: all 0.2s;
+                position: relative;
+                min-height: 200px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
             }
+
+            .upload-zone:hover {
+                border-color: var(--accent);
+            }
+
+            .upload-content {
+                padding: 40px 20px;
+                position: relative;
+                z-index: 2;
+            }
+
             .upload-icon {
-                font-size: 40px;
+                font-size: 48px;
+                margin-bottom: 10px;
             }
-            .qr-img {
-                width: 120px;
-                height: 120px;
+
+            .upload-text {
+                color: var(--text);
+                font-weight: 500;
+                font-size: 16px;
             }
-        }
-    </style>
 
-    <div class="drestry-reward">
-        <div class="reward-inner">
-            <div class="reward-desc">
-                上传包含 <strong>drestryrobot.readthedocs.io</strong> 的分享截图，自动识别后领取红包
-            </div>
+            .upload-hint {
+                color: var(--text-muted);
+                font-size: 12px;
+                margin-top: 6px;
+            }
 
-            <div class="upload-zone" id="uploadZone">
-                <div class="upload-icon">📸</div>
-                <div class="upload-text">点击上传截图</div>
-                <div class="upload-hint">支持 JPG / PNG</div>
-                <input type="file" id="fileInput" accept="image/*" style="display: none;">
-            </div>
+            .preview-img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                background: var(--card-bg);
+                display: none;
+                z-index: 1;
+                padding: 12px;
+            }
 
-            <div class="preview-box" id="previewBox">
-                <img id="previewImg" alt="预览">
-            </div>
+            .preview-overlay {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: var(--overlay-bg);
+                color: white;
+                text-align: center;
+                padding: 10px;
+                font-size: 13px;
+                font-weight: 500;
+                backdrop-filter: blur(4px);
+                z-index: 3;
+                display: none;
+                border-radius: 0 0 18px 18px;
+            }
 
-            <div class="status" id="statusMsg"></div>
+            .preview-overlay span {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+            }
 
-            <div class="qr-container" id="qrArea">
-                <div class="qr-img">
-                    <img id="rewardQr" src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/202606%20%E5%BE%AE%E4%BF%A1%E4%BA%8C%E7%BB%B4%E7%A0%81.png" alt="微信红包二维码">
+            .upload-zone.has-preview .upload-content {
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            .upload-zone.has-preview .preview-img {
+                display: block;
+            }
+
+            .upload-zone.has-preview .preview-overlay {
+                display: block;
+            }
+
+            .status {
+                padding: 12px;
+                border-radius: 16px;
+                font-size: 13px;
+                text-align: center;
+                margin: 16px 0;
+                display: none;
+            }
+
+            .status.loading {
+                background: var(--accent-bg);
+                color: var(--accent);
+                display: block;
+            }
+
+            .status.success {
+                background: var(--success-bg);
+                color: var(--success);
+                display: block;
+            }
+
+            .status.error {
+                background: var(--error-bg);
+                color: var(--error);
+                display: block;
+            }
+
+            /* 优化后的领奖区域 */
+            .reward-card {
+                background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                border-radius: 20px;
+                padding: 20px;
+                margin-top: 16px;
+                text-align: center;
+                animation: fadeInUp 0.4s ease;
+                box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+            }
+
+            @media (prefers-color-scheme: dark) {
+                .reward-card {
+                    background: linear-gradient(135deg, #0f9d6e 0%, #047857 100%);
+                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+                }
+            }
+
+            .reward-card-title {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                color: white;
+                font-size: 18px;
+                font-weight: 600;
+                margin-bottom: 16px;
+            }
+
+            .reward-card-title span {
+                font-size: 22px;
+            }
+
+            .qr-wrapper {
+                background: white;
+                border-radius: 20px;
+                padding: 16px;
+                display: inline-block;
+                margin-bottom: 12px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+
+            .qr-img-reward {
+                width: 140px;
+                height: 140px;
+                display: block;
+            }
+
+            .qr-img-reward img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+
+            .reward-card-desc {
+                color: rgba(255, 255, 255, 0.9);
+                font-size: 13px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 6px;
+            }
+
+            .reward-footer {
+                margin-top: 20px;
+                font-size: 11px;
+                color: var(--text-muted);
+                text-align: center;
+                padding-top: 16px;
+                border-top: 1px solid var(--border);
+            }
+
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @media (max-width: 560px) {
+                .reward-inner {
+                    padding: 16px;
+                }
+                .upload-content {
+                    padding: 30px 16px;
+                }
+                .upload-icon {
+                    font-size: 40px;
+                }
+                .upload-text {
+                    font-size: 14px;
+                }
+                .preview-overlay {
+                    padding: 8px;
+                    font-size: 12px;
+                }
+                .preview-img {
+                    padding: 8px;
+                }
+                .qr-img-reward {
+                    width: 120px;
+                    height: 120px;
+                }
+                .reward-card-title {
+                    font-size: 16px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="drestry-reward">
+            <div class="reward-inner">
+                <div class="reward-desc">
+                    上传包含 <strong>drestryrobot.readthedocs.io</strong> 的截图
                 </div>
-                <div class="qr-note">💰 微信扫一扫领奖</div>
-            </div>
 
-            <div class="reward-footer">
-                ⚡ 本地识别 · 图片不上传
+                <div class="upload-zone" id="uploadZone">
+                    <div class="upload-content">
+                        <div class="upload-icon">📸</div>
+                        <div class="upload-text">点击上传截图</div>
+                        <div class="upload-hint">支持 JPG / PNG</div>
+                    </div>
+                    <img class="preview-img" id="previewImg" alt="预览">
+                    <div class="preview-overlay" id="previewOverlay">
+                        <span>🖱️ 点击更换图片</span>
+                    </div>
+                    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                </div>
+
+                <div class="status" id="statusMsg"></div>
+
+                <div class="reward-card" id="rewardCard" style="display: none;">
+                    <div class="reward-card-title">
+                        <span>🎉</span> 验证成功，领奖 <span>🧧</span>
+                    </div>
+                    <div class="qr-wrapper">
+                        <div class="qr-img-reward">
+                            <img id="rewardQr" src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/202606%20%E5%BE%AE%E4%BF%A1%E4%BA%8C%E7%BB%B4%E7%A0%81.png" alt="微信红包二维码">
+                        </div>
+                    </div>
+                    <div class="reward-card-desc">
+                        <span>💚</span> 微信扫一扫领取红包 <span>💚</span>
+                    </div>
+                </div>
+
+                <div class="reward-footer">
+                    ⚡ 本地OCR识别 · 图片不上传服务器
+                </div>
             </div>
         </div>
-    </div>
 
-    <script>
-        (function() {
-            const REQUIRED_DOMAIN = "drestryrobot.readthedocs.io";
-            
-            const uploadZone = document.getElementById('uploadZone');
-            const fileInput = document.getElementById('fileInput');
-            const previewBox = document.getElementById('previewBox');
-            const previewImg = document.getElementById('previewImg');
-            const statusDiv = document.getElementById('statusMsg');
-            const qrArea = document.getElementById('qrArea');
-            
-            if (!uploadZone) return;
-            
-            uploadZone.addEventListener('click', () => fileInput.click());
-            
-            uploadZone.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                uploadZone.style.borderColor = 'var(--accent)';
-            });
-            uploadZone.addEventListener('dragleave', () => {
-                uploadZone.style.borderColor = 'var(--text-muted)';
-            });
-            uploadZone.addEventListener('drop', (e) => {
-                e.preventDefault();
-                uploadZone.style.borderColor = 'var(--text-muted)';
-                const file = e.dataTransfer.files[0];
-                if (file && file.type.startsWith('image/')) handleFile(file);
-                else showStatus('请上传图片文件', 'error');
-            });
-            
-            fileInput.addEventListener('change', (e) => {
-                if (e.target.files?.length) handleFile(e.target.files[0]);
-            });
-            
-            function validate(text) {
-                if (!text) return false;
-                const lower = text.toLowerCase();
-                return lower.includes(REQUIRED_DOMAIN) ||
-                       lower.replace(/\s/g, '').includes(REQUIRED_DOMAIN) ||
-                       (/drestryrobot/i.test(lower) && /readthedocs/i.test(lower) && /\.?io\b/i.test(lower));
-            }
-            
-            function showStatus(msg, type) {
-                statusDiv.textContent = msg;
-                statusDiv.className = 'status';
-                statusDiv.classList.add(type);
-            }
-            
-            async function handleFile(file) {
-                qrArea.style.display = 'none';
-                statusDiv.style.display = 'none';
+        <script>
+            (function() {
+                const REQUIRED_DOMAIN = "drestryrobot.readthedocs.io";
                 
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    previewImg.src = e.target.result;
-                    previewBox.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
+                const uploadZone = document.getElementById('uploadZone');
+                const fileInput = document.getElementById('fileInput');
+                const previewImg = document.getElementById('previewImg');
+                const statusDiv = document.getElementById('statusMsg');
+                const rewardCard = document.getElementById('rewardCard');
                 
-                showStatus('🔍 识别中...', 'loading');
+                uploadZone.addEventListener('click', () => fileInput.click());
                 
-                try {
-                    const img = await new Promise((resolve, reject) => {
-                        const img = new Image();
-                        img.onload = () => { URL.revokeObjectURL(img.src); resolve(img); };
-                        img.onerror = reject;
-                        img.src = URL.createObjectURL(file);
-                    });
-                    
-                    const processedBlob = await preprocess(img);
-                    const text = await ocr(processedBlob);
-                    
-                    if (validate(text)) {
-                        showStatus('✅ 验证通过，扫码领奖', 'success');
-                        qrArea.style.display = 'block';
-                    } else {
-                        showStatus('❌ 未检测到指定域名，请重试', 'error');
-                    }
-                } catch {
-                    showStatus('❌ 识别失败，请重试', 'error');
-                }
-            }
-            
-            function preprocess(img) {
-                return new Promise((resolve) => {
-                    const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d');
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    ctx.drawImage(img, 0, 0);
-                    const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                    for (let i = 0; i < data.data.length; i += 4) {
-                        const gray = 0.299 * data.data[i] + 0.587 * data.data[i+1] + 0.114 * data.data[i+2];
-                        const v = gray > 128 ? 255 : 0;
-                        data.data[i] = data.data[i+1] = data.data[i+2] = v;
-                    }
-                    ctx.putImageData(data, 0, 0);
-                    canvas.toBlob(resolve, 'image/png');
+                uploadZone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    uploadZone.style.borderColor = 'var(--accent)';
                 });
-            }
-            
-            let worker = null;
-            async function ocr(blob) {
-                if (typeof Tesseract === 'undefined') {
-                    await new Promise((resolve, reject) => {
-                        const s = document.createElement('script');
-                        s.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
-                        s.onload = resolve;
-                        s.onerror = reject;
-                        document.head.appendChild(s);
+                uploadZone.addEventListener('dragleave', () => {
+                    uploadZone.style.borderColor = 'var(--border)';
+                });
+                uploadZone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    uploadZone.style.borderColor = 'var(--border)';
+                    const file = e.dataTransfer.files[0];
+                    if (file && file.type.startsWith('image/')) handleFile(file);
+                    else showStatus('请上传图片', 'error');
+                });
+                
+                fileInput.addEventListener('change', (e) => {
+                    if (e.target.files?.length) handleFile(e.target.files[0]);
+                });
+                
+                function validate(text) {
+                    if (!text) return false;
+                    const lower = text.toLowerCase();
+                    return lower.includes(REQUIRED_DOMAIN) ||
+                        lower.replace(/[\s\n\r]/g, '').includes(REQUIRED_DOMAIN) ||
+                        (/drestryrobot/i.test(lower) && /readthedocs/i.test(lower));
+                }
+                
+                function showStatus(msg, type) {
+                    statusDiv.className = 'status';
+                    statusDiv.textContent = msg;
+                    statusDiv.style.display = 'block';
+                    statusDiv.classList.add(type);
+                }
+                
+                function hideStatus() {
+                    statusDiv.style.display = 'none';
+                }
+                
+                async function handleFile(file) {
+                    rewardCard.style.display = 'none';
+                    hideStatus();
+                    
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        previewImg.src = e.target.result;
+                        uploadZone.classList.add('has-preview');
+                    };
+                    reader.readAsDataURL(file);
+                    
+                    showStatus('识别中...', 'loading');
+                    
+                    try {
+                        const img = await new Promise((resolve, reject) => {
+                            const img = new Image();
+                            img.onload = () => { URL.revokeObjectURL(img.src); resolve(img); };
+                            img.onerror = reject;
+                            img.src = URL.createObjectURL(file);
+                        });
+                        
+                        const processedBlob = await preprocess(img);
+                        const text = await ocr(processedBlob);
+                        
+                        if (validate(text)) {
+                            showStatus('验证成功', 'success');
+                            rewardCard.style.display = 'block';
+                        } else {
+                            showStatus('未检测到指定域名', 'error');
+                        }
+                    } catch {
+                        showStatus('识别失败，请重试', 'error');
+                    }
+                }
+                
+                function preprocess(img) {
+                    return new Promise((resolve) => {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                        ctx.drawImage(img, 0, 0);
+                        const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                        for (let i = 0; i < data.data.length; i += 4) {
+                            const gray = 0.299 * data.data[i] + 0.587 * data.data[i+1] + 0.114 * data.data[i+2];
+                            const v = gray > 128 ? 255 : 0;
+                            data.data[i] = data.data[i+1] = data.data[i+2] = v;
+                        }
+                        ctx.putImageData(data, 0, 0);
+                        canvas.toBlob(resolve, 'image/png');
                     });
                 }
-                if (!worker) {
-                    worker = await Tesseract.createWorker('eng');
-                    await worker.setParameters({
-                        tessedit_pageseg_mode: '6',
-                        tessedit_char_whitelist: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.:/_-'
-                    });
+                
+                let worker = null;
+                async function ocr(blob) {
+                    if (typeof Tesseract === 'undefined') {
+                        await new Promise((resolve, reject) => {
+                            const s = document.createElement('script');
+                            s.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
+                            s.onload = resolve;
+                            s.onerror = reject;
+                            document.head.appendChild(s);
+                        });
+                    }
+                    if (!worker) {
+                        worker = await Tesseract.createWorker('eng');
+                        await worker.setParameters({
+                            tessedit_pageseg_mode: '6',
+                            tessedit_char_whitelist: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.:/_-'
+                        });
+                    }
+                    const { data: { text } } = await worker.recognize(blob);
+                    return text;
                 }
-                const { data: { text } } = await worker.recognize(blob);
-                return text;
-            }
-        })();
-    </script>
+            })();
+        </script>
+    </body>
+    </html>
