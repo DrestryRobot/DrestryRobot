@@ -36,6 +36,14 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
 .. raw:: html
 
+   <p align="center">
+       <span>📊 访问总数：</span>
+       <img src="https://visitor-badge.laobi.icu/badge?page_id=DrestryRobot_main" alt="访客徽章" style="display: inline-block; vertical-align: middle;" />
+       <span> 次</span>
+   </p>
+
+.. raw:: html
+
     <div style="text-align: center; margin-top: 20px; padding: 10px; background-color: #f8f8f8; border-radius: 5px;">
         <span id="busuanzi_container_site_pv">
             🌐 本站总访问量：<span id="busuanzi_value_site_pv"></span> 次
