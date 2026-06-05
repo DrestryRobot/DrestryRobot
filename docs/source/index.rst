@@ -1,5 +1,9 @@
 🔥 DrestryRobot
 =====================================
+.. raw:: html
+
+   <img src="https://api.sefinek.net/api/v2/moecounter?name=DrestryRobot&theme=default" alt="访问统计" />
+
 🧩 基本介绍
 -------------
 DrestryRobot是一个机器人开发知识库，其涵盖了机器人开发所需要用到的各类技术知识和软件工具。
@@ -26,30 +30,16 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
 一知半解的不写。
 
-.. raw:: html
-
-   <div style="line-height: 10;">
-   
 .. toctree::
    :maxdepth: 2
    :caption: 📚 内容目录
    :glob:
 
    *
-
-.. raw:: html
-
-   </div>
-
-.. raw:: html
-
-   <img src="https://api.sefinek.net/api/v2/moecounter?name=DrestryRobot&theme=default" alt="访问统计" />
-
-
+   
 .. raw:: html
 
    <p align="center">
        <img src="https://visitor-badge.laobi.icu/badge?page_id=DrestryRobot_main" alt="访客徽章" />
-       <img src="https://img.shields.io/badge/📚 文档版本-v1.0-blue" alt="版本" />
        <img src="https://img.shields.io/badge/📅 最后更新-2026.06-blue" alt="更新日期" />
    </p>
