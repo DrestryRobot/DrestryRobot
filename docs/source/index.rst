@@ -34,14 +34,14 @@
 
        <div id="counter-content" style="display: none;">
            <span id="vercount_container_site_pv" style="display: none;">
-               <span class="desktop-text">🌐 本站总访问量：</span>
-               <span class="mobile-text">🌐 访问量：</span>
+               <span class="desktop-text">🌐 本站总访问量:</span>
+               <span class="mobile-text">🌐 访问量:</span>
                <span id="vercount_value_site_pv">0</span> 次
            </span>
            &nbsp;|&nbsp;
            <span id="vercount_container_site_uv" style="display: none;">
-               <span class="desktop-text">👥 本站总访客数：</span>
-               <span class="mobile-text">👥 访客数：</span>
+               <span class="desktop-text">👥 本站总访客数:</span>
+               <span class="mobile-text">👥 访客数:</span>
                <span id="vercount_value_site_uv">0</span> 人
            </span>
        </div>
