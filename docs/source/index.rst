@@ -209,7 +209,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 padding: 12px;
             }
 
-            /* 清除按钮 - 仅预览时显示 */
+            /* 清除按钮 */
             .clear-btn {
                 position: absolute;
                 top: 12px;
@@ -244,7 +244,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 background: #dc2626;
             }
 
-            /* 底部栏 - 仅预览时显示 */
+            /* 底部栏 - 始终存在，不消失，只改变背景和文字 */
             .bottom-bar {
                 position: absolute;
                 bottom: 0;
@@ -255,7 +255,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 -webkit-backdrop-filter: blur(16px);
                 border-radius: 0 0 22px 22px;
                 border-top: 1px solid rgba(255, 255, 255, 0.15);
-                display: none;
+                display: flex;
                 align-items: center;
                 justify-content: center;
                 font-size: 0.875rem;
@@ -263,11 +263,14 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 z-index: 10;
                 transition: background-color 0.2s ease;
                 color: white;
+                opacity: 1;
+                visibility: visible;
             }
 
-            /* 有预览时显示底部栏 */
-            .upload-zone.has-preview .bottom-bar {
-                display: flex;
+            /* 无预览时隐藏底部栏内容（但容器还在，占位保持高度） */
+            .upload-zone:not(.has-preview) .bottom-bar {
+                opacity: 0;
+                visibility: hidden;
             }
 
             /* 默认状态 - 更换图片 */
@@ -466,7 +469,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
                     <img class="preview-img" id="previewImg" alt="预览">
 
-                    <!-- 底部栏：默认隐藏，有预览时显示 -->
+                    <!-- 底部栏：始终存在，不消失，只改变内容和背景 -->
                     <div class="bottom-bar bottom-bar-default" id="bottomBar">
                         <span>🖱️ 点击更换图片</span>
                     </div>
@@ -501,15 +504,13 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 
                 clearBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    // 移除预览状态
                     uploadZone.classList.remove('has-preview');
                     previewImg.src = '';
                     fileInput.value = '';
                     rewardCard.style.display = 'none';
-                    // 重置底部栏内容和样式（恢复默认）
+                    // 重置底部栏内容和样式
                     bottomBar.className = 'bottom-bar bottom-bar-default';
                     bottomBar.innerHTML = '<span>🖱️ 点击更换图片</span>';
-                    // 底部栏会被CSS自动隐藏（因为has-preview被移除）
                 });
                 
                 uploadZone.addEventListener('click', (e) => {
@@ -549,7 +550,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 function showStatus(msg, type) {
                     if (timeout) clearTimeout(timeout);
                     
-                    // 改变底部栏样式和内容
+                    // 只改变底部栏的样式类和内容，不改变display
                     if (type === 'loading') {
                         bottomBar.className = 'bottom-bar bottom-bar-status';
                         bottomBar.innerHTML = '<span class="spinner"></span> ' + msg;
@@ -590,13 +591,11 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 
                 async function handleFile(file) {
                     rewardCard.style.display = 'none';
-                    // 先隐藏状态（重置为更换图片）
                     hideStatus();
                     
                     const reader = new FileReader();
                     reader.onload = (e) => {
                         previewImg.src = e.target.result;
-                        // 添加预览类，这会触发底部栏显示
                         uploadZone.classList.add('has-preview');
                     };
                     reader.readAsDataURL(file);
