@@ -2,38 +2,8 @@
 =====================================
 .. raw:: html
 
-   <div style="text-align: center; margin: 20px 0; padding: 10px; background: #f5f5f5; border-radius: 5px;">
-       <div id="counter-placeholder" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-           <div class="spinner"></div>
-           <span>数据加载中...</span>
-       </div>
-       <div id="counter-content" style="display: none;">
-           <span id="vercount_container_site_pv" style="display: none;">
-               🌐 本站总访问量：<span id="vercount_value_site_pv">0</span> 次
-           </span>
-           &nbsp;|&nbsp;
-           <span id="vercount_container_site_uv" style="display: none;">
-               👥 本站总访客数：<span id="vercount_value_site_uv">0</span> 人
-           </span>
-       </div>
-       <script>
-           var script = document.createElement('script');
-           script.src = 'https://vercount.one/js';
-           script.defer = true;
-           document.head.appendChild(script);
-
-           var checkInterval = setInterval(function() {
-               var pvContainer = document.getElementById('vercount_container_site_pv');
-               if (pvContainer && pvContainer.style.display === 'inline') {
-                   document.getElementById('counter-placeholder').style.display = 'none';
-                   document.getElementById('counter-content').style.display = 'block';
-                   clearInterval(checkInterval);
-               }
-           }, 100);
-       </script>
-   </div>
-
    <style>
+       /* 加载动画 */
        .spinner {
            width: 18px;
            height: 18px;
@@ -45,7 +15,69 @@
        @keyframes spin {
            to { transform: rotate(360deg); }
        }
+
+       /* 响应式：电脑端显示完整文字，手机端显示精简文字 */
+       .counter-text-full { display: inline; }
+       .counter-text-short { display: none; }
+
+       @media (max-width: 600px) {
+           .counter-text-full { display: none; }
+           .counter-text-short { display: inline; }
+       }
    </style>
+
+   <div style="text-align: center; margin: 20px 0; padding: 10px; background: #f5f5f5; border-radius: 5px;">
+       <!-- 加载占位符 -->
+       <div id="counter-placeholder" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+           <div class="spinner"></div>
+           <span>数据加载中...</span>
+       </div>
+
+       <!-- 加载完成后显示的真实内容 -->
+       <div id="counter-content" style="display: none;">
+
+           <!-- 电脑端：完整文字 -->
+           <span class="counter-text-full">
+               <span id="vercount_container_site_pv" style="display: none;">
+                   🌐 本站总访问量：<span id="vercount_value_site_pv">0</span> 次
+               </span>
+               &nbsp;|&nbsp;
+               <span id="vercount_container_site_uv" style="display: none;">
+                   👥 本站总访客数：<span id="vercount_value_site_uv">0</span> 人
+               </span>
+           </span>
+
+           <!-- 手机端：精简文字 -->
+           <span class="counter-text-short">
+               <span id="vercount_container_site_pv_short" style="display: none;">
+                   🌐 访问量：<span id="vercount_value_site_pv">0</span> 次
+               </span>
+               &nbsp;|&nbsp;
+               <span id="vercount_container_site_uv_short" style="display: none;">
+                   👥 访客数：<span id="vercount_value_site_uv">0</span> 人
+               </span>
+           </span>
+
+       </div>
+   </div>
+
+   <script>
+       // 引入 Vercount 脚本
+       var script = document.createElement('script');
+       script.src = 'https://vercount.one/js';
+       script.defer = true;
+       document.head.appendChild(script);
+
+       // 监听计数器加载完成
+       var checkInterval = setInterval(function() {
+           var pvContainer = document.getElementById('vercount_container_site_pv');
+           if (pvContainer && pvContainer.style.display === 'inline') {
+               document.getElementById('counter-placeholder').style.display = 'none';
+               document.getElementById('counter-content').style.display = 'block';
+               clearInterval(checkInterval);
+           }
+       }, 100);
+   </script>
 
 🧩 基本介绍
 -------------
