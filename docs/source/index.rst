@@ -3,7 +3,6 @@
 .. raw:: html
 
    <style>
-       /* 加载动画 */
        .spinner {
            width: 18px;
            height: 18px;
@@ -16,7 +15,6 @@
            to { transform: rotate(360deg); }
        }
 
-       /* 通过媒体查询，控制不同设备显示哪段文字 */
        @media (min-width: 601px) {
            .mobile-text { display: none; }
            .desktop-text { display: inline; }
@@ -27,50 +25,37 @@
        }
    </style>
 
-   <div style="text-align: center; margin: 20px 0; padding: 10px; background: #f5f5f5; border-radius: 5px;">
+   <div style="text-align: center; margin: 20px 0; padding: 10px;">
 
-       <!-- 1. 加载占位符 -->
        <div id="counter-placeholder" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
            <div class="spinner"></div>
            <span>数据加载中...</span>
        </div>
 
-       <!-- 2. 真实计数器内容（初始隐藏） -->
-       <!-- 只需一套被 Vercount 识别的 id，确保数字能准确填充 -->
        <div id="counter-content" style="display: none;">
            <span id="vercount_container_site_pv" style="display: none;">
-               <!-- 桌面端显示的完整文字 -->
                <span class="desktop-text">🌐 本站总访问量：</span>
-               <!-- 手机端显示的精简文字 -->
                <span class="mobile-text">🌐 访问量：</span>
-               <!-- 共用的数字标签 -->
                <span id="vercount_value_site_pv">0</span> 次
            </span>
            &nbsp;|&nbsp;
            <span id="vercount_container_site_uv" style="display: none;">
-               <!-- 桌面端显示的完整文字 -->
                <span class="desktop-text">👥 本站总访客数：</span>
-               <!-- 手机端显示的精简文字 -->
                <span class="mobile-text">👥 访客数：</span>
-               <!-- 共用的数字标签 -->
                <span id="vercount_value_site_uv">0</span> 人
            </span>
        </div>
    </div>
 
    <script>
-       // 引入 Vercount 脚本
        var script = document.createElement('script');
        script.src = 'https://vercount.one/js';
        script.defer = true;
        document.head.appendChild(script);
 
-       // 监听计数器加载完成
        var checkInterval = setInterval(function() {
-           // 检查 Vercount 是否已将容器显示出来
            var pvContainer = document.getElementById('vercount_container_site_pv');
            if (pvContainer && pvContainer.style.display === 'inline') {
-               // 隐藏加载占位符，显示真实内容
                document.getElementById('counter-placeholder').style.display = 'none';
                document.getElementById('counter-content').style.display = 'block';
                clearInterval(checkInterval);
