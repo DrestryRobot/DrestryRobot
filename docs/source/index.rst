@@ -14,51 +14,39 @@
        @keyframes spin {
            to { transform: rotate(360deg); }
        }
-
-       @media (min-width: 601px) {
-           .mobile-text { display: none; }
-           .desktop-text { display: inline; }
-       }
        @media (max-width: 600px) {
-           .mobile-text { display: inline; }
-           .desktop-text { display: none; }
+           .full { display: none; }
+           .short { display: inline; }
+       }
+       @media (min-width: 601px) {
+           .full { display: inline; }
+           .short { display: none; }
        }
    </style>
 
-   <div style="text-align: center; margin: 20px 0; padding: 10px;">
-
-       <div id="counter-placeholder" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-           <div class="spinner"></div>
-           <span>数据加载中...</span>
-       </div>
-
-       <div id="counter-content" style="display: none;">
+   <div style="text-align: center; margin: 20px 0;">
+       <div id="loading"><div class="spinner"></div> 数据加载中...</div>
+       <div id="counter" style="display: none;">
            <span id="vercount_container_site_pv" style="display: none;">
-               <span class="desktop-text">🌐 本站总访问量：</span>
-               <span class="mobile-text">🌐 访问量：</span>
+               <span class="full">🌐 本站总访问量：</span><span class="short">🌐 访问量：</span>
                <span id="vercount_value_site_pv">0</span> 次
            </span>
            &nbsp;|&nbsp;
            <span id="vercount_container_site_uv" style="display: none;">
-               <span class="desktop-text">👥 本站总访客数：</span>
-               <span class="mobile-text">👥 访客数：</span>
+               <span class="full">👥 本站总访客数：</span><span class="short">👥 访客数：</span>
                <span id="vercount_value_site_uv">0</span> 人
            </span>
        </div>
    </div>
 
    <script>
-       var script = document.createElement('script');
-       script.src = 'https://vercount.one/js';
-       script.defer = true;
-       document.head.appendChild(script);
-
-       var checkInterval = setInterval(function() {
-           var pvContainer = document.getElementById('vercount_container_site_pv');
-           if (pvContainer && pvContainer.style.display === 'inline') {
-               document.getElementById('counter-placeholder').style.display = 'none';
-               document.getElementById('counter-content').style.display = 'block';
-               clearInterval(checkInterval);
+       document.head.appendChild(Object.assign(document.createElement('script'), { src: 'https://vercount.one/js', defer: true }));
+       let timer = setInterval(() => {
+           let pv = document.getElementById('vercount_container_site_pv');
+           if (pv && pv.style.display === 'inline') {
+               document.getElementById('loading').style.display = 'none';
+               document.getElementById('counter').style.display = 'block';
+               clearInterval(timer);
            }
        }, 100);
    </script>
