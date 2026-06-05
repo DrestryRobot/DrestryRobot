@@ -32,3 +32,11 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
    :glob:
 
    *
+
+.. raw:: html
+
+   <script src="https://cdn.jsdelivr.net/npm/hit-kounter@0.1.0/dist/hit-kounter.js"></script>
+
+.. raw:: html
+
+<span data-hk-page="current">-</span> 次访问
