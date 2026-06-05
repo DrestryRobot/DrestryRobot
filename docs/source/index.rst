@@ -16,48 +16,45 @@
            to { transform: rotate(360deg); }
        }
 
-       /* 响应式：电脑端显示完整文字，手机端显示精简文字 */
-       .counter-text-full { display: inline; }
-       .counter-text-short { display: none; }
-
+       /* 通过媒体查询，控制不同设备显示哪段文字 */
+       @media (min-width: 601px) {
+           .mobile-text { display: none; }
+           .desktop-text { display: inline; }
+       }
        @media (max-width: 600px) {
-           .counter-text-full { display: none; }
-           .counter-text-short { display: inline; }
+           .mobile-text { display: inline; }
+           .desktop-text { display: none; }
        }
    </style>
 
    <div style="text-align: center; margin: 20px 0; padding: 10px; background: #f5f5f5; border-radius: 5px;">
-       <!-- 加载占位符 -->
+
+       <!-- 1. 加载占位符 -->
        <div id="counter-placeholder" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
            <div class="spinner"></div>
            <span>数据加载中...</span>
        </div>
 
-       <!-- 加载完成后显示的真实内容 -->
+       <!-- 2. 真实计数器内容（初始隐藏） -->
+       <!-- 只需一套被 Vercount 识别的 id，确保数字能准确填充 -->
        <div id="counter-content" style="display: none;">
-
-           <!-- 电脑端：完整文字 -->
-           <span class="counter-text-full">
-               <span id="vercount_container_site_pv" style="display: none;">
-                   🌐 本站总访问量：<span id="vercount_value_site_pv">0</span> 次
-               </span>
-               &nbsp;|&nbsp;
-               <span id="vercount_container_site_uv" style="display: none;">
-                   👥 本站总访客数：<span id="vercount_value_site_uv">0</span> 人
-               </span>
+           <span id="vercount_container_site_pv" style="display: none;">
+               <!-- 桌面端显示的完整文字 -->
+               <span class="desktop-text">🌐 本站总访问量：</span>
+               <!-- 手机端显示的精简文字 -->
+               <span class="mobile-text">🌐 访问量：</span>
+               <!-- 共用的数字标签 -->
+               <span id="vercount_value_site_pv">0</span> 次
            </span>
-
-           <!-- 手机端：精简文字 -->
-           <span class="counter-text-short">
-               <span id="vercount_container_site_pv_short" style="display: none;">
-                   🌐 访问量：<span id="vercount_value_site_pv">0</span> 次
-               </span>
-               &nbsp;|&nbsp;
-               <span id="vercount_container_site_uv_short" style="display: none;">
-                   👥 访客数：<span id="vercount_value_site_uv">0</span> 人
-               </span>
+           &nbsp;|&nbsp;
+           <span id="vercount_container_site_uv" style="display: none;">
+               <!-- 桌面端显示的完整文字 -->
+               <span class="desktop-text">👥 本站总访客数：</span>
+               <!-- 手机端显示的精简文字 -->
+               <span class="mobile-text">👥 访客数：</span>
+               <!-- 共用的数字标签 -->
+               <span id="vercount_value_site_uv">0</span> 人
            </span>
-
        </div>
    </div>
 
@@ -68,21 +65,14 @@
        script.defer = true;
        document.head.appendChild(script);
 
-       // 手动控制手机端容器的显示
+       // 监听计数器加载完成
        var checkInterval = setInterval(function() {
+           // 检查 Vercount 是否已将容器显示出来
            var pvContainer = document.getElementById('vercount_container_site_pv');
-           // 检查电脑端容器是否已经显示
            if (pvContainer && pvContainer.style.display === 'inline') {
-               // 数据已加载完成，隐藏占位符，显示真实内容
+               // 隐藏加载占位符，显示真实内容
                document.getElementById('counter-placeholder').style.display = 'none';
                document.getElementById('counter-content').style.display = 'block';
-               
-               // 手动将手机端容器的样式也设置为显示
-               var pvContainerShort = document.getElementById('vercount_container_site_pv_short');
-               var uvContainerShort = document.getElementById('vercount_container_site_uv_short');
-               if (pvContainerShort) pvContainerShort.style.display = 'inline';
-               if (uvContainerShort) uvContainerShort.style.display = 'inline';
-               
                clearInterval(checkInterval);
            }
        }, 100);
