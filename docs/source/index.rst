@@ -28,7 +28,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
 .. raw:: html
 
-   <div style="line-height: 2;">
+   <div style="line-height: 10;">
    
 .. toctree::
    :maxdepth: 2
