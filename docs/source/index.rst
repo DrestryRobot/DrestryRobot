@@ -111,7 +111,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 padding: 0;
             }
 
-            /* 上传框容器 - 中性浅灰色 */
             .upload-zone {
                 background: #f5f5f7;
                 border: 2px dashed #d4d4d8;
@@ -130,7 +129,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 background: #eaeaef;
             }
 
-            /* 内部内容绝对定位覆盖整个区域 */
             .upload-inner {
                 position: absolute;
                 top: 0;
@@ -143,7 +141,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 align-items: center;
             }
 
-            /* 上传提示内容 */
             .upload-content {
                 text-align: center;
                 z-index: 2;
@@ -174,7 +171,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 font-weight: 500;
             }
 
-            /* 预览图片容器 */
             .preview-container {
                 position: absolute;
                 top: 0;
@@ -197,7 +193,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 display: block;
             }
 
-            /* 右上角按钮 - 无预览时绿色复制，有预览时红色清除 */
+            /* 右上角按钮 */
             .action-btn {
                 position: absolute;
                 top: 12px;
@@ -213,7 +209,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 backdrop-filter: blur(4px);
                 border: 1px solid rgba(255, 255, 255, 0.4);
                 transition: all 0.2s ease;
-                font-size: 14px;
+                font-size: 16px;
                 font-weight: 600;
             }
 
@@ -223,7 +219,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 margin-top: -1px;
             }
 
-            /* 复制按钮样式（无预览时） */
+            /* 复制按钮样式（无预览时）- 绿色对号 */
             .copy-btn {
                 background: #10b981;
                 color: white;
@@ -233,7 +229,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 background: #059669;
             }
 
-            /* 清除按钮样式（有预览时） */
+            /* 清除按钮样式（有预览时）- 红色错号 */
             .clear-btn {
                 background: #ef4444;
                 color: white;
@@ -243,13 +239,11 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 background: #dc2626;
             }
 
-            /* 有预览时显示清除按钮 */
             .upload-zone.has-preview .action-btn {
                 opacity: 1;
                 visibility: visible;
             }
 
-            /* 无预览时显示复制按钮 */
             .upload-zone:not(.has-preview) .action-btn {
                 opacity: 1;
                 visibility: visible;
@@ -280,7 +274,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 opacity: 1;
             }
 
-            /* 底部栏 - 固定高度，绝对定位 */
+            /* 底部栏 */
             .bottom-bar {
                 position: absolute;
                 bottom: 0;
@@ -301,17 +295,14 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 transition: background-color 0.2s ease;
             }
 
-            /* 无预览时隐藏底部栏 */
             .upload-zone:not(.has-preview) .bottom-bar {
                 display: none;
             }
 
-            /* 有预览时显示底部栏 */
             .upload-zone.has-preview .bottom-bar {
                 display: flex;
             }
 
-            /* 底部栏不同状态背景 */
             .bottom-bar-default {
                 background: rgba(0, 0, 0, 0.6);
             }
@@ -328,7 +319,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 background: #ef4444;
             }
 
-            /* 有预览时隐藏上传提示，显示预览图 */
             .upload-zone.has-preview .upload-content {
                 opacity: 0;
                 visibility: hidden;
@@ -483,6 +473,9 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 .action-btn {
                     top: 8px;
                     right: 8px;
+                    width: 26px;
+                    height: 26px;
+                    font-size: 14px;
                 }
                 .qr-img-reward {
                     width: 110px;
@@ -503,9 +496,9 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         <div class="drestry-reward">
             <div class="reward-inner">
                 <div class="upload-zone" id="uploadZone">
-                    <!-- 右上角按钮：无预览时复制，有预览时清除 -->
+                    <!-- 右上角按钮：无预览时复制对号，有预览时清除错号 -->
                     <div class="action-btn" id="actionBtn">
-                        <span>📋</span>
+                        <span>✓</span>
                     </div>
 
                     <div class="upload-inner">
@@ -544,7 +537,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         </div>
 
         <!-- 提示浮层 -->
-        <div class="toast" id="toast">✅ 复制成功！快去分享吧！</div>
+        <div class="toast" id="toast">✅ 网址复制成功！快去分享吧！</div>
 
         <script>
             (function() {
@@ -559,7 +552,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 const actionBtn = document.getElementById('actionBtn');
                 const toast = document.getElementById('toast');
                 
-                // 显示提示
                 function showToast(msg) {
                     toast.textContent = msg;
                     toast.classList.add('show');
@@ -568,24 +560,21 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     }, 2000);
                 }
                 
-                // 复制链接
                 async function copyLink() {
                     try {
                         await navigator.clipboard.writeText(COPY_URL);
-                        showToast('✅ 复制成功！快去分享吧！');
+                        showToast('✅ 网址复制成功！快去分享吧！');
                     } catch (err) {
-                        // 降级方案
                         const textarea = document.createElement('textarea');
                         textarea.value = COPY_URL;
                         document.body.appendChild(textarea);
                         textarea.select();
                         document.execCommand('copy');
                         document.body.removeChild(textarea);
-                        showToast('✅ 复制成功！快去分享吧！');
+                        showToast('✅ 网址复制成功！快去分享吧！');
                     }
                 }
                 
-                // 清除图片
                 function clearImage() {
                     uploadZone.classList.remove('has-preview');
                     previewImg.src = '';
@@ -593,30 +582,25 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     rewardCard.style.display = 'none';
                     bottomBar.className = 'bottom-bar bottom-bar-default';
                     bottomBar.innerHTML = '<span>🖱️ 点击更换图片</span>';
-                    // 更新按钮样式为复制按钮
                     actionBtn.className = 'action-btn copy-btn';
-                    actionBtn.innerHTML = '<span>📋</span>';
+                    actionBtn.innerHTML = '<span>✓</span>';
                 }
                 
-                // 根据是否有预览更新按钮样式
                 function updateButtonStyle() {
                     if (uploadZone.classList.contains('has-preview')) {
                         actionBtn.className = 'action-btn clear-btn';
-                        actionBtn.innerHTML = '<span>✕</span>';
+                        actionBtn.innerHTML = '<span>✗</span>';
                     } else {
                         actionBtn.className = 'action-btn copy-btn';
-                        actionBtn.innerHTML = '<span>📋</span>';
+                        actionBtn.innerHTML = '<span>✓</span>';
                     }
                 }
                 
-                // 按钮点击事件
                 actionBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     if (uploadZone.classList.contains('has-preview')) {
-                        // 有预览时：清除图片
                         clearImage();
                     } else {
-                        // 无预览时：复制链接
                         copyLink();
                     }
                 });
@@ -701,7 +685,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     reader.onload = (e) => {
                         previewImg.src = e.target.result;
                         uploadZone.classList.add('has-preview');
-                        updateButtonStyle(); // 更新按钮为清除样式
+                        updateButtonStyle();
                     };
                     reader.readAsDataURL(file);
                     
@@ -764,7 +748,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     }
                 }
                 
-                // 初始化按钮样式
                 updateButtonStyle();
             })();
         </script>
