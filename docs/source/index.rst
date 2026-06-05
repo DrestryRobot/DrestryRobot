@@ -1,8 +1,5 @@
 🔥 DrestryRobot
 =====================================
-.. raw:: html
-
-   <img src="https://api.sefinek.net/api/v2/moecounter?name=DrestryRobot&theme=default" alt="访问统计" />
 
 🧩 基本介绍
 -------------
@@ -36,7 +33,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
    :glob:
 
    *
-   
+
 .. raw:: html
 
    <p align="center">
