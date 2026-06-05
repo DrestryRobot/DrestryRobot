@@ -1,15 +1,15 @@
 DrestryRobot
 =====================================
 
-基本介绍
+🧩 基本介绍
 -------------
 DrestryRobot是一个机器人开发知识库，其涵盖了机器人开发所需要用到的各类技术知识和软件工具。
 
-核心理念
+🎯 核心理念
 -------------
 DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器人开发、有梦想、敢奋斗、充满青春活力的团队。
 
-编撰原则
+⚖️ 编撰原则
 -------------
 不用图片，不用链接，不用资源。
 
@@ -29,7 +29,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
 .. toctree::
    :maxdepth: 2
-   :caption: 内容目录
+   :caption: 📚 内容目录
    :glob:
 
    *
