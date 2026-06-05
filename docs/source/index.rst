@@ -214,7 +214,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 padding: 12px;
             }
 
-            /* 清除按钮 - 完美居中 */
+            /* 清除按钮 - 使用flex完美居中 */
             .clear-btn {
                 position: absolute;
                 top: 12px;
@@ -233,18 +233,17 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 backdrop-filter: blur(4px);
                 border: 1px solid rgba(255, 255, 255, 0.3);
                 transition: all 0.2s ease;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             }
 
             .clear-btn span {
                 color: white;
                 font-size: 18px;
-                font-weight: bold;
+                font-weight: 600;
                 line-height: 1;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 100%;
-                height: 100%;
+                display: block;
+                text-align: center;
+                margin-top: -1px;
             }
 
             .clear-btn:hover {
@@ -257,7 +256,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 visibility: visible;
             }
 
-            /* 底部浮层 */
+            /* 底部浮层 - 统一位置 */
             .bottom-overlay {
                 position: absolute;
                 bottom: 0;
@@ -277,8 +276,10 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 align-items: center;
                 justify-content: center;
                 border-top: 1px solid rgba(255, 255, 255, 0.15);
+                box-sizing: border-box;
             }
 
+            /* 更换图片提示 - 始终可见 */
             .change-overlay {
                 background: var(--overlay-bg);
                 color: white;
@@ -292,18 +293,17 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 gap: 6px;
             }
 
-            /* 状态浮层 */
+            /* 状态浮层 - 默认隐藏 */
             .status-overlay {
                 background: var(--overlay-bg);
                 color: white;
                 opacity: 0;
-                transform: translateY(10px);
+                transform: translateY(0);
                 pointer-events: none;
             }
 
             .status-overlay.show {
                 opacity: 1;
-                transform: translateY(0);
             }
 
             .status-overlay.loading {
@@ -318,9 +318,9 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 background: rgba(239, 68, 68, 0.85);
             }
 
+            /* 隐藏更换图片提示 */
             .change-overlay.hide {
                 opacity: 0;
-                transform: translateY(10px);
                 pointer-events: none;
             }
 
