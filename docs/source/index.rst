@@ -52,3 +52,13 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             👥 本站总访客数：<span id="busuanzi_value_site_uv"></span> 人
         </span>
     </div>
+
+
+.. raw:: html
+
+   <div style="text-align: center; margin: 20px 0; padding: 10px; background: #f5f5f5; border-radius: 5px;">
+       <script defer src="https://vercount.one/js"></script>
+       <span>🌐 本站总访问量：<span id="busuanzi_value_site_pv"></span> 次</span>
+       &nbsp;|&nbsp;
+       <span>👥 本站总访客数：<span id="busuanzi_value_site_uv"></span> 人</span>
+   </div>
