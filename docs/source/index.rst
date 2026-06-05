@@ -103,8 +103,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
             .drestry-reward {
                 width: 100%;
-                max-width: 600px;
-                margin: 0 auto;
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
                 padding-bottom: 20px;
             }
@@ -113,7 +111,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 padding: 0;
             }
 
-            /* 上传框容器 - 使用固定宽度+padding-top实现16:9 */
+            /* 上传框容器 - 16:9比例 */
             .upload-zone {
                 background: #f5f5f0;
                 border: 2px dashed #d4d4c8;
@@ -122,7 +120,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 transition: all 0.3s ease;
                 position: relative;
                 width: 100%;
-                padding-top: 56.25%; /* 16:9 = 9/16 = 0.5625 */
+                aspect-ratio: 16 / 9;
                 overflow: hidden;
                 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
             }
@@ -176,7 +174,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 font-weight: 500;
             }
 
-            /* 预览图片容器 - 绝对定位填满 */
+            /* 预览图片容器 */
             .preview-container {
                 position: absolute;
                 top: 0;
@@ -199,14 +197,14 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 display: block;
             }
 
-            /* 清除按钮 */
+            /* 清除按钮 - 红色圆形 */
             .clear-btn {
                 position: absolute;
                 top: 12px;
                 right: 12px;
                 width: 28px;
                 height: 28px;
-                background: #c8c8bc;
+                background: #ef4444;
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
@@ -231,10 +229,10 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
             .clear-btn:hover {
                 transform: scale(1.1);
-                background: #a8a89c;
+                background: #dc2626;
             }
 
-            /* 底部栏 */
+            /* 底部栏 - 固定高度，绝对定位，不随内容变化移动 */
             .bottom-bar {
                 position: absolute;
                 bottom: 0;
@@ -251,30 +249,18 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 font-size: 0.875rem;
                 font-weight: 500;
                 z-index: 10;
-                transition: background-color 0.2s ease;
                 color: white;
-                opacity: 0;
-                visibility: hidden;
+                transition: background-color 0.2s ease;
             }
 
-            /* 有预览时显示底部栏和预览图 */
+            /* 默认隐藏底部栏（无预览时） */
+            .upload-zone:not(.has-preview) .bottom-bar {
+                display: none;
+            }
+
+            /* 有预览时显示底部栏 */
             .upload-zone.has-preview .bottom-bar {
-                opacity: 1;
-                visibility: visible;
-            }
-
-            .upload-zone.has-preview .upload-content {
-                opacity: 0;
-                visibility: hidden;
-            }
-
-            .upload-zone.has-preview .preview-container {
                 display: flex;
-            }
-
-            .upload-zone.has-preview .clear-btn {
-                opacity: 1;
-                visibility: visible;
             }
 
             /* 底部栏不同状态背景 */
@@ -292,6 +278,21 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
             .bottom-bar-status.error {
                 background: #c92a2a;
+            }
+
+            /* 有预览时隐藏上传提示，显示预览图和清除按钮 */
+            .upload-zone.has-preview .upload-content {
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            .upload-zone.has-preview .preview-container {
+                display: flex;
+            }
+
+            .upload-zone.has-preview .clear-btn {
+                opacity: 1;
+                visibility: visible;
             }
 
             /* 加载动画 */
@@ -462,6 +463,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                         </div>
                     </div>
 
+                    <!-- 底部栏始终存在，只改变内容和背景 -->
                     <div class="bottom-bar bottom-bar-default" id="bottomBar">
                         <span>🖱️ 点击更换图片</span>
                     </div>
@@ -490,7 +492,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 const uploadZone = document.getElementById('uploadZone');
                 const fileInput = document.getElementById('fileInput');
                 const previewImg = document.getElementById('previewImg');
-                const previewContainer = document.getElementById('previewContainer');
                 const bottomBar = document.getElementById('bottomBar');
                 const rewardCard = document.getElementById('rewardCard');
                 const clearBtn = document.getElementById('clearBtn');
@@ -501,6 +502,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     previewImg.src = '';
                     fileInput.value = '';
                     rewardCard.style.display = 'none';
+                    // 重置底部栏
                     bottomBar.className = 'bottom-bar bottom-bar-default';
                     bottomBar.innerHTML = '<span>🖱️ 点击更换图片</span>';
                 });
