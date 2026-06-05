@@ -107,6 +107,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 padding-bottom: 20px;
             }
 
+            /* 上传框容器 - 整体 */
             .upload-zone {
                 background: #f5f5f7;
                 border: 2px dashed #d4d4d8;
@@ -115,7 +116,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 transition: border-color 0.25s ease;
                 position: relative;
                 width: 100%;
-                overflow: hidden;
                 box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
             }
 
@@ -130,9 +130,10 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 padding-top: 56.25%;
                 background: #f5f5f7;
                 overflow: hidden;
+                border-radius: 24px 24px 0 0;
             }
 
-            /* 上传提示 - 绝对定位居中 */
+            /* 上传提示 */
             .upload-content {
                 position: absolute;
                 top: 0;
@@ -171,7 +172,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 font-weight: 500;
             }
 
-            /* 预览图片 - 使用flex居中，兼容性更好 */
+            /* 预览图片包装器 */
             .preview-wrapper {
                 position: absolute;
                 top: 0;
@@ -193,6 +194,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 display: block;
             }
 
+            /* 右上角按钮 */
             .action-btn {
                 position: absolute;
                 top: 12px;
@@ -236,9 +238,12 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 background: #dc2626;
             }
 
-            /* 状态栏 */
+            /* 状态栏 - 绝对定位，不参与父容器高度计算 */
             .status-bar {
-                width: 100%;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
                 height: 44px;
                 display: flex;
                 align-items: center;
@@ -246,6 +251,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 transition: background-color 0.2s ease;
                 border-radius: 0 0 22px 22px;
                 background: rgba(0, 0, 0, 0.6);
+                z-index: 10;
             }
 
             .status-content {
@@ -259,6 +265,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 white-space: nowrap;
             }
 
+            /* 不同状态背景色 */
             .status-bar.default { background: rgba(0, 0, 0, 0.6); }
             .status-bar.loading { background: #71717a; }
             .status-bar.success { background: #10b981; }
@@ -417,6 +424,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     </div>
                 </div>
 
+                <!-- 状态栏绝对定位，不影响父容器高度 -->
                 <div class="status-bar default" id="statusBar">
                     <div class="status-content" id="statusContent">
                         <span>🖱️ 点击更换图片</span>
