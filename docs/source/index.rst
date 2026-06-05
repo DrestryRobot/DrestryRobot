@@ -101,10 +101,10 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 box-sizing: border-box;
             }
 
-            /* 浅灰色主题 - 与背景有轻微对比 */
             .drestry-reward {
                 width: 100%;
-                margin: 0;
+                max-width: 600px;
+                margin: 0 auto;
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
                 padding-bottom: 20px;
             }
@@ -113,7 +113,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 padding: 0;
             }
 
-            /* 上传框容器 - 固定16:9比例 */
+            /* 上传框容器 - 使用固定宽度+padding-top实现16:9 */
             .upload-zone {
                 background: #f5f5f0;
                 border: 2px dashed #d4d4c8;
@@ -122,7 +122,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 transition: all 0.3s ease;
                 position: relative;
                 width: 100%;
-                aspect-ratio: 16 / 9;
+                padding-top: 56.25%; /* 16:9 = 9/16 = 0.5625 */
                 overflow: hidden;
                 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
             }
@@ -132,8 +132,8 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 background: #efefe8;
             }
 
-            /* 上传提示内容 - 居中显示 */
-            .upload-content {
+            /* 内部内容绝对定位覆盖整个区域 */
+            .upload-inner {
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -143,6 +143,10 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+            }
+
+            /* 上传提示内容 */
+            .upload-content {
                 text-align: center;
                 z-index: 2;
                 transition: opacity 0.3s ease;
@@ -172,17 +176,27 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 font-weight: 500;
             }
 
-            /* 预览图片 - 完全居中，保持原始比例 */
-            .preview-img {
+            /* 预览图片容器 - 绝对定位填满 */
+            .preview-container {
                 position: absolute;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                object-fit: contain;
-                background: #f5f5f0;
                 display: none;
+                justify-content: center;
+                align-items: center;
                 z-index: 1;
+                background: #f5f5f0;
+            }
+
+            .preview-img {
+                max-width: 100%;
+                max-height: 100%;
+                width: auto;
+                height: auto;
+                object-fit: contain;
+                display: block;
             }
 
             /* 清除按钮 */
@@ -243,20 +257,19 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 visibility: hidden;
             }
 
-            /* 有预览时显示底部栏 */
+            /* 有预览时显示底部栏和预览图 */
             .upload-zone.has-preview .bottom-bar {
                 opacity: 1;
                 visibility: visible;
             }
 
-            /* 有预览时隐藏上传提示，显示预览图和清除按钮 */
             .upload-zone.has-preview .upload-content {
                 opacity: 0;
                 visibility: hidden;
             }
 
-            .upload-zone.has-preview .preview-img {
-                display: block;
+            .upload-zone.has-preview .preview-container {
+                display: flex;
             }
 
             .upload-zone.has-preview .clear-btn {
@@ -435,15 +448,19 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                         <span>✕</span>
                     </div>
 
-                    <div class="upload-content">
-                        <div class="upload-icon">📸</div>
-                        <div class="upload-text">点击上传截图</div>
-                        <div class="upload-desc">
-                            上传包含 <span class="domain">drestryrobot.readthedocs.io</span> 的分享截图有奖
+                    <div class="upload-inner">
+                        <div class="upload-content">
+                            <div class="upload-icon">📸</div>
+                            <div class="upload-text">点击上传截图</div>
+                            <div class="upload-desc">
+                                上传包含 <span class="domain">drestryrobot.readthedocs.io</span> 的分享截图有奖
+                            </div>
+                        </div>
+
+                        <div class="preview-container" id="previewContainer">
+                            <img class="preview-img" id="previewImg" alt="预览">
                         </div>
                     </div>
-
-                    <img class="preview-img" id="previewImg" alt="预览">
 
                     <div class="bottom-bar bottom-bar-default" id="bottomBar">
                         <span>🖱️ 点击更换图片</span>
@@ -473,6 +490,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 const uploadZone = document.getElementById('uploadZone');
                 const fileInput = document.getElementById('fileInput');
                 const previewImg = document.getElementById('previewImg');
+                const previewContainer = document.getElementById('previewContainer');
                 const bottomBar = document.getElementById('bottomBar');
                 const rewardCard = document.getElementById('rewardCard');
                 const clearBtn = document.getElementById('clearBtn');
