@@ -68,12 +68,21 @@
        script.defer = true;
        document.head.appendChild(script);
 
-       // 监听计数器加载完成
+       // 手动控制手机端容器的显示
        var checkInterval = setInterval(function() {
            var pvContainer = document.getElementById('vercount_container_site_pv');
+           // 检查电脑端容器是否已经显示
            if (pvContainer && pvContainer.style.display === 'inline') {
+               // 数据已加载完成，隐藏占位符，显示真实内容
                document.getElementById('counter-placeholder').style.display = 'none';
                document.getElementById('counter-content').style.display = 'block';
+               
+               // 手动将手机端容器的样式也设置为显示
+               var pvContainerShort = document.getElementById('vercount_container_site_pv_short');
+               var uvContainerShort = document.getElementById('vercount_container_site_uv_short');
+               if (pvContainerShort) pvContainerShort.style.display = 'inline';
+               if (uvContainerShort) uvContainerShort.style.display = 'inline';
+               
                clearInterval(checkInterval);
            }
        }, 100);
