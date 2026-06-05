@@ -90,18 +90,13 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
     <style>
         .drestry-reward {
-            max-width: 100%;
-            margin: 0;
-            background: var(--bg);
-            border-radius: 0;
+            max-width: 560px;
+            margin: 0 auto;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         
         /* 主题变量 */
         .drestry-reward {
-            --bg: #ffffff;
-            --bg-secondary: #f8f9fa;
-            --border: #e9ecef;
             --text: #212529;
             --text-muted: #6c757d;
             --accent: #3b82f6;
@@ -114,9 +109,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         
         @media (prefers-color-scheme: dark) {
             .drestry-reward {
-                --bg: #1e1e2e;
-                --bg-secondary: #2a2a3a;
-                --border: #3a3a4a;
                 --text: #cdd6f4;
                 --text-muted: #a6adc8;
                 --accent: #89b4fa;
@@ -151,8 +143,8 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         }
         
         .upload-zone {
-            background: var(--bg-secondary);
-            border: 2px dashed var(--border);
+            background: transparent;
+            border: 2px dashed var(--text-muted);
             border-radius: 20px;
             text-align: center;
             cursor: pointer;
@@ -182,18 +174,12 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             font-size: 11px;
         }
         
-        .upload-hint strong {
-            color: var(--accent);
-            font-family: monospace;
-            font-size: 10px;
-        }
-        
         .preview-box {
             display: none;
             margin-bottom: 16px;
             border-radius: 16px;
             overflow: hidden;
-            background: var(--bg-secondary);
+            background: transparent;
         }
         
         .preview-box img {
@@ -201,16 +187,17 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             max-height: 160px;
             object-fit: contain;
             display: block;
+            border-radius: 12px;
         }
         
         .status {
             padding: 12px 16px;
             border-radius: 16px;
             font-size: 13px;
-            text-align: center;
             margin-bottom: 16px;
             display: none;
             word-break: break-word;
+            text-align: center;
         }
         
         .status.loading {
@@ -232,7 +219,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         }
         
         .qr-container {
-            background: var(--bg-secondary);
+            background: transparent;
             border-radius: 20px;
             padding: 20px;
             text-align: center;
@@ -257,6 +244,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         .qr-note {
             color: var(--text-muted);
             font-size: 12px;
+            text-align: center;
         }
         
         .reward-footer {
@@ -264,30 +252,22 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             font-size: 10px;
             color: var(--text-muted);
             text-align: center;
-            border-top: 1px solid var(--border);
             padding-top: 16px;
         }
         
-        /* 大屏幕适配 */
-        @media (min-width: 600px) {
-            .drestry-reward {
-                max-width: 520px;
-                margin: 32px auto;
-                border-radius: 32px;
-                border: 1px solid var(--border);
-            }
+        @media (max-width: 560px) {
             .reward-inner {
-                padding: 28px 24px;
+                padding: 16px;
             }
             .upload-zone {
-                padding: 32px 20px;
+                padding: 24px 16px;
             }
             .upload-icon {
-                font-size: 48px;
+                font-size: 40px;
             }
             .qr-img {
-                width: 160px;
-                height: 160px;
+                width: 120px;
+                height: 120px;
             }
         }
     </style>
@@ -295,7 +275,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
     <div class="drestry-reward">
         <div class="reward-inner">
             <div class="reward-desc">
-                上传包含 <strong>drestryrobot.readthedocs.io</strong><br>的截图，自动识别后领取红包
+                上传包含 <strong>drestryrobot.readthedocs.io</strong> 的分享截图，自动识别后领取红包
             </div>
 
             <div class="upload-zone" id="uploadZone">
@@ -344,11 +324,11 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 uploadZone.style.borderColor = 'var(--accent)';
             });
             uploadZone.addEventListener('dragleave', () => {
-                uploadZone.style.borderColor = 'var(--border)';
+                uploadZone.style.borderColor = 'var(--text-muted)';
             });
             uploadZone.addEventListener('drop', (e) => {
                 e.preventDefault();
-                uploadZone.style.borderColor = 'var(--border)';
+                uploadZone.style.borderColor = 'var(--text-muted)';
                 const file = e.dataTransfer.files[0];
                 if (file && file.type.startsWith('image/')) handleFile(file);
                 else showStatus('请上传图片文件', 'error');
@@ -383,7 +363,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 };
                 reader.readAsDataURL(file);
                 
-                showStatus('识别中...', 'loading');
+                showStatus('🔍 识别中...', 'loading');
                 
                 try {
                     const img = await new Promise((resolve, reject) => {
@@ -403,7 +383,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                         showStatus('❌ 未检测到指定域名，请重试', 'error');
                     }
                 } catch {
-                    showStatus('识别失败，请重试', 'error');
+                    showStatus('❌ 识别失败，请重试', 'error');
                 }
             }
             
