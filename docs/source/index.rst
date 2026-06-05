@@ -84,289 +84,206 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
    *
 
-🔥 分享有奖
+📸 分享有奖
 -------------
-
 .. raw:: html
 
     <style>
-        /* 深浅色主题变量 */
-        .drestry-reward-container {
-            --bg-primary: linear-gradient(135deg, #0f172a 0%, #020617 100%);
-            --bg-secondary: #0b0f18;
-            --bg-card: rgba(18, 22, 31, 0.92);
-            --border-color: rgba(59, 130, 246, 0.3);
-            --text-title: linear-gradient(135deg, #FFFFFF 0%, #aac9ff 100%);
-            --text-desc: #a5b3d0;
-            --text-muted: #7786aa;
-            --badge-bg: rgba(30, 41, 59, 0.9);
-            --badge-color: #7aaef7;
-            --upload-bg: #0b0f18;
-            --upload-border: #2a354c;
-            --upload-hover-bg: #111723;
-            --preview-bg: #05080f;
-            --preview-border: #29324a;
-            --status-loading-bg: #1e2a44dd;
-            --status-loading-color: #b9dcff;
-            --status-success-bg: #0f2e1ddd;
-            --status-success-color: #6bff8e;
-            --status-error-bg: #2c1a1fdd;
-            --status-error-color: #ff9494;
-            --qr-bg: #0b0f17ea;
-            --qr-border: #2e3c58;
-            --qr-note-bg: #191f30;
-            --qr-note-color: #bfcdf2;
-            --footer-color: #556184;
-            --footer-border: #222b3e;
-            --highlight-bg: #1e2b3f;
-            --highlight-color: #60a5fa;
-            
-            max-width: 620px;
-            width: 100%;
-            margin: 40px auto;
-            background: var(--bg-primary);
-            border-radius: 52px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.5);
-            overflow: hidden;
-            font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
-            transition: all 0.3s ease;
+        .drestry-reward {
+            max-width: 100%;
+            margin: 0;
+            background: var(--bg);
+            border-radius: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         
-        /* 浅色主题适配 */
-        @media (prefers-color-scheme: light) {
-            .drestry-reward-container {
-                --bg-primary: linear-gradient(135deg, #e8edf5 0%, #d0d9e8 100%);
-                --bg-secondary: #f0f4fa;
-                --bg-card: rgba(245, 248, 250, 0.95);
-                --border-color: rgba(59, 130, 246, 0.4);
-                --text-title: linear-gradient(135deg, #1e293b 0%, #3b82f6 100%);
-                --text-desc: #334155;
-                --text-muted: #64748b;
-                --badge-bg: rgba(59, 130, 246, 0.15);
-                --badge-color: #2563eb;
-                --upload-bg: #f8fafc;
-                --upload-border: #cbd5e1;
-                --upload-hover-bg: #f1f5f9;
-                --preview-bg: #f1f5f9;
-                --preview-border: #cbd5e1;
-                --status-loading-bg: #dbeafe;
-                --status-loading-color: #1e40af;
-                --status-success-bg: #dcfce7;
-                --status-success-color: #166534;
-                --status-error-bg: #fee2e2;
-                --status-error-color: #991b1b;
-                --qr-bg: #ffffffea;
-                --qr-border: #cbd5e1;
-                --qr-note-bg: #e2e8f0;
-                --qr-note-color: #1e293b;
-                --footer-color: #64748b;
-                --footer-border: #cbd5e1;
-                --highlight-bg: #dbeafe;
-                --highlight-color: #2563eb;
-            }
+        /* 主题变量 */
+        .drestry-reward {
+            --bg: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --border: #e9ecef;
+            --text: #212529;
+            --text-muted: #6c757d;
+            --accent: #3b82f6;
+            --accent-bg: #eef2ff;
+            --success: #10b981;
+            --success-bg: #d1fae5;
+            --error: #ef4444;
+            --error-bg: #fee2e2;
         }
         
-        /* 深色主题微调 */
         @media (prefers-color-scheme: dark) {
-            .drestry-reward-container {
-                --bg-primary: linear-gradient(135deg, #0f172a 0%, #020617 100%);
-                --bg-secondary: #0b0f18;
-                --text-desc: #a5b3d0;
-                --text-muted: #7786aa;
+            .drestry-reward {
+                --bg: #1e1e2e;
+                --bg-secondary: #2a2a3a;
+                --border: #3a3a4a;
+                --text: #cdd6f4;
+                --text-muted: #a6adc8;
+                --accent: #89b4fa;
+                --accent-bg: #313244;
+                --success: #a6e3a1;
+                --success-bg: #313244;
+                --error: #f38ba8;
+                --error-bg: #313244;
             }
         }
         
         .reward-inner {
-            padding: 34px 28px 42px;
-        }
-        
-        .reward-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--badge-bg);
-            color: var(--badge-color);
-            font-size: 12px;
-            font-weight: 700;
-            padding: 6px 18px;
-            border-radius: 60px;
-            margin-bottom: 22px;
-            backdrop-filter: blur(4px);
-        }
-        
-        .reward-title {
-            font-size: 34px;
-            font-weight: 800;
-            background: var(--text-title);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            margin-bottom: 12px;
+            padding: 20px 16px;
         }
         
         .reward-desc {
-            color: var(--text-desc);
-            font-size: 15px;
-            margin-bottom: 28px;
-            border-left: 4px solid #3b82f6;
-            padding-left: 16px;
-            line-height: 1.45;
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .reward-desc strong {
+            color: var(--accent);
+            font-family: monospace;
+            font-size: 12px;
+            background: var(--accent-bg);
+            padding: 2px 6px;
+            border-radius: 12px;
+            word-break: break-all;
         }
         
         .upload-zone {
-            background: var(--upload-bg);
-            border: 2px dashed var(--upload-border);
-            border-radius: 38px;
+            background: var(--bg-secondary);
+            border: 2px dashed var(--border);
+            border-radius: 20px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.25s ease;
-            margin-bottom: 24px;
-            padding: 36px 20px;
+            padding: 28px 16px;
+            margin-bottom: 16px;
+            transition: all 0.2s;
         }
         
-        .upload-zone:hover {
-            border-color: #3b82f6;
-            background: var(--upload-hover-bg);
-            transform: translateY(-2px);
+        .upload-zone:active {
+            transform: scale(0.98);
         }
         
         .upload-icon {
-            font-size: 56px;
-            margin-bottom: 12px;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+            font-size: 44px;
+            margin-bottom: 8px;
         }
         
         .upload-text {
-            color: var(--text-desc);
-            font-weight: 600;
-            font-size: 18px;
-            margin-bottom: 8px;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 15px;
+            margin-bottom: 4px;
         }
         
         .upload-hint {
             color: var(--text-muted);
-            font-size: 12.5px;
+            font-size: 11px;
         }
         
         .upload-hint strong {
-            color: var(--highlight-color);
-            background: var(--highlight-bg);
-            padding: 3px 10px;
-            border-radius: 40px;
+            color: var(--accent);
             font-family: monospace;
+            font-size: 10px;
         }
         
         .preview-box {
-            margin-bottom: 26px;
             display: none;
-            border-radius: 32px;
-            background: var(--preview-bg);
-            padding: 12px;
-            border: 1px solid var(--preview-border);
+            margin-bottom: 16px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--bg-secondary);
         }
         
         .preview-box img {
             width: 100%;
-            max-height: 200px;
+            max-height: 160px;
             object-fit: contain;
-            border-radius: 22px;
+            display: block;
         }
         
         .status {
-            padding: 14px 22px;
-            border-radius: 60px;
-            font-size: 14px;
-            font-weight: 500;
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 13px;
             text-align: center;
-            margin-bottom: 26px;
+            margin-bottom: 16px;
             display: none;
+            word-break: break-word;
         }
         
         .status.loading {
-            background: var(--status-loading-bg);
-            color: var(--status-loading-color);
+            background: var(--accent-bg);
+            color: var(--accent);
             display: block;
         }
         
         .status.success {
-            background: var(--status-success-bg);
-            color: var(--status-success-color);
+            background: var(--success-bg);
+            color: var(--success);
             display: block;
         }
         
         .status.error {
-            background: var(--status-error-bg);
-            color: var(--status-error-color);
+            background: var(--error-bg);
+            color: var(--error);
             display: block;
         }
         
         .qr-container {
-            background: var(--qr-bg);
-            border-radius: 42px;
-            padding: 28px 20px;
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            padding: 20px;
             text-align: center;
-            border: 1px solid var(--qr-border);
             display: none;
-            margin-top: 8px;
-            backdrop-filter: blur(4px);
-        }
-        
-        .qr-container h3 {
-            color: var(--status-success-color);
-            font-size: 24px;
-            margin-bottom: 10px;
-            text-align: center;
         }
         
         .qr-img {
-            width: 190px;
-            height: 190px;
-            margin: 12px auto 18px;
-            background: #ffffff;
-            border-radius: 32px;
-            padding: 16px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 12px;
+            background: #fff;
+            border-radius: 16px;
+            padding: 10px;
         }
         
         .qr-img img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            border-radius: 18px;
         }
         
         .qr-note {
-            color: var(--qr-note-color);
-            font-size: 14px;
-            background: var(--qr-note-bg);
-            display: inline-block;
-            padding: 8px 24px;
-            border-radius: 60px;
+            color: var(--text-muted);
+            font-size: 12px;
         }
         
         .reward-footer {
-            margin-top: 34px;
-            font-size: 11px;
-            color: var(--footer-color);
+            margin-top: 20px;
+            font-size: 10px;
+            color: var(--text-muted);
             text-align: center;
-            border-top: 1px solid var(--footer-border);
-            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
         }
         
-        /* 移动端适配 */
-        @media (max-width: 600px) {
-            .reward-inner {
-                padding: 24px 20px 32px;
+        /* 大屏幕适配 */
+        @media (min-width: 600px) {
+            .drestry-reward {
+                max-width: 520px;
+                margin: 32px auto;
+                border-radius: 32px;
+                border: 1px solid var(--border);
             }
-            .reward-title {
-                font-size: 28px;
+            .reward-inner {
+                padding: 28px 24px;
+            }
+            .upload-zone {
+                padding: 32px 20px;
             }
             .upload-icon {
                 font-size: 48px;
-            }
-            .upload-text {
-                font-size: 16px;
             }
             .qr-img {
                 width: 160px;
@@ -375,39 +292,34 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         }
     </style>
 
-    <div class="drestry-reward-container">
+    <div class="drestry-reward">
         <div class="reward-inner">
-            <div class="reward-badge">
-                📘 DrestryRobot · 文档验证
-            </div>
-            <div class="reward-title">分享即领奖</div>
             <div class="reward-desc">
-                🔍 上传包含 <strong>“drestryrobot.readthedocs.io”</strong> 的截图 → OCR识别 → 验证通过 → 秒获红包
+                上传包含 <strong>drestryrobot.readthedocs.io</strong><br>的截图，自动识别后领取红包
             </div>
 
             <div class="upload-zone" id="uploadZone">
-                <div class="upload-icon">📸📄</div>
-                <div class="upload-text">点击上传 或 拖拽截图</div>
-                <div class="upload-hint">支持 JPG / PNG，需包含 <strong>drestryrobot.readthedocs.io</strong></div>
+                <div class="upload-icon">📸</div>
+                <div class="upload-text">点击上传截图</div>
+                <div class="upload-hint">支持 JPG / PNG</div>
                 <input type="file" id="fileInput" accept="image/*" style="display: none;">
             </div>
 
             <div class="preview-box" id="previewBox">
-                <img id="previewImg" alt="截图预览">
+                <img id="previewImg" alt="预览">
             </div>
 
             <div class="status" id="statusMsg"></div>
 
             <div class="qr-container" id="qrArea">
-                <h3>🎁 验证通过 · 专属奖励</h3>
                 <div class="qr-img">
                     <img id="rewardQr" src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/202606%20%E5%BE%AE%E4%BF%A1%E4%BA%8C%E7%BB%B4%E7%A0%81.png" alt="微信红包二维码">
                 </div>
-                <div class="qr-note">💰 微信扫一扫 · 立即领取现金红包</div>
+                <div class="qr-note">💰 微信扫一扫领奖</div>
             </div>
 
             <div class="reward-footer">
-                ⚡ 本地OCR识别 · 图片不上传服务器 · 仅校验文档域名
+                ⚡ 本地识别 · 图片不上传
             </div>
         </div>
     </div>
@@ -429,48 +341,35 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             
             uploadZone.addEventListener('dragover', (e) => {
                 e.preventDefault();
-                uploadZone.style.borderColor = '#3b82f6';
-                uploadZone.style.background = 'var(--upload-hover-bg)';
+                uploadZone.style.borderColor = 'var(--accent)';
             });
             uploadZone.addEventListener('dragleave', () => {
-                uploadZone.style.borderColor = 'var(--upload-border)';
-                uploadZone.style.background = 'var(--upload-bg)';
+                uploadZone.style.borderColor = 'var(--border)';
             });
             uploadZone.addEventListener('drop', (e) => {
                 e.preventDefault();
-                uploadZone.style.borderColor = 'var(--upload-border)';
-                uploadZone.style.background = 'var(--upload-bg)';
+                uploadZone.style.borderColor = 'var(--border)';
                 const file = e.dataTransfer.files[0];
-                if (file && file.type.startsWith('image/')) {
-                    handleFile(file);
-                } else {
-                    showStatus('❌ 请上传 PNG / JPG 格式截图', 'error');
-                }
+                if (file && file.type.startsWith('image/')) handleFile(file);
+                else showStatus('请上传图片文件', 'error');
             });
             
             fileInput.addEventListener('change', (e) => {
-                if (e.target.files && e.target.files.length) {
-                    handleFile(e.target.files[0]);
-                }
+                if (e.target.files?.length) handleFile(e.target.files[0]);
             });
             
-            function validateDomain(text) {
+            function validate(text) {
                 if (!text) return false;
                 const lower = text.toLowerCase();
-                if (lower.includes(REQUIRED_DOMAIN)) return true;
-                const cleaned = lower.replace(/[\s\n\r\t]/g, '');
-                if (cleaned.includes(REQUIRED_DOMAIN.replace(/[\s\n\r\t]/g, ''))) return true;
-                if (/drestryrobot\s*\.\s*readthedocs\s*\.\s*io/i.test(lower)) return true;
-                if (/drestryrobot/i.test(lower) && /readthedocs/i.test(lower) && /\.?io\b/i.test(lower)) return true;
-                return false;
+                return lower.includes(REQUIRED_DOMAIN) ||
+                       lower.replace(/\s/g, '').includes(REQUIRED_DOMAIN) ||
+                       (/drestryrobot/i.test(lower) && /readthedocs/i.test(lower) && /\.?io\b/i.test(lower));
             }
             
             function showStatus(msg, type) {
                 statusDiv.textContent = msg;
                 statusDiv.className = 'status';
-                if (type === 'loading') statusDiv.classList.add('loading');
-                else if (type === 'success') statusDiv.classList.add('success');
-                else if (type === 'error') statusDiv.classList.add('error');
+                statusDiv.classList.add(type);
             }
             
             async function handleFile(file) {
@@ -484,35 +383,31 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 };
                 reader.readAsDataURL(file);
                 
-                showStatus('🔍 正在识别截图内容...', 'loading');
+                showStatus('识别中...', 'loading');
                 
                 try {
-                    const img = await loadImage(file);
-                    const processedBlob = await preprocessImage(img);
-                    const text = await runOCR(processedBlob);
+                    const img = await new Promise((resolve, reject) => {
+                        const img = new Image();
+                        img.onload = () => { URL.revokeObjectURL(img.src); resolve(img); };
+                        img.onerror = reject;
+                        img.src = URL.createObjectURL(file);
+                    });
                     
-                    if (validateDomain(text)) {
-                        showStatus('✅ 验证通过！恭喜获得奖励资格', 'success');
+                    const processedBlob = await preprocess(img);
+                    const text = await ocr(processedBlob);
+                    
+                    if (validate(text)) {
+                        showStatus('✅ 验证通过，扫码领奖', 'success');
                         qrArea.style.display = 'block';
-                        qrArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                     } else {
-                        showStatus('❌ 验证失败：未检测到 "drestryrobot.readthedocs.io"', 'error');
+                        showStatus('❌ 未检测到指定域名，请重试', 'error');
                     }
-                } catch (err) {
-                    showStatus('⚠️ 识别失败，请重试', 'error');
+                } catch {
+                    showStatus('识别失败，请重试', 'error');
                 }
             }
             
-            function loadImage(file) {
-                return new Promise((resolve, reject) => {
-                    const img = new Image();
-                    img.onload = () => { URL.revokeObjectURL(img.src); resolve(img); };
-                    img.onerror = reject;
-                    img.src = URL.createObjectURL(file);
-                });
-            }
-            
-            function preprocessImage(img) {
+            function preprocess(img) {
                 return new Promise((resolve) => {
                     const canvas = document.createElement('canvas');
                     const ctx = canvas.getContext('2d');
@@ -522,8 +417,8 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
                     for (let i = 0; i < data.data.length; i += 4) {
                         const gray = 0.299 * data.data[i] + 0.587 * data.data[i+1] + 0.114 * data.data[i+2];
-                        const val = gray > 128 ? 255 : 0;
-                        data.data[i] = data.data[i+1] = data.data[i+2] = val;
+                        const v = gray > 128 ? 255 : 0;
+                        data.data[i] = data.data[i+1] = data.data[i+2] = v;
                     }
                     ctx.putImageData(data, 0, 0);
                     canvas.toBlob(resolve, 'image/png');
@@ -531,14 +426,14 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             }
             
             let worker = null;
-            async function runOCR(blob) {
+            async function ocr(blob) {
                 if (typeof Tesseract === 'undefined') {
                     await new Promise((resolve, reject) => {
-                        const script = document.createElement('script');
-                        script.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
-                        script.onload = resolve;
-                        script.onerror = reject;
-                        document.head.appendChild(script);
+                        const s = document.createElement('script');
+                        s.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
+                        s.onload = resolve;
+                        s.onerror = reject;
+                        document.head.appendChild(s);
                     });
                 }
                 if (!worker) {
