@@ -101,7 +101,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 box-sizing: border-box;
             }
 
-            /* 统一浅色主题 */
+            /* 浅灰色主题 - 与背景有轻微对比 */
             .drestry-reward {
                 width: 100%;
                 margin: 0;
@@ -115,8 +115,8 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
             /* 上传框容器 - 固定16:9比例 */
             .upload-zone {
-                background: #ffffff;
-                border: 2px dashed #cbd5e1;
+                background: #f5f5f0;
+                border: 2px dashed #d4d4c8;
                 border-radius: 24px;
                 cursor: pointer;
                 transition: all 0.3s ease;
@@ -124,12 +124,12 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 width: 100%;
                 aspect-ratio: 16 / 9;
                 overflow: hidden;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
             }
 
             .upload-zone:hover {
-                border-color: #3b82f6;
-                background: #eff6ff;
+                border-color: #a8a89c;
+                background: #efefe8;
             }
 
             /* 上传提示内容 - 居中显示 */
@@ -155,20 +155,20 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             }
 
             .upload-text {
-                color: #1e293b;
+                color: #4a4a42;
                 font-weight: 500;
                 font-size: 1rem;
                 margin-bottom: 8px;
             }
 
             .upload-desc {
-                color: #64748b;
+                color: #7a7a6e;
                 font-size: 0.85rem;
                 line-height: 1.4;
             }
 
             .upload-desc .domain {
-                color: #3b82f6;
+                color: #7a7a6e;
                 font-weight: 500;
             }
 
@@ -180,7 +180,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 width: 100%;
                 height: 100%;
                 object-fit: contain;
-                background: #ffffff;
+                background: #f5f5f0;
                 display: none;
                 z-index: 1;
             }
@@ -192,7 +192,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 right: 12px;
                 width: 28px;
                 height: 28px;
-                background: #ef4444;
+                background: #c8c8bc;
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
@@ -202,7 +202,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 opacity: 0;
                 visibility: hidden;
                 backdrop-filter: blur(4px);
-                border: 1px solid rgba(255, 255, 255, 0.3);
+                border: 1px solid rgba(255, 255, 255, 0.4);
                 transition: all 0.2s ease;
             }
 
@@ -217,7 +217,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
             .clear-btn:hover {
                 transform: scale(1.1);
-                background: #dc2626;
+                background: #a8a89c;
             }
 
             /* 底部栏 */
@@ -230,7 +230,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 backdrop-filter: blur(16px);
                 -webkit-backdrop-filter: blur(16px);
                 border-radius: 0 0 22px 22px;
-                border-top: 1px solid rgba(255, 255, 255, 0.3);
+                border-top: 1px solid rgba(0, 0, 0, 0.06);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -266,19 +266,19 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
             /* 底部栏不同状态背景 */
             .bottom-bar-default {
-                background: rgba(0, 0, 0, 0.65);
+                background: rgba(0, 0, 0, 0.55);
             }
 
             .bottom-bar-status {
-                background: #3b82f6;
+                background: #8a8a7e;
             }
 
             .bottom-bar-status.success {
-                background: #10b981;
+                background: #2d6a4f;
             }
 
             .bottom-bar-status.error {
-                background: #ef4444;
+                background: #c92a2a;
             }
 
             /* 加载动画 */
@@ -314,14 +314,14 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
             /* 领奖卡片 */
             .reward-card {
-                background: #ffffff;
-                border: 1px solid #e2e8f0;
+                background: #f5f5f0;
+                border: 1px solid #e4e4dc;
                 border-radius: 24px;
                 padding: 24px;
                 margin-top: 20px;
                 text-align: center;
                 animation: celebrate 0.5s ease-out;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
             }
 
             @keyframes celebrate {
@@ -360,7 +360,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 align-items: center;
                 justify-content: center;
                 gap: 8px;
-                color: #1e293b;
+                color: #3a3a32;
                 font-size: 1.1rem;
                 font-weight: 600;
                 margin-bottom: 16px;
@@ -376,7 +376,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 padding: 12px;
                 display: inline-block;
                 margin-bottom: 12px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
             }
 
             .qr-img-reward {
@@ -392,7 +392,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             }
 
             .reward-card-desc {
-                color: #64748b;
+                color: #7a7a6e;
                 font-size: 0.8rem;
             }
 
@@ -494,14 +494,14 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 
                 uploadZone.addEventListener('dragover', (e) => {
                     e.preventDefault();
-                    uploadZone.style.borderColor = '#3b82f6';
+                    uploadZone.style.borderColor = '#a8a89c';
                 });
                 uploadZone.addEventListener('dragleave', () => {
-                    uploadZone.style.borderColor = '#cbd5e1';
+                    uploadZone.style.borderColor = '#d4d4c8';
                 });
                 uploadZone.addEventListener('drop', (e) => {
                     e.preventDefault();
-                    uploadZone.style.borderColor = '#cbd5e1';
+                    uploadZone.style.borderColor = '#d4d4c8';
                     const file = e.dataTransfer.files[0];
                     if (file && file.type.startsWith('image/')) handleFile(file);
                     else showStatus('请上传图片', 'error');
