@@ -111,23 +111,29 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 padding: 0;
             }
 
-            /* 上传框容器 - 16:9比例 */
+            /* 上传框容器 - 中性浅灰色 */
             .upload-zone {
-                background: #f5f5f0;
-                border: 2px dashed #d4d4c8;
+                background: #f5f5f7;
+                border: 2px dashed #d4d4d8;
                 border-radius: 24px;
                 cursor: pointer;
-                transition: all 0.3s ease;
+                transition: all 0.25s ease;
                 position: relative;
                 width: 100%;
                 aspect-ratio: 16 / 9;
                 overflow: hidden;
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
             }
 
             .upload-zone:hover {
-                border-color: #a8a89c;
-                background: #efefe8;
+                border-color: #a1a1aa;
+                background: #eaeaef;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            }
+
+            .upload-zone:active {
+                transform: translateY(0);
             }
 
             /* 内部内容绝对定位覆盖整个区域 */
@@ -147,30 +153,39 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             .upload-content {
                 text-align: center;
                 z-index: 2;
-                transition: opacity 0.3s ease;
+                transition: opacity 0.3s ease, transform 0.2s ease;
                 pointer-events: none;
+            }
+
+            .upload-zone:hover .upload-content {
+                transform: scale(1.01);
             }
 
             .upload-icon {
                 font-size: 48px;
                 margin-bottom: 12px;
+                transition: transform 0.2s ease;
+            }
+
+            .upload-zone:hover .upload-icon {
+                transform: scale(1.02);
             }
 
             .upload-text {
-                color: #4a4a42;
+                color: #3f3f46;
                 font-weight: 500;
                 font-size: 1rem;
                 margin-bottom: 8px;
             }
 
             .upload-desc {
-                color: #7a7a6e;
+                color: #71717a;
                 font-size: 0.85rem;
                 line-height: 1.4;
             }
 
             .upload-desc .domain {
-                color: #7a7a6e;
+                color: #71717a;
                 font-weight: 500;
             }
 
@@ -185,7 +200,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 justify-content: center;
                 align-items: center;
                 z-index: 1;
-                background: #f5f5f0;
+                background: #f5f5f7;
             }
 
             .preview-img {
@@ -232,7 +247,11 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 background: #dc2626;
             }
 
-            /* 底部栏 - 固定高度，绝对定位，不随内容变化移动 */
+            .clear-btn:active {
+                transform: scale(0.95);
+            }
+
+            /* 底部栏 - 固定高度，绝对定位 */
             .bottom-bar {
                 position: absolute;
                 bottom: 0;
@@ -253,7 +272,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 transition: background-color 0.2s ease;
             }
 
-            /* 默认隐藏底部栏（无预览时） */
+            /* 无预览时隐藏底部栏 */
             .upload-zone:not(.has-preview) .bottom-bar {
                 display: none;
             }
@@ -265,19 +284,19 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
             /* 底部栏不同状态背景 */
             .bottom-bar-default {
-                background: rgba(0, 0, 0, 0.55);
+                background: rgba(0, 0, 0, 0.6);
             }
 
             .bottom-bar-status {
-                background: #8a8a7e;
+                background: #71717a;
             }
 
             .bottom-bar-status.success {
-                background: #2d6a4f;
+                background: #10b981;
             }
 
             .bottom-bar-status.error {
-                background: #c92a2a;
+                background: #ef4444;
             }
 
             /* 有预览时隐藏上传提示，显示预览图和清除按钮 */
@@ -328,14 +347,19 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
             /* 领奖卡片 */
             .reward-card {
-                background: #f5f5f0;
-                border: 1px solid #e4e4dc;
+                background: #f5f5f7;
+                border: 1px solid #e4e4e9;
                 border-radius: 24px;
                 padding: 24px;
                 margin-top: 20px;
                 text-align: center;
                 animation: celebrate 0.5s ease-out;
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+                transition: box-shadow 0.2s ease;
+            }
+
+            .reward-card:hover {
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             }
 
             @keyframes celebrate {
@@ -374,7 +398,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 align-items: center;
                 justify-content: center;
                 gap: 8px;
-                color: #3a3a32;
+                color: #3f3f46;
                 font-size: 1.1rem;
                 font-weight: 600;
                 margin-bottom: 16px;
@@ -390,7 +414,12 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 padding: 12px;
                 display: inline-block;
                 margin-bottom: 12px;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+                transition: box-shadow 0.2s ease;
+            }
+
+            .qr-wrapper:hover {
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             }
 
             .qr-img-reward {
@@ -406,7 +435,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             }
 
             .reward-card-desc {
-                color: #7a7a6e;
+                color: #71717a;
                 font-size: 0.8rem;
             }
 
@@ -438,6 +467,12 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 .reward-card {
                     padding: 18px;
                 }
+                .upload-zone:hover .upload-content {
+                    transform: none;
+                }
+                .upload-zone:hover .upload-icon {
+                    transform: none;
+                }
             }
         </style>
     </head>
@@ -463,7 +498,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                         </div>
                     </div>
 
-                    <!-- 底部栏始终存在，只改变内容和背景 -->
                     <div class="bottom-bar bottom-bar-default" id="bottomBar">
                         <span>🖱️ 点击更换图片</span>
                     </div>
@@ -502,7 +536,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     previewImg.src = '';
                     fileInput.value = '';
                     rewardCard.style.display = 'none';
-                    // 重置底部栏
                     bottomBar.className = 'bottom-bar bottom-bar-default';
                     bottomBar.innerHTML = '<span>🖱️ 点击更换图片</span>';
                 });
@@ -514,14 +547,14 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 
                 uploadZone.addEventListener('dragover', (e) => {
                     e.preventDefault();
-                    uploadZone.style.borderColor = '#a8a89c';
+                    uploadZone.style.borderColor = '#a1a1aa';
                 });
                 uploadZone.addEventListener('dragleave', () => {
-                    uploadZone.style.borderColor = '#d4d4c8';
+                    uploadZone.style.borderColor = '#d4d4d8';
                 });
                 uploadZone.addEventListener('drop', (e) => {
                     e.preventDefault();
-                    uploadZone.style.borderColor = '#d4d4c8';
+                    uploadZone.style.borderColor = '#d4d4d8';
                     const file = e.dataTransfer.files[0];
                     if (file && file.type.startsWith('image/')) handleFile(file);
                     else showStatus('请上传图片', 'error');
