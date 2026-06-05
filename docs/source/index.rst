@@ -111,6 +111,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 padding: 0;
             }
 
+            /* 使用 padding-top 实现 16:9，兼容性更好 */
             .upload-zone {
                 background: #f5f5f7;
                 border: 2px dashed #d4d4d8;
@@ -119,7 +120,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 transition: all 0.25s ease;
                 position: relative;
                 width: 100%;
-                aspect-ratio: 16 / 9;
+                padding-top: 56.25%; /* 16:9 = 9/16 = 0.5625 */
                 overflow: hidden;
                 box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
             }
@@ -129,6 +130,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 background: #eaeaef;
             }
 
+            /* 内部内容绝对定位覆盖整个区域 */
             .upload-inner {
                 position: absolute;
                 top: 0;
@@ -272,8 +274,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 opacity: 1;
             }
 
-            /* ========== 底部状态栏 - 全新架构 ========== */
-            /* 使用单一容器，固定高度和位置，只改变内部内容 */
+            /* ========== 底部状态栏 ========== */
             .status-bar {
                 position: absolute;
                 bottom: 0;
@@ -288,7 +289,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 align-items: center;
                 justify-content: center;
                 z-index: 10;
-                overflow: hidden;
+                transition: background-color 0.2s ease;
             }
 
             /* 无预览时隐藏状态栏 */
@@ -301,7 +302,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 display: flex;
             }
 
-            /* 状态内容容器 - 负责淡入淡出和动画 */
+            /* 状态内容 */
             .status-content {
                 display: flex;
                 align-items: center;
@@ -310,20 +311,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 font-size: 0.875rem;
                 font-weight: 500;
                 color: white;
-                transition: all 0.25s ease;
-                animation: fadeInScale 0.25s ease-out;
-            }
-
-            /* 淡入+轻微缩放动画 */
-            @keyframes fadeInScale {
-                0% {
-                    opacity: 0;
-                    transform: scale(0.95);
-                }
-                100% {
-                    opacity: 1;
-                    transform: scale(1);
-                }
+                transition: all 0.2s ease;
             }
 
             /* 不同状态的背景色 */
@@ -343,24 +331,14 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 background: #ef4444;
             }
 
-            /* 图标动画 */
-            .status-icon {
-                display: inline-block;
-                animation: iconPop 0.3s ease-out;
+            /* 简单动画 */
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(2px); }
+                to { opacity: 1; transform: translateY(0); }
             }
 
-            @keyframes iconPop {
-                0% {
-                    transform: scale(0);
-                    opacity: 0;
-                }
-                60% {
-                    transform: scale(1.2);
-                }
-                100% {
-                    transform: scale(1);
-                    opacity: 1;
-                }
+            .status-content {
+                animation: fadeIn 0.2s ease-out;
             }
 
             .spinner-small {
@@ -544,7 +522,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                         </div>
                     </div>
 
-                    <!-- 全新状态栏 - 单一容器，只改变背景色和内部内容 -->
                     <div class="status-bar default" id="statusBar">
                         <div class="status-content" id="statusContent">
                             <span>🖱️ 点击更换图片</span>
@@ -612,7 +589,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     previewImg.src = '';
                     fileInput.value = '';
                     rewardCard.style.display = 'none';
-                    // 重置状态栏
                     statusBar.className = 'status-bar default';
                     statusContent.innerHTML = '<span>🖱️ 点击更换图片</span>';
                     actionBtn.className = 'action-btn copy-btn';
@@ -629,11 +605,8 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     }
                 }
                 
-                // 更新状态栏 - 统一接口，只改变类名和内容
                 function updateStatus(type, message, iconHtml) {
-                    // 改变背景色类
                     statusBar.className = 'status-bar ' + type;
-                    // 更新内容（带动画）
                     statusContent.innerHTML = iconHtml + ' ' + message;
                 }
                 
@@ -663,7 +636,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     uploadZone.style.borderColor = '#d4d4d8';
                     const file = e.dataTransfer.files[0];
                     if (file && file.type.startsWith('image/')) handleFile(file);
-                    else updateStatus('error', '请上传图片', '<span class="status-icon">✗</span>');
+                    else updateStatus('error', '请上传图片', '<span>✗</span>');
                 });
                 
                 fileInput.addEventListener('change', (e) => {
@@ -679,7 +652,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 
                 let timeout = null;
                 
-                // 重置状态栏到默认（点击更换图片）
                 function resetToDefault() {
                     if (timeout) clearTimeout(timeout);
                     statusBar.className = 'status-bar default';
@@ -717,7 +689,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     };
                     reader.readAsDataURL(file);
                     
-                    // 显示识别中
                     updateStatus('loading', '识别中...', '<span class="spinner-small"></span>');
                     
                     try {
@@ -761,18 +732,18 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                         await worker.terminate();
                         
                         if (validate(text)) {
-                            updateStatus('success', '验证成功！', '<span class="status-icon">✓</span>');
+                            updateStatus('success', '验证成功！', '<span>✓</span>');
                             timeout = setTimeout(() => {
                                 resetToDefault();
                                 rewardCard.style.display = 'block';
                                 showConfetti();
                             }, 800);
                         } else {
-                            updateStatus('error', '未检测到指定域名', '<span class="status-icon">✗</span>');
+                            updateStatus('error', '未检测到指定域名', '<span>✗</span>');
                             timeout = setTimeout(() => resetToDefault(), 1000);
                         }
                     } catch {
-                        updateStatus('error', '识别失败，请重试', '<span class="status-icon">✗</span>');
+                        updateStatus('error', '识别失败，请重试', '<span>✗</span>');
                         timeout = setTimeout(() => resetToDefault(), 1000);
                     }
                 }
