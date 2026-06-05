@@ -36,13 +36,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
 .. raw:: html
 
-   <p align="center">
-       <img src="https://visitor-badge.laobi.icu/badge?page_id=DrestryRobot_main" alt="访客徽章" />
-       <img src="https://img.shields.io/badge/📅 最后更新-2026.06-blue" alt="更新日期" />
-   </p>
-
-.. raw:: html
-
     <div style="text-align: center; margin-top: 20px; padding: 10px; background-color: #f8f8f8; border-radius: 5px;">
         <span id="busuanzi_container_site_pv">
             🌐 本站总访问量：<span id="busuanzi_value_site_pv"></span> 次
@@ -56,9 +49,13 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
 .. raw:: html
 
-   <div style="text-align: center; margin: 20px 0; padding: 10px; background: #f5f5f5; border-radius: 5px;">
-       <script defer src="https://vercount.one/js"></script>
-       <span>🌐 本站总访问量：<span id="busuanzi_value_site_pv"></span> 次</span>
-       &nbsp;|&nbsp;
-       <span>👥 本站总访客数：<span id="busuanzi_value_site_uv"></span> 人</span>
-   </div>
+    <div style="text-align: center; margin-top: 20px; padding: 10px; background-color: #f8f8f8; border-radius: 5px;">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <span id="busuanzi_container_site_pv">
+            🌐 本站总访问量：<span id="busuanzi_value_site_pv"></span> 次
+        </span>
+        |
+        <span id="busuanzi_container_site_uv">
+            👥 本站总访客数：<span id="busuanzi_value_site_uv"></span> 人
+        </span>
+    </div>
