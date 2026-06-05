@@ -101,7 +101,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 box-sizing: border-box;
             }
 
-            /* 统一主题变量 */
             .drestry-reward {
                 --text: #1e293b;
                 --text-muted: #64748b;
@@ -143,6 +142,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 padding: 0;
             }
 
+            /* 上传框容器 - 固定比例，宽度自适应 */
             .upload-zone {
                 background: var(--card-bg);
                 border: 2px dashed var(--border);
@@ -165,12 +165,14 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 background: var(--accent-light);
             }
 
+            /* 上传提示内容 */
             .upload-content {
                 padding: 20px;
                 position: relative;
                 z-index: 2;
                 text-align: center;
                 transition: opacity 0.3s ease;
+                pointer-events: none;
             }
 
             .upload-icon {
@@ -196,7 +198,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 font-weight: 500;
             }
 
-            /* 预览图片 - 完全居中自适应 */
+            /* 预览图片 - 完全居中，保持原始比例，不变形 */
             .preview-img {
                 position: absolute;
                 top: 0;
@@ -207,8 +209,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 background: var(--card-bg);
                 display: none;
                 z-index: 1;
-                padding: 0;
-                margin: 0;
             }
 
             /* 清除按钮 */
@@ -246,7 +246,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 background: #dc2626;
             }
 
-            /* 底部栏 - 始终存在 */
+            /* 底部栏 */
             .bottom-bar {
                 position: absolute;
                 bottom: 0;
@@ -265,22 +265,20 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 z-index: 10;
                 transition: background-color 0.2s ease;
                 color: white;
-                opacity: 1;
-                visibility: visible;
-            }
-
-            /* 无预览时隐藏底部栏内容 */
-            .upload-zone:not(.has-preview) .bottom-bar {
                 opacity: 0;
                 visibility: hidden;
             }
 
-            /* 默认状态 - 更换图片 */
+            /* 有预览时显示底部栏 */
+            .upload-zone.has-preview .bottom-bar {
+                opacity: 1;
+                visibility: visible;
+            }
+
             .bottom-bar-default {
                 background: var(--overlay-bg);
             }
 
-            /* 状态状态 - 动态背景 */
             .bottom-bar-status {
                 background: var(--accent);
             }
@@ -550,7 +548,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 
                 function showStatus(msg, type) {
                     if (timeout) clearTimeout(timeout);
-                    
                     if (type === 'loading') {
                         bottomBar.className = 'bottom-bar bottom-bar-status';
                         bottomBar.innerHTML = '<span class="spinner"></span> ' + msg;
