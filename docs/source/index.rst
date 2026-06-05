@@ -128,12 +128,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             .upload-zone:hover {
                 border-color: #a1a1aa;
                 background: #eaeaef;
-                transform: translateY(-1px);
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            }
-
-            .upload-zone:active {
-                transform: translateY(0);
             }
 
             /* 内部内容绝对定位覆盖整个区域 */
@@ -153,22 +147,13 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             .upload-content {
                 text-align: center;
                 z-index: 2;
-                transition: opacity 0.3s ease, transform 0.2s ease;
+                transition: opacity 0.3s ease;
                 pointer-events: none;
-            }
-
-            .upload-zone:hover .upload-content {
-                transform: scale(1.01);
             }
 
             .upload-icon {
                 font-size: 48px;
                 margin-bottom: 12px;
-                transition: transform 0.2s ease;
-            }
-
-            .upload-zone:hover .upload-icon {
-                transform: scale(1.02);
             }
 
             .upload-text {
@@ -212,43 +197,87 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 display: block;
             }
 
-            /* 清除按钮 - 红色圆形 */
-            .clear-btn {
+            /* 右上角按钮 - 无预览时绿色复制，有预览时红色清除 */
+            .action-btn {
                 position: absolute;
                 top: 12px;
                 right: 12px;
                 width: 28px;
                 height: 28px;
-                background: #ef4444;
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 cursor: pointer;
                 z-index: 15;
-                opacity: 0;
-                visibility: hidden;
                 backdrop-filter: blur(4px);
                 border: 1px solid rgba(255, 255, 255, 0.4);
                 transition: all 0.2s ease;
+                font-size: 14px;
+                font-weight: 600;
             }
 
-            .clear-btn span {
-                color: white;
-                font-size: 18px;
-                font-weight: 600;
+            .action-btn span {
                 line-height: 1;
                 display: block;
-                margin-top: -2px;
+                margin-top: -1px;
+            }
+
+            /* 复制按钮样式（无预览时） */
+            .copy-btn {
+                background: #10b981;
+                color: white;
+            }
+
+            .copy-btn:hover {
+                background: #059669;
+            }
+
+            /* 清除按钮样式（有预览时） */
+            .clear-btn {
+                background: #ef4444;
+                color: white;
             }
 
             .clear-btn:hover {
-                transform: scale(1.1);
                 background: #dc2626;
             }
 
-            .clear-btn:active {
-                transform: scale(0.95);
+            /* 有预览时显示清除按钮 */
+            .upload-zone.has-preview .action-btn {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            /* 无预览时显示复制按钮 */
+            .upload-zone:not(.has-preview) .action-btn {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            /* 提示浮层 */
+            .toast {
+                position: fixed;
+                bottom: 30px;
+                left: 50%;
+                transform: translateX(-50%) translateY(100px);
+                background: rgba(0, 0, 0, 0.8);
+                color: white;
+                padding: 10px 20px;
+                border-radius: 40px;
+                font-size: 14px;
+                font-weight: 500;
+                z-index: 1000;
+                opacity: 0;
+                transition: all 0.3s ease;
+                backdrop-filter: blur(8px);
+                white-space: nowrap;
+                pointer-events: none;
+            }
+
+            .toast.show {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
             }
 
             /* 底部栏 - 固定高度，绝对定位 */
@@ -299,7 +328,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 background: #ef4444;
             }
 
-            /* 有预览时隐藏上传提示，显示预览图和清除按钮 */
+            /* 有预览时隐藏上传提示，显示预览图 */
             .upload-zone.has-preview .upload-content {
                 opacity: 0;
                 visibility: hidden;
@@ -307,11 +336,6 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
 
             .upload-zone.has-preview .preview-container {
                 display: flex;
-            }
-
-            .upload-zone.has-preview .clear-btn {
-                opacity: 1;
-                visibility: visible;
             }
 
             /* 加载动画 */
@@ -456,7 +480,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     height: 40px;
                     font-size: 0.8rem;
                 }
-                .clear-btn {
+                .action-btn {
                     top: 8px;
                     right: 8px;
                 }
@@ -467,11 +491,10 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 .reward-card {
                     padding: 18px;
                 }
-                .upload-zone:hover .upload-content {
-                    transform: none;
-                }
-                .upload-zone:hover .upload-icon {
-                    transform: none;
+                .toast {
+                    font-size: 12px;
+                    padding: 8px 16px;
+                    bottom: 20px;
                 }
             }
         </style>
@@ -480,8 +503,9 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         <div class="drestry-reward">
             <div class="reward-inner">
                 <div class="upload-zone" id="uploadZone">
-                    <div class="clear-btn" id="clearBtn">
-                        <span>✕</span>
+                    <!-- 右上角按钮：无预览时复制，有预览时清除 -->
+                    <div class="action-btn" id="actionBtn">
+                        <span>📋</span>
                     </div>
 
                     <div class="upload-inner">
@@ -519,29 +543,86 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             </div>
         </div>
 
+        <!-- 提示浮层 -->
+        <div class="toast" id="toast">✅ 复制成功！快去分享吧！</div>
+
         <script>
             (function() {
                 const REQUIRED_DOMAIN = "drestryrobot.readthedocs.io";
+                const COPY_URL = "https://drestryrobot.readthedocs.io";
                 
                 const uploadZone = document.getElementById('uploadZone');
                 const fileInput = document.getElementById('fileInput');
                 const previewImg = document.getElementById('previewImg');
                 const bottomBar = document.getElementById('bottomBar');
                 const rewardCard = document.getElementById('rewardCard');
-                const clearBtn = document.getElementById('clearBtn');
+                const actionBtn = document.getElementById('actionBtn');
+                const toast = document.getElementById('toast');
                 
-                clearBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
+                // 显示提示
+                function showToast(msg) {
+                    toast.textContent = msg;
+                    toast.classList.add('show');
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                    }, 2000);
+                }
+                
+                // 复制链接
+                async function copyLink() {
+                    try {
+                        await navigator.clipboard.writeText(COPY_URL);
+                        showToast('✅ 复制成功！快去分享吧！');
+                    } catch (err) {
+                        // 降级方案
+                        const textarea = document.createElement('textarea');
+                        textarea.value = COPY_URL;
+                        document.body.appendChild(textarea);
+                        textarea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textarea);
+                        showToast('✅ 复制成功！快去分享吧！');
+                    }
+                }
+                
+                // 清除图片
+                function clearImage() {
                     uploadZone.classList.remove('has-preview');
                     previewImg.src = '';
                     fileInput.value = '';
                     rewardCard.style.display = 'none';
                     bottomBar.className = 'bottom-bar bottom-bar-default';
                     bottomBar.innerHTML = '<span>🖱️ 点击更换图片</span>';
+                    // 更新按钮样式为复制按钮
+                    actionBtn.className = 'action-btn copy-btn';
+                    actionBtn.innerHTML = '<span>📋</span>';
+                }
+                
+                // 根据是否有预览更新按钮样式
+                function updateButtonStyle() {
+                    if (uploadZone.classList.contains('has-preview')) {
+                        actionBtn.className = 'action-btn clear-btn';
+                        actionBtn.innerHTML = '<span>✕</span>';
+                    } else {
+                        actionBtn.className = 'action-btn copy-btn';
+                        actionBtn.innerHTML = '<span>📋</span>';
+                    }
+                }
+                
+                // 按钮点击事件
+                actionBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (uploadZone.classList.contains('has-preview')) {
+                        // 有预览时：清除图片
+                        clearImage();
+                    } else {
+                        // 无预览时：复制链接
+                        copyLink();
+                    }
                 });
                 
                 uploadZone.addEventListener('click', (e) => {
-                    if (e.target === clearBtn || e.target.parentNode === clearBtn) return;
+                    if (e.target === actionBtn || e.target.parentNode === actionBtn) return;
                     fileInput.click();
                 });
                 
@@ -620,6 +701,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     reader.onload = (e) => {
                         previewImg.src = e.target.result;
                         uploadZone.classList.add('has-preview');
+                        updateButtonStyle(); // 更新按钮为清除样式
                     };
                     reader.readAsDataURL(file);
                     
@@ -681,6 +763,9 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                         timeout = setTimeout(() => hideStatus(), 1000);
                     }
                 }
+                
+                // 初始化按钮样式
+                updateButtonStyle();
             })();
         </script>
     </body>
