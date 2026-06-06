@@ -160,22 +160,29 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 const actionBtn = document.getElementById('actionBtn');
                 const toast = document.getElementById('toast');
                 
-                let timeout = null;
+                let hideToastTimeout = null;
+                let showRewardTimeout = null;
                 
                 function showToast(msg, isLoading) {
+                    if (hideToastTimeout) clearTimeout(hideToastTimeout);
+                    
                     if (isLoading) {
                         toast.innerHTML = '<span class="toast-spinner"></span> ' + msg;
                     } else {
                         toast.innerHTML = msg;
                     }
                     toast.classList.add('show');
-                    setTimeout(() => toast.classList.remove('show'), 2000);
+                }
+                
+                function hideToast() {
+                    toast.classList.remove('show');
                 }
                 
                 async function copyLink() {
                     try {
                         await navigator.clipboard.writeText('https://drestryrobot.readthedocs.io');
                         showToast('✅ 网址复制成功！快去分享吧！');
+                        hideToastTimeout = setTimeout(hideToast, 3000);
                     } catch {
                         const ta = document.createElement('textarea');
                         ta.value = 'https://drestryrobot.readthedocs.io';
@@ -184,6 +191,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                         document.execCommand('copy');
                         document.body.removeChild(ta);
                         showToast('✅ 网址复制成功！快去分享吧！');
+                        hideToastTimeout = setTimeout(hideToast, 3000);
                     }
                 }
                 
@@ -195,6 +203,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     actionBtn.className = 'action-btn copy-btn';
                     actionBtn.innerHTML = '<span>✓</span>';
                     showToast('🗑️ 已清除图片');
+                    hideToastTimeout = setTimeout(hideToast, 3000);
                 }
                 
                 function updateBtn() {
@@ -209,7 +218,11 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 
                 actionBtn.onclick = (e) => {
                     e.stopPropagation();
-                    zone.classList.contains('has-preview') ? clearImage() : copyLink();
+                    if (zone.classList.contains('has-preview')) {
+                        clearImage();
+                    } else {
+                        copyLink();
+                    }
                 };
                 
                 zone.onclick = (e) => {
@@ -222,82 +235,88 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     e.preventDefault();
                     const f = e.dataTransfer.files[0];
                     if (f && f.type.startsWith('image/')) handleFile(f);
-                    else showToast('❌ 请上传图片');
+                    else {
+                        showToast('❌ 请上传图片文件');
+                        hideToastTimeout = setTimeout(hideToast, 3000);
+                    }
                 };
                 
                 fileInput.onchange = (e) => {
                     if (e.target.files?.length) handleFile(e.target.files[0]);
                 };
                 
-                // 计算两个字符串的相似度（Levenshtein距离）
-                function similarity(s1, s2) {
-                    const len1 = s1.length;
-                    const len2 = s2.length;
-                    if (len1 === 0) return len2 === 0 ? 1 : 0;
-                    if (len2 === 0) return 0;
+                // 计算相似度：匹配的字符数占目标字符串长度的比例，同时考虑识别文本长度的惩罚
+                function calculateSimilarity(ocrText, target) {
+                    if (!ocrText || ocrText.length === 0) return 0;
                     
-                    // 创建距离矩阵
-                    const dp = Array(len1 + 1);
-                    for (let i = 0; i <= len1; i++) {
-                        dp[i] = Array(len2 + 1);
-                        dp[i][0] = i;
-                    }
-                    for (let j = 0; j <= len2; j++) {
-                        dp[0][j] = j;
-                    }
+                    const lowerOcr = ocrText.toLowerCase();
+                    const lowerTarget = target.toLowerCase();
                     
-                    for (let i = 1; i <= len1; i++) {
-                        for (let j = 1; j <= len2; j++) {
-                            const cost = s1[i - 1] === s2[j - 1] ? 0 : 1;
-                            dp[i][j] = Math.min(
-                                dp[i - 1][j] + 1,
-                                dp[i][j - 1] + 1,
-                                dp[i - 1][j - 1] + cost
-                            );
+                    // 找出OCR文本中包含的目标字符序列（顺序匹配）
+                    let matchCount = 0;
+                    let targetIdx = 0;
+                    
+                    for (let i = 0; i < lowerOcr.length && targetIdx < lowerTarget.length; i++) {
+                        if (lowerOcr[i] === lowerTarget[targetIdx]) {
+                            matchCount++;
+                            targetIdx++;
                         }
                     }
                     
-                    const maxLen = Math.max(len1, len2);
-                    const similarity = 1 - dp[len1][len2] / maxLen;
-                    return similarity;
+                    // 基础相似度 = 匹配字符数 / 目标字符串长度
+                    let baseSimilarity = matchCount / lowerTarget.length;
+                    
+                    // 长度惩罚因子：OCR文本长度与目标长度差异越大，惩罚越重
+                    // 目标长度约 30 个字符，OCR文本越长，匹配率应该越低
+                    const targetLen = lowerTarget.length;
+                    const ocrLen = lowerOcr.length;
+                    
+                    let lengthPenalty = 1.0;
+                    if (ocrLen > targetLen * 2) {
+                        // 如果OCR文本长度超过目标长度的2倍，大幅降低相似度
+                        lengthPenalty = Math.max(0, 1 - (ocrLen - targetLen * 2) / (ocrLen));
+                    } else if (ocrLen < targetLen * 0.5) {
+                        // 如果OCR文本太短，也适当降低
+                        lengthPenalty = ocrLen / (targetLen * 0.5);
+                    }
+                    
+                    // 最终相似度 = 基础相似度 × 长度惩罚因子
+                    let finalSimilarity = baseSimilarity * lengthPenalty;
+                    
+                    // 确保在 0-1 之间
+                    finalSimilarity = Math.min(1, Math.max(0, finalSimilarity));
+                    
+                    console.log(`匹配字符: ${matchCount}/${targetLen}, 基础相似度: ${(baseSimilarity*100).toFixed(1)}%, OCR长度: ${ocrLen}, 惩罚因子: ${lengthPenalty.toFixed(2)}, 最终: ${(finalSimilarity*100).toFixed(1)}%`);
+                    
+                    return finalSimilarity;
                 }
                 
-                // 验证逻辑：在OCR文本中滑动窗口匹配域名
+                // 滑动窗口匹配，取最佳相似度
                 function validate(text) {
-                    if (!text) return false;
+                    if (!text) return 0;
                     
                     const target = "drestryrobot.readthedocs.io";
-                    const lowerText = text.toLowerCase().replace(/[\s\n\r\t]/g, '');
+                    const cleanText = text.toLowerCase().replace(/[\s\n\r\t]/g, '');
                     
-                    console.log('OCR文本(去空格):', lowerText);
+                    let bestSimilarity = 0;
+                    const targetLen = target.length;
+                    const textLen = cleanText.length;
                     
                     // 滑动窗口匹配
-                    let bestMatch = 0;
-                    const targetLen = target.length;
-                    
-                    for (let i = 0; i <= Math.max(0, lowerText.length - targetLen); i++) {
-                        const sub = lowerText.substring(i, i + targetLen);
-                        const sim = similarity(sub, target);
-                        if (sim > bestMatch) {
-                            bestMatch = sim;
+                    for (let i = 0; i <= Math.max(0, textLen - 10); i++) {
+                        // 窗口大小从目标长度的50%到150%
+                        for (let windowSize = Math.floor(targetLen * 0.5); windowSize <= Math.min(textLen - i, Math.floor(targetLen * 1.5)); windowSize++) {
+                            const sub = cleanText.substring(i, i + windowSize);
+                            const sim = calculateSimilarity(sub, target);
+                            if (sim > bestSimilarity) bestSimilarity = sim;
                         }
                     }
                     
-                    // 也检查较短的窗口（处理OCR识别缺失字符的情况）
-                    for (let len = Math.floor(targetLen * 0.7); len <= targetLen; len++) {
-                        for (let i = 0; i <= lowerText.length - len; i++) {
-                            const sub = lowerText.substring(i, i + len);
-                            const sim = similarity(sub, target.substring(0, len));
-                            if (sim > bestMatch) {
-                                bestMatch = sim;
-                            }
-                        }
-                    }
+                    // 也检查整个文本
+                    const fullSim = calculateSimilarity(cleanText, target);
+                    if (fullSim > bestSimilarity) bestSimilarity = fullSim;
                     
-                    console.log(`最佳相似度: ${(bestMatch * 100).toFixed(1)}%`);
-                    
-                    // 相似度 >= 60% 即通过
-                    return bestMatch >= 0.6;
+                    return Math.round(bestSimilarity * 100);
                 }
                 
                 function showConfetti() {
@@ -318,6 +337,9 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 }
                 
                 async function handleFile(file) {
+                    if (hideToastTimeout) clearTimeout(hideToastTimeout);
+                    if (showRewardTimeout) clearTimeout(showRewardTimeout);
+                    
                     rewardCard.style.display = 'none';
                     
                     const reader = new FileReader();
@@ -370,23 +392,26 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                         const { data: { text } } = await worker.recognize(blob);
                         await worker.terminate();
                         
-                        toast.classList.remove('show');
-                        
                         console.log('OCR识别结果:', text);
                         
-                        if (validate(text)) {
-                            showToast('✅ 验证成功！');
-                            timeout = setTimeout(() => {
+                        const sim = validate(text);
+                        const passed = sim >= 60;
+                        
+                        if (passed) {
+                            showToast(`✅ 验证成功！匹配度: ${sim}%`);
+                            hideToastTimeout = setTimeout(() => {
+                                hideToast();
                                 rewardCard.style.display = 'block';
                                 showConfetti();
-                            }, 800);
+                            }, 3000);
                         } else {
-                            showToast('❌ 未检测到指定域名');
+                            showToast(`❌ 验证失败！匹配度: ${sim}%`);
+                            hideToastTimeout = setTimeout(hideToast, 3000);
                         }
                     } catch (err) {
                         console.error(err);
-                        toast.classList.remove('show');
                         showToast('❌ 识别失败，请重试');
+                        hideToastTimeout = setTimeout(hideToast, 3000);
                     }
                 }
                 
