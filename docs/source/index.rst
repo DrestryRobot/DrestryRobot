@@ -95,337 +95,90 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
         <style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-
-            .drestry-reward {
-                width: 100%;
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-                padding-bottom: 20px;
-            }
-
-            /* 上传框容器 - 16:9 */
-            .upload-zone {
-                background: #f5f5f7;
-                border: 2px dashed #d4d4d8;
-                border-radius: 24px;
-                cursor: pointer;
-                transition: border-color 0.25s ease;
-                position: relative;
-                width: 100%;
-                aspect-ratio: 16 / 9;
-                overflow: hidden;
-                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-            }
-
-            .upload-zone:hover {
-                border-color: #a1a1aa;
-            }
-
-            /* 上传提示 */
-            .upload-content {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                text-align: center;
-                transition: opacity 0.3s ease;
-                pointer-events: none;
-            }
-
-            .upload-icon {
-                font-size: 48px;
-                margin-bottom: 12px;
-            }
-
-            .upload-text {
-                color: #3f3f46;
-                font-weight: 500;
-                font-size: 1rem;
-                margin-bottom: 8px;
-            }
-
-            .upload-desc {
-                color: #71717a;
-                font-size: 0.85rem;
-                line-height: 1.4;
-            }
-
-            .upload-desc .domain {
-                color: #71717a;
-                font-weight: 500;
-            }
-
-            /* 预览图片容器 - 使用 flex 居中 */
-            .preview-container {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                display: none;
-                justify-content: center;
-                align-items: center;
-                background: #f5f5f7;
-            }
-
-            .preview-img {
-                max-width: 100%;
-                max-height: 100%;
-                width: auto;
-                height: auto;
-                object-fit: contain;
-                display: block;
-            }
-
-            /* 右上角按钮 - 大小翻倍 */
-            .action-btn {
-                position: absolute;
-                top: 16px;
-                right: 16px;
-                width: 56px;
-                height: 56px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
-                z-index: 15;
-                backdrop-filter: blur(4px);
-                border: 1px solid rgba(255, 255, 255, 0.4);
-                transition: all 0.2s ease;
-                font-size: 28px;
-                font-weight: 600;
-            }
-
-            .action-btn span {
-                line-height: 1;
-                display: block;
-                margin-top: -2px;
-            }
-
-            .copy-btn {
-                background: #10b981;
-                color: white;
-            }
-
-            .copy-btn:hover {
-                background: #059669;
-                transform: scale(1.05);
-            }
-
-            .clear-btn {
-                background: #ef4444;
-                color: white;
-            }
-
-            .clear-btn:hover {
-                background: #dc2626;
-                transform: scale(1.05);
-            }
-
-            /* 有预览时隐藏上传提示，显示预览 */
-            .upload-zone.has-preview .upload-content {
-                opacity: 0;
-                visibility: hidden;
-            }
-
-            .upload-zone.has-preview .preview-container {
-                display: flex;
-            }
-
-            /* 领奖卡片 */
-            .reward-card {
-                background: #f5f5f7;
-                border: 1px solid #e4e4e9;
-                border-radius: 24px;
-                padding: 20px;
-                margin-top: 20px;
-                text-align: center;
-                animation: celebrate 0.5s ease-out;
-            }
-
-            @keyframes celebrate {
-                0% { opacity: 0; transform: scale(0.95); }
-                50% { opacity: 1; transform: scale(1.02); }
-                100% { opacity: 1; transform: scale(1); }
-            }
-
-            .reward-title {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 8px;
-                color: #3f3f46;
-                font-size: 1.1rem;
-                font-weight: 600;
-                margin-bottom: 16px;
-            }
-
-            .reward-title span {
-                font-size: 1.35rem;
-            }
-
-            .qr-img {
-                width: 140px;
-                height: 140px;
-                margin: 0 auto;
-            }
-
-            .qr-img img {
-                width: 100%;
-                height: 100%;
-                object-fit: contain;
-            }
-
-            .reward-desc {
-                color: #71717a;
-                font-size: 0.8rem;
-                margin-top: 12px;
-            }
-
-            .toast {
-                position: fixed;
-                bottom: 30px;
-                left: 50%;
-                transform: translateX(-50%) translateY(100px);
-                background: rgba(0, 0, 0, 0.8);
-                color: white;
-                padding: 10px 20px;
-                border-radius: 40px;
-                font-size: 14px;
-                z-index: 1000;
-                opacity: 0;
-                transition: all 0.3s ease;
-                white-space: nowrap;
-                pointer-events: none;
-            }
-
-            .toast.show {
-                transform: translateX(-50%) translateY(0);
-                opacity: 1;
-            }
-
-            .confetti {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                pointer-events: none;
-                z-index: 999;
-                overflow: hidden;
-            }
-
-            .confetti-piece {
-                position: absolute;
-                width: 10px;
-                height: 20px;
-                background: linear-gradient(135deg, #ffd700, #ffaa00);
-                opacity: 0.8;
-                animation: fall 3s linear forwards;
-            }
-
-            @keyframes fall {
-                0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
-                100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-            }
-
-            @media (max-width: 560px) {
-                .upload-icon { font-size: 40px; }
-                .upload-text { font-size: 0.9rem; }
-                .upload-desc { font-size: 0.75rem; }
-                .action-btn { width: 48px; height: 48px; font-size: 24px; top: 12px; right: 12px; }
-                .qr-img { width: 110px; height: 110px; }
-                .reward-card { padding: 16px; }
-                .toast { font-size: 12px; padding: 8px 16px; bottom: 20px; }
-            }
+            *{margin:0;padding:0;box-sizing:border-box}
+            .drestry-reward{width:100%;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;padding-bottom:20px}
+            .upload-zone{background:#f5f5f7;border:2px dashed #d4d4d8;border-radius:24px;cursor:pointer;transition:border-color .25s;position:relative;width:100%;aspect-ratio:16/9;overflow:hidden}
+            .upload-zone:hover{border-color:#a1a1aa}
+            .upload-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;transition:opacity .3s;pointer-events:none}
+            .upload-icon{font-size:48px;margin-bottom:12px}
+            .upload-text{color:#3f3f46;font-weight:500;font-size:1rem;margin-bottom:8px}
+            .upload-desc{color:#71717a;font-size:.85rem}
+            .upload-desc .domain{color:#71717a;font-weight:500}
+            .preview-container{position:absolute;inset:0;display:none;justify-content:center;align-items:center;background:#f5f5f7}
+            .preview-img{max-width:100%;max-height:100%;width:auto;height:auto;display:block}
+            .action-btn{position:absolute;top:16px;right:16px;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:15;backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.4);transition:all .2s;font-size:28px;font-weight:600}
+            .action-btn span{line-height:1;margin-top:-2px}
+            .copy-btn{background:#10b981;color:#fff}
+            .copy-btn:hover{background:#059669;transform:scale(1.05)}
+            .clear-btn{background:#ef4444;color:#fff}
+            .clear-btn:hover{background:#dc2626;transform:scale(1.05)}
+            .upload-zone.has-preview .upload-content{opacity:0;visibility:hidden}
+            .upload-zone.has-preview .preview-container{display:flex}
+            .reward-card{background:#f5f5f7;border:1px solid #e4e4e9;border-radius:24px;padding:20px;margin-top:20px;text-align:center;animation:celebrate .5s}
+            @keyframes celebrate{0%{opacity:0;transform:scale(.95)}50%{opacity:1;transform:scale(1.02)}100%{opacity:1;transform:scale(1)}}
+            .reward-title{display:flex;align-items:center;justify-content:center;gap:8px;color:#3f3f46;font-size:1.1rem;font-weight:600;margin-bottom:16px}
+            .reward-title span{font-size:1.35rem}
+            .qr-img{width:140px;height:140px;margin:0 auto}
+            .qr-img img{width:100%;height:100%;object-fit:contain}
+            .reward-desc{color:#71717a;font-size:.8rem;margin-top:12px}
+            .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:rgba(0,0,0,.8);color:#fff;padding:10px 20px;border-radius:40px;font-size:14px;z-index:1000;opacity:0;transition:all .3s;white-space:nowrap;pointer-events:none}
+            .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+            .toast-spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;margin-right:8px;vertical-align:middle}
+            @keyframes spin{to{transform:rotate(360deg)}}
+            .confetti{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;overflow:hidden}
+            .confetti-piece{position:absolute;width:10px;height:20px;background:linear-gradient(135deg,#ffd700,#ffaa00);opacity:.8;animation:fall 3s linear forwards}
+            @keyframes fall{0%{transform:translateY(-100px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(360deg);opacity:0}}
+            @media (max-width:560px){.upload-icon{font-size:40px}.upload-text{font-size:.9rem}.upload-desc{font-size:.75rem}.action-btn{width:48px;height:48px;font-size:24px;top:12px;right:12px}.qr-img{width:110px;height:110px}.reward-card{padding:16px}}
         </style>
     </head>
     <body>
         <div class="drestry-reward">
             <div class="upload-zone" id="uploadZone">
-                <div class="action-btn" id="actionBtn">
-                    <span>✓</span>
-                </div>
-
+                <div class="action-btn" id="actionBtn"><span>✓</span></div>
                 <div class="upload-content">
                     <div class="upload-icon">📸</div>
                     <div class="upload-text">点击上传截图</div>
-                    <div class="upload-desc">
-                        上传包含 <span class="domain">drestryrobot.readthedocs.io</span> 的分享截图有奖
-                    </div>
+                    <div class="upload-desc">上传包含 <span class="domain">drestryrobot.readthedocs.io</span> 的分享截图有奖</div>
                 </div>
-
-                <div class="preview-container" id="previewContainer">
-                    <img class="preview-img" id="previewImg" alt="预览">
-                </div>
-
-                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                <div class="preview-container" id="previewContainer"><img class="preview-img" id="previewImg" alt="预览"></div>
+                <input type="file" id="fileInput" accept="image/*" style="display:none">
             </div>
-
-            <div class="reward-card" id="rewardCard" style="display: none;">
-                <div class="reward-title">
-                    <span>🎉</span> 验证成功，领奖 <span>🧧</span>
-                </div>
-                <div class="qr-img">
-                    <img id="rewardQr" src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/202606%20%E5%BE%AE%E4%BF%A1%E4%BA%8C%E7%BB%B4%E7%A0%81.png" alt="二维码">
-                </div>
+            <div class="reward-card" id="rewardCard" style="display:none">
+                <div class="reward-title"><span>🎉</span> 验证成功，领奖 <span>🧧</span></div>
+                <div class="qr-img"><img id="rewardQr" src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/202606%20%E5%BE%AE%E4%BF%A1%E4%BA%8C%E7%BB%B4%E7%A0%81.png" alt="二维码"></div>
                 <div class="reward-desc">📱 微信扫一扫领取红包</div>
             </div>
         </div>
-
-        <div class="toast" id="toast">✅ 网址复制成功！快去分享吧！</div>
+        <div class="toast" id="toast"></div>
 
         <script>
-            (function() {
-                const REQUIRED_DOMAIN = "drestryrobot.readthedocs.io";
-                const COPY_URL = "https://drestryrobot.readthedocs.io";
-                
+            (function(){
                 const zone = document.getElementById('uploadZone');
                 const fileInput = document.getElementById('fileInput');
-                const previewContainer = document.getElementById('previewContainer');
                 const previewImg = document.getElementById('previewImg');
                 const rewardCard = document.getElementById('rewardCard');
                 const actionBtn = document.getElementById('actionBtn');
                 const toast = document.getElementById('toast');
                 
-                let loadingToastTimeout = null;
+                let timeout = null;
                 
-                function showToast(msg, isError = false) {
-                    toast.textContent = msg;
+                function showToast(msg, isLoading) {
+                    if (isLoading) {
+                        toast.innerHTML = '<span class="toast-spinner"></span> ' + msg;
+                    } else {
+                        toast.innerHTML = msg;
+                    }
                     toast.classList.add('show');
-                    setTimeout(() => {
-                        toast.classList.remove('show');
-                    }, 2000);
-                }
-                
-                function showLoadingToast(msg) {
-                    if (loadingToastTimeout) clearTimeout(loadingToastTimeout);
-                    toast.innerHTML = '<span class="toast-spinner"></span> ' + msg;
-                    toast.classList.add('show');
-                }
-                
-                function hideLoadingToast() {
-                    if (loadingToastTimeout) clearTimeout(loadingToastTimeout);
-                    toast.classList.remove('show');
+                    setTimeout(() => toast.classList.remove('show'), 2000);
                 }
                 
                 async function copyLink() {
                     try {
-                        await navigator.clipboard.writeText(COPY_URL);
+                        await navigator.clipboard.writeText('https://drestryrobot.readthedocs.io');
                         showToast('✅ 网址复制成功！快去分享吧！');
-                    } catch (err) {
+                    } catch {
                         const ta = document.createElement('textarea');
-                        ta.value = COPY_URL;
+                        ta.value = 'https://drestryrobot.readthedocs.io';
                         document.body.appendChild(ta);
                         ta.select();
                         document.execCommand('copy');
@@ -441,6 +194,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     rewardCard.style.display = 'none';
                     actionBtn.className = 'action-btn copy-btn';
                     actionBtn.innerHTML = '<span>✓</span>';
+                    showToast('🗑️ 已清除图片');
                 }
                 
                 function updateBtn() {
@@ -453,65 +207,114 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     }
                 }
                 
-                actionBtn.addEventListener('click', (e) => {
+                actionBtn.onclick = (e) => {
                     e.stopPropagation();
-                    if (zone.classList.contains('has-preview')) {
-                        clearImage();
-                    } else {
-                        copyLink();
-                    }
-                });
+                    zone.classList.contains('has-preview') ? clearImage() : copyLink();
+                };
                 
-                zone.addEventListener('click', (e) => {
+                zone.onclick = (e) => {
                     if (e.target === actionBtn || e.target.parentNode === actionBtn) return;
                     fileInput.click();
-                });
+                };
                 
-                zone.addEventListener('dragover', (e) => {
+                zone.ondragover = (e) => e.preventDefault();
+                zone.ondrop = (e) => {
                     e.preventDefault();
-                });
-                zone.addEventListener('dragleave', () => {});
-                zone.addEventListener('drop', (e) => {
-                    e.preventDefault();
-                    const file = e.dataTransfer.files[0];
-                    if (file && file.type.startsWith('image/')) {
-                        handleFile(file);
-                    } else {
-                        showToast('❌ 请上传图片文件');
-                    }
-                });
+                    const f = e.dataTransfer.files[0];
+                    if (f && f.type.startsWith('image/')) handleFile(f);
+                    else showToast('❌ 请上传图片');
+                };
                 
-                fileInput.addEventListener('change', (e) => {
-                    if (e.target.files && e.target.files.length) {
-                        handleFile(e.target.files[0]);
-                    }
-                });
+                fileInput.onchange = (e) => {
+                    if (e.target.files?.length) handleFile(e.target.files[0]);
+                };
                 
-                function validate(text) {
-                    if (!text) return false;
-                    const lower = text.toLowerCase();
-                    return lower.includes(REQUIRED_DOMAIN) || 
-                           lower.replace(/[\s\n\r]/g, '').includes(REQUIRED_DOMAIN);
+                // 计算两个字符串的相似度（Levenshtein距离）
+                function similarity(s1, s2) {
+                    const len1 = s1.length;
+                    const len2 = s2.length;
+                    if (len1 === 0) return len2 === 0 ? 1 : 0;
+                    if (len2 === 0) return 0;
+                    
+                    // 创建距离矩阵
+                    const dp = Array(len1 + 1);
+                    for (let i = 0; i <= len1; i++) {
+                        dp[i] = Array(len2 + 1);
+                        dp[i][0] = i;
+                    }
+                    for (let j = 0; j <= len2; j++) {
+                        dp[0][j] = j;
+                    }
+                    
+                    for (let i = 1; i <= len1; i++) {
+                        for (let j = 1; j <= len2; j++) {
+                            const cost = s1[i - 1] === s2[j - 1] ? 0 : 1;
+                            dp[i][j] = Math.min(
+                                dp[i - 1][j] + 1,
+                                dp[i][j - 1] + 1,
+                                dp[i - 1][j - 1] + cost
+                            );
+                        }
+                    }
+                    
+                    const maxLen = Math.max(len1, len2);
+                    const similarity = 1 - dp[len1][len2] / maxLen;
+                    return similarity;
                 }
                 
-                let timeout = null;
+                // 验证逻辑：在OCR文本中滑动窗口匹配域名
+                function validate(text) {
+                    if (!text) return false;
+                    
+                    const target = "drestryrobot.readthedocs.io";
+                    const lowerText = text.toLowerCase().replace(/[\s\n\r\t]/g, '');
+                    
+                    console.log('OCR文本(去空格):', lowerText);
+                    
+                    // 滑动窗口匹配
+                    let bestMatch = 0;
+                    const targetLen = target.length;
+                    
+                    for (let i = 0; i <= Math.max(0, lowerText.length - targetLen); i++) {
+                        const sub = lowerText.substring(i, i + targetLen);
+                        const sim = similarity(sub, target);
+                        if (sim > bestMatch) {
+                            bestMatch = sim;
+                        }
+                    }
+                    
+                    // 也检查较短的窗口（处理OCR识别缺失字符的情况）
+                    for (let len = Math.floor(targetLen * 0.7); len <= targetLen; len++) {
+                        for (let i = 0; i <= lowerText.length - len; i++) {
+                            const sub = lowerText.substring(i, i + len);
+                            const sim = similarity(sub, target.substring(0, len));
+                            if (sim > bestMatch) {
+                                bestMatch = sim;
+                            }
+                        }
+                    }
+                    
+                    console.log(`最佳相似度: ${(bestMatch * 100).toFixed(1)}%`);
+                    
+                    // 相似度 >= 60% 即通过
+                    return bestMatch >= 0.6;
+                }
                 
                 function showConfetti() {
-                    const container = document.createElement('div');
-                    container.className = 'confetti';
-                    document.body.appendChild(container);
-                    const colors = ['#ffd700', '#ffaa00', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4'];
+                    const c = document.createElement('div');
+                    c.className = 'confetti';
+                    document.body.appendChild(c);
                     for (let i = 0; i < 80; i++) {
-                        const piece = document.createElement('div');
-                        piece.className = 'confetti-piece';
-                        piece.style.left = Math.random() * 100 + '%';
-                        piece.style.width = (Math.random() * 8 + 4) + 'px';
-                        piece.style.height = (Math.random() * 12 + 6) + 'px';
-                        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-                        piece.style.animationDelay = Math.random() * 0.5 + 's';
-                        container.appendChild(piece);
+                        const p = document.createElement('div');
+                        p.className = 'confetti-piece';
+                        p.style.left = Math.random() * 100 + '%';
+                        p.style.width = (Math.random() * 8 + 4) + 'px';
+                        p.style.height = (Math.random() * 12 + 6) + 'px';
+                        p.style.background = ['#ffd700', '#ffaa00', '#ff6b6b', '#4ecdc4', '#45b7d1'][Math.floor(Math.random() * 5)];
+                        p.style.animationDelay = Math.random() * 0.5 + 's';
+                        c.appendChild(p);
                     }
-                    setTimeout(() => container.remove(), 3000);
+                    setTimeout(() => c.remove(), 3000);
                 }
                 
                 async function handleFile(file) {
@@ -525,26 +328,13 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     };
                     reader.readAsDataURL(file);
                     
-                    // 显示带加载圆圈的提示
-                    toast.innerHTML = '<span class="toast-spinner" style="display:inline-block; width:14px; height:14px; border:2px solid rgba(255,255,255,0.3); border-top-color:white; border-radius:50%; animation: spin 0.8s linear infinite; margin-right:8px; vertical-align:middle;"></span> 识别中...';
-                    toast.classList.add('show');
-                    
-                    // 添加动画样式
-                    if (!document.querySelector('#toast-spinner-style')) {
-                        const style = document.createElement('style');
-                        style.id = 'toast-spinner-style';
-                        style.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
-                        document.head.appendChild(style);
-                    }
+                    showToast('识别中...', true);
                     
                     try {
-                        const img = await new Promise((resolve, reject) => {
+                        const img = await new Promise((res, rej) => {
                             const i = new Image();
-                            i.onload = () => {
-                                URL.revokeObjectURL(i.src);
-                                resolve(i);
-                            };
-                            i.onerror = reject;
+                            i.onload = () => { URL.revokeObjectURL(i.src); res(i); };
+                            i.onerror = rej;
                             i.src = URL.createObjectURL(file);
                         });
                         
@@ -563,11 +353,11 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                         const blob = await new Promise(r => canvas.toBlob(r, 'image/png'));
                         
                         if (typeof Tesseract === 'undefined') {
-                            await new Promise((resolve, reject) => {
+                            await new Promise((res, rej) => {
                                 const s = document.createElement('script');
                                 s.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
-                                s.onload = resolve;
-                                s.onerror = reject;
+                                s.onload = res;
+                                s.onerror = rej;
                                 document.head.appendChild(s);
                             });
                         }
@@ -581,6 +371,8 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                         await worker.terminate();
                         
                         toast.classList.remove('show');
+                        
+                        console.log('OCR识别结果:', text);
                         
                         if (validate(text)) {
                             showToast('✅ 验证成功！');
