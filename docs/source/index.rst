@@ -180,7 +180,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 
                 async function copyLink() {
                     try {
-                        await navigator.clipboard.writeText('https://drestryrobot.readthedocs.io');
+                        await navigator.clipboard.writeText('https://drestryrobot.readthedocs.io/');
                         showToast('✅ 网址复制成功！快去分享吧！');
                         hideToastTimeout = setTimeout(hideToast, 3000);
                     } catch {
