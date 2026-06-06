@@ -403,7 +403,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                                 hideToast();
                                 rewardCard.style.display = 'block';
                                 showConfetti();
-                            }, 3000);
+                            }, 1000);
                         } else {
                             showToast(`❌ 验证失败！匹配度: ${sim}%`);
                             hideToastTimeout = setTimeout(hideToast, 3000);
