@@ -1,56 +1,5 @@
 🔥 DrestryRobot
 =====================================
-.. raw:: html
-
-   <style>
-       .spinner {
-           width: 18px;
-           height: 18px;
-           border: 2px solid #ccc;
-           border-top-color: #0366d6;
-           border-radius: 50%;
-           animation: spin 0.8s linear infinite;
-       }
-       @keyframes spin {
-           to { transform: rotate(360deg); }
-       }
-       @media (max-width: 600px) {
-           .full { display: none; }
-           .short { display: inline; }
-       }
-       @media (min-width: 601px) {
-           .full { display: inline; }
-           .short { display: none; }
-       }
-   </style>
-
-   <div style="text-align: center; margin: 20px 0;">
-       <div id="loading" style="display: flex; align-items: center; justify-content: center; gap: 8px;"><div class="spinner"></div> 数据加载中...</div>
-       <div id="counter" style="display: none;">
-           <span id="vercount_container_site_pv" style="display: none;">
-               <span class="full">🌐 本站总访问量：</span><span class="short">🌐 访问量：</span>
-               <span id="vercount_value_site_pv">0</span> 次
-           </span>
-           &nbsp;|&nbsp;
-           <span id="vercount_container_site_uv" style="display: none;">
-               <span class="full">👥 本站总访客数：</span><span class="short">👥 访客数：</span>
-               <span id="vercount_value_site_uv">0</span> 人
-           </span>
-       </div>
-   </div>
-
-   <script>
-       document.head.appendChild(Object.assign(document.createElement('script'), { src: 'https://vercount.one/js', defer: true }));
-       let timer = setInterval(() => {
-           let pv = document.getElementById('vercount_container_site_pv');
-           if (pv && pv.style.display === 'inline') {
-               document.getElementById('loading').style.display = 'none';
-               document.getElementById('counter').style.display = 'block';
-               clearInterval(timer);
-           }
-       }, 100);
-   </script>
-
 🧩 基本介绍
 -------------
 DrestryRobot是一个机器人开发知识库，其涵盖了机器人开发所需要用到的各类技术知识和软件工具。
@@ -420,3 +369,55 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
         </script>
     </body>
     </html>
+
+
+.. raw:: html
+
+   <style>
+       .spinner {
+           width: 18px;
+           height: 18px;
+           border: 2px solid #ccc;
+           border-top-color: #0366d6;
+           border-radius: 50%;
+           animation: spin 0.8s linear infinite;
+       }
+       @keyframes spin {
+           to { transform: rotate(360deg); }
+       }
+       @media (max-width: 600px) {
+           .full { display: none; }
+           .short { display: inline; }
+       }
+       @media (min-width: 601px) {
+           .full { display: inline; }
+           .short { display: none; }
+       }
+   </style>
+
+   <div style="text-align: center; margin: 20px 0;">
+       <div id="loading" style="display: flex; align-items: center; justify-content: center; gap: 8px;"><div class="spinner"></div> 数据加载中...</div>
+       <div id="counter" style="display: none;">
+           <span id="vercount_container_site_pv" style="display: none;">
+               <span class="full">🌐 本站总访问量：</span><span class="short">🌐 访问量：</span>
+               <span id="vercount_value_site_pv">0</span> 次
+           </span>
+           &nbsp;|&nbsp;
+           <span id="vercount_container_site_uv" style="display: none;">
+               <span class="full">👥 本站总访客数：</span><span class="short">👥 访客数：</span>
+               <span id="vercount_value_site_uv">0</span> 人
+           </span>
+       </div>
+   </div>
+
+   <script>
+       document.head.appendChild(Object.assign(document.createElement('script'), { src: 'https://vercount.one/js', defer: true }));
+       let timer = setInterval(() => {
+           let pv = document.getElementById('vercount_container_site_pv');
+           if (pv && pv.style.display === 'inline') {
+               document.getElementById('loading').style.display = 'none';
+               document.getElementById('counter').style.display = 'block';
+               clearInterval(timer);
+           }
+       }, 100);
+   </script>
