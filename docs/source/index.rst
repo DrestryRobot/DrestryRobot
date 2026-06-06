@@ -164,16 +164,26 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 font-weight: 500;
             }
 
-            /* 预览图片 - 完全居中自适应 */
-            .preview-img {
+            /* 预览图片容器 - 使用 flex 居中 */
+            .preview-container {
                 position: absolute;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                object-fit: contain;
-                background: #f5f5f7;
                 display: none;
+                justify-content: center;
+                align-items: center;
+                background: #f5f5f7;
+            }
+
+            .preview-img {
+                max-width: 100%;
+                max-height: 100%;
+                width: auto;
+                height: auto;
+                object-fit: contain;
+                display: block;
             }
 
             /* 右上角按钮 - 大小翻倍 */
@@ -222,19 +232,14 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 transform: scale(1.05);
             }
 
-            /* 状态栏 - 不再显示状态 */
-            .status-text {
-                display: none;
-            }
-
             /* 有预览时隐藏上传提示，显示预览 */
             .upload-zone.has-preview .upload-content {
                 opacity: 0;
                 visibility: hidden;
             }
 
-            .upload-zone.has-preview .preview-img {
-                display: block;
+            .upload-zone.has-preview .preview-container {
+                display: flex;
             }
 
             /* 领奖卡片 */
@@ -360,7 +365,9 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     </div>
                 </div>
 
-                <img class="preview-img" id="previewImg" alt="预览">
+                <div class="preview-container" id="previewContainer">
+                    <img class="preview-img" id="previewImg" alt="预览">
+                </div>
 
                 <input type="file" id="fileInput" accept="image/*" style="display: none;">
             </div>
@@ -385,15 +392,31 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                 
                 const zone = document.getElementById('uploadZone');
                 const fileInput = document.getElementById('fileInput');
+                const previewContainer = document.getElementById('previewContainer');
                 const previewImg = document.getElementById('previewImg');
                 const rewardCard = document.getElementById('rewardCard');
                 const actionBtn = document.getElementById('actionBtn');
                 const toast = document.getElementById('toast');
                 
-                function showToast(msg) {
+                let loadingToastTimeout = null;
+                
+                function showToast(msg, isError = false) {
                     toast.textContent = msg;
                     toast.classList.add('show');
-                    setTimeout(() => toast.classList.remove('show'), 2000);
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                    }, 2000);
+                }
+                
+                function showLoadingToast(msg) {
+                    if (loadingToastTimeout) clearTimeout(loadingToastTimeout);
+                    toast.innerHTML = '<span class="toast-spinner"></span> ' + msg;
+                    toast.classList.add('show');
+                }
+                
+                function hideLoadingToast() {
+                    if (loadingToastTimeout) clearTimeout(loadingToastTimeout);
+                    toast.classList.remove('show');
                 }
                 
                 async function copyLink() {
@@ -454,8 +477,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     if (file && file.type.startsWith('image/')) {
                         handleFile(file);
                     } else {
-                        // 错误时不显示状态，只显示提示
-                        showToast('请上传图片');
+                        showToast('❌ 请上传图片文件');
                     }
                 });
                 
@@ -503,8 +525,17 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                     };
                     reader.readAsDataURL(file);
                     
-                    // 不显示状态，只显示加载提示
-                    showToast('识别中...');
+                    // 显示带加载圆圈的提示
+                    toast.innerHTML = '<span class="toast-spinner" style="display:inline-block; width:14px; height:14px; border:2px solid rgba(255,255,255,0.3); border-top-color:white; border-radius:50%; animation: spin 0.8s linear infinite; margin-right:8px; vertical-align:middle;"></span> 识别中...';
+                    toast.classList.add('show');
+                    
+                    // 添加动画样式
+                    if (!document.querySelector('#toast-spinner-style')) {
+                        const style = document.createElement('style');
+                        style.id = 'toast-spinner-style';
+                        style.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
+                        document.head.appendChild(style);
+                    }
                     
                     try {
                         const img = await new Promise((resolve, reject) => {
@@ -549,6 +580,8 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                         const { data: { text } } = await worker.recognize(blob);
                         await worker.terminate();
                         
+                        toast.classList.remove('show');
+                        
                         if (validate(text)) {
                             showToast('✅ 验证成功！');
                             timeout = setTimeout(() => {
@@ -557,12 +590,11 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
                             }, 800);
                         } else {
                             showToast('❌ 未检测到指定域名');
-                            timeout = setTimeout(() => {}, 1000);
                         }
                     } catch (err) {
                         console.error(err);
+                        toast.classList.remove('show');
                         showToast('❌ 识别失败，请重试');
-                        timeout = setTimeout(() => {}, 1000);
                     }
                 }
                 
