@@ -146,7 +146,7 @@ DrestryRobot由Dream、Struggle、Youth和Robot组成，是一个热爱于机器
             <div class="reward-card" id="rewardCard" style="display:none">
                 <div class="reward-title"><span>🎉</span> 验证成功，领奖 <span>🧧</span></div>
                 <div class="qr-img"><img id="rewardQr" src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/202606%20%E5%BE%AE%E4%BF%A1%E4%BA%8C%E7%BB%B4%E7%A0%81.png" alt="二维码"></div>
-                <div class="reward-desc">📱 微信扫一扫领取红包</div>
+                <div class="reward-desc">📱 微信扫一扫领取5元红包</div>
             </div>
         </div>
         <div class="toast" id="toast"></div>
