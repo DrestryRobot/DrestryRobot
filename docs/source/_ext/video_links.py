@@ -64,7 +64,7 @@ class VideoDirective(Directive):
         # to fit it while preserving its aspect ratio; no content is cropped.
         raw = (
             '<div style="width: 100%; aspect-ratio: 16 / 9; '
-            'overflow: hidden; text-align: center;">'
+            'margin: 0 0 1.5em; overflow: hidden; text-align: center;">'
             '<video controls preload="metadata" '
             'style="display: block; width: 100%; height: 100%; object-fit: contain; background: #000;">'
             f'<source src="{escape(url, quote=True)}" type="video/mp4">'
