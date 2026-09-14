@@ -60,13 +60,13 @@ class VideoDirective(Directive):
         if url is None:
             return [nodes.literal_block(self.block_text, self.block_text)]
 
-        # Keep a responsive 16:9 viewport. ``cover`` scales every source video
-        # to fill it while preserving its aspect ratio; the excess is cropped.
+        # Keep a responsive 16:9 viewport. ``contain`` scales every source video
+        # to fit it while preserving its aspect ratio; no content is cropped.
         raw = (
             '<div style="width: 100%; aspect-ratio: 16 / 9; '
             'overflow: hidden; text-align: center;">'
             '<video controls preload="metadata" '
-            'style="display: block; width: 100%; height: 100%; object-fit: cover;">'
+            'style="display: block; width: 100%; height: 100%; object-fit: contain; background: #000;">'
             f'<source src="{escape(url, quote=True)}" type="video/mp4">'
             '</video></div>'
         )
@@ -77,4 +77,3 @@ def setup(app):
     app._video_url_manifest = _load_urls(app)
     app.add_directive("video", VideoDirective)
     return {"version": "2.0", "parallel_read_safe": True}
-
