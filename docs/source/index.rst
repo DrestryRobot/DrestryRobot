@@ -52,8 +52,6 @@ Github：https://github.com/DrestryRobot/Extensions
 
 Github：https://github.com/DrestryRobot/IsaacLab
 
-.. video:: 202604 Unity数据大屏.mp4
-
 层压结构高速成像检测系统（硕士毕设）
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 基于 OpenGL/C++ 开发超声扫描高速成像检测系统    2025.07-2026.08                     
