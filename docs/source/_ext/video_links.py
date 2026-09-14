@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+from html import escape
 from pathlib import Path
 
 from docutils import nodes
@@ -59,10 +60,14 @@ class VideoDirective(Directive):
         if url is None:
             return [nodes.literal_block(self.block_text, self.block_text)]
 
+        # Keep a responsive 16:9 viewport. ``cover`` scales every source video
+        # to fill it while preserving its aspect ratio; the excess is cropped.
         raw = (
-            '<div style="width: 100%; text-align: center;">'
-            '<video width="100%" controls>'
-            f'<source src="{url}" type="video/mp4">'
+            '<div style="width: 100%; aspect-ratio: 16 / 9; '
+            'overflow: hidden; text-align: center;">'
+            '<video controls preload="metadata" '
+            'style="display: block; width: 100%; height: 100%; object-fit: cover;">'
+            f'<source src="{escape(url, quote=True)}" type="video/mp4">'
             '</video></div>'
         )
         return [nodes.raw('', raw, format='html')]
@@ -72,3 +77,4 @@ def setup(app):
     app._video_url_manifest = _load_urls(app)
     app.add_directive("video", VideoDirective)
     return {"version": "2.0", "parallel_read_safe": True}
+
