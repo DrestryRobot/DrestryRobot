@@ -16,8 +16,6 @@ RoboMaster工程机器人（本科毕设）
 
 Github：https://github.com/DrestryRobot/RMRobot
 
-.. video:: 工程机器人.MP4
-
 .. video:: 2024-04 工程完整形态.mp4
 
 控  制：基于多IMU开发臂戴式遥操控制器，利用正运动学和板间串口通信，实现20ms级端到端延迟机器人实时遥操控制 
