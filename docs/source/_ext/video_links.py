@@ -54,7 +54,8 @@ class VideoDirective(Directive):
 
     def run(self):
         key = self.arguments[0]
-        url = _resolve_video(self.env.app, key, self.state.document.current_source, self.lineno)
+        env = self.state.document.settings.env
+        url = _resolve_video(env.app, key, self.state.document.current_source, self.lineno)
         if url is None:
             return [nodes.literal_block(self.block_text, self.block_text)]
 
