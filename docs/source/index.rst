@@ -72,7 +72,7 @@ Github：https://github.com/DrestryRobot/3DScan
 ---------
 Robofinals仿真评测（光轮智能实习）  
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-基于 Isaac Lab/Python 开发VLA策略异步仿真评测                     2026.07-2026.08  
+基于 Isaac Lab/Python 开发VLA策略异步仿真评测                    2026.07-2026.08  
 
 仿  真：基于Isaac Sim/混元Agent，利用Skill工作流、物品提示词，实现5~15min生成资产导入BenchMark任务场景 
 
