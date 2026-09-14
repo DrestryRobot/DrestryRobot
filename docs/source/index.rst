@@ -1,6 +1,8 @@
 余贺文 简历附件
 ================
-© 版权所有 2026, DrestryRobot（余贺文）
+© 版权所有 2026, DrestryRobot 余贺文
+
+GitHub：https://github.com/DrestryRobot/DrestryRobot
 
 项目经历
 ----------
@@ -14,13 +16,15 @@ RoboMaster工程机器人（本科毕设）
 
 Github：https://github.com/DrestryRobot/RMRobot
 
-.. video:: 202604 Unity数据大屏.mp4
+.. video:: 工程机器人.MP4
+
+.. video:: 2024-04 工程完整形态.mp4
 
 控  制：基于多IMU开发臂戴式遥操控制器，利用正运动学和板间串口通信，实现20ms级端到端延迟机器人实时遥操控制 
 
 Github：https://github.com/DrestryRobot/CustomControl
 
-.. video:: 202604 Unity数据大屏.mp4
+.. video:: 2024-02 工程中期检查.mp4
 
 飞控舱智能化辅助装配（企事业项目）
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -32,13 +36,13 @@ Github：https://github.com/DrestryRobot/CustomControl
 
 Github：https://github.com/DrestryRobot/SmooAssemble
 
-.. video:: 202604 Unity数据大屏.mp4
+.. video:: 202503 导纳控制.mp4
 
 仿  真：基于Unity/C#开发机器人辅助装配数字孪生，利用正运动学和TCP通信，实现50Hz实时辅助装配及避障检测仿真 
 
 Github：https://github.com/DrestryRobot/AuboUnity
 
-.. video:: 202604 Unity数据大屏.mp4
+.. video:: 202606 Unity数字孪生.mp4
 
 机器人轴孔装配强化学习（国自然项目）
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -50,7 +54,7 @@ Github：https://github.com/DrestryRobot/AuboUnity
 
 Github：https://github.com/DrestryRobot/Extensions
 
-.. video:: 202604 Unity数据大屏.mp4
+.. video:: 202503 IsaacSim自动避障.mp4
 
 算  法：基于PPO/RSL-RL框架，利用观测/动作适配、奖励函数设计、超参数配置，实现6D任务空间策略驱动的轴孔装配 
 
@@ -68,13 +72,17 @@ Github：https://github.com/DrestryRobot/IsaacLab
 
 Github：https://github.com/DrestryRobot/SoundScan
 
-.. video:: 202604 Unity数据大屏.mp4
+.. video:: 202606 Delmia路径仿真.mp4
 
 算  法：基于250Hz轨迹/超声数据，利用Cuda Kernel并行计算、OpenGL/VTK渲染重建，实现16Hz实时三维点云成像 
 
 Github：https://github.com/DrestryRobot/3DScan
 
-.. video:: 202604 Unity数据大屏.mp4
+.. video:: 202608 三维成像.mp4
+
+.. image:: https://drestryrobot.oss-cn-hangzhou.aliyuncs.com/202608%20%E8%B6%85%E5%A3%B0%E6%89%AB%E6%8F%8F1.png
+
+.. image:: https://drestryrobot.oss-cn-hangzhou.aliyuncs.com/202608%20%E8%B6%85%E5%A3%B0%E6%89%AB%E6%8F%8F2.png
 
 实习经历
 ---------
@@ -90,25 +98,25 @@ Robofinals仿真评测（光轮智能实习）
 
 Github：https://github.com/LightwheelAI/Archon-X-Lightwheel
 
+.. video:: 202608 Agent仿真.mp4
+
 科研竞赛
 ---------
-大学生机器人大赛ROBOMASTER   省级一等奖（2021）
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. video:: 202604 Unity数据大屏.mp4
-
 中国机器人大赛RoboCup水下    全国三等奖（2022）
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. video:: 202604 Unity数据大屏.mp4
+.. video:: 水下机器人.MP4
 
 中国机器人及人工智能大赛      全国一等奖（2023）
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. video:: 202604 Unity数据大屏.mp4
+.. video:: 挂纱机器人.MP4
 
 中国大学生机械工程创新创意大赛 全国二等奖（2025）
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Github：https://github.com/DrestryRobot/GearAssemble
 
-.. video:: 202604 Unity数据大屏.mp4
+.. video:: 202510 齿轮装配.mp4
+
+.. image:: https://drestryrobot.oss-cn-hangzhou.aliyuncs.com/202510%20%E9%BD%BF%E8%BD%AE%E8%A3%85%E9%85%8D.png
 
 .. toctree::
    :maxdepth: 2
