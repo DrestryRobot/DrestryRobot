@@ -78,10 +78,6 @@ Github：https://github.com/DrestryRobot/3DScan
 
 .. video:: 202608 三维成像.mp4
 
-.. image:: https://drestryrobot.oss-cn-hangzhou.aliyuncs.com/202608%20%E8%B6%85%E5%A3%B0%E6%89%AB%E6%8F%8F1.png
-
-.. image:: https://drestryrobot.oss-cn-hangzhou.aliyuncs.com/202608%20%E8%B6%85%E5%A3%B0%E6%89%AB%E6%8F%8F2.png
-
 实习经历
 ---------
 Robofinals仿真评测（光轮智能实习）  
@@ -113,8 +109,6 @@ Github：https://github.com/LightwheelAI/Archon-X-Lightwheel
 Github：https://github.com/DrestryRobot/GearAssemble
 
 .. video:: 202510 齿轮装配.mp4
-
-.. image:: https://drestryrobot.oss-cn-hangzhou.aliyuncs.com/202510%20%E9%BD%BF%E8%BD%AE%E8%A3%85%E9%85%8D.png
 
 .. toctree::
    :maxdepth: 2
