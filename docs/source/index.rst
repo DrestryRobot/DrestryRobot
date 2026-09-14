@@ -27,11 +27,15 @@ Github：https://github.com/DrestryRobot/CustomControl
 
 视  频：
 
+.. video:: 202604 Unity数据大屏.mp4
+
 Github：https://github.com/DrestryRobot/SmooAssemble
 
 仿  真：基于Unity/C#开发机器人辅助装配数字孪生，利用正运动学和TCP通信，实现50Hz实时辅助装配及避障检测仿真 
 
 视  频：
+
+.. video:: 202604 Unity数据大屏.mp4
 
 Github：https://github.com/DrestryRobot/AuboUnity
 
@@ -43,11 +47,15 @@ Github：https://github.com/DrestryRobot/AuboUnity
 
 视  频：
 
+.. video:: 202604 Unity数据大屏.mp4
+
 Github：https://github.com/DrestryRobot/Extensions
 
 算  法：基于PPO/RSL-RL框架，利用观测/动作适配、奖励函数设计、超参数配置，实现6D任务空间策略驱动的轴孔装配 
 
 视  频：
+
+.. video:: 202604 Unity数据大屏.mp4
 
 Github：https://github.com/DrestryRobot/IsaacLab
 
@@ -59,11 +67,15 @@ Github：https://github.com/DrestryRobot/IsaacLab
 
 视  频：
 
+.. video:: 202604 Unity数据大屏.mp4
+
 Github：https://github.com/DrestryRobot/SoundScan
 
 算  法：基于250Hz轨迹/超声数据，利用Cuda Kernel并行计算、OpenGL/VTK渲染重建，实现16Hz实时三维点云成像 
 
 视  频：
+
+.. video:: 202604 Unity数据大屏.mp4
 
 Github：https://github.com/DrestryRobot/3DScan
 
@@ -85,17 +97,25 @@ Github：https://github.com/LightwheelAI/Archon-X-Lightwheel
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 视  频：
 
+.. video:: 202604 Unity数据大屏.mp4
+
 中国机器人大赛RoboCup水下    全国三等奖（2022）
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 视  频：
+
+.. video:: 202604 Unity数据大屏.mp4
 
 中国机器人及人工智能大赛      全国一等奖（2023）
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 视  频：
 
+.. video:: 202604 Unity数据大屏.mp4
+
 中国大学生机械工程创新创意大赛 全国二等奖（2025）
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 视  频：
+
+.. video:: 202604 Unity数据大屏.mp4
 
 Github：https://github.com/DrestryRobot/GearAssemble
 
