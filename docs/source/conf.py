@@ -5,7 +5,13 @@ copyright = '2026, DrestryRobot'
 author = 'DrestryRobot'
 
 # -- General configuration
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent / '_ext'))
+
 extensions = [
+    'video_links',
     'sphinx.ext.duration',
     'sphinx.ext.doctest',
     'sphinx.ext.autodoc',

@@ -1,0 +1,9 @@
+控制 导纳控制
+===============
+.. raw:: html
+
+   <div style="width: 100%; text-align: center;">
+       <video width="100%" controls>
+           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/202604%20%E5%AF%BC%E7%BA%B3%E6%8E%A7%E5%88%B6.mp4" type="video/mp4">
+       </video>
+   </div>

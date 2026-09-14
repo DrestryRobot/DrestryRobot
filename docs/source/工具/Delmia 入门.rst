@@ -1,9 +1,4 @@
 Delmia 入门
 ==================
-.. raw:: html
+.. video:: 202601 Delmia入门.mp4
 
-   <div style="width: 100%; text-align: center;">
-       <video width="100%" controls>
-           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/Delmia%E5%85%A5%E9%97%A8.mp4" type="video/mp4">
-       </video>
-   </div>

@@ -1,9 +1,4 @@
 硬件 电动推杆
 ===============
-.. raw:: html
+.. video:: 202601 电动推杆.mp4
 
-   <div style="width: 100%; text-align: center;">
-       <video width="100%" controls>
-           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E7%94%B5%E5%8A%A8%E6%8E%A8%E6%9D%86.mp4" type="video/mp4">
-       </video>
-   </div>

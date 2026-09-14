@@ -1,9 +1,4 @@
 硬件 光电开关
 ===============
-.. raw:: html
+.. video:: 202601 光电开关.mp4
 
-   <div style="width: 100%; text-align: center;">
-       <video width="100%" controls>
-           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E5%85%89%E7%94%B5%E5%BC%80%E5%85%B3.mp4" type="video/mp4">
-       </video>
-   </div>

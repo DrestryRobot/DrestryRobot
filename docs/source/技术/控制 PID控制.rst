@@ -1,9 +1,4 @@
 控制 PID控制
 ===============
-.. raw:: html
+.. video:: 202601 PID控制.mp4
 
-   <div style="width: 100%; text-align: center;">
-       <video width="100%" controls>
-           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/PID%E6%8E%A7%E5%88%B6.mp4" type="video/mp4">
-       </video>
-   </div>
