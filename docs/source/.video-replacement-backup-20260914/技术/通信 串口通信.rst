@@ -1,9 +1,0 @@
-通信 串口通信
-===============
-.. raw:: html
-
-   <div style="width: 100%; text-align: center;">
-       <video width="100%" controls>
-           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1.mp4" type="video/mp4">
-       </video>
-   </div>

@@ -1,9 +1,0 @@
-硬件 光耦继电器
-===============
-.. raw:: html
-
-   <div style="width: 100%; text-align: center;">
-       <video width="100%" controls>
-           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E5%85%89%E8%80%A6%E7%BB%A7%E7%94%B5%E5%99%A8.mp4" type="video/mp4">
-       </video>
-   </div>

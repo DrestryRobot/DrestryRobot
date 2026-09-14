@@ -1,9 +1,0 @@
-控制 气动控制
-===============
-.. raw:: html
-
-   <div style="width: 100%; text-align: center;">
-       <video width="100%" controls>
-           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/%E6%B0%94%E5%8A%A8%E6%8E%A7%E5%88%B6.mp4" type="video/mp4">
-       </video>
-   </div>

@@ -1,9 +1,0 @@
-通信 CAN通信
-===============
-.. raw:: html
-
-   <div style="width: 100%; text-align: center;">
-       <video width="100%" controls>
-           <source src="https://drestryrobot.oss-cn-shanghai.aliyuncs.com/CAN%E9%80%9A%E4%BF%A1.mp4" type="video/mp4">
-       </video>
-   </div>
