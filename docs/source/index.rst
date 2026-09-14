@@ -108,7 +108,7 @@ Github：https://github.com/LightwheelAI/Archon-X-Lightwheel
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Github：https://github.com/DrestryRobot/GearAssemble
 
-.. video:: 202510 齿轮装配.mp4
+.. video:: 202510 齿轮装配1.mp4
 
 .. toctree::
    :maxdepth: 2
