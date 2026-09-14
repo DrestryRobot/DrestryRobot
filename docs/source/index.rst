@@ -1,6 +1,6 @@
 余贺文 简历附件
 ================
-© 版权所有 2026, DrestryRobot 余贺文
+© 版权所有 2026, DrestryRobot
 
 GitHub：https://github.com/DrestryRobot/DrestryRobot
 
