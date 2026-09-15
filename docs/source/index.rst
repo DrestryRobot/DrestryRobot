@@ -44,13 +44,11 @@ Github：https://github.com/DrestryRobot/AuboUnity
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^    
 控  制：基于Isaac Sim仿真环境，利用RMPFlow运动规划、KinematicsSolver运动求解，实现动态避障及目标跟踪控制 
 
+算  法：基于PPO/RSL-RL框架，利用观测/动作适配、奖励函数设计、超参数配置，实现6D任务空间策略驱动的轴孔装配 
+
 Github：https://github.com/DrestryRobot/Extensions
 
 .. video:: 202503 IsaacSim自动避障.mp4
-
-算  法：基于PPO/RSL-RL框架，利用观测/动作适配、奖励函数设计、超参数配置，实现6D任务空间策略驱动的轴孔装配 
-
-Github：https://github.com/DrestryRobot/IsaacLab
 
 层压结构高速成像检测系统（硕士毕设）
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
