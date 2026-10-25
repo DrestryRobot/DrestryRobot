@@ -1,0 +1,30 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Docs: Install RST Preview dependencies",
+            "type": "process",
+            "command": "python3",
+            "args": [
+                "-m",
+                "pip",
+                "install",
+                "--user",
+                "-r",
+                "${workspaceFolder}/docs/requirements.txt"
+            ],
+            "windows": {
+                "command": "python",
+                "args": [
+                    "-m",
+                    "pip",
+                    "install",
+                    "--user",
+                    "-r",
+                    "${workspaceFolder}/docs/requirements.txt"
+                ]
+            },
+            "problemMatcher": []
+        }
+    ]
+}
